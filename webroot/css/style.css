@@ -1,0 +1,9 @@
+/**
+ * Layout of the main page elements 
+ */
+#header,
+#main,
+#footer {
+  margin: 8 0 auto;
+  width: 960px; 
+}
