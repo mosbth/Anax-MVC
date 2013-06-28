@@ -5,7 +5,7 @@ A webbtemplate / boilerplate for smaller websites and webbapplications using PHP
 
 Built by Mikael Roos.
 
-Read article about this here: http://dbwebb.se/kunskap/anax-en-webbtemplate
+Read article about this here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
 
 
 
@@ -33,6 +33,11 @@ The following external modules are included and subject to its own license.
 
 History
 -----------------------------------
+
+
+v1.0.x (latest)
+
+* -
 
 
 v1.0.0 (2013-06-28)
