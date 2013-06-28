@@ -1,7 +1,7 @@
 Anax-base
 =========
 
-A boilerplate for smaller websites or webbapplications using PHP.
+A webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
 
 Built by Mikael Roos.
 
