@@ -8,10 +8,12 @@ include(__DIR__.'/config.php');
 
 
 // Do it and store it all in variables in the Anax container.
+$anax['title'] = "Hello World";
+
 $anax['header'] = <<<EOD
 <img class='sitelogo' src='img/anax.png' alt='Anax Logo'/>
-<span class='sitetitle'>Anax - en webbtemplate för PHP-projekt</span>
-<span class='siteslogan'>Återanvändbara moduler för webbutveckling</span>
+<span class='sitetitle'>Anax webbtemplate</span>
+<span class='siteslogan'>Återanvändbara moduler för webbutveckling med PHP</span>
 EOD;
 
 $anax['main'] = <<<EOD
@@ -20,7 +22,7 @@ $anax['main'] = <<<EOD
 EOD;
 
 $anax['footer'] = <<<EOD
-<span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-base'>Anax på GitHub</a></span>
+<footer><span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-base'>Anax på GitHub</a> | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
 EOD;
 
 

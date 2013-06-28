@@ -9,7 +9,7 @@
  *
  */
 function myExceptionHandler($exception) {
-  echo "Anax: Uncaught exception: <p>" . $e->getMessage() . "</p><pre>" . $e->getTraceAsString(), "</pre>";
+  echo "Anax: Uncaught exception: <p>" . $exception->getMessage() . "</p><pre>" . $exception->getTraceAsString(), "</pre>";
 }
 set_exception_handler('myExceptionHandler');
 
@@ -20,8 +20,8 @@ set_exception_handler('myExceptionHandler');
  */
 function myAutoloader($class) {
   $path = ANAX_INSTALL_PATH . "/src/{$class}/{$class}.php";
-  if(isfile($path)) {
-    
+  if(is_file($path)) {
+    include($path);
   }
 }
 spl_autoload_register('myAutoloader');

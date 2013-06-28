@@ -5,18 +5,14 @@
  */
 
 /**
- * Get HTML for favicon if favicon is defined.
+ * Get title for the webpage by concatenating page specific title with site-wide title.
  *
- * @returns string/null wether the favicon is defined or not.
+ * @param string $title for this page.
+ * @return string/null wether the favicon is defined or not.
  */
-function favicon() {
+function get_title($title) {
   global $anax;
-
-  if(isset($anax['favicon'])) {
-    return "<link rel='shortcut icon' href='{$anax['favicon']}'/>\n";
-  }
-
-  return null;
+  return $title . (isset($anax['title_append']) ? $anax['title_append'] : null);
 }
 
 

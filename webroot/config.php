@@ -17,8 +17,8 @@ ini_set('output_buffering', 0);   // Do not buffer outputs, write directly
  * Start the session.
  *
  */
-sessionname(preg_replace('/[:\.\/-_]/', '', __DIR__));
-sessionstart();
+session_name(preg_replace('/[:\.\/-_]/', '', __DIR__));
+session_start();
 
 
 /**
@@ -44,8 +44,48 @@ $anax = array();
 
 
 /**
+ * Site wide settings.
+ *
+ */
+$anax['lang']         = 'sv';
+$anax['title_append'] = ' | Anax en webbtemplate';
+
+$anax['header'] = <<<EOD
+<img class='sitelogo' src='img/anax.png' alt='Anax Logo'/>
+<span class='sitetitle'>Anax webbtemplate</span>
+<span class='siteslogan'>Återanvändbara moduler för webbutveckling med PHP</span>
+EOD;
+
+$anax['footer'] = <<<EOD
+<footer><span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-base'>Anax på GitHub</a> | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
+EOD;
+
+
+
+/**
  * Theme related settings.
  *
  */
-$anax['stylesheet'] = 'css/style.css';
+//$anax['stylesheet'] = 'css/style.css';
+$anax['stylesheets'] = array('css/style.css');
 $anax['favicon']    = 'favicon.ico';
+
+
+
+/**
+ * Settings for JavaScript.
+ *
+ */
+$anax['modernizr'] = 'js/modernizr.js';
+$anax['jquery'] = '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js';
+//$anax['jquery'] = null; // To disable jQuery
+$anax['javascript_include'] = array();
+//$anax['javascript_include'] = array('js/main.js'); // To add extra javascript files
+
+
+
+/**
+ * Google analytics.
+ *
+ */
+$anax['google_analytics'] = 'UA-22093351-1'; // Set to null to disable google analytics
