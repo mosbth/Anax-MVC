@@ -5,7 +5,7 @@ A boilerplate for smaller websites or webbapplications using PHP.
 
 Built by Mikael Roos.
 
-Read article about this here: http://dbwebb.se/kunskap/XXX
+Read article about this here: http://dbwebb.se/kunskap/anax-en-webbtemplate
 
 
 
@@ -35,7 +35,7 @@ History
 -----------------------------------
 
 
-v1.0 (2013-06-28)
+v1.0.0 (2013-06-28)
 
 * First release after initial article on Anax.
 
