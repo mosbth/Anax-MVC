@@ -35,9 +35,9 @@ History
 -----------------------------------
 
 
-v1.0.x (latest)
+v1.0.1 (2013-09-19)
 
-* -
+* `config.php`, including `bootstrap.php` before starting session, needs the autoloader()`.
 
 
 v1.0.0 (2013-06-28)

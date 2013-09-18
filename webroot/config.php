@@ -14,6 +14,13 @@ ini_set('output_buffering', 0);   // Do not buffer outputs, write directly
 
 
 /**
+ * Include bootstrapping functions.
+ *
+ */
+include(ANAX_INSTALL_PATH . '/src/bootstrap.php');
+
+
+/**
  * Start the session.
  *
  */
@@ -27,13 +34,6 @@ session_start();
  */
 define('ANAX_INSTALL_PATH', __DIR__ . '/..');
 define('ANAX_THEME_PATH', ANAX_INSTALL_PATH . '/theme/render.php');
-
-
-/**
- * Include bootstrapping functions.
- *
- */
-include(ANAX_INSTALL_PATH . '/src/bootstrap.php');
 
 
 /**
