@@ -35,6 +35,11 @@ History
 -----------------------------------
 
 
+v1.0.2 (2013-09-23)
+
+* Needs to define the ANAX_INSTALL path before using it. v1.0.1 did not work.
+
+
 v1.0.1 (2013-09-19)
 
 * `config.php`, including `bootstrap.php` before starting session, needs the autoloader()`.
