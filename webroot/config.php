@@ -32,7 +32,7 @@ include(ANAX_INSTALL_PATH . '/src/bootstrap.php');
  * Start the session.
  *
  */
-session_name(preg_replace('/[:\.\/-_]/', '', __DIR__));
+session_name(preg_replace('/[^a-z\d]/i', '', __DIR__));
 session_start();
 
 
