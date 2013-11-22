@@ -35,6 +35,11 @@ History
 -----------------------------------
 
 
+v1.0.3 (2013-11-22)
+
+* Naming of session in `webroot/config.php` allows only alphanumeric characters.
+
+
 v1.0.2 (2013-09-23)
 
 * Needs to define the ANAX_INSTALL path before using it. v1.0.1 did not work.
