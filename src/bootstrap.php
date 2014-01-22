@@ -21,10 +21,33 @@ set_exception_handler('myExceptionHandler');
 function myAutoloader($class) {
   $path = ANAX_INSTALL_PATH . "/src/{$class}/{$class}.php";
   if(is_file($path)) {
-    include($path);
-  }
-  else {
-    throw new Exception("Classfile '{$class}' does not exists.");
+    require($path);
   }
 }
 spl_autoload_register('myAutoloader');
+
+
+
+/**
+ * PR0 autoloader for classes supporting namespaces, adapted to Anax environment.
+ *
+ * @link http://www.php-fig.org/psr/psr-0/
+ */
+function autoloadPSR0($className)
+{
+  $path      = ANAX_INSTALL_PATH . "/src";
+  $className = ltrim($className, '\\');
+  $fileName  = '';
+  $namespace = '';
+  if ($lastNsPos = strrpos($className, '\\')) {
+    $namespace = substr($className, 0, $lastNsPos);
+    $className = substr($className, $lastNsPos + 1);
+    $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+  }
+  $fileName .= $path . str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+
+  if(is_file($fileName)) {
+    require $fileName;
+  }
+}
+spl_autoload_register('autoloadPSR0');
