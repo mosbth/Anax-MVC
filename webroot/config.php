@@ -67,8 +67,9 @@ EOD;
  *
  */
 //$anax['stylesheet'] = 'css/style.css';
-$anax['stylesheets'] = array('css/style.css');
-$anax['favicon']    = 'favicon.ico';
+$anax['stylesheets']  = array('css/style.css');
+$anax['style']        = null; // Expanded as inline style
+$anax['favicon']      = 'favicon.ico';
 
 
 

@@ -7,6 +7,7 @@
 <?php foreach($stylesheets as $val): ?>
 <link rel='stylesheet' type='text/css' href='<?=$val?>'/>
 <?php endforeach; ?>
+<?php if(isset($style)): ?><style><?=$style?></style><?php endif; ?>
 <script src='<?=$modernizr?>'></script>
 </head>
 <body>
