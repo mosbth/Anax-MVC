@@ -8,23 +8,22 @@
  * Default exception handler.
  *
  */
-function myExceptionHandler($exception) {
+set_exception_handler ( function ($exception) {
   echo "Anax: Uncaught exception: <p>" . $exception->getMessage() . "</p><pre>" . $exception->getTraceAsString(), "</pre>";
-}
-set_exception_handler('myExceptionHandler');
+});
+
 
 
 /**
  * Autoloader for classes.
  *
  */
-function myAutoloader($class) {
+spl_autoload_register ( function ($class) {
   $path = ANAX_INSTALL_PATH . "/src/{$class}/{$class}.php";
   if(is_file($path)) {
     require($path);
   }
-}
-spl_autoload_register('myAutoloader');
+});
 
 
 
@@ -33,21 +32,19 @@ spl_autoload_register('myAutoloader');
  *
  * @link http://www.php-fig.org/psr/psr-0/
  */
-function autoloadPSR0($className)
-{
-  $path      = ANAX_INSTALL_PATH . "/src";
+spl_autoload_register ( function ($className) {
+  $path      = ANAX_INSTALL_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR;
   $className = ltrim($className, '\\');
-  $fileName  = '';
+  $fileName  = $path;
   $namespace = '';
   if ($lastNsPos = strrpos($className, '\\')) {
-    $namespace = substr($className, 0, $lastNsPos);
-    $className = substr($className, $lastNsPos + 1);
-    $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+    $namespace  = substr($className, 0, $lastNsPos);
+    $className  = substr($className, $lastNsPos + 1);
+    $fileName  .= str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
   }
-  $fileName .= $path . str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+  $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
   if(is_file($fileName)) {
     require $fileName;
   }
-}
-spl_autoload_register('autoloadPSR0');
+});
