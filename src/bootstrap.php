@@ -15,7 +15,7 @@ set_exception_handler ( function ($exception) {
 
 
 /**
- * Autoloader for classes.
+ * Autoloader for classes using Anax-base names.
  *
  */
 spl_autoload_register ( function ($class) {
