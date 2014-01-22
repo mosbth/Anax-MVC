@@ -48,3 +48,13 @@ spl_autoload_register ( function ($className) {
     require $fileName;
   }
 });
+
+
+
+/**
+ * Utility for debugging.
+ *
+ */
+function dump($array) {
+  echo "<pre>" . htmlentities(print_r($array, 1)) . "</pre>";
+}
