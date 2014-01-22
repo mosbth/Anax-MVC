@@ -28,7 +28,7 @@ spl_autoload_register ( function ($class) {
 
 
 /**
- * PR0 autoloader for classes supporting namespaces, adapted to Anax environment.
+ * PSR-0 autoloader for classes supporting namespaces, adapted to Anax environment.
  *
  * @link http://www.php-fig.org/psr/psr-0/
  */
