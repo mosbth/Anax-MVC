@@ -1,11 +1,11 @@
-Anax-base
+Anax-MVC
 =========
 
-A webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
+A PHP-MVC-micro framework / webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
 
 Built by Mikael Roos.
 
-Read article about this here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
+builds upon Anax-base, read article about Anax-base here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
 
 
 
@@ -35,6 +35,14 @@ History
 -----------------------------------
 
 
+x.x.x (latest) (Anax-MVC)
+
+* Cloned Anax-MVC and preparing to build Anax-MVC.
+
+
+
+###History for Anax-base
+
 v1.0.3 (2013-11-22)
 
 * Naming of session in `webroot/config.php` allows only alphanumeric characters.
@@ -60,7 +68,7 @@ v1.0.0 (2013-06-28)
  .  
 ..:
 
-Copyright (c) 2013 Mikael Roos
+Copyright (c) 2013 - 2014 Mikael Roos, me@mikaelroos.se
 
 
 
