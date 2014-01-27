@@ -38,7 +38,10 @@ History
 x.x.x (latest) (Anax-MVC)
 
 * Cloned Anax-MVC and preparing to build Anax-MVC.
-
+* Added autoloader for PSR-0.
+* Not throwing exception in standard anax autoloader.
+* Using anonomous functions in `bootstrap.php` to set up exception handler and autoloader.
+* Added `$anax['style']` as inline style in `config.php` and `index.tpl.php`.
 
 
 ###History for Anax-base
@@ -64,11 +67,9 @@ v1.0.0 (2013-06-28)
 
 
 
-------------------
+```
  .  
-..:
-
-Copyright (c) 2013 - 2014 Mikael Roos, me@mikaelroos.se
-
+..:  Copyright (c) 2013 - 2014 Mikael Roos, me@mikaelroos.se
+```
 
 
