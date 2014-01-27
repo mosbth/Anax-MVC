@@ -6,7 +6,12 @@
     "homepage": "http://dbwebb.se",
     "license": "MIT",
     "authors": [
-        {"name": "Mikael Roos", "email": "me@mikaelroos.se"}
+        {
+            "name": "Mkael Roos",
+            "email": "me@mikaelroos.se",
+            "homepage": "http://mikaelroos.se",
+            "role": "Developer"
+        }
     ],
     "require": {
         "php": ">=5.4"
