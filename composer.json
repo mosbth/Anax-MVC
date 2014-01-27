@@ -1,0 +1,14 @@
+{
+    "name": "Anax-MVC",    
+    "type": "library",
+    "description": "Webtemplate to create websites",
+    "keywords": ["boilerplate", "framework", "mvc", "micro"],
+    "homepage": "http://dbwebb.se",
+    "license": "MIT",
+    "authors": [
+        {"name": "Mikael Roos", "email": "me@mikaelroos.se"}
+    ],
+    "require": {
+        "php": ">=5.4"
+    }
+}
