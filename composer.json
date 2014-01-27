@@ -1,5 +1,5 @@
 {
-    "name": "Anax-MVC",    
+    "name": "AnaxMVC",    
     "type": "library",
     "description": "Webtemplate to create websites",
     "keywords": ["boilerplate", "framework", "mvc", "micro"],
