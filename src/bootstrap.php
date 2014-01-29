@@ -19,7 +19,7 @@ set_exception_handler ( function ($exception) {
  *
  */
 spl_autoload_register ( function ($class) {
-  $path = ANAX_INSTALL_PATH . "/src/{$class}/{$class}.php";
+  $path = ANAX_SOURCE_PATH . "/{$class}/{$class}.php";
   if(is_file($path)) {
     require($path);
   }
@@ -34,7 +34,7 @@ spl_autoload_register ( function ($class) {
  * @link http://www.php-fig.org/psr/psr-4/
  */
 spl_autoload_register ( function ($className) {
-  $path      = ANAX_INSTALL_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR;
+  $path      = ANAX_SOURCE_PATH . DIRECTORY_SEPARATOR;
   $className = ltrim($className, '\\');
   $fileName  = $path;
   $namespace = '';
@@ -57,8 +57,8 @@ spl_autoload_register ( function ($className) {
  *
  * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading
  */
-if(is_file(__DIR__ . '/../vendor/autoload.php')) {
-  require(__DIR__ . '/../vendor/autoload.php');
+if(is_file(ANAX_VENDOR_PATH . '/autoload.php')) {
+  require(ANAX_VENDOR_PATH . '/autoload.php');
 }
 
 
