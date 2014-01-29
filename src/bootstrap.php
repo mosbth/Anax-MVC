@@ -28,9 +28,10 @@ spl_autoload_register ( function ($class) {
 
 
 /**
- * PSR-0 autoloader for classes supporting namespaces, adapted to Anax environment.
+ * PSR-0 & PSR-4 autoloader for classes supporting namespaces, adapted to Anax environment.
  *
  * @link http://www.php-fig.org/psr/psr-0/
+ * @link http://www.php-fig.org/psr/psr-4/
  */
 spl_autoload_register ( function ($className) {
   $path      = ANAX_INSTALL_PATH . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR;
@@ -48,6 +49,17 @@ spl_autoload_register ( function ($className) {
     require $fileName;
   }
 });
+
+
+
+/**
+ * Including composer autoloader if available.
+ *
+ * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading
+ */
+if(is_file(__DIR__ . '/../vendor/autoload.php')) {
+  require(__DIR__ . '/../vendor/autoload.php');
+}
 
 
 
