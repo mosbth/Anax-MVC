@@ -4,6 +4,7 @@
 body {
   color: #333;
   font-family: arial, sans-serif;
+  overflow-y: scroll;
 }
 
 /**
