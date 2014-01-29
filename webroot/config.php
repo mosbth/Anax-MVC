@@ -18,7 +18,8 @@ ini_set('output_buffering', 0);   // Do not buffer outputs, write directly
  *
  */
 define('ANAX_INSTALL_PATH', __DIR__ . '/..');
-define('ANAX_THEME_PATH', ANAX_INSTALL_PATH . '/theme/render.php');
+define('ANAX_SOURCE_PATH',  __DIR__ . '/src');
+define('ANAX_THEME_PATH',   ANAX_INSTALL_PATH . '/theme/render.php');
 
 
 /**
