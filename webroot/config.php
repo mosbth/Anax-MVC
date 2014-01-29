@@ -18,7 +18,7 @@ ini_set('output_buffering', 0);   // Do not buffer outputs, write directly
  *
  */
 define('ANAX_INSTALL_PATH', __DIR__ . '/..');
-define('ANAX_SOURCE_PATH',  __DIR__ . '/src');
+define('ANAX_SOURCE_PATH',  ANAX_INSTALL_PATH . '/src');
 define('ANAX_THEME_PATH',   ANAX_INSTALL_PATH . '/theme/render.php');
 
 
@@ -26,7 +26,7 @@ define('ANAX_THEME_PATH',   ANAX_INSTALL_PATH . '/theme/render.php');
  * Include bootstrapping functions.
  *
  */
-include(ANAX_INSTALL_PATH . '/src/bootstrap.php');
+include(ANAX_SOURCE_PATH . '/bootstrap.php');
 
 
 /**
