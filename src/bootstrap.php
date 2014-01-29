@@ -28,10 +28,9 @@ spl_autoload_register ( function ($class) {
 
 
 /**
- * PSR-0 & PSR-4 autoloader for classes supporting namespaces, adapted to Anax environment.
+ * PSR-0 autoloader for classes supporting namespaces, adapted to Anax environment.
  *
  * @link http://www.php-fig.org/psr/psr-0/
- * @link http://www.php-fig.org/psr/psr-4/
  */
 spl_autoload_register ( function ($className) {
   $path      = ANAX_SOURCE_PATH . DIRECTORY_SEPARATOR;
