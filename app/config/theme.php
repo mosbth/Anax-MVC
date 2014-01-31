@@ -7,43 +7,60 @@
 
 return [
 
-// Language for this page.
-'lang' => 'sv',
+    /**
+     * Settings for Which theme to use, theme directory is found by path and name.
+     *
+     * path: where is the base path to the theme directory, end with a slash.
+     * name: name of the theme is mapped to a directory right below the path.
+     */
+    'settings' => [
+        'path' => ANAX_INSTALL_PATH . 'theme/',
+        'name' => 'anax-base',
+    ],
 
-// Append this value to each <title>
-'title_append' => ' | Anax en webbtemplate',
+    
+    /** 
+     * Data to extract and send as variables to template files by the theme engine.
+     */
+    'data' => [
 
-// Common header for all pages
-'header' => "
-<img class='sitelogo' src='img/anax.png' alt='Anax Logo'/>
-<span class='sitetitle'>Anax webbtemplate</span>
-<span class='siteslogan'>Återanvändbara moduler för webbutveckling med PHP</span>
-",
+        // Language for this page.
+        'lang' => 'sv',
 
-// Common footer for all pages
-'footer' => "
-<footer><span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-MVC'>Anax-MVC på GitHub</a> | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
-",
+        // Append this value to each <title>
+        'title_append' => ' | Anax en webbtemplate',
 
-// Stylesheets
-'stylesheets' => ['css/style.css'],
+        // Common header for all pages
+        'header' => "
+        <img class='sitelogo' src='img/anax.png' alt='Anax Logo'/>
+        <span class='sitetitle'>Anax webbtemplate</span>
+        <span class='siteslogan'>Återanvändbara moduler för webbutveckling med PHP</span>
+        ",
 
-// Inline style
-'style' => null,
+        // Common footer for all pages
+        'footer' => "
+        <footer><span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-MVC'>Anax-MVC på GitHub</a> | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
+        ",
 
-// Favicon
-'favicon' => 'favicon.ico',
+        // Stylesheets
+        'stylesheets' => ['css/style.css'],
 
-// Path to modernizr or null to disable
-'modernizr' => 'js/modernizr.js',
+        // Inline style
+        'style' => null,
 
-// Path to jquery or null to disable
-'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
+        // Favicon
+        'favicon' => 'favicon.ico',
 
-// Array with javscript-files to include
-'javascript_include' => [],
+        // Path to modernizr or null to disable
+        'modernizr' => 'js/modernizr.js',
 
-// Use google analytics for tracking, set key or null to disable
-'google_analytics' => null,
+        // Path to jquery or null to disable
+        'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
 
+        // Array with javscript-files to include
+        'javascript_include' => [],
+
+        // Use google analytics for tracking, set key or null to disable
+        'google_analytics' => null,
+    ],
 ];

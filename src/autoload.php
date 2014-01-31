@@ -84,14 +84,3 @@ spl_autoload_register(function ($class) {
 });
 
 
-
-/**
- * Including composer autoloader if available.
- *
- * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading
- */
-if(is_file(ANAX_VENDOR_PATH . '/autoload.php')) {
-    require(ANAX_VENDOR_PATH . '/autoload.php');
-}
-
-

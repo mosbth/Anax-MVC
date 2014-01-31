@@ -6,33 +6,55 @@
 
 // Get environment, autoloader and create your app anax-object.
 include(__DIR__ . '/../app/config/environment.php'); 
-include(ANAX_SOURCE_PATH . 'autoload.php'); 
 
-$anax = Anax\Core\CAnax::instance();
+$di = new \Anax\DI\CDI();
 
-$anax->config();
-$anax->bootstrap();
+$di->setShared('log', function () {
+    $log = new \Anax\Logger\CLog();
+    return $log;
+});
+
+$di->setShared('request',   '\Anax\Request\CRequest');
+$di->setShared('response',  '\Anax\Response\CResponse');
+$di->setShared('url',       '\Anax\CUrl');
+
+$di->setShared('session', function() {
+    $session = new \Anax\Session\CSession();
+    $session->start();
+    return $session;
+});
+
+$di->setShared('theme', function() {
+    $themeEngine = new \Anax\ThemeEngine\CThemeBasic();
+    $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php') ;
+    return $themeEngine;
+});
+
+// Bootstrap general functions
+// Maybe move to static class?
+// Maybe not really needed...?
+include(ANAX_SOURCE_PATH . 'bootstrap.php'); 
+
+$anax = new Anax\Kernel\CAnax($di);
 
 
-// Do it and store it all in variables in the Anax container.
-$anax->theme['title'] = "Hello World";
+// Prepare the page content
+$anax->theme->setVariable('title', "Hello World");
 
-$anax->view['header'] = <<<EOD
+$anax->theme->setVariable('header', "
 <img class='sitelogo' src='img/anax.png' alt='Anax Logo'/>
 <span class='sitetitle'>Anax webbtemplate</span>
 <span class='siteslogan'>Återanvändbara moduler för webbutveckling med PHP</span>
-EOD;
+");
 
-$anax->view['main'] = <<<EOD
+$anax->theme->setVariable('main', "
 <h1>Hej Världen</h1>
 <p>Detta är en exempelsida som visar hur Anax ser ut och fungerar.</p>
-EOD;
+");
 
-$anax->view['footer'] = <<<EOD
+$anax->theme->setVariable('footer', "
 <footer><span class='sitefooter'>Copyright (c) Mikael Roos (me@mikaelroos.se) | <a href='https://github.com/mosbth/Anax-base'>Anax på GitHub</a> | <a href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a></span></footer>
-EOD;
-
-
+");
 
 // Finally, leave to theme engine to render page.
-$anax->render();
+$anax->theme->render();

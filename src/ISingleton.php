@@ -3,7 +3,7 @@
  * Inteface for classes implementing singleton design pattern.
  */
 
-namespace Anax\Core;
+namespace Anax;
 
 interface ISingleton
 {

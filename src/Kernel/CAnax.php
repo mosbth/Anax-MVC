@@ -3,30 +3,41 @@
  * Anax base class for wrapping sessions.
  */
 
-namespace Anax\Core;
+namespace Anax\Kernel;
 
-class CAnax implements ISingleton
+class CAnax
 {
-    use TSingleton;
-
-
 
     /**
      * Properties
      *
      */
-    public $config = [];        // Store all configuration options here
-
+    protected $di = null;  // Dependency injection of service container
+ 
 
 
     /**
      * Construct.
      *
-     * @param array $options to configure options.
+     * @param array $di dependency injection of service container.
      */
-    private function __construct($options = [])
+    public function __construct($di)
     {
-        ;
+        $this->di = $di;
+    }
+
+
+
+    /**
+     * Magic method to get and create services using service locator. 
+     * When created it is also stored as a parameter of this object.
+     *
+     * @param string $service name of class property not existing.
+     */
+    public function __get($service)
+    {
+        $this->$service = $this->di->get($service);
+        return $this->$service;
     }
 
 
@@ -36,7 +47,7 @@ class CAnax implements ISingleton
      *
      * @param array $options to change presets.
      */
-    public function config($options = [])
+    /*public function config($options = [])
     {
         $default = [
             'error_reporting' => 'config/error_reporting.php', 
@@ -46,13 +57,13 @@ class CAnax implements ISingleton
         
         $appPath = ANAX_APP_PATH;
         if (!is_dir($appPath)) {
-            throw new \Exception("Application directory does not exists.");
+            throw new Exception("Application directory does not exists.");
         }
 
         foreach ($options as $key => $val) {
             $file = $appPath . $val;
             if (!is_readable($file)) {
-                throw new \Exception("Application config file is not readable.");
+                throw new Exception("Application config file is not readable.");
             }
 
             // Config file miht return an array to be stored as part of $this->config
@@ -61,7 +72,7 @@ class CAnax implements ISingleton
                 $this->config[$key] = $ret;    
             }
         }
-    }
+    }*/
 
 
 
@@ -70,7 +81,7 @@ class CAnax implements ISingleton
      *
      * @param array $options to change presets.
      */
-    public function bootstrap($options = [])
+    /*public function bootstrap($options = [])
     {
         $default = [
             'file'   => ANAX_SOURCE_PATH . 'bootstrap.php', 
@@ -78,11 +89,11 @@ class CAnax implements ISingleton
         $options = array_merge($default, $options);
         
         if (!is_readable($options['file'])) {
-            throw new \Exception("Bootstrap-file is not readable.");
+            throw new Exception("Bootstrap-file is not readable.");
         }
 
         include $options['file'];
-    }
+    }*/
 
 
 
@@ -91,7 +102,7 @@ class CAnax implements ISingleton
      *
      * @param array $options to change presets.
      */
-    public function render($options = [])
+    /*public function render($options = [])
     {
         $default = [
             'data' => [], 
@@ -99,5 +110,7 @@ class CAnax implements ISingleton
         $options = array_merge($default, $options);
 
         include ANAX_THEME_PATH . "render.php";
-    }
+    }*/
+
+
 }

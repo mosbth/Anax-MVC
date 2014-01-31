@@ -2,7 +2,7 @@
 <html class='no-js' lang='<?=$lang?>'>
 <head>
 <meta charset='utf-8'/>
-<title><?=get_title($title)?></title>
+<title><?=$title . $title_append?></title>
 <?php if(isset($favicon)): ?><link rel='shortcut icon' href='<?=$favicon?>'/><?php endif; ?>
 <?php foreach($stylesheets as $val): ?>
 <link rel='stylesheet' type='text/css' href='<?=$val?>'/>
@@ -10,6 +10,7 @@
 <?php if(isset($style)): ?><style><?=$style?></style><?php endif; ?>
 <script src='<?=$modernizr?>'></script>
 </head>
+
 <body>
   <div id='wrapper'>
     <div id='header'><?=$header?></div>

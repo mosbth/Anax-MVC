@@ -1,9 +1,9 @@
 <?php
 /**
- * Inteface for classes implementing singleton design pattern.
+ * Trait implementing singleton design pattern.
  */
 
-namespace Anax\Core;
+namespace Anax;
 
 trait TSingleton
 {
@@ -11,7 +11,7 @@ trait TSingleton
      * Properties
      *
      */
-    static private $instance;
+    static private $instance = null;
 
 
 
