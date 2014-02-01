@@ -19,6 +19,10 @@ spl_autoload_register(function ($class) {
 
 
 
+// Maybe just use the CLoader-class and put loader code into it?
+
+
+
 /**
  * PSR-0 autoloader for classes supporting namespaces, adapted to Anax environment.
  *
