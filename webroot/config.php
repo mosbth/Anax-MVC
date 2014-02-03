@@ -19,3 +19,12 @@ define('ANAX_APP_PATH',     ANAX_INSTALL_PATH . 'app/');
  *
  */
 include(ANAX_APP_PATH . 'config/autoloader.php'); 
+
+
+
+/**
+ * Create services and inject into the app. 
+ */
+$di = new \Anax\DI\CDIFactoryDefault();
+$app = new \Anax\Kernel\CAnax($di);
+

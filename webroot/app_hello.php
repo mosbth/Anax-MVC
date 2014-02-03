@@ -34,13 +34,13 @@ $di->setShared('theme', function() {
 
 
 // Create the app-object anax and inject service container.
-$anax = new \Anax\Kernel\CAnax($di);
+$app = new \Anax\Kernel\CAnax($di);
 
 
 // Prepare the page content
-$anax->theme->setVariable('title', "Hello World Pagecontroller");
+$app->theme->setVariable('title', "Hello World Pagecontroller");
 
-$anax->theme->setVariable('main', "
+$app->theme->setVariable('main', "
     <h1>Hello World Pagecontroller</h1>
     <p>This is a sample pagecontroller that shows how to use Anax with its base theme, <i>anax-base</i>.</p>
 ");
@@ -48,4 +48,4 @@ $anax->theme->setVariable('main', "
 
 
 // Finally, leave to theme engine to render page.
-$anax->theme->render();
+$app->theme->render();
