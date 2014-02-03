@@ -1,21 +1,22 @@
 <?php
-/**
- * Anax base class for wrapping sessions.
- */
 
 namespace Anax;
 
-class Exception
+/**
+ * Anax base class for wrapping sessions.
+ *
+ */
+class Exception extends \Exception
 {
     /**
      * Construct.
      *
-     * @param message string The Exception message to throw.
-     * @param code int The Exception code.
-     * @param previous Exception The previous exception used for the exception chaining.
+     * @param string $message the Exception message to throw.
+     * @param int $code the Exception code.
+     * @param Exception previous the previous exception used for the exception chaining.
      */
-    private function __construct(string $message = "", int $code = 0, Exception $previous = null)
+    public function __construct($message = "", $code = 0, $previous = null)
     {
-        parent::__construct($message, $code, $prevoious);
+        parent::__construct($message, $code, $previous);
     }
 }

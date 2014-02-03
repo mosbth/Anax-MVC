@@ -7,14 +7,15 @@
 
 /**
  * Default Anax autoloader, and the add specifics through a self invoking anonomous function.
+ * Add autoloader for namespace Anax and a default directory for unknown vendor namespaces.
  */
 require ANAX_INSTALL_PATH . 'src/Loader/CPsr4Autoloader.php';
 
 call_user_func(function() {
     $loader = new \Anax\Loader\CPsr4Autoloader();
-    //$loader->addNameSpace('namespace', ANAX_APP_PATH . 'src');
-    $loader->addNameSpace('Anax', ANAX_INSTALL_PATH . 'src');
-    $loader->register();
+    $loader->addNameSpace('Anax', ANAX_INSTALL_PATH . 'src')
+           ->addNameSpace('', ANAX_APP_PATH . 'src')
+           ->register();
 });
 
 

@@ -23,6 +23,14 @@ include(ANAX_APP_PATH . 'config/autoloader.php');
 
 
 /**
+ * Include global functions.
+ *
+ */
+include(ANAX_INSTALL_PATH . 'src/functions.php'); 
+
+
+
+/**
  * Create services and inject into the app. 
  */
 $di = new \Anax\DI\CDIFactoryDefault();

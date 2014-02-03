@@ -5,7 +5,7 @@
  */
 
 // Get environment & autoloader.
-include(__DIR__.'/config.php'); 
+include(__DIR__.'/config_pagecontroller.php'); 
 
 
 

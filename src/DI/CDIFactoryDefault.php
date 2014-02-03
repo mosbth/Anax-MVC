@@ -1,11 +1,12 @@
 <?php
-/**
- * Anax base class implementing Dependency Injection / Service Locator of the services used by the 
- * framework, using lazy loading.
- */
 
 namespace Anax\DI;
 
+/**
+ * Anax base class implementing Dependency Injection / Service Locator 
+ * of the services used by the framework, using lazy loading.
+ *
+ */
 class CDIFactoryDefault extends CDI
 {
    /**
@@ -18,6 +19,7 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('log', function () {
             $log = new \Anax\Logger\CLog();
+            $log->setContext('development');
             return $log;
         });
 
@@ -27,14 +29,15 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('session', function() {
             $session = new \Anax\Session\CSession();
-            $session->name(preg_replace('/[^a-z\d]/i', '', __DIR__));
+            $session->configure(ANAX_APP_PATH . 'config/session.php');
+            $session->name();
             $session->start();
             return $session;
         });
 
         $this->setShared('theme', function() {
             $themeEngine = new \Anax\ThemeEngine\CThemeBasic();
-            $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php') ;
+            $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php');
             return $themeEngine;
         });
     }

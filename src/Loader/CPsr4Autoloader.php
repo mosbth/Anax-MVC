@@ -4,6 +4,8 @@
  * functionality of allowing multiple base directories for a single namespace
  * prefix.
  * 
+ * Added feature to have a default directory for unresolved namespaces.
+ *
  * Given a foo-bar package of classes in the file system at the following
  * paths ...
  * 
@@ -63,12 +65,14 @@ class CPsr4Autoloader
     /**
      * Register loader with SPL autoloader stack.
      * 
-     * @return void
+     * @return $this
      */
     public function register()
     {
         spl_autoload_register(array($this, 'loadClass'));
+        return $this;
     }
+
 
 
     /**
@@ -80,7 +84,7 @@ class CPsr4Autoloader
      * @param bool $prepend If true, prepend the base directory to the stack
      * instead of appending it; this causes it to be searched first rather
      * than last.
-     * @return void
+     * @return $this
      */
     public function addNamespace($prefix, $base_dir, $prepend = false)
     {
@@ -102,6 +106,8 @@ class CPsr4Autoloader
         } else {
             array_push($this->prefixes[$prefix], $base_dir);
         }
+
+        return $this;
     }
 
 
@@ -139,6 +145,12 @@ class CPsr4Autoloader
             $prefix = rtrim($prefix, '\\');   
         }
 
+        // try to load a mapped file for the default prefix and relative class
+        $mapped_file = $this->loadMappedFile('\\', $relative_class);
+        if ($mapped_file) {
+            return $mapped_file;
+        }
+
         // never found a mapped file
         return false;
     }
@@ -162,7 +174,6 @@ class CPsr4Autoloader
 
         // look through base directories for this namespace prefix
         foreach ($this->prefixes[$prefix] as $base_dir) {
-
             // replace the namespace prefix with the base directory,
             // replace namespace separators with directory separators
             // in the relative class name, append with .php

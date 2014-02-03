@@ -1,10 +1,11 @@
 <?php
-/**
- * Anax base class for wrapping sessions.
- */
 
 namespace Anax\ThemeEngine;
 
+/**
+ * Anax base class for wrapping sessions.
+ *
+ */
 class CThemeBasic implements IThemeEngine
 {
     use \Anax\TConfigure;
@@ -34,11 +35,12 @@ class CThemeBasic implements IThemeEngine
      *
      * @param string $which variable to set value of.
      * @param mixed $value of the variable.
-     * @return nothing
+     * @return $this
      */
     public function setVariable($which, $value)
     {
         $this->data[$which] = $value;
+        return $this;
     }
 
 
@@ -60,6 +62,34 @@ class CThemeBasic implements IThemeEngine
         }
 
         return null;
+    }
+
+
+
+    /**
+     * Add a stylesheet.
+     *
+     * @param string $uri to add.
+     * @return $this
+     */
+    public function addStylesheet($uri)
+    {
+        $this->config['data']['stylesheets'][] = $uri;
+        return $this;
+    }
+
+
+
+    /**
+     * Add a javascript asset.
+     *
+     * @param string $uri to add.
+     * @return $this
+     */
+    public function addJavaScript($uri)
+    {
+        $this->config['data']['javascript_include'][] = $uri;
+        return $this;
     }
 
 

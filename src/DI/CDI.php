@@ -1,11 +1,12 @@
 <?php
-/**
- * Anax base class implementing Dependency Injection / Service Locator of the services used by the 
- * framework, using lazy loading.
- */
 
 namespace Anax\DI;
 
+/**
+ * Anax base class implementing Dependency Injection / Service Locator of the services used by the 
+ * framework, using lazy loading.
+ *
+ */
 class CDI implements IDI
 {
 

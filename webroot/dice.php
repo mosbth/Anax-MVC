@@ -3,46 +3,52 @@
  * This is a Anax pagecontroller.
  *
  */
-// Include the essential config-file which also creates the $anax variable with its defaults.
-include(__DIR__.'/config.php'); 
+
+// Get environment & autoloader.
+include(__DIR__.'/config_pagecontroller.php'); 
 
 
 
-// Demonstration of module CDice
-$dice = new CDice();
+// Demonstration of application specific module CDice
+$dice = new \Mos\Dice\CDice();
 
-$roll = isset($_GET['roll']) && is_numeric($_GET['roll']) ? $_GET['roll'] : 0;
+// Check how many rolls to do
+$roll = isset($_GET['roll']) && is_numeric($_GET['roll']) 
+    ? $_GET['roll'] 
+    : 0;
 
 if($roll > 100) {
-  throw new Exception("To many rolls on the dice. Not allowed.");
+    throw new Exception("To many rolls on the dice. Not allowed.");
 }
 
+// Make roll and prepare reply
 $html = null;
 if($roll) {
-  $dice->Roll($roll);
+    $dice->roll($roll);
 
-  $html = "<p>Du gjorde {$roll} kast och fick följande resultat.</p>\n<ul>";
-  foreach($dice->GetResults() as $val) {
-    $html .= "\n<li>{$val}</li>";
-  }
-  $html .= "\n</ul>\n";
+    $html = "<p>You made {$roll} roll(s) and you got this serie.</p>\n<ul class='dice'>";
+    foreach($dice->getResults() as $val) {
+        $html .= "\n<li class='dice-{$val}'></li>";
+    }
+    $html .= "\n</ul>\n";
 
-  $html .= "<p>Totalt fick du " . $dice->GetTotal() . " poäng på dina kast.</p>";
+    $html .= "<p>You got " . $dice->getTotal() . " as a total.</p>";
 }
 
 
 
-// Do it and store it all in variables in the Anax container.
-$anax['title'] = "Kasta tärning";
+// Prepare the page content
 
-$anax['main'] = <<<EOD
-<h1>Kasta tärning</h1>
-<p>Detta är en exempelsida som visar hur Anax fungerar tillsammans med återanvändbara moduler.</p>
-<p>Hur många kast vill du göra, <a href='?roll=1'>1 kast</a>, <a href='?roll=3'>3 kast</a> eller <a href='?roll=6'>6 kast</a>? </p>
-{$html}
-EOD;
+$app->theme->addStylesheet("css/dice.css")
+           ->setVariable('title', "Throw a dice")
+           ->setVariable('main', "
+    <h1>Throw a dice</h1>
+    <p>This is a sample pagecontroller showing how to use <i>application specific modules</i> in a pagecontroller.</p>
+    <p>How many rolls do you want to do, <a href='?roll=1'>1 roll</a>, <a href='?roll=3'>3 rolls</a> or <a href='?roll=6'>6 rolls</a>? </p>
+    $html
+");
 
 
 
-// Finally, leave it all to the rendering phase of Anax.
-include(ANAX_THEME_PATH);
+// Render the response using theme engine.
+$app->theme->render();
