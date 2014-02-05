@@ -21,6 +21,8 @@ if($roll > 100) {
     throw new Exception("To many rolls on the dice. Not allowed.");
 }
 
+
+
 // Make roll and prepare reply
 $html = null;
 if($roll) {

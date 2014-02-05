@@ -31,6 +31,19 @@ class CThemeBasic implements IThemeEngine
 
 
     /**
+     * Shortcut to set title.
+     *
+     * @param string $value of the variable.
+     * @return $this
+     */
+    public function setTitle($value)
+    {
+        return $this->setVariable('title', $value);
+    }
+
+
+
+    /**
      * Set a variable which will be exposed to the template files during render.
      *
      * @param string $which variable to set value of.

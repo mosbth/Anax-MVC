@@ -23,9 +23,29 @@ class CDIFactoryDefault extends CDI
             return $log;
         });
 
-        $this->setShared('request',   '\Anax\Request\CRequest');
+        $this->setShared('request',   '\Anax\Request\CRequestBase');
         $this->setShared('response',  '\Anax\Response\CResponse');
-        $this->setShared('url',       '\Anax\CUrl');
+        $this->setShared('url',       '\Anax\Url\CUrl');
+        $this->setShared('validate',  '\Anax\Validate\CValidate');
+
+        $this->setShared('view', function() {
+            $view = new \Anax\View\CViewBasic();
+            $view->setFileSuffix('.tpl.php');
+            return $view;   
+        });
+
+        $this->setShared('route', function() {
+            $route = new \Anax\Route\CRoute();
+            $route->add('403', function() {
+                $this->response->setHeader('403');
+                $this->view->add('main', 'error/403');
+            });
+            $route->add('404', function() {
+                $this->response->setHeader('404');
+                $this->view->add('main', 'error/404');
+            });
+            return $route;
+        });
 
         $this->setShared('session', function() {
             $session = new \Anax\Session\CSession();

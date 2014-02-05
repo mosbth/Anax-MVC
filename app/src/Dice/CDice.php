@@ -17,19 +17,10 @@ class CDice
 
 
     /**
-    * Constructor
-    *
-    */
-    public function __construct() 
-    {
-        ;
-    }
-
-
-
-    /**
     * Roll the dice
     *
+    * @param int $times the number of times to roll.
+    * @return void
     */
     public function roll($times) 
     {
@@ -44,6 +35,7 @@ class CDice
     /**
     * Get the array that contains the last roll(s).
     *
+    * @return void
     */
     public function getResults() 
     {
@@ -55,6 +47,7 @@ class CDice
     /**
     * Get the total from the last roll(s).
     *
+    * @return void
     */
     public function getTotal() 
     {
