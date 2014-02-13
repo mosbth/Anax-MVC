@@ -6,9 +6,11 @@ namespace Anax\ThemeEngine;
  * Anax base class for wrapping sessions.
  *
  */
-class CThemeBasic implements IThemeEngine
+class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 {
-    use \Anax\TConfigure;
+    use \Anax\TConfigure,
+        \Anax\DI\TInjectionAware;
+
 
 
     /**
@@ -20,20 +22,10 @@ class CThemeBasic implements IThemeEngine
 
 
     /**
-     * Construct.
-     *
-     */
-    public function __construct()
-    {
-        ;
-    }
-
-
-
-    /**
      * Shortcut to set title.
      *
      * @param string $value of the variable.
+     *
      * @return $this
      */
     public function setTitle($value)
@@ -47,7 +39,8 @@ class CThemeBasic implements IThemeEngine
      * Set a variable which will be exposed to the template files during render.
      *
      * @param string $which variable to set value of.
-     * @param mixed $value of the variable.
+     * @param mixed  $value of the variable.
+     *
      * @return $this
      */
     public function setVariable($which, $value)
@@ -63,14 +56,14 @@ class CThemeBasic implements IThemeEngine
      * during render.
      *
      * @param string $which variable to get value of.
+     *
      * @return mixed as value of variable, or null if value is not set.
      */
     public function getVariable($which)
     {
         if (isset($this->data[$which])) {
             return $this->data[$which];
-        }
-        elseif (isset($this->config['data'])) {
+        } elseif (isset($this->config['data'])) {
             return $this->config['data'][$which];
         }
 
@@ -83,6 +76,7 @@ class CThemeBasic implements IThemeEngine
      * Add a stylesheet.
      *
      * @param string $uri to add.
+     *
      * @return $this
      */
     public function addStylesheet($uri)
@@ -97,6 +91,7 @@ class CThemeBasic implements IThemeEngine
      * Add a javascript asset.
      *
      * @param string $uri to add.
+     *
      * @return $this
      */
     public function addJavaScript($uri)
@@ -109,14 +104,11 @@ class CThemeBasic implements IThemeEngine
 
     /**
      * Render the theme by applying the variables onto the template files.
-     *
+     * 
+     * @return void
      */
     public function render()
     {
-        // Extract data variables
-        extract($this->config['data']);
-        extract($this->data);
-        
         // Prepare details
         $path       = $this->config['settings']['path'];
         $name       = $this->config['settings']['name'] . '/';
@@ -125,20 +117,21 @@ class CThemeBasic implements IThemeEngine
 
         // Include global theme functions file
         $file = $path . $functions;
-        if(is_readable($file)) {
+        if (is_readable($file)) {
             include $file;
         }
 
         // Include theme specific functions file
         $file = $path . $name . $functions;
-        if(is_readable($file)) {
+        if (is_readable($file)) {
             include $file;
         }
 
-        // Include template file
-        $file = $path . $name . $template;
-        if(is_readable($file)) {
-            include $file;
-        }
+        // Create a view to execute the default template file
+        $tpl  = $path . $name . $template;
+        $data = array_merge($this->config['data'], $this->data);
+        $view = new \Anax\View\CViewBasic($tpl, $data);
+        $view->setDI($this->di);
+        $view->render();
     }
 }

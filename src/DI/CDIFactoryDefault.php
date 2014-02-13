@@ -28,22 +28,28 @@ class CDIFactoryDefault extends CDI
         $this->setShared('url',       '\Anax\Url\CUrl');
         $this->setShared('validate',  '\Anax\Validate\CValidate');
 
-        $this->setShared('view', function() {
-            $view = new \Anax\View\CViewBasic();
-            $view->setFileSuffix('.tpl.php');
-            return $view;   
+        $this->setShared('views', function() {
+            $views = new \Anax\View\CViewContainerBasic();
+            $views->setFileSuffix('.tpl.php');
+            $views->setBasePath(ANAX_APP_PATH . 'view');
+            $views->setDI($this);
+            return $views;   
         });
 
-        $this->setShared('route', function() {
-            $route = new \Anax\Route\CRoute();
+        $this->setShared('router', function() {
+            
+            $route = new \Anax\Route\CRouterBasic();
+            
             $route->add('403', function() {
                 $this->response->setHeader('403');
-                $this->view->add('main', 'error/403');
-            });
+                $this->views->add('main', 'error/403');
+            })->setName('403');
+
             $route->add('404', function() {
                 $this->response->setHeader('404');
-                $this->view->add('main', 'error/404');
-            });
+                $this->views->add('main', 'error/404');
+            })->setName('404');
+            
             return $route;
         });
 
@@ -58,6 +64,7 @@ class CDIFactoryDefault extends CDI
         $this->setShared('theme', function() {
             $themeEngine = new \Anax\ThemeEngine\CThemeBasic();
             $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php');
+            $themeEngine->setDI($this);
             return $themeEngine;
         });
     }

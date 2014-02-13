@@ -5,19 +5,29 @@
  */
 
 // Get environment & autoloader.
-include(__DIR__.'/config_pagecontroller.php'); 
+require __DIR__.'/config.php';
 
 
 
 // Add extra assets
-$app->theme->addStylesheet("css/dice.css");
+$app->theme->addStylesheet('css/dice.css');
+
+
+
+// Home route
+$app->router->add('', function() {
+
+    $app->views->add('welcome/index');
+    $app->theme->setTitle("Welcome to Anax");
+
+})->setName('home');
 
 
 
 // Main route to show welcome to dice
-$app->route->add('dice', function() {
+$app->router->add('dice', function() {
 
-    $app->view->add('main', 'dice/index');
+    $app->views->add('dice/index');
     $app->theme->setTitle("Roll a dice");
 
 })->setName('dice');
@@ -25,7 +35,7 @@ $app->route->add('dice', function() {
 
 
 // Route to roll dice and show results
-$app->route->add('dice/roll', function() use ($app) {
+$app->router->add('dice/roll', function() use ($app) {
 
     // Check how many rolls to do
     $roll = $app->request->get('roll', 1);
@@ -34,7 +44,7 @@ $app->route->add('dice/roll', function() use ($app) {
     // Make roll and prepare reply
     $dice = new \Mos\Dice\CDice();
 
-    $app->view->add('dice/index', [
+    $app->views->add('dice/index', [
         'roll'      => $roll,
         'results'   => $dice->getResults,
         'total'     => $dice->getTotal(),
@@ -44,6 +54,10 @@ $app->route->add('dice/roll', function() use ($app) {
 
 })->setName('dice-roll');
 
+$app->router->handle();
+
+$app->views->add('welcome/index');
+$app->theme->setTitle("Welcome to Anax");
 
 
 // Render the response using theme engine.

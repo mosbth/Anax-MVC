@@ -1,43 +1,55 @@
 <?php
+
 namespace Anax\View;
 
 /**
- * A view container, store all views per region, render at will.
+ * A view connected to a template file.
  *
  */
-class CViewBasic 
+class CViewBasic implements \Anax\DI\IInjectionAware
 {
+    use \Anax\DI\TInjectionAware;
+
+
 
     /**
     * Properties
     *
     */
-    private $suffix;    // Template file suffix
+    private $template;  // Template file
+    private $data = []; // Data to send to template file
 
 
 
     /**
      * Add a view to be included as a template file.
      *
-     * @param string $template the name of the template file to include
-     * @param array $data variables to make available to the view
+     * @param string $template the actual template file
+     * @param array  $data     variables to make available to the view, default is empty
+     *
      * @return $this
      */
-    public function add($template, $data) 
+    public function __construct($template, $data = []) 
     {
-        ;
+        if (!is_readable($template)) {
+            throw new \Exception("Could not find template file: " . $template);
+        }
+
+        $this->template = $template;
+        $this->data     = $data;
     }
 
 
 
     /**
-     * Set the suffix of the template files to include.
+     * Render the view.
      *
-     * @param string $suffix
-     * @return $this
+     * @return void
      */
-    public function setFileSuffix($suffix) 
+    public function render() 
     {
-        $this->suffix = $suffix;
+        extract($this->data);
+        $di = $this->di; // Allow $di to be used in views
+        include $this->template;
     }
 }

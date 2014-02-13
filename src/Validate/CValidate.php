@@ -46,16 +46,29 @@ class CValidate
                 },
             ],
             'not_equal' => [
-                'message' => 'Value not valid.', 
+                'message' => 'Not equal.', 
                 'test' => function($value, $arg) {
                     return $value != $arg;
                 },
             ],
             'numeric' => [
                 'message' => 'Must be numeric.', 
-                'test' => function() use($value) {
-                    return true;
-                }'return is_numeric($value);'
+                'test' => function($value) {
+                    return is_numeric($value);
+                }
+            ],
+            'int' => [
+                'message' => 'Must be an integer.', 
+                'test' => function($value) {
+                    $int = (int) $value;
+                    return $int == $value;
+                }
+            ],
+            'range' => [
+                'message' => 'Out of range.', 
+                'test' => function($value, $min, $max) {
+                    return $value >= $min && $value <= $max;
+                }
             ],
             'email_adress' => [
                 'message' => 'Must be an email adress.', 
@@ -63,54 +76,32 @@ class CValidate
                     return preg_match(self::REGEXP_EMAIL, $value) === 1; 
                 }.
             ],
-            'match' => [
-                'message' => 'The field does not match.', 
-                'test' => function() use($value) {
-                    return true;
-                }'return $value == $form[$arg]["value"] ;'
-            ],
-            'must_accept' => array('message' => 'You must accept this.', 'test' => function() use($value) {
-                    return true;
-                }'return $checked;'),
-            'custom_test' => true,
         ];
 
-        $set = [
-            'int'   => 'is_int',
-            '>'     => ''
-        ];
-        return isset($_GET[$key]) ? $_GET[$key] : $default;
+        foreach($rules as $key => $val) {
+          $rule = is_int($key) ? $val : $key;
+
+          if (!isset($tests[$rule])) {
+              throw new Exception("Validation rule does not exist.");
+          } 
+    
+          $param = is_int($key) ? null : $val;
+          $test  =  $tests[$rule];
+
+          if (is_callable($test['test'])) {
+
+            if (isset($param) && is_array($param)) {
+                $param = array_merge([$value], $param);
+            }
+            else if (isset($param)) {
+                $param = [$value, $param];
+            }
+
+            if (!call_user_func_array($test['test'], $param)) {
+                thrown new Exception($test['message']);
+            }
+          } 
+
+        return $value;
     }
-
-
-    $pass = true;
-    $messages = array();
-    $value = $this['value'];
-    $checked = $this['checked'];
-
-    foreach($rules as $key => $val) {
-      $rule = is_numeric($key) ? $val : $key;
-      if(!isset($tests[$rule])) throw new Exception("Validation of form element failed, no such validation rule exists: $rule");
-      $arg = is_numeric($key) ? null : $val;
-
-      $test = ($rule == 'custom_test') ? $arg : $tests[$rule];
-      $status = null;
-      if(is_callable($test['test'])) {
-        $status = $test['test']($value);
-      } else {
-        $status = eval($test['test']);
-      }
-
-      if($status === false) {
-        $messages[] = $test['message'];
-        $pass = false;
-      }
-    }
-
-    if(!empty($messages)) {
-      $this['validation-messages'] = $messages;
-    } 
-    return $pass;
-
-
 }

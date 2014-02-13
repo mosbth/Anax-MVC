@@ -12,11 +12,22 @@
 </head>
 
 <body>
-  <div id='wrapper'>
-    <div id='header'><?=$header?></div>
-    <div id='main'><?=$main?></div>
-    <div id='footer'><?=$footer?></div>
-  </div>
+<div id='wrapper'>
+
+<div id='header'>
+<?=$header?>
+</div>
+
+<div id='main'>
+<?php if(isset($main)) echo $main?>
+<?php $di->views->render()?>
+</div>
+
+<div id='footer'>
+<?=$footer?>
+</div>
+
+</div>
 
 <?php if(isset($jquery)):?><script src='<?=$jquery?>'></script><?php endif; ?>
 
