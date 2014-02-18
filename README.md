@@ -3,14 +3,20 @@ Anax-MVC
 
 A PHP-MVC-micro framework / webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
 
-Built by Mikael Roos.
+Builds upon Anax-base, read article about Anax-base here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
 
-builds upon Anax-base, read article about Anax-base here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
+[![Latest Stable Version](https://poser.pugx.org/leaphly/cart-bundle/version.png)](https://packagist.org/packages/anax/mvc)
+
+[![Build Status](https://travis-ci.org/sebastianbergmann/phpunit.png?branch=master)](https://travis-ci.org/mos/anax-mvc)
+
+[![License](https://poser.pugx.org/leaphly/cart-bundle/license.png)](https://packagist.org/packages/leaphly/cart-bundle)
 
 
 
 License 
 ------------------
+
+By Mikael Roos.
 
 This software is free software and carries a MIT license.
 
