@@ -4,7 +4,7 @@ php:
   - 5.4
   - hhvm
 
-script: phpunit --bootstrap test/config.php
+script: phpunit --bootstrap test/config.php test
 
 notifications:
   irc: "irc.freenode.org#dbwebb"
