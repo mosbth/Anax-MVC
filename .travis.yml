@@ -1,0 +1,10 @@
+language: php
+php:
+  - 5.5
+  - 5.4
+  - hhvm
+
+script: phpunit --bootstrap test/config.php
+
+notifications:
+  irc: "irc.freenode.org#dbwebb"
