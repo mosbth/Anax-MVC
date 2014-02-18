@@ -3,7 +3,7 @@ Anax-MVC
 
 [![Latest Stable Version](https://poser.pugx.org/leaphly/cart-bundle/version.png)](https://packagist.org/packages/anax/mvc)
 [![Build Status](https://travis-ci.org/mosbth/Anax-MVC.png?branch=master)](https://travis-ci.org/mosbth/Anax-MVC)
-[![License](https://poser.pugx.org/leaphly/cart-bundle/license.png)](https://packagist.org/packages/leaphly/cart-bundle)
+[![License](https://poser.pugx.org/anax/mvc/license.png)](https://packagist.org/packages/anax/mvc)
 
 A PHP-MVC-micro framework / webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
 
