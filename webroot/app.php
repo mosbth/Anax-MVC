@@ -7,7 +7,7 @@
 // Get environment & autoloader.
 require __DIR__.'/config.php';
 
-
+dump($_SERVER);
 
 // Add extra assets
 $app->theme->addStylesheet('css/dice.css');

@@ -43,4 +43,14 @@ class CRouterBasic
     {
         ;
     }
+
+/*
+From Lydia CRequest::Init
+        // Set controller, action and arguments
+        $controller =  !empty($rp[0]) ? $rp[0] : 'index';
+        $action     =  !empty($rp[1]) ? $rp[1] : 'index';
+        $arguments  = $splits;
+        unset($arguments[0], $arguments[1]); // remove controller & method part from argument list
+*/
+
 }
