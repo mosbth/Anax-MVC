@@ -9,12 +9,12 @@ A PHP-MVC-micro framework / webbtemplate / boilerplate for smaller websites and 
 
 Builds upon Anax-base, read article about Anax-base here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
 
+By Mikael Roos.
+
 
 
 License 
 ------------------
-
-By Mikael Roos.
 
 This software is free software and carries a MIT license.
 
@@ -39,13 +39,16 @@ History
 -----------------------------------
 
 
-x.x.x (latest) (Anax-MVC)
+vx.x.x (latest) (Anax-MVC)
 
 * Cloned Anax-MVC and preparing to build Anax-MVC.
 * Added autoloader for PSR-0.
 * Not throwing exception in standard anax autoloader.
 * Using anonomous functions in `bootstrap.php` to set up exception handler and autoloader.
 * Added `$anax['style']` as inline style in `config.php` and `index.tpl.php`.
+* Added unit testing with phpunit.
+* Added automatic build with travis.
+
 
 
 ###History for Anax-base

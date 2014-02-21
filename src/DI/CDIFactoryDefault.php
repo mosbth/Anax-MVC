@@ -17,16 +17,28 @@ class CDIFactoryDefault extends CDI
     {
         parent::__construct();
 
+        $this->setShared('response',  '\Anax\Response\CResponse');
+        $this->setShared('validate',  '\Anax\Validate\CValidate');
+
         $this->setShared('log', function () {
             $log = new \Anax\Logger\CLog();
             $log->setContext('development');
             return $log;
         });
 
-        $this->setShared('request',   '\Anax\Request\CRequestBase');
-        $this->setShared('response',  '\Anax\Response\CResponse');
-        $this->setShared('url',       '\Anax\Url\CUrl');
-        $this->setShared('validate',  '\Anax\Validate\CValidate');
+        $this->setShared('request', function() {
+            $request = new \Anax\Request\CRequestBasic();
+            $request->init();
+            return $request;
+        });
+
+        $this->setShared('url', function() {
+            $url = new \Anax\Url\CUrl();
+            $url->setBaseUrl($this->request->getBaseUrl());
+            $url->setScriptName($this->request->getScriptName());
+            $url->setUrlType($url::URL_APPEND);
+            return $url;
+        });
 
         $this->setShared('views', function() {
             $views = new \Anax\View\CViewContainerBasic();

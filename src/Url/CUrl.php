@@ -18,12 +18,16 @@ class CUrl
 
     private $UrlType = self::URL_APPEND; // What type of urls to generate
 
-    private $baseUri = ''; // Base uri to prepend to all urls created
+    private $siteUrl = ''; // Siteurl to prepend to all absolute urls created
+
+    private $baseUrl = ''; // Baseurl to prepend to all relative urls created
+
+    private $scriptName = ''; // Name of the frontcontroller script
 
 
 
     /**
-     * Create a url by prepending the baseUri.
+     * Create an url and prepending the baseUrl.
      *
      * @param string $uri part of uri to use when creating an url.
      *
@@ -31,21 +35,73 @@ class CUrl
      */
     public function create($uri)
     {
-        return $this->baseUri . $uri;
+        if(empty($uri)) {
+            
+            // Empty url means baseurl
+            return $this->baseUrl;
+
+        } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
+            
+            // Fully qualified, just leave as is.
+            return rtrim($uri, '/');
+
+        } elseif ($uri[0] == '/') {
+
+            // Absolute urls, prepend with siteUrl
+            return rtrim($this->siteUrl . '/' . rtrim($uri, '/'), '/');
+
+        }
+
+        $uri = rtrim($uri, '/');
+        if ($this->urlType == self::URL_APPEND) {
+            return $this->baseUrl . '/' . $this->scriptName . '/' . $uri; 
+        }
+
+        return $this->baseUrl . '/' . $uri; 
     }
 
 
 
     /**
-     * Set the baseUri to prepend all urls created.
+     * Set the siteUrl to prepend all absolute urls created.
      *
-     * @param string $uri part of uri to use when creating an url.
+     * @param string $url part of url to use when creating an url.
      *
      * @return $this
      */
-    public function setBaseUri($uri)
+    public function setSiteUrl($url)
     {
-        $this->baseUri = $uri;
+        $this->siteUrl = rtrim($url, '/');
+        return $this;
+    }
+
+
+
+    /**
+     * Set the baseUrl to prepend all relative urls created.
+     *
+     * @param string $url part of url to use when creating an url.
+     *
+     * @return $this
+     */
+    public function setBaseUrl($url)
+    {
+        $this->baseUrl = rtrim($url, '/');
+        return $this;
+    }
+
+
+
+    /**
+     * Set the scriptname to use when creating URL_APPEND urls.
+     *
+     * @param string $name as the scriptname, for example index.php.
+     *
+     * @return $this
+     */
+    public function setScriptName($name)
+    {
+        $this->scriptName = $name;
         return $this;
     }
 
@@ -60,6 +116,10 @@ class CUrl
      */
     public function setUrlType($type)
     {
+        if (!in_array($type, [self::URL_APPEND, self::URL_CLEAN])) {
+            throw new \Exception("Unsupported Url type.");
+        }
+
         $this->urlType = $type;
         return $this;
     }

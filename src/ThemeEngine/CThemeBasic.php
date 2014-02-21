@@ -9,7 +9,7 @@ namespace Anax\ThemeEngine;
 class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 {
     use \Anax\TConfigure,
-        \Anax\DI\TInjectionAware;
+        \Anax\DI\TInjectable;
 
 
 
@@ -126,6 +126,9 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
         if (is_readable($file)) {
             include $file;
         }
+
+        // Create a view of $data['main'] for backward compatibility
+        //$this->views->addString($data['main']);
 
         // Create a view to execute the default template file
         $tpl  = $path . $name . $template;

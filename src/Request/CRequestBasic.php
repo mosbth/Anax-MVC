@@ -110,6 +110,18 @@ class CRequestBasic
 
 
     /**
+     * Get script name.
+     *
+     * @return string
+     */
+    public function getScriptName() 
+    {
+        return $this->scriptName;
+    }
+
+
+
+    /**
      * Extract the part containing the route.
      *
      * @return string as the current extracted route
