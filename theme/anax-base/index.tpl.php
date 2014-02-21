@@ -3,15 +3,16 @@
 <head>
 <meta charset='utf-8'/>
 <title><?=$title . $title_append?></title>
-<?php if(isset($favicon)): ?><link rel='shortcut icon' href='<?=$favicon?>'/><?php endif; ?>
+<?php if(isset($favicon)): ?><link rel='shortcut icon' href='<?=$this->url->asset($favicon)?>'/><?php endif; ?>
 <?php foreach($stylesheets as $stylesheet): ?>
 <link rel='stylesheet' type='text/css' href='<?=$this->url->asset($stylesheet)?>'/>
 <?php endforeach; ?>
 <?php if(isset($style)): ?><style><?=$style?></style><?php endif; ?>
-<script src='<?=$modernizr?>'></script>
+<script src='<?=$this->url->asset($modernizr)?>'></script>
 </head>
 
 <body>
+
 <div id='wrapper'>
 
 <div id='header'>
@@ -31,10 +32,10 @@
 
 </div>
 
-<?php if(isset($jquery)):?><script src='<?=$jquery?>'></script><?php endif; ?>
+<?php if(isset($jquery)):?><script src='<?=$this->url->asset($jquery)?>'></script><?php endif; ?>
 
 <?php if(isset($javascript_include)): foreach($javascript_include as $val): ?>
-<script src='<?=$val?>'></script>
+<script src='<?=$this->url->asset($val)?>'></script>
 <?php endforeach; endif; ?>
 
 <?php if(isset($google_analytics)): ?>

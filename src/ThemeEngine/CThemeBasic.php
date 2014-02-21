@@ -127,18 +127,15 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
             include $file;
         }
 
-        // Create a view of $data['main'] for backward compatibility
+        // Create a view of $data['main'] for backward compatibility, what about $header and $footer.
         //$this->views->addString($data['main']);
 
         // Create views for regions, from config-file
-        if (isset($this->config['data']['header'])) {
-            $this->di->views->add($this->config['data']['header'], [], 'header');
-            unset($this->config['data']['header']);
+        if (isset($this->config['views'])) {
+            foreach ($this->config['views'] as $view) {
+                $this->di->views->add($view['template'], $view['data'], $view['region']);
+            }
         }
-        if (isset($this->config['data']['footer'])) {
-            $this->di->views->add($this->config['data']['footer'], [], 'footer');
-            unset($this->config['data']['footer']);
-       }
 
         // Create a view to execute the default template file
         $tpl  = $path . $name . $template;

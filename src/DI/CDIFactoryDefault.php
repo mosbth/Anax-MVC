@@ -17,7 +17,7 @@ class CDIFactoryDefault extends CDI
     {
         parent::__construct();
 
-        $this->setShared('response',  '\Anax\Response\CResponse');
+        $this->setShared('response',  '\Anax\Response\CResponseBasic');
         $this->setShared('validate',  '\Anax\Validate\CValidate');
 
         $this->setShared('log', function () {
@@ -51,19 +51,22 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('router', function() {
             
-            $route = new \Anax\Route\CRouterBasic();
-            
-            $route->add('403', function() {
+            $router = new \Anax\Route\CRouterBasic();
+            $router->setDI($this);
+
+            $router->add('403', function() {
                 $this->response->setHeader('403');
-                $this->views->add('main', 'error/403');
+                $this->theme->setTitle("Forbidden");
+                $this->views->add('error/403');
             })->setName('403');
 
-            $route->add('404', function() {
+            $router->addNotFound(function() {
                 $this->response->setHeader('404');
-                $this->views->add('main', 'error/404');
+                $this->theme->setTitle("Not Found");
+                $this->views->add('error/404');
             })->setName('404');
             
-            return $route;
+            return $router;
         });
 
         $this->setShared('session', function() {

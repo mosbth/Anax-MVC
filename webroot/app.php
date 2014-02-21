@@ -15,7 +15,7 @@ $app->theme->addStylesheet('css/dice.css');
 
 
 // Home route
-$app->router->add('', function() {
+$app->router->add('', function() use ($app) {
 
     $app->views->add('welcome/index');
     $app->theme->setTitle("Welcome to Anax");
@@ -24,13 +24,15 @@ $app->router->add('', function() {
 
 
 
+
 // Main route to show welcome to dice
-$app->router->add('dice', function() {
+$app->router->add('dice', function() use ($app) {
 
     $app->views->add('dice/index');
     $app->theme->setTitle("Roll a dice");
 
 })->setName('dice');
+
 
 
 
@@ -54,11 +56,8 @@ $app->router->add('dice/roll', function() use ($app) {
 
 })->setName('dice-roll');
 
+
+
 $app->router->handle();
-
-$app->views->add('welcome/index');
-$app->theme->setTitle("Welcome to Anax");
-
-
-// Render the response using theme engine.
+$app->response->sendHeaders();
 $app->theme->render();

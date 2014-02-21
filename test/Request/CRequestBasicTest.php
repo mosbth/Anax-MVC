@@ -72,7 +72,9 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($uri, "REQUEST_URI is empty.");
 
         $this->request->setServer('REQUEST_URI', $uri . '/' . $route);
-        $this->assertEquals($route, $this->request->getRoute(), "Failed route: " . $route);
+        $this->assertEquals($route, $this->request->extractRoute(), "Failed extractRoute: " . $route);
+
+        $this->assertEquals($route, $this->request->getRoute(), "Failed getRoute: " . $route);
     }
 
 

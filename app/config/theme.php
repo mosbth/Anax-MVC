@@ -20,7 +20,16 @@ return [
 
     
     /** 
-     * Data to extract and send as variables to template files by the theme engine.
+     * Add default views.
+     */
+    'views' => [
+        ['region' => 'header', 'template' => 'welcome/header', 'data' => []],
+        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => []],
+    ],
+
+
+    /** 
+     * Data to extract and send as variables to the main template file.
      */
     'data' => [
 
@@ -28,13 +37,7 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Anax en webbtemplate',
-
-        // Common header for all pages, set name of view
-        'header' => "welcome/header",
-
-        // Common footer for all pages, set name of view
-        'footer' => "welcome/footer",
+        'title_append' => ' | Anax a web template',
 
         // Stylesheets
         'stylesheets' => ['css/style.css'],

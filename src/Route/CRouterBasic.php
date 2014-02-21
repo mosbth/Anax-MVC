@@ -6,30 +6,49 @@ namespace Anax\Route;
  * A container for routes.
  *
  */
-class CRouterBasic
+class CRouterBasic implements \Anax\DI\IInjectionAware
 {
+    use \Anax\DI\TInjectionAware;
+
+
 
     /**
     * Properties
     *
     */
-    private $routes;  // All the routes
+    private $routes;   // All the routes
+    private $notFound; // All the routes
 
 
 
     /**
      * Add a route to the router.
      *
-     * @param string $rule         for this route
-     * @param callable $controller callable to implement a controller for the route
+     * @param string   $rule   for this route
+     * @param callable $action callable to implement a controller for the route
      *
      * @return class as new route
      */
-    public function add($rule, $controller) 
+    public function add($rule, $action) 
     {
-        $route = new CRouteBasic($rule, $controller);
+        $route = new CRouteBasic($rule, $action);
         $this->routes[] = $route;
         return $route;
+    }
+
+
+
+    /**
+     * Add an action for routes not found.
+     *
+     * @param callable $action callable to implement a controller for the route
+     *
+     * @return class as new route
+     */
+    public function addNotFound($action) 
+    {
+        $this->notFound = new CRouteBasic(null, $action);
+        return $this->notFound;
     }
 
 
@@ -41,8 +60,19 @@ class CRouterBasic
      */
     public function handle() 
     {
-        ;
+        $query = $this->di->request->getRoute();
+        $parts = $this->di->request->getRouteParts();
+
+        foreach ($this->routes as $route) {
+            if ($route->match($query)) {
+                return $route->handle();
+            }
+        }
+
+        $this->notFound->handle();
     }
+
+
 
 /*
 From Lydia CRequest::Init

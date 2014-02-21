@@ -13,22 +13,51 @@ class CRouteBasic
     * Properties
     *
     */
-    private $name;       // A name for this route
-    private $rule;       // The rule for this route
-    private $controller; // The callable controller to handle this route
+    private $name;   // A name for this route
+    private $rule;   // The rule for this route
+    private $action; // The callable controller to handle this route
 
 
 
     /**
      * Construct a new route.
      *
-     * @param string   $rule       for this route
-     * @param callable $controller callable to implement a controller for the route
+     * @param string   $rule   for this route
+     * @param callable $action callable to implement a controller for the route
      */
-    public function __construct($rule, $controller) 
+    public function __construct($rule, $action) 
     {
         $this->rule = $rule;
-        $this->controller = $controller;
+        $this->action = $action;
+    }
+
+
+
+    /**
+     * Check if the route matches a query
+     *
+     * @param string $query to match against
+     *
+     * @return boolean true if query matches the route
+     */
+    public function match($query) 
+    {
+        if ($this->rule == $query) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    /**
+     * Handle the action for the route.
+     *
+     * @return void
+     */
+    public function handle() 
+    {
+        return call_user_func($this->action);
     }
 
 

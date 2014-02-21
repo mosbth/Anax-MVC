@@ -71,8 +71,7 @@ class CRequestBasic
         $this->scriptName = basename($scriptName);
 
         // The route and its parts
-        $this->route = $this->getRoute();
-        $rp = $this->routeParts = explode('/', trim($this->route, '/'));
+        $this->extractRoute();
 
         // Prepare to create siteUrl and baseUrl by using currentUrl
         $this->currentUrl = $this->getCurrentUrl();
@@ -124,18 +123,41 @@ class CRequestBasic
 
 
     /**
-     * Extract the part containing the route.
+     * Get route parts.
+     *
+     * @return array
+     */
+    public function getRouteParts() 
+    {
+        return $this->routeParts;
+    }
+
+
+
+    /**
+     * Get the route.
      *
      * @return string as the current extracted route
      */
     public function getRoute() 
+    {
+        return $this->route;
+    }
+
+
+
+    /**
+     * Extract the part containing the route.
+     *
+     * @return string as the current extracted route
+     */
+    public function extractRoute() 
     {
         $requestUri = $this->getServer('REQUEST_URI');
         $scriptName = $this->getServer('SCRIPT_NAME');
         $scriptPath = dirname($scriptName);
         $scriptFile = basename($scriptName);
 
-        
         // Compare REQUEST_URI and SCRIPT_NAME as long they match, 
         // leave the rest as current request.
         $i=0;
@@ -146,7 +168,7 @@ class CRequestBasic
             $i++;
         }
         $route = trim(substr($requestUri, $i), '/');
-      
+     
         // Does the request start with script-name - remove it.
         $len1 = strlen($route);
         $len2 = strlen($scriptFile);
@@ -154,7 +176,7 @@ class CRequestBasic
         if ($len2 <= $len1
             && substr_compare($scriptFile, $route, 0, $len2, true) === 0
         ) {
-            $route = substr($route, $len2);
+            $route = substr($route, $len2 + 1);
         }
 
         // Remove the ?-part from the query when analysing controller/metod/arg1/arg2
@@ -162,6 +184,9 @@ class CRequestBasic
         if ($queryPos !== false) {
             $route = substr($route, 0, $queryPos);
         }
+
+        $this->route = $route;
+        $this->routeParts = explode('/', trim($route, '/'));
 
         return $route;
     }

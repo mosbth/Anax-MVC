@@ -16,8 +16,8 @@ class CViewBasic implements \Anax\DI\IInjectionAware
     * Properties
     *
     */
-    private $template;  // Template file
-    private $data = []; // Data to send to template file
+    private $templateFile;          // Template file
+    private $templateFileData = []; // Data to send to template file
 
 
 
@@ -35,8 +35,8 @@ class CViewBasic implements \Anax\DI\IInjectionAware
             throw new \Exception("Could not find template file: " . $template);
         }
 
-        $this->template = $template;
-        $this->data     = $data;
+        $this->templateFile     = $template;
+        $this->templateFileData = $data;
     }
 
 
@@ -48,8 +48,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
      */
     public function render() 
     {   
-        extract($this->data);
-        $di = $this->di; // Allow $di to be used in views
-        include $this->template;
+        extract($this->templateFileData);
+        include $this->templateFile;
     }
 }

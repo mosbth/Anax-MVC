@@ -130,7 +130,7 @@ class CDI implements IDI
             $this->active[$service] = $sol;
         } elseif (is_string($sol)) {
             // Load by creating a new object from class-string
-            $this->active[$service] = new $sol;
+            $this->active[$service] = new $sol();
         } else {
             throw new Exception("The service could not be loaded.");
         }
