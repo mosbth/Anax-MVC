@@ -3,7 +3,8 @@ Anax-MVC
 
 [![Latest Stable Version](https://poser.pugx.org/leaphly/cart-bundle/version.png)](https://packagist.org/packages/anax/mvc)
 [![Build Status](https://travis-ci.org/mosbth/Anax-MVC.png?branch=master)](https://travis-ci.org/mosbth/Anax-MVC)
-[![License](https://poser.pugx.org/anax/mvc/license.png)](https://packagist.org/packages/anax/mvc)
+[![Coverage Status](https://coveralls.io/repos/mosbth/Anax-MVC/badge.png)](https://coveralls.io/r/mosbth/Anax-MVC)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mosbth/Anax-MVC/badges/quality-score.png?s=1c2fc1af0df7fb7ee1e4f379a81253583a750297)](https://scrutinizer-ci.com/g/mosbth/Anax-MVC/)
 
 A PHP-MVC-micro framework / webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
 
@@ -48,6 +49,8 @@ vx.x.x (latest) (Anax-MVC)
 * Added `$anax['style']` as inline style in `config.php` and `index.tpl.php`.
 * Added unit testing with phpunit.
 * Added automatic build with travis.
+* Added codecoverage reports on coveralls.io.
+* Added code quality through scrutinizer-ci.com.
 
 
 

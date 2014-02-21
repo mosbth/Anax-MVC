@@ -12,15 +12,16 @@ class CValidate
      * Properties
      *
      */
-    private const REGEXP_EMAIL = '/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i';
+    const REGEXP_EMAIL = '/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i';
 
 
 
     /**
      * Check if a value matches rules or throw exception.
      *
-     * @param mixed $value to check
+     * @param mixed  $value to check
      * @param string $rules to apply when checking value
+     *
      * @return $value
      * @throws Exception when check fails
      */
@@ -78,7 +79,7 @@ class CValidate
             ],
         ];
 
-        foreach($rules as $key => $val) {
+        foreach ($rules as $key => $val) {
           $rule = is_int($key) ? $val : $key;
 
           if (!isset($tests[$rule])) {
