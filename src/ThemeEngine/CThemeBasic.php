@@ -9,7 +9,7 @@ namespace Anax\ThemeEngine;
 class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 {
     use \Anax\TConfigure,
-        \Anax\DI\TInjectable;
+        \Anax\DI\TInjectionAware;
 
 
 
@@ -129,6 +129,16 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 
         // Create a view of $data['main'] for backward compatibility
         //$this->views->addString($data['main']);
+
+        // Create views for regions, from config-file
+        if (isset($this->config['data']['header'])) {
+            $this->di->views->add($this->config['data']['header'], [], 'header');
+            unset($this->config['data']['header']);
+        }
+        if (isset($this->config['data']['footer'])) {
+            $this->di->views->add($this->config['data']['footer'], [], 'footer');
+            unset($this->config['data']['footer']);
+       }
 
         // Create a view to execute the default template file
         $tpl  = $path . $name . $template;

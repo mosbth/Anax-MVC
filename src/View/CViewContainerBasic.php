@@ -27,15 +27,16 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @param string $template the name of the template file to include
      * @param array  $data     variables to make available to the view, default is empty
+     * @param string $region   which region to attach the view
      *
      * @return class as the added view
      */
-    public function add($template, $data = []) 
+    public function add($template, $data = [], $region = 'main') 
     {
         $tpl = $this->path . $template . $this->suffix;
         $view = new CViewBasic($tpl, $data);
         $view->setDI($this->di);
-        $this->views[] = $view;
+        $this->views[$region][] = $view;
         return $view;
     }
 
@@ -73,13 +74,19 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
 
 
     /**
-     * Render all views.
+     * Render all views for a specific region.
+     *
+     * @param string $region which region to use
      *
      * @return $this
      */
-    public function render() 
+    public function render($region = 'main') 
     {
-        foreach ($this->views as $view) {
+        if (!isset($this->views[$region])) {
+            return $this;
+        }
+
+        foreach ($this->views[$region] as $view) {
             $view->render();
         }
 

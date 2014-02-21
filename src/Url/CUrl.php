@@ -18,11 +18,13 @@ class CUrl
 
     private $UrlType = self::URL_APPEND; // What type of urls to generate
 
-    private $siteUrl = ''; // Siteurl to prepend to all absolute urls created
+    private $siteUrl = null; // Siteurl to prepend to all absolute urls created
+    private $baseUrl = null; // Baseurl to prepend to all relative urls created
+    private $scriptName = null; // Name of the frontcontroller script
 
-    private $baseUrl = ''; // Baseurl to prepend to all relative urls created
 
-    private $scriptName = ''; // Name of the frontcontroller script
+    private $staticSiteUrl = null; // Siteurl to prepend to all absolute urls for assets
+    private $staticBaseUrl = null; // Baseurl to prepend to all relative urls for assets
 
 
 
@@ -35,7 +37,7 @@ class CUrl
      */
     public function create($uri)
     {
-        if(empty($uri)) {
+        if (empty($uri)) {
             
             // Empty url means baseurl
             return $this->baseUrl;
@@ -47,8 +49,8 @@ class CUrl
 
         } elseif ($uri[0] == '/') {
 
-            // Absolute urls, prepend with siteUrl
-            return rtrim($this->siteUrl . '/' . rtrim($uri, '/'), '/');
+            // Absolute url, prepend with siteUrl
+            return rtrim($this->siteUrl . rtrim($uri, '/'), '/');
 
         }
 
@@ -58,6 +60,37 @@ class CUrl
         }
 
         return $this->baseUrl . '/' . $uri; 
+    }
+
+
+
+    /**
+     * Create an url for a static asset.
+     *
+     * @param string $uri part of uri to use when creating an url.
+     *
+     * @return string as resulting url.
+     */
+    public function asset($uri)
+    {
+        if (empty($uri)) {
+            
+            throw new \Exception("Asset can not be empty.");
+
+        } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
+            
+            // Fully qualified, just leave as is.
+            return rtrim($uri, '/');
+
+        } elseif ($uri[0] == '/') {
+
+            // Absolute url, prepend with staticSiteUrl
+            return rtrim($this->staticSiteUrl . rtrim($uri, '/'), '/');
+
+        }
+
+        $baseUrl = isset($this->staticBaseUrl) ? $this->staticBaseUrl : $this->baseUrl;
+        return $baseUrl . '/' . $uri; 
     }
 
 
@@ -87,6 +120,36 @@ class CUrl
     public function setBaseUrl($url)
     {
         $this->baseUrl = rtrim($url, '/');
+        return $this;
+    }
+
+
+
+    /**
+     * Set the siteUrl to prepend absolute urls for assets.
+     *
+     * @param string $url part of url to use when creating an url.
+     *
+     * @return $this
+     */
+    public function setStaticSiteUrl($url)
+    {
+        $this->staticSiteUrl = rtrim($url, '/');
+        return $this;
+    }
+
+
+
+    /**
+     * Set the baseUrl to prepend relative urls for assets.
+     *
+     * @param string $url part of url to use when creating an url.
+     *
+     * @return $this
+     */
+    public function setStaticBaseUrl($url)
+    {
+        $this->staticBaseUrl = rtrim($url, '/');
         return $this;
     }
 

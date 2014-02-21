@@ -8,7 +8,7 @@ namespace Anax\View;
  */
 class CViewBasic implements \Anax\DI\IInjectionAware
 {
-    use \Anax\DI\TInjectionAware;
+    use \Anax\DI\TInjectable;
 
 
 
@@ -47,7 +47,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
      * @return void
      */
     public function render() 
-    {
+    {   
         extract($this->data);
         $di = $this->di; // Allow $di to be used in views
         include $this->template;

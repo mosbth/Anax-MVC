@@ -92,7 +92,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'SERVER_NAME' => "dbwebb.se",
                     'SERVER_PORT' => "80",
                     'REQUEST_URI' => "/",
-                    'url'         => "http://dbwebb.se/",
+                    'url'         => "http://dbwebb.se",
                 ]
             ],
             [
@@ -112,7 +112,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'SERVER_NAME' => "dbwebb.se",
                     'SERVER_PORT' => "80",
                     'REQUEST_URI' => "/img/",
-                    'url'         => "http://dbwebb.se/img/",
+                    'url'         => "http://dbwebb.se/img",
                 ]
             ],
             [
@@ -203,8 +203,8 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'SERVER_PORT' => "80",
                     'REQUEST_URI' => "/anax-mvc/webroot/app.php",
                     'SCRIPT_NAME' => "/anax-mvc/webroot/app.php",
-                    'siteUrl'     => "http://dbwebb.se/",
-                    'baseUrl'     => "http://dbwebb.se/anax-mvc/webroot/",
+                    'siteUrl'     => "http://dbwebb.se",
+                    'baseUrl'     => "http://dbwebb.se/anax-mvc/webroot",
                 ]
             ],
             [
@@ -215,8 +215,8 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'SERVER_PORT' => "8080",
                     'REQUEST_URI' => "/anax-mvc/webroot/app.php",
                     'SCRIPT_NAME' => "/anax-mvc/webroot/app.php",
-                    'siteUrl'     => "http://dbwebb.se:8080/",
-                    'baseUrl'     => "http://dbwebb.se:8080/anax-mvc/webroot/",
+                    'siteUrl'     => "http://dbwebb.se:8080",
+                    'baseUrl'     => "http://dbwebb.se:8080/anax-mvc/webroot",
                 ]
             ],
             [
@@ -227,8 +227,8 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'SERVER_PORT' => "8080",
                     'REQUEST_URI' => "/anax-mvc/webroot/app.php",
                     'SCRIPT_NAME' => "/anax-mvc/webroot/app.php",
-                    'siteUrl'     => "https://dbwebb.se:8080/",
-                    'baseUrl'     => "https://dbwebb.se:8080/anax-mvc/webroot/",
+                    'siteUrl'     => "https://dbwebb.se:8080",
+                    'baseUrl'     => "https://dbwebb.se:8080/anax-mvc/webroot",
                 ]
             ],
             [
@@ -239,8 +239,8 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'SERVER_PORT' => "443",
                     'REQUEST_URI' => "/anax-mvc/webroot/app.php",
                     'SCRIPT_NAME' => "/anax-mvc/webroot/app.php",
-                    'siteUrl'     => "https://dbwebb.se/",
-                    'baseUrl'     => "https://dbwebb.se/anax-mvc/webroot/",
+                    'siteUrl'     => "https://dbwebb.se",
+                    'baseUrl'     => "https://dbwebb.se/anax-mvc/webroot",
                 ]
             ]            
         ];

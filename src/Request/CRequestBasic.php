@@ -15,7 +15,8 @@ class CRequestBasic
     *
     */
     private $requestUri; // Request URI from $_SERVER
-    private $scriptName; // Script name from $_SERVER
+    private $scriptName; // Scriptname from $_SERVER, actual scriptname part
+    private $path;       // Scriptname from $_SERVER, path-part
 
     private $route;      // The route
     private $routeParts; // The route as an array
@@ -65,7 +66,9 @@ class CRequestBasic
     public function init() 
     {
         $this->requestUri = $this->getServer('REQUEST_URI');
-        $this->scriptName = $this->getServer('SCRIPT_NAME');
+        $scriptName = $this->getServer('SCRIPT_NAME');
+        $this->path = rtrim(dirname($scriptName), '/');
+        $this->scriptName = basename($scriptName);
 
         // The route and its parts
         $this->route = $this->getRoute();
@@ -77,8 +80,7 @@ class CRequestBasic
         $this->siteUrl = "{$parts['scheme']}://{$parts['host']}" . (isset($parts['port']) 
             ? ":{$parts['port']}" 
             : '');
-        $this->baseUrl = $this->siteUrl . rtrim(dirname($this->scriptName), '/') . '/';
-        $this->siteUrl .= '/';
+        $this->baseUrl = $this->siteUrl . $this->path;
 
         return $this;
     }
@@ -176,7 +178,7 @@ class CRequestBasic
         $rs    = $this->getServer('REQUEST_SCHEME');
         $https = $this->getServer('HTTPS') == 'on' ? true : false;
         $sn    = $this->getServer('SERVER_NAME'); 
-        $ru    = $this->getServer('REQUEST_URI'); 
+        $ru    = rtrim($this->getServer('REQUEST_URI'), '/'); 
         $port  = $this->getServer('SERVER_PORT'); 
 
         $port  = ($port == '80') 

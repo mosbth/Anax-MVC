@@ -4,8 +4,8 @@
 <meta charset='utf-8'/>
 <title><?=$title . $title_append?></title>
 <?php if(isset($favicon)): ?><link rel='shortcut icon' href='<?=$favicon?>'/><?php endif; ?>
-<?php foreach($stylesheets as $val): ?>
-<link rel='stylesheet' type='text/css' href='<?=$val?>'/>
+<?php foreach($stylesheets as $stylesheet): ?>
+<link rel='stylesheet' type='text/css' href='<?=$this->url->asset($stylesheet)?>'/>
 <?php endforeach; ?>
 <?php if(isset($style)): ?><style><?=$style?></style><?php endif; ?>
 <script src='<?=$modernizr?>'></script>
@@ -15,16 +15,18 @@
 <div id='wrapper'>
 
 <div id='header'>
-<?=$header?>
+<?php if(isset($header)) echo $header?>
+<?php $this->views->render('header')?>
 </div>
 
 <div id='main'>
 <?php if(isset($main)) echo $main?>
-<?php $di->views->render()?>
+<?php $this->views->render('main')?>
 </div>
 
 <div id='footer'>
-<?=$footer?>
+<?php if(isset($footer)) echo $footer?>
+<?php $this->views->render('footer')?>
 </div>
 
 </div>
