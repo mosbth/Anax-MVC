@@ -62,7 +62,7 @@ class CValidate
                 'message' => 'Must be an integer.', 
                 'test' => function($value) {
                     $int = (int) $value;
-                    return $int == $value;
+                    return "$int" == "$value";
                 }
             ],
             'range' => [
@@ -75,33 +75,35 @@ class CValidate
                 'message' => 'Must be an email adress.', 
                 'test' => function($value) { 
                     return preg_match(self::REGEXP_EMAIL, $value) === 1; 
-                }.
+                }
             ],
         ];
 
         foreach ($rules as $key => $val) {
           $rule = is_int($key) ? $val : $key;
 
-          if (!isset($tests[$rule])) {
-              throw new Exception("Validation rule does not exist.");
-          } 
+            if (!isset($tests[$rule])) {
+                throw new \Exception("Validation rule does not exist.");
+            } 
     
-          $param = is_int($key) ? null : $val;
-          $test  =  $tests[$rule];
+            $param = is_int($key) ? null : $val;
+            $test  =  $tests[$rule];
 
-          if (is_callable($test['test'])) {
+            if (is_callable($test['test'])) {
 
-            if (isset($param) && is_array($param)) {
-                $param = array_merge([$value], $param);
-            }
-            else if (isset($param)) {
-                $param = [$value, $param];
-            }
+                if (isset($param) && is_array($param)) {
+                    $param = array_merge([$value], $param);
+                } else if (isset($param)) {
+                    $param = [$value, $param];
+                } else {
+                    $param = [$value];
+                }
 
-            if (!call_user_func_array($test['test'], $param)) {
-                thrown new Exception($test['message']);
+                if (!call_user_func_array($test['test'], $param)) {
+                    throw new \Exception($test['message']);
+                }
             }
-          } 
+        } 
 
         return $value;
     }

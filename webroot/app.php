@@ -8,6 +8,11 @@
 require __DIR__.'/config.php';
 
 
+// Create services and inject into the app. 
+$di  = new \Anax\DI\CDIFactoryDefault();
+$app = new \Anax\Kernel\CAnax($di);
+
+
 
 // Add extra assets
 $app->theme->addStylesheet('css/dice.css');
@@ -25,7 +30,7 @@ $app->router->add('', function() use ($app) {
 
 
 
-// Main route to show welcome to dice
+// Route to show welcome to dice
 $app->router->add('dice', function() use ($app) {
 
     $app->views->add('dice/index');
@@ -40,15 +45,16 @@ $app->router->add('dice', function() use ($app) {
 $app->router->add('dice/roll', function() use ($app) {
 
     // Check how many rolls to do
-    $roll = $app->request->get('roll', 1);
+    $roll = $app->request->getGet('roll', 1);
     $app->validate->check($roll, ['int', 'range' => [1, 100]]);
 
     // Make roll and prepare reply
     $dice = new \Mos\Dice\CDice();
+    $dice->roll($roll);
 
     $app->views->add('dice/index', [
         'roll'      => $roll,
-        'results'   => $dice->getResults,
+        'results'   => $dice->getResults(),
         'total'     => $dice->getTotal(),
     ]);
 
