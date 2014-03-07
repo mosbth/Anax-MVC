@@ -19,13 +19,14 @@ class CValidate
     /**
      * Check if a value matches rules or throw exception.
      *
-     * @param mixed  $value to check
-     * @param string $rules to apply when checking value
+     * @param mixed   $value  to check
+     * @param string  $rules  to apply when checking value
+     * @param boolean $throws set to true to throw exception when check fails
      *
-     * @return $value
+     * @return boolean true or false
      * @throws Exception when check fails
      */
-    public function check($value, $rules) 
+    public function check($value, $rules, $throws = false) 
     {
         $tests = [
             'fail' => [
@@ -80,7 +81,7 @@ class CValidate
         ];
 
         foreach ($rules as $key => $val) {
-          $rule = is_int($key) ? $val : $key;
+            $rule = is_int($key) ? $val : $key;
 
             if (!isset($tests[$rule])) {
                 throw new \Exception("Validation rule does not exist.");
@@ -100,11 +101,15 @@ class CValidate
                 }
 
                 if (!call_user_func_array($test['test'], $param)) {
-                    throw new \Exception($test['message']);
+                    if ($throws) {
+                        throw new \Exception($test['message']);
+                    } else {
+                        return false;
+                    }
                 }
             }
         } 
 
-        return $value;
+        return true;
     }
 }

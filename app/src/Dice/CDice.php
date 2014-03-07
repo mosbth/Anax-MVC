@@ -17,11 +17,11 @@ class CDice
 
 
     /**
-    * Roll the dice
-    *
-    * @param int $times the number of times to roll.
-    * @return void
-    */
+     * Roll the dice
+     *
+     * @param int $times the number of times to roll.
+     * @return void
+     */
     public function roll($times) 
     {
         $this->lastRoll = array();
@@ -33,10 +33,22 @@ class CDice
 
 
     /**
-    * Get the array that contains the last roll(s).
-    *
-    * @return void
-    */
+     * Get number of rolls in last roll
+     *
+     * @return int
+     */
+    public function getNumOfRolls() 
+    {
+        return count($this->lastRoll);
+    }
+
+
+
+    /**
+     * Get the array that contains the last roll(s).
+     *
+     * @return void
+     */
     public function getResults() 
     {
         return $this->lastRoll;
@@ -45,10 +57,10 @@ class CDice
 
 
     /**
-    * Get the total from the last roll(s).
-    *
-    * @return void
-    */
+     * Get the total from the last roll(s).
+     *
+     * @return void
+     */
     public function getTotal() 
     {
         return array_sum($this->lastRoll);

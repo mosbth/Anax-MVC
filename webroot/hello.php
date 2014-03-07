@@ -4,8 +4,8 @@
  *
  */
 
-// Get environment & autoloader.
-include(__DIR__.'/config_pagecontroller.php'); 
+// Get environment & autoloader and the $app-object.
+require __DIR__.'/config_with_app.php'; 
 
 
 
@@ -13,7 +13,7 @@ include(__DIR__.'/config_pagecontroller.php');
 $app->theme->setVariable('title', "Hello World Pagecontroller")
            ->setVariable('main', "
     <h1>Hello World Pagecontroller</h1>
-    <p>This is a sample pagecontroller that shows how to use Anax with its base theme, <i>anax-base</i>.</p>
+    <p>This is a sample pagecontroller that shows how to use Anax.</p>
 ");
 
 

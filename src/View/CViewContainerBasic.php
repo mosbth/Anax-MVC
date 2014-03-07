@@ -28,13 +28,14 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      * @param string $template the name of the template file to include
      * @param array  $data     variables to make available to the view, default is empty
      * @param string $region   which region to attach the view
+     * @param int    $sort     which order to display the views
      *
      * @return class as the added view
      */
-    public function add($template, $data = [], $region = 'main') 
+    public function add($template, $data = [], $region = 'main', $sort = 0) 
     {
         $tpl = $this->path . $template . $this->suffix;
-        $view = new CViewBasic($tpl, $data);
+        $view = new CViewBasic($tpl, $data, $sort);
         $view->setDI($this->di);
         $this->views[$region][] = $view;
         return $view;
@@ -85,6 +86,17 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
         if (!isset($this->views[$region])) {
             return $this;
         }
+
+        mergesort($this->views[$region], function($a, $b) {
+            $sa = $a->sortOrder();
+            $sb = $b->sortOrder();
+
+            if ($sa == $sb) {
+                return 0;
+            }
+
+            return $sa < $sb ? -1 : 1;
+        });
 
         foreach ($this->views[$region] as $view) {
             $view->render();

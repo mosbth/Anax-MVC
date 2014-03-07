@@ -133,9 +133,12 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
         // Create views for regions, from config-file
         if (isset($this->config['views'])) {
             foreach ($this->config['views'] as $view) {
-                $this->di->views->add($view['template'], $view['data'], $view['region']);
+                $this->di->views->add($view['template'], $view['data'], $view['region'], $view['sort']);
             }
         }
+
+        // Sen response headers, if any.
+        $this->di->response->sendHeaders();
 
         // Create a view to execute the default template file
         $tpl  = $path . $name . $template;

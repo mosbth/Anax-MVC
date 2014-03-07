@@ -18,6 +18,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
     */
     private $templateFile;          // Template file
     private $templateFileData = []; // Data to send to template file
+    private $sortOrder;             // For sorting views
 
 
 
@@ -26,10 +27,11 @@ class CViewBasic implements \Anax\DI\IInjectionAware
      *
      * @param string $template the actual template file
      * @param array  $data     variables to make available to the view, default is empty
+     * @param int    $sort     which order to display the views, if suitable
      *
      * @return $this
      */
-    public function __construct($template, $data = []) 
+    public function __construct($template, $data = [], $sort = 0) 
     {
         if (!is_readable($template)) {
             throw new \Exception("Could not find template file: " . $template);
@@ -37,6 +39,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
 
         $this->templateFile     = $template;
         $this->templateFileData = $data;
+        $this->sortOrder        = $sort;
     }
 
 
@@ -50,5 +53,17 @@ class CViewBasic implements \Anax\DI\IInjectionAware
     {   
         extract($this->templateFileData);
         include $this->templateFile;
+    }
+
+
+
+    /**
+     * Give the sort order for this view.
+     *
+     * @return int
+     */
+    public function sortOrder() 
+    {   
+        return $this->sortOrder;
     }
 }

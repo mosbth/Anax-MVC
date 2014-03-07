@@ -3,8 +3,6 @@
  * Config-file for Anax, theme related settings, return it all as array.
  *
  */
-
-
 return [
 
     /**
@@ -23,8 +21,8 @@ return [
      * Add default views.
      */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => []],
-        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => []],
+        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
+        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => [], 'sort' => -1],
     ],
 
 
