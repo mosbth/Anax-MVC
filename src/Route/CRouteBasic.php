@@ -20,15 +20,19 @@ class CRouteBasic
 
 
     /**
-     * Construct a new route.
+     * Set values for route.
      *
      * @param string   $rule   for this route
      * @param callable $action callable to implement a controller for the route
+     *
+     * @return $this
      */
-    public function __construct($rule, $action) 
+    public function set($rule, $action) 
     {
         $this->rule = $rule;
         $this->action = $action;
+
+        return $this;
     }
 
 

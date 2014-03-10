@@ -35,7 +35,8 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
     public function add($template, $data = [], $region = 'main', $sort = 0) 
     {
         $tpl = $this->path . $template . $this->suffix;
-        $view = new CViewBasic($tpl, $data, $sort);
+        $view = $this->di->get('view');
+        $view->set($tpl, $data, $sort);
         $view->setDI($this->di);
         $this->views[$region][] = $view;
         return $view;

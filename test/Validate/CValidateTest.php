@@ -38,7 +38,7 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
         $validate = new \Anax\Validate\CValidate();
 
         $res = $validate->check($value, $rules);
-        $this->assertEquals($value, $res, "Should return the tested value.");
+        $this->assertTrue($res, "Should return the tested value.");
     }
 
 
@@ -74,6 +74,6 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
     public function testCheckFail($value, $rules) 
     {
         $validate = new \Anax\Validate\CValidate();
-        $validate->check($value, $rules);
+        $validate->check($value, $rules, true);
     }
 }

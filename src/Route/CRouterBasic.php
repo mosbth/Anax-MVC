@@ -31,7 +31,8 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
      */
     public function add($rule, $action) 
     {
-        $route = new CRouteBasic($rule, $action);
+        $route = $this->di->get('route');
+        $route->set($rule, $action);
         $this->routes[] = $route;
         return $route;
     }
@@ -47,8 +48,10 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
      */
     public function addNotFound($action) 
     {
-        $this->notFound = new CRouteBasic(null, $action);
-        return $this->notFound;
+        $route = $this->di->get('route');
+        $route->set(null, $action);
+        $this->notFound = $route;
+        return $route;
     }
 
 
@@ -71,16 +74,4 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
 
         $this->notFound->handle();
     }
-
-
-
-/*
-From Lydia CRequest::Init
-        // Set controller, action and arguments
-        $controller =  !empty($rp[0]) ? $rp[0] : 'index';
-        $action     =  !empty($rp[1]) ? $rp[1] : 'index';
-        $arguments  = $splits;
-        unset($arguments[0], $arguments[1]); // remove controller & method part from argument list
-*/
-
 }

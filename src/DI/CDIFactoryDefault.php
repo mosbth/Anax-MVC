@@ -19,6 +19,9 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('response',  '\Anax\Response\CResponseBasic');
         $this->setShared('validate',  '\Anax\Validate\CValidate');
+        
+        $this->set('view',  '\Anax\View\CViewBasic');
+        $this->set('route', '\Anax\Route\CRouteBasic');
 
         $this->setShared('log', function () {
             $log = new \Anax\Logger\CLog();
