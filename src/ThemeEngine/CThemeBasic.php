@@ -115,20 +115,11 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
         $template   = 'index.tpl.php';
         $functions  = 'functions.php';
 
-        // Include global theme functions file
-        $file = $path . $functions;
-        if (is_readable($file)) {
-            include $file;
-        }
-
         // Include theme specific functions file
         $file = $path . $name . $functions;
         if (is_readable($file)) {
             include $file;
         }
-
-        // Create a view of $data['main'] for backward compatibility, what about $header and $footer.
-        //$this->views->addString($data['main']);
 
         // Create views for regions, from config-file
         if (isset($this->config['views'])) {
@@ -143,7 +134,8 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
         // Create a view to execute the default template file
         $tpl  = $path . $name . $template;
         $data = array_merge($this->config['data'], $this->data);
-        $view = new \Anax\View\CViewBasic($tpl, $data);
+        $view = $this->di->get('view');
+        $view->set($tpl, $data);
         $view->setDI($this->di);
         $view->render();
     }

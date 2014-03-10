@@ -34,11 +34,41 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      */
     public function add($template, $data = [], $region = 'main', $sort = 0) 
     {
-        $tpl = $this->path . $template . $this->suffix;
         $view = $this->di->get('view');
-        $view->set($tpl, $data, $sort);
+
+        if (is_string($template)) {
+            $tpl = $this->path . $template . $this->suffix;
+            $type = 'file';
+        } elseif (is_array($template)) {
+            $tpl = $template;
+            $type = 'callback';
+        }
+
+        $view->set($tpl, $data, $sort, $type);
         $view->setDI($this->di);
         $this->views[$region][] = $view;
+
+        return $view;
+    }
+
+
+
+    /**
+     * Add a string as a view.
+     *
+     * @param string $content the content
+     * @param string $region  which region to attach the view
+     * @param int    $sort    which order to display the views
+     *
+     * @return class as the added view
+     */
+    public function addString($content, $region = 'main', $sort = 0) 
+    {
+        $view = $this->di->get('view');
+        $view->set($content, [], $sort, 'string');
+        $view->setDI($this->di);
+        $this->views[$region][] = $view;
+        
         return $view;
     }
 
@@ -71,6 +101,20 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
             throw new \Exception("Base path for views is not a directory: " . $path);
         }
         $this->path = rtrim($path, '/') . '/';
+    }
+
+
+
+    /**
+     * Check if a region has views to render.
+     *
+     * @param string $region which region to check
+     *
+     * @return $this
+     */
+    public function hasContent($region) 
+    {
+        return isset($this->views[$region]);
     }
 
 

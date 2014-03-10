@@ -44,6 +44,24 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
 
 
     /**
+     * Test 
+     *
+     * @dataProvider providerCheckFail
+     *
+     * @expectedException Exception
+     *
+     * @return void
+     *
+     */
+    public function testValidationRuleMissing() 
+    {
+        $validate = new \Anax\Validate\CValidate();
+        $validate->check(0, ['not_exists']);
+    }
+
+
+
+    /**
      * Provider for test values
      *
      * @return array
@@ -51,7 +69,6 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
     public function providerCheckFail()
     {
         return [
-            [ 0, ['not_exists'] ],
             [ null, ['fail'] ],
             [ "moped", ['int'] ],
             [ 0, ['range' => [1, 100]] ],
@@ -71,9 +88,26 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
      * @return void
      *
      */
-    public function testCheckFail($value, $rules) 
+    public function testCheckFailException($value, $rules) 
     {
         $validate = new \Anax\Validate\CValidate();
         $validate->check($value, $rules, true);
+    }
+
+
+
+    /**
+     * Test 
+     *
+     * @dataProvider providerCheckFail
+     *
+     * @return void
+     *
+     */
+    public function testCheckFail($value, $rules) 
+    {
+        $validate = new \Anax\Validate\CValidate();
+        $res = $validate->check($value, $rules);
+        $this->assertFalse($res, "Should return the tested value.");
     }
 }

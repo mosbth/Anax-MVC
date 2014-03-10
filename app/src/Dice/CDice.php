@@ -1,11 +1,12 @@
 <?php
+
 namespace Mos\Dice;
 
 /**
  * A CDice class to play around with a dice.
  *
  */
-class CDice 
+class CDice
 {
 
     /**
@@ -20,12 +21,13 @@ class CDice
      * Roll the dice
      *
      * @param int $times the number of times to roll.
+     * 
      * @return void
      */
     public function roll($times) 
     {
         $this->lastRoll = array();
-        for($i = 0; $i < $times; $i++) {
+        for ($i = 0; $i < $times; $i++) {
               $this->lastRoll[] = rand(1, 6);
         }
     }

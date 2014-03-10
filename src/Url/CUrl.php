@@ -40,7 +40,7 @@ class CUrl
         if (empty($uri)) {
             
             // Empty url means baseurl
-            return $this->baseUrl;
+            return $this->baseUrl . (($this->urlType == self::URL_APPEND) ? "/$this->scriptName" : null);
 
         } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
             

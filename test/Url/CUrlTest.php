@@ -78,7 +78,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 $scriptName,
                 $urlType,
                 "",
-                "$baseUrl",
+                "$baseUrl/$scriptName",
             ],
             [
                 $siteUrl, 
@@ -183,7 +183,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 $scriptName,
                 $urlType,
                 "",
-                "$baseUrl",
+                "$baseUrl/$scriptName",
             ],
             [
                 $siteUrl, 

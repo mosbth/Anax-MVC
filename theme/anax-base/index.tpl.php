@@ -20,6 +20,12 @@
 <?php $this->views->render('header')?>
 </div>
 
+<?php if ($this->views->hasContent('navbar')) : ?>
+<div id='navbar'>
+<?php $this->views->render('navbar')?>
+</div>
+<?php endif; ?>
+
 <div id='main'>
 <?php if(isset($main)) echo $main?>
 <?php $this->views->render('main')?>

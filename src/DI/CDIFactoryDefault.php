@@ -20,8 +20,8 @@ class CDIFactoryDefault extends CDI
         $this->setShared('response',  '\Anax\Response\CResponseBasic');
         $this->setShared('validate',  '\Anax\Validate\CValidate');
         
-        $this->set('view',  '\Anax\View\CViewBasic');
         $this->set('route', '\Anax\Route\CRouteBasic');
+        $this->set('view', '\Anax\View\CViewBasic');
 
         $this->setShared('log', function () {
             $log = new \Anax\Logger\CLog();
@@ -46,8 +46,8 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('views', function() {
             $views = new \Anax\View\CViewContainerBasic();
-            $views->setFileSuffix('.tpl.php');
             $views->setBasePath(ANAX_APP_PATH . 'view');
+            $views->setFileSuffix('.tpl.php');
             $views->setDI($this);
             return $views;   
         });
@@ -85,6 +85,25 @@ class CDIFactoryDefault extends CDI
             $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php');
             $themeEngine->setDI($this);
             return $themeEngine;
+        });
+
+        $this->setShared('navbar', function() {
+            $navbar = new \Anax\Navigation\CNavbar();
+            $navbar->configure(ANAX_APP_PATH . 'config/navbar.php');
+            $navbar->setDI($this);
+            return $navbar;
+        });
+
+        $this->set('fileContent', function() {
+            $fc = new \Anax\Content\CFileContent();
+            $fc->setBasePath(ANAX_APP_PATH . 'content/');
+            return $fc;
+        });
+
+        $this->setShared('textFilter', function() {
+            $filter = new \Anax\Content\CTextFilter();
+            $filter->configure(ANAX_APP_PATH . 'config/text_filter.php');
+            return $filter;
         });
     }
 }

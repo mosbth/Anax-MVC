@@ -9,7 +9,7 @@ require __DIR__.'/config_with_app.php';
 
 
 
-// Add extra assetsapp
+// Add extra assets
 $app->theme->addStylesheet('css/dice.css');
 
 
