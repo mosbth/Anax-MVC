@@ -30,7 +30,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      * @param string $region   which region to attach the view
      * @param int    $sort     which order to display the views
      *
-     * @return class as the added view
+     * @return $this
      */
     public function add($template, $data = [], $region = 'main', $sort = 0) 
     {
@@ -48,7 +48,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
         $view->setDI($this->di);
         $this->views[$region][] = $view;
 
-        return $view;
+        return $this;
     }
 
 
@@ -60,7 +60,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      * @param string $region  which region to attach the view
      * @param int    $sort    which order to display the views
      *
-     * @return class as the added view
+     * @return $this
      */
     public function addString($content, $region = 'main', $sort = 0) 
     {
@@ -69,7 +69,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
         $view->setDI($this->di);
         $this->views[$region][] = $view;
         
-        return $view;
+        return $this;
     }
 
 

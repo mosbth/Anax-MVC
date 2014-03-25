@@ -16,7 +16,7 @@ class CUrl
     const URL_CLEAN  = 'clean';  // controller/action/param1/param2
     const URL_APPEND = 'append'; // index.php/controller/action/param1/param2
 
-    private $UrlType = self::URL_APPEND; // What type of urls to generate
+    private $urlType = self::URL_APPEND; // What type of urls to generate
 
     private $siteUrl = null; // Siteurl to prepend to all absolute urls created
     private $baseUrl = null; // Baseurl to prepend to all relative urls created
@@ -55,7 +55,9 @@ class CUrl
         }
 
         $uri = rtrim($uri, '/');
-        if ($this->urlType == self::URL_APPEND) {
+        if ($this->urlType == self::URL_CLEAN) {
+            return $this->baseUrl . '/' . $uri; 
+        } else {
             return $this->baseUrl . '/' . $this->scriptName . '/' . $uri; 
         }
 
