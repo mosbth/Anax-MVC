@@ -1,0 +1,83 @@
+/**
+ * Make it a bot more responsive using media queries
+ */
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+    #featured-1,
+    #featured-2,
+    #featured-3,
+    #main,
+    #sidebar,
+    #triptych-1,
+    #triptych-2,
+    #triptych-3,
+    #footer-col-1,
+    #footer-col-2,
+    #footer-col-3, 
+    #footer-col-4  {
+        .column(@columns);
+        margin-bottom: @magicNumber;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #main,
+    #sidebar {
+        .column(@columns);
+        margin-bottom: @magicNumber;
+    }
+
+    #footer-col-1,
+    #footer-col-2,
+    #footer-col-3, 
+    #footer-col-4  {
+        .column(@columns / 2);
+        margin-bottom: @magicNumber;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #header,
+    #navbar,
+    #flash,
+    #footer {
+        .column(@columns);
+        margin-bottom: @magicNumber;
+    }
+
+    #main {
+        .column(@columns / 3 * 2);
+        margin-bottom: @magicNumber;
+    }
+
+    #sidebar {
+        .column(@columns / 3);
+        margin-bottom: @magicNumber;
+    }
+
+    #featured-1,
+    #featured-2,
+    #featured-3,
+    #triptych-1,
+    #triptych-2,
+    #triptych-3 {
+        .column(@columns / 3);
+        margin-bottom: @magicNumber;
+    }
+
+    #footer-col-1,
+    #footer-col-2,
+    #footer-col-3, 
+    #footer-col-4 {
+        .column(@columns / 4);
+        margin-bottom: @magicNumber;
+    }  
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}

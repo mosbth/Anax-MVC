@@ -1,0 +1,162 @@
+/**
+ * Layout
+ */
+
+/** 
+ * General 
+ */
+html {}
+
+body {
+    overflow-y: scroll;
+    color: #333;
+    font-family: arial, sans-serif;
+}
+
+
+
+/**
+ * Layout of the main page elements 
+ */
+#wrapper {
+    margin: 8px auto;
+    max-width: 960px;
+    .clearfix();
+}
+
+
+
+/** 
+ * Gridlayout 
+ */
+#header,
+#navbar,
+#flash,
+#footer {
+    .column(@columns);
+}
+
+#main {
+    .column(@columns / 3 * 2);
+}
+
+#sidebar {
+    .column(@columns / 3);
+}
+
+#featured-1,
+#featured-2,
+#featured-3,
+#triptych-1,
+#triptych-2,
+#triptych-3 {
+    .column(@columns / 3);
+}
+
+#footer-col-1,
+#footer-col-2,
+#footer-col-3, 
+#footer-col-4 {
+    .column(@columns / 4);
+}
+
+#header,
+#navbar,
+#flash,
+#featured-1,
+#featured-2,
+#featured-3,
+#main,
+#sidebar,
+#triptych-1,
+#triptych-2,
+#triptych-3,
+#footer-col-1,
+#footer-col-2,
+#footer-col-3, 
+#footer-col-4,
+#footer {
+    margin-bottom: 22px;
+}
+
+#wrap-featured,
+#wrap-main,
+#wrap-triptych,
+#wrap-footer-col {
+    .clearfix();
+}
+
+
+/** 
+ * Header 
+ */
+#header {
+    position: relative;
+    height: 5 * 22px;
+}
+
+.sitetitle {
+  position: absolute;
+  top: 6px;
+  left: 130px;
+  font-size: 48px;
+}
+
+.siteslogan {
+  position: absolute;
+  top: 65px;
+  left: 130px;
+  font-style: italic;
+  color: #666;
+}
+
+
+
+/**
+ * navbar
+ */
+#navbar {
+  height: 3 * 22px;
+}
+
+
+
+/**
+ * Layout for main
+ */
+#main {
+  min-height: 15 * 22px;
+}
+
+
+
+
+.sitefooter {
+  color: #666;
+}
+
+
+
+/**
+ * For articles
+ */
+.article1 {
+  border-right: 1px solid #ccc;
+  padding-right: 1em;
+}
+
+.article1 h1,
+.article1 h2 {
+  border-bottom: 1px solid #ccc;
+}
+
+.byline {
+  margin-top: 44px;
+  border-top: 1px dashed #ccc;
+  padding-top: 22px;
+  color: #666;
+}
+
+.byline p {
+  margin-top: 0;
+}
