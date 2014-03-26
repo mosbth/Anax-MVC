@@ -57,7 +57,8 @@ History
 v2.0.0 (2014-03-26)
 
 * Cloned Anax-MVC and preparing to build Anax-MVC.
-* Added autoloader for PSR-0.
+* Added autoloader for PSR-0 and PSR-4.
+* Coding standard according PSR-2.
 * Not throwing exception in standard anax autoloader.
 * Using anonomous functions in `bootstrap.php` to set up exception handler and autoloader.
 * Added `$anax['style']` as inline style in `config.php` and `index.tpl.php`.
