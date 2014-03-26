@@ -7,11 +7,13 @@ Anax-MVC
 [![Code Coverage](https://scrutinizer-ci.com/g/mosbth/Anax-MVC/badges/coverage.png?s=f999ab1961684a91050b095682f7ab7a13ccb534)](https://scrutinizer-ci.com/g/mosbth/Anax-MVC/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mosbth/Anax-MVC/badges/quality-score.png?s=1c2fc1af0df7fb7ee1e4f379a81253583a750297)](https://scrutinizer-ci.com/g/mosbth/Anax-MVC/)
 
-A PHP-MVC-micro framework / webbtemplate / boilerplate for smaller websites and webbapplications using PHP.
+A PHP-based and MVC-inspired (micro) framework / webbtemplate / boilerplate for websites and webbapplications.
 
-Builds upon Anax-base, read article about Anax-base here: http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer
+Read article about it here: ["Anax som MVC-ramverk"](http://dbwebb.se/kunskap/anax-som-mvc-ramverk) and here ["Bygg en me-sida med Anax-MVC"](http://dbwebb.se/kunskap/bygg-en-me-sida-med-anax-mvc). 
 
-By Mikael Roos.
+Builds upon Anax-base, read article about Anax-base ["Anax - en hållbar struktur för dina webbapplikationer"](http://dbwebb.se/kunskap/anax-en-hallbar-struktur-for-dina-webbapplikationer) to get an overview of its none-MVC variant. 
+
+By Mikael Roos, me@mikaelroos.se.
 
 
 
@@ -37,11 +39,22 @@ The following external modules are included and subject to its own license.
 
 
 
+### PHP Markdown
+* Website: http://michelf.ca/projects/php-markdown/
+* Version: 1.4.0, November 29, 2013
+* License: PHP Markdown Lib Copyright © 2004-2013 Michel Fortin http://michelf.ca/ 
+* Path: included in `3pp/php-markdown`
+
+
+
+
 History
 -----------------------------------
 
 
-vx.x.x (latest) (Anax-MVC)
+###History for Anax-MVC
+
+v2.0.x (latest)
 
 * Cloned Anax-MVC and preparing to build Anax-MVC.
 * Added autoloader for PSR-0.
@@ -52,7 +65,7 @@ vx.x.x (latest) (Anax-MVC)
 * Added automatic build with travis.
 * Added codecoverage reports on coveralls.io.
 * Added code quality through scrutinizer-ci.com.
-
+* Major additions of classes to support a framework using dependency injections and service container.
 
 
 ###History for Anax-base
