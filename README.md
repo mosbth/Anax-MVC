@@ -54,7 +54,7 @@ History
 
 ###History for Anax-MVC
 
-v2.0.x (latest)
+v2.0.0 (2014-03-26)
 
 * Cloned Anax-MVC and preparing to build Anax-MVC.
 * Added autoloader for PSR-0.
