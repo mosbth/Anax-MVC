@@ -7,6 +7,8 @@
 // Get environment & autoloader and the $app-object.
 require __DIR__.'/config_with_app.php'; 
 
+date_default_timezone_set('UTC');
+
 // Set the title of the page
 $app->theme->setVariable('title', "Hello World Pagecontroller");
 
