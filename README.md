@@ -54,6 +54,11 @@ History
 
 ###History for Anax-MVC
 
+v2.0.x (latest)
+
+* Updates to match comments example.
+
+
 v2.0.0 (2014-03-26)
 
 * Cloned Anax-MVC and preparing to build Anax-MVC.
