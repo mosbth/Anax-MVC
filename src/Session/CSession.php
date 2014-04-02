@@ -63,7 +63,7 @@ class CSession
      */
     public function get($key, $default = null)
     {
-        return isset($_SESSION) 
+        return isset($_SESSION) && isset($_SESSION[$key]) 
             ? $_SESSION[$key]
             : null;
     }
