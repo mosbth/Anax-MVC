@@ -1,10 +1,9 @@
-# Logs and databases #
-######################
+# Logs and databases 
 *.sqlite
 *.log
 
-# OS generated files #
-######################
+
+# OS generated files 
 .DS_Store
 .DS_Store?
 ._*
@@ -14,5 +13,8 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-composer.*
-vendor/
+
+# Package handling
+composer.json
+composer.lock
+vendor/.git
