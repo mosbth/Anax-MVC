@@ -17,6 +17,8 @@ class CDIFactoryDefault extends CDI
     {
         parent::__construct();
 
+        require ANAX_APP_PATH . 'config/error_reporting.php';
+
         $this->setShared('response',  '\Anax\Response\CResponseBasic');
         $this->setShared('validate',  '\Anax\Validate\CValidate');
         
