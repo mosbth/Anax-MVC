@@ -24,12 +24,12 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
     /**
      * Add a route to the router.
      *
-     * @param string   $rule   for this route
-     * @param callable $action callable to implement a controller for the route
+     * @param string $rule   for this route
+     * @param mixed  $action null, string or callable to implement a controller for the route
      *
      * @return class as new route
      */
-    public function add($rule, $action) 
+    public function add($rule, $action = null) 
     {
         $route = $this->di->get('route');
         $route->set($rule, $action);
@@ -66,12 +66,31 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
         $query = $this->di->request->getRoute();
         $parts = $this->di->request->getRouteParts();
 
+        // Match predefined routes
         foreach ($this->routes as $route) {
             if ($route->match($query)) {
                 return $route->handle();
             }
         }
 
+        // Default handling route as :controller/:action/:params using the dispatcher
+        $dispatcher = $this->di->dispatcher;
+        $dispatcher->setControllerName(isset($parts[0]) ? $parts[0] : 'index');
+        $dispatcher->setActionName(isset($parts[1]) ? $parts[1] : 'index');
+
+        $params = [];
+        if (isset($parts[2])) {
+            $params = $parts;
+            array_shift($params);
+            array_shift($params);
+        }
+        $dispatcher->setParams($params);
+
+        if ($dispatcher->isCallable()) {
+            return $dispatcher->dispatch();
+        }
+
+        // No route was matched
         $this->notFound->handle();
     }
 }

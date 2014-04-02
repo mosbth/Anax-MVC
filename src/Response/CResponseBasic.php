@@ -60,4 +60,18 @@ class CResponseBasic
 
         return $this;
     }
+
+
+
+    /**
+     * Redirect to another page.
+     *
+     * @param string $url to redirect to
+     *
+     * @return $this
+     */
+    public function redirect($url)
+    {
+        header('Location: ' . $url);
+    }
 }

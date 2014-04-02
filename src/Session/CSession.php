@@ -25,7 +25,7 @@ class CSession
 
 
     /**
-     * Set a session name or us one from config.
+     * Set a session name or use one from config.
      *
      * @param array $aName to set as session name, default is null and then use name from config.
      */
@@ -49,5 +49,37 @@ class CSession
     public function start($options = [])
     {
         session_start();
+    }
+
+
+
+    /**
+     * Get values from session.
+     *
+     * @param string $key     in session variable.
+     * @param mixed  $default default value to return when key is not set in session.
+     *
+     * @return mixed
+     */
+    public function get($key, $default = null)
+    {
+        return isset($_SESSION) 
+            ? $_SESSION[$key]
+            : null;
+    }
+
+
+
+    /**
+     * Set values in session.
+     *
+     * @param string $key   in session variable.
+     * @param mixed  $value to set in session.
+     *
+     * @return mixed
+     */
+    public function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
     }
 }

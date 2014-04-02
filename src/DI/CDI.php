@@ -109,6 +109,22 @@ class CDI implements IDI
 
 
     /**
+     * Check if service exists by name.
+     *
+     * @param string $service as a service label, naming this service.
+     *
+     * @return boolean true if the service exists, otherwise false.
+     */
+    public function has($service)
+    {
+        return isset($this->loaded[$service])
+            ? true
+            : false;
+    }
+
+
+
+    /**
      * Lazy load a service object and create an instance of it.
      *
      * @param string $service as a service label, naming this service.

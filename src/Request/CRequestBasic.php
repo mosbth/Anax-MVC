@@ -160,9 +160,9 @@ class CRequestBasic
 
         // Compare REQUEST_URI and SCRIPT_NAME as long they match, 
         // leave the rest as current request.
-        $i=0;
+        $i = 0;
         $len = min(strlen($requestUri), strlen($scriptPath));
-        while ($i<$len 
+        while ($i < $len 
                && $requestUri[$i] == $scriptPath[$i]
         ) {
             $i++;
@@ -279,9 +279,13 @@ class CRequestBasic
      *
      * @return mixed
      */
-    public function getPost($key, $default = null) 
+    public function getPost($key = null, $default = null) 
     {
-        return isset($this->post[$key]) ? $this->post[$key] : $default;
+        if ($key) {
+            return isset($this->post[$key]) ? $this->post[$key] : $default;
+        } else {
+            return $this->post;
+        }
     }
 
 }

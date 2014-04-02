@@ -15,7 +15,7 @@ class CRouteBasic
     */
     private $name;   // A name for this route
     private $rule;   // The rule for this route
-    private $action; // The callable controller to handle this route
+    private $action; // The controller action to handle this route
 
 
 

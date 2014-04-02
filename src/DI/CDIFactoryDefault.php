@@ -72,7 +72,13 @@ class CDIFactoryDefault extends CDI
             return $router;
         });
 
-        $this->setShared('session', function() {
+        $this->setShared('dispatcher', function() {
+            $dispatcher = new \Anax\MVC\CDispatcherBasic();
+            $dispatcher->setDI($this);
+            return $dispatcher;   
+        });
+
+       $this->setShared('session', function() {
             $session = new \Anax\Session\CSession();
             $session->configure(ANAX_APP_PATH . 'config/session.php');
             $session->name();
