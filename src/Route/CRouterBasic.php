@@ -76,18 +76,22 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
         // Default handling route as :controller/:action/:params using the dispatcher
         $dispatcher = $this->di->dispatcher;
         $dispatcher->setControllerName(isset($parts[0]) ? $parts[0] : 'index');
-        $dispatcher->setActionName(isset($parts[1]) ? $parts[1] : 'index');
 
-        $params = [];
-        if (isset($parts[2])) {
-            $params = $parts;
-            array_shift($params);
-            array_shift($params);
-        }
-        $dispatcher->setParams($params);
+        if ($dispatcher->isValidController()) {
 
-        if ($dispatcher->isCallable()) {
-            return $dispatcher->dispatch();
+            $dispatcher->setActionName(isset($parts[1]) ? $parts[1] : 'index');
+
+            $params = [];
+            if (isset($parts[2])) {
+                $params = $parts;
+                array_shift($params);
+                array_shift($params);
+            }
+            $dispatcher->setParams($params);
+
+            if ($dispatcher->isCallable()) {
+                return $dispatcher->dispatch();
+            }
         }
 
         // No route was matched

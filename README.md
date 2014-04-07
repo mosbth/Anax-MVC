@@ -57,6 +57,7 @@ History
 v2.0.x (latest)
 
 * Updates to match comments example.
+* Introduced and corrected bug (issue #1) where exception was thrown instead of presenting a 404-page.
 
 
 v2.0.0 (2014-03-26)

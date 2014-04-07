@@ -16,9 +16,10 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
      * Properties
      *
      */
-    private $controller;    // Name of controller
-    private $action;        // Name of action
-    private $params;        // Params
+    private $controllerName;    // Name of controller
+    private $controller;        // Actual controller
+    private $action;            // Name of action
+    private $params;            // Params
 
 
 
@@ -52,12 +53,24 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
     public function setControllerName($name = 'index')
     {
         $name = $this->prepareName($name) . 'Controller';
-        
-        if ($this->di->has($name)) {
-            $this->controller = $this->di->get($name);
-        } else {
-            throw new \Exception('No such controller available in the service container.');
-        }
+
+        $this->controllerName = $name;
+
+        $this->controller = $this->di->has($name)
+            ? $this->di->get($name)
+            : null;
+    }
+
+
+
+    /**
+     * Check if a controller exists with this name.
+     *
+     * @return void
+     */
+    public function isValidController()
+    {
+        return is_object($this->controller);
     }
 
 
