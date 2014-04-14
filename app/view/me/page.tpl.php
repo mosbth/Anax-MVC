@@ -7,5 +7,3 @@
 <?=$byline?>
 </footer>
 <?php endif; ?>
- 
-</article>

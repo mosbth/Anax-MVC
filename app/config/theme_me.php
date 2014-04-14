@@ -20,8 +20,8 @@ return [
 	        'region'   => 'header', 
 	        'template' => 'me/header', 
 	        'data'     => [
-	            'siteTitle' => "Min me-sida i PHPMVC",
-	            'siteTagline' => "Här är en tagline som säger nåt vackert",
+	            'siteTitle' => "Donald Duck",
+	            'siteTagline' => "Mitt arbete i phpmvc på BTH",
 	        ], 
 	        'sort'     => -1
 	    ],
@@ -51,7 +51,7 @@ return [
         'title_append' => ' | Anax a web template',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css', 'css/navbar.css'],
+        'stylesheets' => ['css/style.css', 'css/navbar.css','css/form.css'],
 
         // Inline style
         'style' => null,
