@@ -83,8 +83,8 @@ class CDIFactoryDefault extends CDI
        $this->setShared('session', function() {
             $session = new \Anax\Session\CSession();
             $session->configure(ANAX_APP_PATH . 'config/session.php');
-            $session->name();
-            $session->start();
+            
+            $session->start($session->name());
             return $session;
         });
 
