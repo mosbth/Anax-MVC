@@ -6,7 +6,7 @@ namespace Anax\Session;
  * Anax base class for wrapping sessions.
  *
  */
-class CSession 
+class CSession
 {
     use \Anax\TConfigure;
 
@@ -31,10 +31,10 @@ class CSession
      */
     public function name($aName = null)
     {
-        $name = isset($aName) 
+        $name = isset($aName)
             ? $aName
-            : isset($this->configure['name'])
-                ? $this->configure['name']
+            : isset($this->config['name'])
+                ? $this->config['name']
                 : "anax";
 
         session_name($name);
@@ -63,7 +63,7 @@ class CSession
      */
     public function get($key, $default = null)
     {
-        return isset($_SESSION) && isset($_SESSION[$key]) 
+        return isset($_SESSION) && isset($_SESSION[$key])
             ? $_SESSION[$key]
             : null;
     }
@@ -81,5 +81,19 @@ class CSession
     public function set($key, $value)
     {
         $_SESSION[$key] = $value;
+    }
+
+
+
+    /**
+     * Check if a value is set in the session.
+     *
+     * @param string $key   in session variable.
+     *
+     * @return boolean true if $key is set, else false.
+     */
+    public function has($key)
+    {
+        return isset($_SESSION[$key]);
     }
 }

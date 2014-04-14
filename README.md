@@ -58,6 +58,9 @@ v2.0.x (latest)
 
 * Updates to match comments example.
 * Introduced and corrected bug (issue #1) where exception was thrown instead of presenting a 404-page.
+* Added `CSession::has()`.
+* Corrected bug #2 in `CSession->name` which did not use the config-file for naming the session.
+* Added `Anax\MVC\CDispatcherBasic` calling `initialize` om each controller.
 
 
 v2.0.0 (2014-03-26)
