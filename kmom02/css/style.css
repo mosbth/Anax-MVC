@@ -90,10 +90,9 @@ h1 {
   border-top: 1px dashed #ccc;
   padding-top: 22px;
   color: #666;
-  min-height: 140px;
 }
 
 .byline p {
+  min-height: 120px;
   margin-top: 0;
 }
-

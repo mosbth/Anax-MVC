@@ -7,12 +7,12 @@ $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 
 
-
 $di->set('CommentController', function() use ($di) {
     $controller = new Phpmvc\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
 });
+
 
 $app->router->add('', function() use($app) {
 	$app->theme->setTitle('Hem');

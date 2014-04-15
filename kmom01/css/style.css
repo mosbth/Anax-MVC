@@ -93,5 +93,6 @@ h1 {
 }
 
 .byline p {
+  min-height: 120px;
   margin-top: 0;
 }
