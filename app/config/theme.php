@@ -13,20 +13,33 @@ return [
      */
     'settings' => [
         'path' => ANAX_INSTALL_PATH . 'theme/',
-        'name' => 'anax-base',
+        'name' => 'anax-grid',
     ],
-
-    
-    /** 
-     * Add default views.
-     */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
-        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => [], 'sort' => -1],
+        [
+            'region'   => 'header',
+            'template' => 'me/header',
+            'data'     => [
+                'siteTitle' => "Donald Duck",
+                'siteTagline' => "Mitt arbete i phpmvc på BTH",
+            ],
+            'sort'     => -1
+        ],
+      [
+          'region' => 'navbar',
+          'template' => [
+              'callback' => function() {
+                   return $this->di->navbar->create();
+              },
+          ],
+          'data' => [],
+          'sort' => -1,
+        ],
+        ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
     ],
 
 
-    /** 
+    /**
      * Data to extract and send as variables to the main template file.
      */
     'data' => [
@@ -38,7 +51,8 @@ return [
         'title_append' => ' | Anax a web template',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css'],
+        'stylesheets' => ['css/anax-base/style.css', 'css/anax-base/navbar.css','css/anax-base
+        /form.css'],
 
         // Inline style
         'style' => null,
@@ -56,7 +70,6 @@ return [
         'javascript_include' => [],
 
         // Use google analytics for tracking, set key or null to disable
-        'google_analytics' => null,
+        'google_analytics' => 'UA-38445302-3',
     ],
 ];
-

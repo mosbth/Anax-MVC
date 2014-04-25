@@ -1,0 +1,162 @@
+#header,
+#navbar,
+#flash,
+#footer {
+    width:100%;
+    // To remove or not?
+    //.column(@columns);
+    margin-bottom: @magicNumber;
+}
+
+#flash {
+    margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+    margin-bottom: @magicNumber;
+    background: @bgColorFlash;
+
+}
+
+#main {
+    .column(@columns / 3 * 2);
+    min-height: 20em;
+    margin-bottom: @magicNumber;
+    background: bgColorMain;
+}
+
+#sidebar {
+    .column(@columns / 3);
+    margin-bottom: @magicNumber;
+    background: @bgColorSidebar;
+}
+#footer {
+    background: @bgColorFooter;
+}
+
+#featured-1,
+#featured-2,
+#featured-3,
+#triptych-1,
+#triptych-2,
+#triptych-3 {
+    .column(@columns / 3);
+    margin-bottom: @magicNumber;
+    background: @bgColortriptych;
+}
+
+#footer-col-1,
+#footer-col-2,
+#footer-col-3,
+#footer-col-4 {
+    .column(@columns / 4);
+    margin-bottom: @magicNumber;
+    background: @bgColortriptych;
+}
+
+#wrap-featured,
+#wrap-main,
+#wrap-triptych,
+#wrap-footer-col {
+    .clearfix();
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: @total-width;
+  padding: 10px;
+}
+
+#wrap-main {
+    background: @bgColorWrap-main;
+}
+#wrap-featured {
+    background: @bgColorWrap-featured;
+}
+#wrap-triptych {
+    background: @bgColorWrap-triptych;
+}
+#wrap-footer-col {
+    background: @bgColorWrap-footer-col;
+}
+
+body {
+  color: @colorBody;
+  overflow-y: scroll;
+  background: @bgColorBody;
+}
+
+h1 {
+  font-size: @fontSizeH1;
+}
+
+#header {
+    position: relative;
+    margin-bottom: 40px;
+    background: @bgColorHeader;
+}
+
+.sitetitle {
+    position: absolute;
+    top: 6px;
+    left: 130px;
+    font-size: 48px;
+}
+
+.siteslogan {
+    position: absolute;
+    top: 65px;
+    left: 130px;
+    font-style: italic;
+    color: #666;
+}
+
+/**
+* Layout for footer
+*/
+#footer {
+    margin-top: 40px;
+    border-top: 1px solid @colorBorderLight;
+    padding-top: 22px;
+}
+
+.sitefooter {
+    color: @colorBodyLighter;
+}
+
+
+/**
+* For articles
+*/
+
+.byline {
+    margin-top: 44px;
+    border-top: 1px dashed @colorBorderLight;
+    padding-top: 22px;
+    color: @colorBodyLighter;
+}
+
+.byline p {
+    min-height: 120px;
+    margin-top: 0;
+}
+
+.article1 {
+    border-right: 1px solid @colorBorderLight;
+    padding-right: 1em;
+}
+
+.article1 h1,
+.article1 h2 {
+    border-bottom: 1px solid @colorBorderLight;
+}
+
+.loop (@index) when (@index > 1) {
+    .article@{index} {
+        background: @bg-article;
+    }
+  .loop (@index - 1);
+}
+.loop (1) {}
+
+.loop(@nrOfArticles);
+
+
+

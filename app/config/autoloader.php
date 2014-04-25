@@ -13,12 +13,12 @@ require ANAX_INSTALL_PATH . 'src/Loader/CPsr4Autoloader.php';
 
 call_user_func(function() {
     $loader = new \Anax\Loader\CPsr4Autoloader();
-    $loader->addNameSpace('Anax', ANAX_INSTALL_PATH . 'src')
+    $loader->addNameSpace('Anax', ANAX_INSTALL_PATH . 'src')           
            ->addNameSpace('', ANAX_APP_PATH . 'src')
            ->addNameSpace('Michelf', ANAX_INSTALL_PATH . '3pp/php-markdown/Michelf')
+           ->addNamespace('Lessc', ANAX_INSTALL_PATH . '3pp/lessphp')
            ->register();
 });
-
 
 
 /**

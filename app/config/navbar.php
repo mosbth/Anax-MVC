@@ -10,47 +10,25 @@ return [
  
     // Here comes the menu strcture
     'items' => [
-
-        // This is a menu item
-        'home'  => [
-            'text'  => 'Home',   
-            'url'   => 'index.php',  
-            'title' => 'Some title 1'
+        'home' => [
+            'text' => '<i class="fa fa-home"></i> Hem',
+            'url' => '',
+            'title' => "Hem"
         ],
- 
-        // This is a menu item
-        'test'  => [
-            'text'  => 'Test with submenu',   
-            'url'   => 'test.php',   
-            'title' => 'Some title 2',
-
-            // Here we add the submenu, with some menu items, as part of a existing menu item
-            'submenu' => [
-
-                'items' => [
-
-                    // This is a menu item of the submenu
-                    'item 1'  => [
-                        'text'  => 'Item 1',   
-                        'url'   => 'item1.php',  
-                        'title' => 'Some item 1'
-                    ],
-
-                    // This is a menu item of the submenu
-                    'item 2'  => [
-                        'text'  => 'Item 2',   
-                        'url'   => 'item2.php',  
-                        'title' => 'Some item 2'
-                    ],
-                ],
-            ],
+        'redovisning'  => [
+            'text'  => '<i class="fa fa-comment"></i> Redovisning',   
+            'url'   => 'redovisning',   
+            'title' => 'Redovisning',
         ],
- 
-        // This is a menu item
-        'about' => [
-            'text'  =>'About', 
-            'url'   =>'about.php',  
-            'title' => 'Some title 3'
+        'source' => [
+            'text'  =>'<i class="fa fa-code"></i> Source', 
+            'url'   =>'source',  
+            'title' => 'Source'
+        ],
+        'tema' => [
+            'text'  =>'<i class="fa fa-camera-retro"></i> Mitt tema', 
+            'url'   =>'tema',  
+            'title' => 'Mitt fina tema'
         ],
     ],
  
@@ -65,4 +43,21 @@ return [
     'create_url' => function($url) {
         return $this->di->get('url')->create($url);
     },
+    'views' => [
+ 
+    // View for header
+ 
+    // View for footer
+ 
+    [
+        'region' => 'navbar', 
+        'template' => [
+            'callback' => function() {
+                return $this->di->navbar->create();
+            },
+        ], 
+        'data' => [], 
+        'sort' => -1
+    ],
+],
 ];

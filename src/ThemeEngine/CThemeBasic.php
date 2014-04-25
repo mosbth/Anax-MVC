@@ -60,8 +60,10 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
      * @return mixed as value of variable, or null if value is not set.
      */
     public function getVariable($which)
-    {
-        if (isset($this->data[$which])) {
+    {   
+        if ($which == 'settings') {
+            return $this->config['settings'];
+        } elseif (isset($this->data[$which])) {
             return $this->data[$which];
         } elseif (isset($this->config['data'])) {
             return $this->config['data'][$which];

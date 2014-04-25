@@ -1,0 +1,25 @@
+/**
+ * CSS sprite for a dice with six faces.
+ *
+ */
+ul.dice {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ 
+ul.dice li {
+  display: inline-block;
+  padding: 0;
+  margin: 0 4px 0 0;
+  width: 32px;
+  height: 32px;
+  background: url(../img/dice-faces.png) no-repeat;
+}
+ 
+ul.dice li.dice-1 { background-position: -160px 0px; }
+ul.dice li.dice-2 { background-position: -128px 0px; }
+ul.dice li.dice-3 { background-position:  -96px 0px; }
+ul.dice li.dice-4 { background-position:  -64px 0px; }
+ul.dice li.dice-5 { background-position:  -32px 0px; }
+ul.dice li.dice-6 { background-position:    0px 0px; }

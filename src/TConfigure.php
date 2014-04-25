@@ -13,7 +13,7 @@ trait TConfigure
      * Properties
      *
      */
-    private $config = [];  // Store all config as an array
+    protected $config = [];  // Store all config as an array
 
 
 
@@ -40,4 +40,5 @@ trait TConfigure
         $this->config = array_merge($this->config, $options);
         return $this->config;
     }
+   
 }
