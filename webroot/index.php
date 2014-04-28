@@ -11,6 +11,12 @@ $di->set('CommentController', function() use ($di) {
     return $controller;
 });
 
+$di->setShared('db', function() use ($app) {
+    $db = new \Mos\Database\CDatabaseBasic();
+    $db->setOptions(require ANAX_APP_PATH . "config/config_mysql.php");
+    $db->connect();
+    return $db;
+});
 
 $app->router->add('', function() use($app) {
 	$app->theme->setTitle('Hem');
@@ -66,6 +72,7 @@ $app->router->add('redovisning', function() use ($app) {
       'output'    => null,
     ]);
 });
+
 
 $app->router->add('tema', function() use ($app) {
     $app->theme->setTitle('Mitt tema');

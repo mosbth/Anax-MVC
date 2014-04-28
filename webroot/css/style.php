@@ -3,7 +3,7 @@ require '../config.php';
 
 use \Lessc;
 
-date_default_timezone_set('Europe/Stockholm');
+
 
 /**
  * Add config-file if available

@@ -43,5 +43,99 @@
             "comments",
             "education"
         ]
+    },
+    {
+        "name": "mos/cform",
+        "version": "2.x-dev",
+        "version_normalized": "2.9999999.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mosbth/cform.git",
+            "reference": "76b6c9ea4b4c84ee07d25f325dfc70f7f9952d23"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mosbth/cform/zipball/76b6c9ea4b4c84ee07d25f325dfc70f7f9952d23",
+            "reference": "76b6c9ea4b4c84ee07d25f325dfc70f7f9952d23",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "time": "2014-04-16 23:43:58",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mos\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mikael Roos",
+                "email": "me@mikaelroos.se",
+                "homepage": "http://mikaelroos.se",
+                "role": "Developer"
+            }
+        ],
+        "description": "Classes for HTML Forms",
+        "homepage": "http://dbwebb.se/",
+        "keywords": [
+            "Forms",
+            "education",
+            "html"
+        ]
+    },
+    {
+        "name": "mos/cdatabase",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mosbth/cdatabase.git",
+            "reference": "f48498776ff6361dceed9dc57ce8dc03d6510ca1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mosbth/cdatabase/zipball/f48498776ff6361dceed9dc57ce8dc03d6510ca1",
+            "reference": "f48498776ff6361dceed9dc57ce8dc03d6510ca1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "time": "2014-04-17 09:32:55",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mos\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mikael Roos",
+                "email": "me@mikaelroos.se",
+                "homepage": "http://mikaelroos.se",
+                "role": "Developer"
+            }
+        ],
+        "description": "PHP classes for database handling upon PDO",
+        "homepage": "http://dbwebb.se",
+        "keywords": [
+            "education",
+            "framework",
+            "micro",
+            "module",
+            "mvc"
+        ]
     }
 ]
