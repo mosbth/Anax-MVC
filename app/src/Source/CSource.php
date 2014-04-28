@@ -37,7 +37,7 @@ class CSource {
     if(isset($options['add_ignore'])) {
       $default['ignore'] = array_merge($default['ignore'], $options['add_ignore']);
     }
-    
+
     $this->options = $options = array_merge($default, $options);
 
     //Backwards compatible with source.php query arguments for ?dir=xxx&file=xxx
@@ -129,9 +129,9 @@ class CSource {
 
     $html  = "<ul class='src-breadcrumb'>\n";
     $html .= "<li><a href='?'>" . basename($this->baseDir) . "</a>/</li>";
-    $path = null; 
+    $path = null;
     foreach($this->breadcrumb as $val) {
-      $path .= "$val/";      
+      $path .= "$val/";
       $html .= "<li><a href='?path={$path}'>{$val}</a>/</li>";
     }
     $html .= "</ul>\n";
@@ -177,35 +177,35 @@ class CSource {
     if(function_exists('mb_detect_encoding')) {
       if($res = mb_detect_encoding($this->content, "auto, ISO-8859-1", true)) {
         $this->encoding = $res;
-      }   
+      }
     }
 
     // Is it BOM?
     if(substr($this->content, 0, 3) == chr(0xEF) . chr(0xBB) . chr(0xBF)) {
       $this->encoding .= " BOM";
     }
-    
+
     // Checking style of line-endings
     $this->lineendings = null;
     if(isset($this->encoding)) {
       $lines = explode("\n", $this->content);
       $l = strlen($lines[0]);
-      
+
       if(substr($lines[0], $l-1, 1) == "\r") {
         $this->lineendings = " Windows (CRLF) ";
-      } 
+      }
       /*elseif(substr($lines[0], $l-1, 1) == "\r") {
         $this->lineendings = " Mac (xxxx) ";
       } */
       else {
-        $this->lineendings = " Unix (LF) ";    
+        $this->lineendings = " Unix (LF) ";
       }
     }
-    
+
   }
 
 
-  
+
   /**
    * Remove passwords from known files.
    */
@@ -215,14 +215,14 @@ class CSource {
     $replace = array();
     $files = array(
       'config.php' => array(
-        'match' => array('config.php', 'config.php~'),
-        'pattern' => array('/(\'|")(DB_PASSWORD|DB_USER)(.+)/'),
+        'match' => array('config.php', 'config.php~', 'config_mysql.php'),
+        'pattern' => array('/(\'|")(DB_PASSWORD|DB_USER|password|username)(.+)/'),
         'replace' => array('/*\2,  is removed and hidden for security reasons */);'),
       ),
     );
 
     foreach($files as $val) {
-      if(in_array($this->file, $val['match'])) {      
+      if(in_array($this->file, $val['match'])) {
         $this->content = preg_replace($val['pattern'], $val['replace'], $this->content);
         break;
       }
@@ -250,17 +250,17 @@ class CSource {
       if(isset($_GET['displaysvg'])) {
         header("Content-type: image/svg+xml");
         echo $this->content;
-        exit;   
+        exit;
       } else {
         $linkToDisplaySvg = "<a href='{$_SERVER['REQUEST_URI']}&displaysvg'>Display as SVG</a>";
       }
     }
-    
+
     // Display image if a valid image file
     if(in_array($this->extension, $this->validImageExtensions)) {
       $this->content = "<div style='overflow:auto;'><img src='{$this->path}/{$this->file}' alt='[image not found]'></div>";
-    } 
-    
+    }
+
     // Display file content and format for a syntax
     else {
       $this->content = str_replace('\t', $this->spaces, $this->content);
@@ -268,7 +268,7 @@ class CSource {
       $i=0;
       $rownums = "";
       $text = "";
-      $a = explode('<br />', $this->content);   
+      $a = explode('<br />', $this->content);
 
       foreach($a as $row) {
         $i++;
@@ -283,7 +283,7 @@ class CSource {
 <div class='src-code'>{$text}</div>
 </div>
 EOD;
-    } 
+    }
 
     return "<h3 id='file'><code><a href='#file'>{$this->file}</a></code></h3>{$this->content}";
   }
