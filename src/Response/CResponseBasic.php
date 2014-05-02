@@ -27,7 +27,7 @@ class CResponseBasic
      */
     public function setHeader($header)
     {
-        $this->header[] = $header;
+        $this->headers[] = $header;
     }
 
 
@@ -44,13 +44,17 @@ class CResponseBasic
         }
 
         foreach ($this->headers as $header) {
-            switch ($this->header) {
+            switch ($header) {
                 case '403':
                     header('HTTP/1.0 403 Forbidden');
                     break;
 
                 case '404':
                     header('HTTP/1.0 404 Not Found');
+                    break;
+
+                case '500':
+                    header('HTTP/1.0 500 Internal Server Error');
                     break;
 
                 default:
