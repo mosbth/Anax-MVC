@@ -1,22 +1,22 @@
 <?php 
 /**
- * This is a Anax pagecontroller.
+ * This is a Anax frontcontroller.
  *
  */
-// Include the essential config-file which also creates the $anax variable with its defaults.
-include(__DIR__.'/config.php'); 
+// Get environment & autoloader.
+require __DIR__.'/config_with_app.php';
 
 
 
-// Do it and store it all in variables in the Anax container.
-$anax['title'] = "404";
-$anax['header'] = "";
-$anax['main'] = "This is a Anax 404. Document is not here.";
-$anax['footer'] = "";
-
-// Send the 404 header 
-header("HTTP/1.0 404 Not Found");
+// Home route
+$app->router->add('', function () use ($app) {
+    throw new \Anax\Exception\NotFoundException();
+});
 
 
-// Finally, leave it all to the rendering phase of Anax.
-include(ANAX_THEME_PATH);
+
+// Check for matching routes and dispatch to controller/handler of route
+$app->router->handle();
+
+// Render the page
+$app->theme->render();
