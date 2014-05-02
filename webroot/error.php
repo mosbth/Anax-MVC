@@ -33,7 +33,7 @@ $app->router->add('', function () use ($app) {
 // Throw ForbiddenException to get a 403 page
 $app->router->add('403', function () use ($app) {
 
-    throw new \Anax\Exception\ForbiddenException();
+    throw new \Anax\Exception\ForbiddenException("Here is the details, if any.");
 
 });
 
@@ -42,7 +42,7 @@ $app->router->add('403', function () use ($app) {
 // Throw NotFoundException to get a 404 page
 $app->router->add('404', function () use ($app) {
 
-    throw new \Anax\Exception\NotFoundException();
+    throw new \Anax\Exception\NotFoundException("Here is the details, if any.");
 
 });
 
@@ -51,7 +51,7 @@ $app->router->add('404', function () use ($app) {
 // Throw InternalServerErrorException to get a 500 page
 $app->router->add('500', function () use ($app) {
 
-    throw new \Anax\Exception\InternalServerErrorException();
+    throw new \Anax\Exception\InternalServerErrorException("Here is the details, if any.");
 
 });
 

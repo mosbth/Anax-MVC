@@ -126,6 +126,8 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
             $code = $e->getCode();
             $statusCodes = [403, 404, 500];
             if (in_array($code, $statusCodes)) {
+
+                $this->di->flash->setMessage($e->getMessage());
                 $this->handleInternal($code);
             
             } else {

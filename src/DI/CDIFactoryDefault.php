@@ -21,6 +21,7 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('response', '\Anax\Response\CResponseBasic');
         $this->setShared('validate', '\Anax\Validate\CValidate');
+        $this->setShared('flash', '\Anax\Flash\CFlashBasic');
         
         $this->set('route', '\Anax\Route\CRouteBasic');
         $this->set('view', '\Anax\View\CViewBasic');
