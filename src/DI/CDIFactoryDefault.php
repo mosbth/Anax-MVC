@@ -1,9 +1,8 @@
 <?php
-
 namespace Anax\DI;
 
 /**
- * Anax base class implementing Dependency Injection / Service Locator 
+ * Anax base class implementing Dependency Injection / Service Locator
  * of the services used by the framework, using lazy loading.
  *
  */
@@ -19,11 +18,18 @@ class CDIFactoryDefault extends CDI
 
         require ANAX_APP_PATH . 'config/error_reporting.php';
 
-        $this->setShared('response',  '\Anax\Response\CResponseBasic');
-        $this->setShared('validate',  '\Anax\Validate\CValidate');
-        
+        $this->setShared('response', '\Anax\Response\CResponseBasic');
+        $this->setShared('validate', '\Anax\Validate\CValidate');
+        $this->setShared('flash', '\Anax\Flash\CFlashBasic');
+
         $this->set('route', '\Anax\Route\CRouteBasic');
         $this->set('view', '\Anax\View\CViewBasic');
+
+        $this->set('ErrorController', function () {
+            $controller = new \Anax\MVC\ErrorController();
+            $controller->setDI($this);
+            return $controller;
+        });
 
         $this->setShared('log', function () {
             $log = new \Anax\Logger\CLog();
@@ -31,13 +37,13 @@ class CDIFactoryDefault extends CDI
             return $log;
         });
 
-        $this->setShared('request', function() {
+        $this->setShared('request', function () {
             $request = new \Anax\Request\CRequestBasic();
             $request->init();
             return $request;
         });
 
-        $this->setShared('url', function() {
+        $this->setShared('url', function () {
             $url = new \Anax\Url\CUrl();
             $url->setSiteUrl($this->request->getSiteUrl());
             $url->setBaseUrl($this->request->getBaseUrl());
@@ -46,69 +52,90 @@ class CDIFactoryDefault extends CDI
             return $url;
         });
 
-        $this->setShared('views', function() {
+        $this->setShared('views', function () {
             $views = new \Anax\View\CViewContainerBasic();
             $views->setBasePath(ANAX_APP_PATH . 'view');
             $views->setFileSuffix('.tpl.php');
             $views->setDI($this);
-            return $views;   
+            return $views;
         });
 
-        $this->setShared('router', function() {
-            
+        $this->setShared('router', function () {
+
             $router = new \Anax\Route\CRouterBasic();
             $router->setDI($this);
 
-            $router->add('403', function() {
-                $this->response->setHeader('403');
-                $this->theme->setTitle("Forbidden");
-                $this->views->add('error/403');
+            $router->addInternal('403', function () {
+                $this->dispatcher->forward([
+                    'controller' => 'error',
+                    'action' => 'statusCode',
+                    'params' => [
+                        'code' => 403,
+                        'message' => "CRouter says: This is a forbidden route.",
+                    ],
+                ]);
             })->setName('403');
 
-            $router->addNotFound(function() {
-                $this->response->setHeader('404');
-                $this->theme->setTitle("Not Found");
-                $this->views->add('error/404');
+            $router->addInternal('404', function () {
+                $this->dispatcher->forward([
+                    'controller' => 'error',
+                    'action' => 'statusCode',
+                    'params' => [
+                        'code' => 404,
+                        'message' => "CRouter says: This route is not found.",
+                    ],
+                ]);
             })->setName('404');
-            
+
+            $router->addInternal('500', function () {
+                $this->dispatcher->forward([
+                    'controller' => 'error',
+                    'action' => 'statusCode',
+                    'params' => [
+                        'code' => 500,
+                        'message' => "CRouter says: There was an internal server or processing error.",
+                    ],
+                ]);
+            })->setName('500');
+
             return $router;
         });
 
-        $this->setShared('dispatcher', function() {
+        $this->setShared('dispatcher', function () {
             $dispatcher = new \Anax\MVC\CDispatcherBasic();
             $dispatcher->setDI($this);
-            return $dispatcher;   
+            return $dispatcher;
         });
 
-       $this->setShared('session', function() {
+        $this->setShared('session', function () {
             $session = new \Anax\Session\CSession();
             $session->configure(ANAX_APP_PATH . 'config/session.php');
-            
-            $session->start($session->name());
+            $session->name();
+            $session->start();
             return $session;
         });
 
-        $this->setShared('theme', function() {
+        $this->setShared('theme', function () {
             $themeEngine = new \Anax\ThemeEngine\CThemeBasic();
             $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php');
             $themeEngine->setDI($this);
             return $themeEngine;
         });
 
-        $this->setShared('navbar', function() {
+        $this->setShared('navbar', function () {
             $navbar = new \Anax\Navigation\CNavbar();
             $navbar->configure(ANAX_APP_PATH . 'config/navbar.php');
             $navbar->setDI($this);
             return $navbar;
         });
 
-        $this->set('fileContent', function() {
+        $this->set('fileContent', function () {
             $fc = new \Anax\Content\CFileContent();
             $fc->setBasePath(ANAX_APP_PATH . 'content/');
             return $fc;
         });
 
-        $this->setShared('textFilter', function() {
+        $this->setShared('textFilter', function () {
             $filter = new \Anax\Content\CTextFilter();
             $filter->configure(ANAX_APP_PATH . 'config/text_filter.php');
             return $filter;

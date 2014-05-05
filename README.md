@@ -168,6 +168,9 @@ v2.0.x (latest)
 * Added `CSession::has()`.
 * Corrected bug #2 in `CSession->name` which did not use the config-file for naming the session.
 * Added `Anax\MVC\CDispatcherBasic` calling `initialize` om each controller.
+* Added exception handling to provide views for 403, 404 and 500 http status codes and added example program in `webroot/error.php`.
+* Added `docs` to init online documentation.
+* Adding flash message (not storing in session).
 
 
 v2.0.0 (2014-03-26)
