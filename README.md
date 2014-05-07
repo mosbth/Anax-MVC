@@ -171,7 +171,7 @@ v2.0.x (latest)
 * Added exception handling to provide views for 403, 404 and 500 http status codes and added example program in `webroot/error.php`.
 * Added `docs` to init online documentation.
 * Adding flash message (not storing in session).
-
+* Adding testcases for CDispatcherBasic and now throwing exceptions from `dispatch()` as #3.
 
 v2.0.0 (2014-03-26)
 

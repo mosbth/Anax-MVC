@@ -2,7 +2,7 @@
 namespace Anax\MVC;
 
 /**
- * A container for routes.
+ * Dispatching to controllers.
  *
  */
 class CDispatcherBasic implements \Anax\DI\IInjectionAware
@@ -128,7 +128,20 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
         }
 
         $handler = [$this->controller, $this->action];
-        return call_user_func_array($handler, $this->params);
+
+        if (is_callable($handler)) {
+            return call_user_func_array($handler, $this->params);
+        } else {
+            throw new \Exception(
+                "Trying to dispatch to a non callable item. Controllername = '"
+                . $this->controllerName
+                . ", Controller = '"
+                . $this->controller
+                . "', Action = '"
+                . $this->action
+                . "'."
+            );
+        }
     }
 
 
