@@ -11,13 +11,6 @@ $di->set('CommentController', function() use ($di) {
     return $controller;
 });
 
-$di->setShared('db', function() use ($app) {
-    $db = new \Mos\Database\CDatabaseBasic();
-    $db->setOptions(require ANAX_APP_PATH . "config/config_mysql.php");
-    $db->connect();
-    return $db;
-});
-
 $app->router->add('', function() use($app) {
 	$app->theme->setTitle('Hem');
   $content = $app->fileContent->get('me.md');
@@ -92,7 +85,6 @@ $app->router->add('tema', function() use ($app) {
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     }
-
 
     $app->views->addString('Fin flash text här.', 'flash')
                ->addString('featured-1', 'featured-1')

@@ -1,10 +1,10 @@
-<?php 
+<?php
 /**
  * This is a Anax frontcontroller.
  *
  */
 // Get environment & autoloader.
-require __DIR__.'/config_with_app.php';
+require __DIR__.'/config.php';
 
 
 

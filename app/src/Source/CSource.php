@@ -54,6 +54,7 @@ class CSource {
     $this->suggestedPath  = $this->baseDir . '/' . $this->queryPath;
     $this->realPath       = realpath($this->suggestedPath);
     $this->pathinfo       = pathinfo($this->realPath);
+    $this->path           = null;
 
     if(is_dir($this->realPath)) {
       $this->file = null;
@@ -117,7 +118,8 @@ class CSource {
    * List the sourcecode.
    */
   public function View() {
-    return $this->GetBreadcrumbFromPath() . $this->message . $this->ReadCurrentDir() . $this->GetFileContent();
+    return $this->GetBreadcrumbFromPath()
+      . $this->message . $this->ReadCurrentDir() . $this->GetFileContent();
   }
 
 
@@ -207,26 +209,33 @@ class CSource {
 
 
   /**
-   * Remove passwords from known files.
+   * Remove passwords from known files from all files starting with config*.
    */
   public function FilterPasswords() {
 
-    $pattern = array();
-    $replace = array();
-    $files = array(
-      'config.php' => array(
-        'match' => array('config.php', 'config.php~', 'config_mysql.php'),
-        'pattern' => array('/(\'|")(DB_PASSWORD|DB_USER|password|username)(.+)/'),
-        'replace' => array('/*\2,  is removed and hidden for security reasons */);'),
-      ),
+    $pattern = array(
+      '/(\'|")(DB_PASSWORD|DB_USER)(.+)/',
+      '/\$(password|passwd|pwd|pw|user|username)(\s*=\s*[\'|"])(.+)/i',
+      //'/(\'|")(password|passwd|pwd|pw)(\'|")\s*=>\s*(.+)/i',
+      '/(\'|")(password|passwd|pwd|pw|user|username)(\'|")(\s*=>\s*[\'|"])(.+)/i',
     );
 
-    foreach($files as $val) {
-      if(in_array($this->file, $val['match'])) {
-        $this->content = preg_replace($val['pattern'], $val['replace'], $this->content);
-        break;
-      }
+
+    $message = "Intentionally removed by CSource";
+    $replace = array(
+      '\1\2\1,  "' . $message . '");',
+      '$\1\2' . $message . '";',
+      '\1\2\3\4' . $message . '",',
+    );
+
+    /*
+    $file = 'config';
+    if (!strncmp($file, $this->file, strlen($file))) {
+      $this->content = preg_replace($pattern, $replace, $this->content);
     }
+    */
+
+    $this->content = preg_replace($pattern, $replace, $this->content);
   }
 
 
@@ -258,7 +267,12 @@ class CSource {
 
     // Display image if a valid image file
     if(in_array($this->extension, $this->validImageExtensions)) {
-      $this->content = "<div style='overflow:auto;'><img src='{$this->path}/{$this->file}' alt='[image not found]'></div>";
+
+      $baseDir = !empty($this->options['base_dir'])
+        ? rtrim($this->options['base_dir'], '/') . '/'
+        : null;
+      $this->content = "<div style='overflow:auto;'><img src='{$baseDir}{$this->path}/{$this->file}' alt='[image not found]'></div>";
+
     }
 
     // Display file content and format for a syntax
