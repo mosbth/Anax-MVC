@@ -30,7 +30,8 @@ public function initialize()
     $this->di->get('session');
 }
 ```
-Sätter även [codi]$this->di->get('session')[/codi] för att fixa så att session alltid används. Mycket snyggare lösning än [codi]$this->session[/codi]. Tycker mos ska fixa en snygg lösning
+Sätter även [codi]$this->di->get('session')[/codi] för att fixa så att session alltid används. Mycket snyggare lösning än [codi]$this->session[/codi]. Tycker mos ska fixa en snygg lösning. Gjorde en ännu snyggare lösning. Extendade [codi]Anax\Kernel\CAnax[/codi] och la till funktionen [codi]withSession()[/codi]. Detta är en snyggare lösning.  
+
 
 Jag utökade user - klassen lite och la in inloggning, isAuth mm. Tyckte de är något som ska tillhöra en userklass. La också till den magiska funktionen __get(). De funkar inte som jag hade tänkt mig! Det visade sig att den skrev över $di:s __get(). Vilket gjorde så att jag aldrig fick tag i tex $db.
 
@@ -42,6 +43,9 @@ Catchable fatal error: Object of class Anax\Comment\CommentsController
  /home/saxon/students/20132/jokd13/www/phpmvc
  /kmom04/src/MVC/CDispatcherBasic.php
  on line 140[/code]
+
+De försvann magists. Dock hade jag problem emed "[codi]Header already sent[/codi]". De visa sig vara för att [codi]date_default_timezone_set()[/codi]. 
+
 
 ##KMOM03
 

@@ -8,7 +8,7 @@
         <p><label>Homepage:<br/><input type='text' name='web' value='<?=$web?>'/></label></p>
         <p><label>Email:<br/><input type='text' name='mail' value='<?=$mail?>'/></label></p>
         <p class=buttons>
-            <input type='submit' name='doCreate' value='Comment' onClick="this.form.action = '<?=$this->url->create('comment/save')?>'"/>
+            <input type='submit' name='doCreate' value='Comment' onClick="this.form.action = '<?=$this->url->create('comments/add')?>'"/>
         </p>
         <output><?=$output?></output>
         </fieldset>

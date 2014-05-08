@@ -1,7 +1,7 @@
 <?php
 require __DIR__.'/config.php';
 
-
+date_default_timezone_set('Europe/Paris');
 
 $app->withSession();
 
@@ -55,7 +55,7 @@ $app->router->add('redovisning', function() use ($app) {
         'action' => 'view',
     ]);
 
-    $app->views->add('comment/edit', [
+    $app->views->add('comment/form', [
       'mail'      => null,
       'web'       => null,
       'name'      => null,
