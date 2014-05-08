@@ -35,6 +35,13 @@ Sätter även [codi]$this->di->get('session')[/codi] för att fixa så att sessi
 Jag utökade user - klassen lite och la in inloggning, isAuth mm. Tyckte de är något som ska tillhöra en userklass. La också till den magiska funktionen __get(). De funkar inte som jag hade tänkt mig! Det visade sig att den skrev över $di:s __get(). Vilket gjorde så att jag aldrig fick tag i tex $db.
 
 
+Problem! När jag ska savea mina editeringar så får jag varför?
+[code]
+Catchable fatal error: Object of class Anax\Comment\CommentsController
+ could not be converted to string in
+ /home/saxon/students/20132/jokd13/www/phpmvc
+ /kmom04/src/MVC/CDispatcherBasic.php
+ on line 140[/code]
 
 ##KMOM03
 

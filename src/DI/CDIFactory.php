@@ -26,6 +26,12 @@ class CDIFactory extends CDIFactoryDefault
             return $controller;
         });
 
+        $this->set('CommentsController', function() {
+            $controller = new \Anax\Comment\CommentsController();
+            $controller->setDi($this);
+            return $controller;
+        });
+        
 
         // adds CForm
         $this->set('form', '\Mos\HTMLForm\CForm');

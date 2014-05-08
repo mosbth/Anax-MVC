@@ -12,7 +12,7 @@ trait TInjectable
     /**
      * Properties
      */
-    private $di; // the service container 
+    protected $di; // the service container 
 
 
 

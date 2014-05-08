@@ -51,7 +51,6 @@ class UsersController implements \Anax\DI\IInjectionAware
         ]);
     }
 
-
     /**
      * List all users.
      *

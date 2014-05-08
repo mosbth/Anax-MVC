@@ -1,15 +1,13 @@
 <?php
 require __DIR__.'/config.php';
 
+
+
+$app->withSession();
+
 $app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
 
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
-
-$di->set('CommentController', function() use ($di) {
-    $controller = new \Phpmvc\Comment\CommentController();
-    $controller->setDI($di);
-    return $controller;
-});
 
 $app->router->add('', function() use($app) {
 	$app->theme->setTitle('Hem');
@@ -53,11 +51,11 @@ $app->router->add('redovisning', function() use ($app) {
     ]);
 
     $app->dispatcher->forward([
-        'controller' => 'comment',
+        'controller' => 'comments',
         'action' => 'view',
     ]);
 
-    $app->views->add('comment/form', [
+    $app->views->add('comment/edit', [
       'mail'      => null,
       'web'       => null,
       'name'      => null,

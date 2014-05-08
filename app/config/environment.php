@@ -15,3 +15,7 @@ define('ANAX_THEME_PATH', ANAX_INSTALL_PATH . 'theme');
 
 
 ini_set('date.timezone', 'UTC');
+
+date_default_timezone_set('UTC');
+
+date("Europe/Stockholm");

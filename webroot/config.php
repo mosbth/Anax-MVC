@@ -35,7 +35,4 @@ include(ANAX_INSTALL_PATH . 'src/functions.php');
 
 // Create services and inject into the app.
 $di  = new \Anax\DI\CDIFactory();
-$app = new \Anax\Kernel\CAnax($di);
-
-// Sets the timezone
-date_default_timezone_set('Europe/Stockholm');
+$app = new \Anax\Kernel\CAnaxExtended($di);

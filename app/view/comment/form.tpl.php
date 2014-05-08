@@ -8,9 +8,7 @@
         <p><label>Homepage:<br/><input type='text' name='web' value='<?=$web?>'/></label></p>
         <p><label>Email:<br/><input type='text' name='mail' value='<?=$mail?>'/></label></p>
         <p class=buttons>
-            <input type='submit' name='doCreate' value='Comment' onClick="this.form.action = '<?=$this->url->create('comment/add')?>'"/>
-            <input type='reset' value='Reset'/>
-            <input type='submit' name='doRemoveAll' value='Remove all' onClick="this.form.action = '<?=$this->url->create('comment/remove-all')?>'"/>
+            <input type='submit' name='doCreate' value='Comment' onClick="this.form.action = '<?=$this->url->create('comment/save')?>'"/>
         </p>
         <output><?=$output?></output>
         </fieldset>
