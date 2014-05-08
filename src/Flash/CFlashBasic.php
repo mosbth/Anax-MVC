@@ -12,7 +12,7 @@ class CFlashBasic
      * Properties
      *
      */
-    private $message;
+    protected $message;
 
 
 
