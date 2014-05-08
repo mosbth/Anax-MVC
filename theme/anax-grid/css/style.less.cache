@@ -1,4 +1,4 @@
-a:4:{s:4:"root";s:68:"D:\Dropbox\webutveckling\BTH\Anax-MVC/theme/anax-grid/css/style.less";s:8:"compiled";s:32793:"html {
+a:4:{s:4:"root";s:82:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/style.less";s:8:"compiled";s:33170:"html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -1997,6 +1997,32 @@ h1 {
   color: #000;
   border-color: #22f;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+table th {
+  border: 1px solid #ccc;
+  background-color: #efefef;
+}
+table tr:hover {
+  border: 1px solid #aaa;
+}
+table tr {
+  border: 1px solid #ccc;
+}
+table th {
+  color: #333;
+  font-weight: bold;
+}
+table th,
+table td {
+  padding: .5em .5em;
+  text-align: left;
+}
 figure {
   margin: 0;
   margin-bottom: 22px;
@@ -2132,4 +2158,4 @@ p.buttons {
     margin-bottom: 22px;
   }
 }
-";s:5:"files";a:26:{s:68:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\style.less";i:1398464142;s:72:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\normalize.less";i:1397575975;s:72:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\variables.less";i:1398463385;s:99:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\font-awesome.less";i:1398333581;s:96:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\variables.less";i:1383635232;s:93:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\mixins.less";i:1398333581;s:91:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\path.less";i:1398333581;s:91:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\core.less";i:1398333581;s:93:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\larger.less";i:1398333581;s:98:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\fixed-width.less";i:1398333581;s:91:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\list.less";i:1398333581;s:102:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\bordered-pulled.less";i:1398333581;s:95:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\spinning.less";i:1398333581;s:102:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\rotated-flipped.less";i:1398333581;s:94:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\stacked.less";i:1398333581;s:92:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\font-awesome-4.0.3\less\icons.less";i:1398333581;s:69:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\mixins.less";i:1397581240;s:73:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\css3mixins.less";i:1397581274;s:67:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\grid.less";i:1397579477;s:73:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\typography.less";i:1398466771;s:72:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\structure.less";i:1398773188;s:69:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\navbar.less";i:1398455810;s:69:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\figure.less";i:1397574877;s:67:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\form.less";i:1398364849;s:67:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\code.less";i:1398466669;s:73:"D:\Dropbox\webutveckling\BTH\Anax-MVC\theme\anax-grid\css\responsive.less";i:1398458039;}s:7:"updated";i:1399125285;}
+";s:5:"files";a:27:{s:82:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/style.less";i:1399540420;s:86:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/normalize.less";i:1399540420;s:86:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/variables.less";i:1399540421;s:113:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/font-awesome.less";i:1399540414;s:110:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/variables.less";i:1399540416;s:107:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/mixins.less";i:1399540415;s:105:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/path.less";i:1399540416;s:105:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/core.less";i:1399540414;s:107:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/larger.less";i:1399540415;s:112:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/fixed-width.less";i:1399540414;s:105:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/list.less";i:1399540415;s:116:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/bordered-pulled.less";i:1399540414;s:109:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/spinning.less";i:1399540416;s:116:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/rotated-flipped.less";i:1399540416;s:108:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/stacked.less";i:1399540416;s:106:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/font-awesome-4.0.3/less/icons.less";i:1399540414;s:83:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/mixins.less";i:1399540419;s:87:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/css3mixins.less";i:1399540413;s:81:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/grid.less";i:1399540419;s:87:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/typography.less";i:1399540421;s:86:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/structure.less";i:1399540420;s:83:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/navbar.less";i:1399540420;s:82:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/table.less";i:1399540421;s:83:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/figure.less";i:1399540413;s:81:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/form.less";i:1399540419;s:81:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/code.less";i:1399540413;s:87:"/home/saxon/students/20132/jokd13/www/phpmvc/kmom04/theme/anax-grid/css/responsive.less";i:1399540420;}s:7:"updated";i:1399540540;}

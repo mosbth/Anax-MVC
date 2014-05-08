@@ -1997,6 +1997,32 @@ h1 {
   color: #000;
   border-color: #22f;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+table th {
+  border: 1px solid #ccc;
+  background-color: #efefef;
+}
+table tr:hover {
+  border: 1px solid #aaa;
+}
+table tr {
+  border: 1px solid #ccc;
+}
+table th {
+  color: #333;
+  font-weight: bold;
+}
+table th,
+table td {
+  padding: .5em .5em;
+  text-align: left;
+}
 figure {
   margin: 0;
   margin-bottom: 22px;
