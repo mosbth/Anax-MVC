@@ -17,17 +17,17 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                "http://dbwebb.se", 
+                "http://dbwebb.se",
                 "http://dbwebb.se",
                 "http://dbwebb.se",
             ],
             [
-                "http://dbwebb.se/", 
+                "http://dbwebb.se/",
                 "http://dbwebb.se/",
                 "http://dbwebb.se",
             ],
             [
-                "//dbwebb.se", 
+                "//dbwebb.se",
                 "//dbwebb.se",
                 "//dbwebb.se",
             ],
@@ -46,7 +46,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerSiteUrl
      *
      */
-    public function testCreateAsSiteUrl($siteUrl, $route, $result) 
+    public function testCreateAsSiteUrl($siteUrl, $route, $result)
     {
         $url = new \Anax\Url\CUrl();
 
@@ -73,7 +73,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
         return [
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -81,7 +81,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 "$baseUrl/$scriptName",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -89,7 +89,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 "$siteUrl",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -97,7 +97,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 "$siteUrl/someother/path",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -105,7 +105,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 "$baseUrl/$scriptName/controller",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -113,7 +113,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 "$baseUrl/$scriptName/controller/action",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -121,7 +121,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
                 "$baseUrl/$scriptName/controller/action/arg1",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
                 $scriptName,
                 $urlType,
@@ -143,7 +143,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerRoute
      *
      */
-    public function testCreateUrlAppend($siteUrl, $baseUrl, $scriptName, $urlType, $route, $result) 
+    public function testCreateUrlAppend($siteUrl, $baseUrl, $scriptName, $urlType, $route, $result)
     {
         $url = new \Anax\Url\CUrl();
 
@@ -173,65 +173,57 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
     {
         $siteUrl = "http://dbwebb.se";
         $baseUrl = $siteUrl . "/kod-exempel/anax-mvc";
-        $scriptName = "index.php";
-        $urlType = \Anax\Url\CUrl::URL_APPEND;
+        $urlType = \Anax\Url\CUrl::URL_CLEAN;
 
         return [
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "",
-                "$baseUrl/$scriptName",
+                "$baseUrl",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "/",
                 "$siteUrl",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "/someother/path",
                 "$siteUrl/someother/path",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "controller",
-                "$baseUrl/$scriptName/controller",
+                "$baseUrl/controller",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "controller/action",
-                "$baseUrl/$scriptName/controller/action",
+                "$baseUrl/controller/action",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "controller/action/arg1",
-                "$baseUrl/$scriptName/controller/action/arg1",
+                "$baseUrl/controller/action/arg1",
             ],
             [
-                $siteUrl, 
+                $siteUrl,
                 $baseUrl,
-                $scriptName,
                 $urlType,
                 "controller/action/arg1/arg2",
-                "$baseUrl/$scriptName/controller/action/arg1/arg2",
+                "$baseUrl/controller/action/arg1/arg2",
             ],
         ];
     }
@@ -247,7 +239,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerRoute2
      *
      */
-    public function testCreateUrlAppend2($siteUrl, $baseUrl, $scriptName, $urlType, $route, $result) 
+    public function testCreateUrlAppend2($siteUrl, $baseUrl, $urlType, $route, $result)
     {
         $url = new \Anax\Url\CUrl();
 
@@ -256,9 +248,6 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
         $res = $url->setBaseUrl($baseUrl);
         $this->assertInstanceOf(get_class($url), $res, "setBaseUrl did not return this.");
-
-        $res = $url->setScriptName($scriptName);
-        $this->assertInstanceOf(get_class($url), $res, "setScriptName did not return this.");
 
         $res = $url->setUrlType($urlType);
         $this->assertInstanceOf(get_class($url), $res, "setUrlType did not return this.");
@@ -281,25 +270,25 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
         return [
             [
-                $staticSiteUrl, 
+                $staticSiteUrl,
                 $staticBaseUrl,
                 "http://dbwebb.se/css/style.css",
                 "http://dbwebb.se/css/style.css",
             ],
             [
-                $staticSiteUrl, 
+                $staticSiteUrl,
                 $staticBaseUrl,
                 "//dbwebb.se/css/style.css",
                 "//dbwebb.se/css/style.css",
             ],
             [
-                $staticSiteUrl, 
+                $staticSiteUrl,
                 $staticBaseUrl,
                 "/css/style.css",
                 "$staticSiteUrl/css/style.css",
             ],
             [
-                $staticSiteUrl, 
+                $staticSiteUrl,
                 $staticBaseUrl,
                 "css/style.css",
                 "$staticBaseUrl/css/style.css",
@@ -317,7 +306,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerAsset
      *
      */
-    public function testCreateAsset($staticSiteUrl, $staticBaseUrl, $asset, $result) 
+    public function testCreateAsset($staticSiteUrl, $staticBaseUrl, $asset, $result)
     {
         $url = new \Anax\Url\CUrl();
 
@@ -344,22 +333,22 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
         return [
             [
-                $baseUrl, 
+                $baseUrl,
                 "http://dbwebb.se/css/style.css",
                 "http://dbwebb.se/css/style.css",
             ],
             [
-                $baseUrl, 
+                $baseUrl,
                 "//dbwebb.se/css/style.css",
                 "//dbwebb.se/css/style.css",
             ],
             [
-                $baseUrl, 
+                $baseUrl,
                 "/css/style.css",
                 "/css/style.css",
             ],
             [
-                $baseUrl, 
+                $baseUrl,
                 "css/style.css",
                 "$baseUrl/css/style.css",
             ],
@@ -376,7 +365,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerAsset2
      *
      */
-    public function testCreateAsset2($baseUrl, $asset, $result) 
+    public function testCreateAsset2($baseUrl, $asset, $result)
     {
         $url = new \Anax\Url\CUrl();
 
@@ -397,10 +386,27 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
      * @return void
      *
      */
-    public function testEmptyAssetThrowsException() 
+    public function testEmptyAssetThrowsException()
     {
         $url = new \Anax\Url\CUrl();
 
-        $res = $url->asset();
+        $res = $url->asset(null);
+    }
+
+
+
+    /**
+     * Test 
+     *
+     * @expectedException Exception
+     *
+     * @return void
+     *
+     */
+    public function testWrongUrlType()
+    {
+        $url = new \Anax\Url\CUrl();
+
+        $res = $url->setUrlType('NO_SUCH_TYPE');
     }
 }
