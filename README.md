@@ -65,6 +65,7 @@ v2.0.x (latest)
 * Added `docs` to init online documentation.
 * Adding flash message (not storing in session).
 * Adding testcases for CDispatcherBasic and now throwing exceptions from `dispatch()` as #3.
+* Adding example for integrating CForm in Anax MVC and as a result some improvements to several places.
 
 v2.0.0 (2014-03-26)
 

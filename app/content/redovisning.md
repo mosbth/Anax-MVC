@@ -3,24 +3,9 @@ Redovisningar
 
 ##KMOM04
 
-**NOTES**<br>
-Fixade lite med regexet i CSource så att de funkar för phpmvc kursen med.
+Mycket roligt kursmomänt. Tog upp många värdefulla saker, såsom hur man kodar en controller och hur man gör på ett smidigt sätt med databasen. Man börjar helt klart få en bild över hur man ska jobba med ramverket.
 
-```
-// Före
-(\'|")(DB_PASSWORD|DB_USER)(.+)/
-// Efter:
-(\'|")(DB_PASSWORD|DB_USER|password|username)(.+)
-```
-
-*Behöver **fixas**, men är värdelös på regex*
-<br>
-[http://dbwebb.se/forum/viewtopic.php?t=2309](http://dbwebb.se/forum/viewtopic.php?t=2309)
-funderade på de mos nämde där. tycker inte de är någon bra idé då man kanske i bland inte vill använda databasen. Om man ska göra Anax-mvc till ett mvc som kan användas i olika tillfällen så tycker jag de inte är en bra idé.
-
-hade problem med att förstå hur man körde controller klassen. Men hittade den fina FAQ:n :-)
-
-La till [codi]CDIFactory[/codi] för göra så att [codi]CDatabaseBasic[/codi], [codi]UsersController[/coid] och [codi]CForm[/codi]. Har även fixat så att jag inte kör någon front-controller för users. Utan använder bara [codi]UsersControllen[/codi]. och använder [codi]initialze[/code] för att sätta [codi]navbar_users.php[/codi].
+Till en början lade jag in routers till hela userControllern. Men efter jag läst FAQ:n så förstod jag att jag hade tänkt helt fel. Det räckte ju med att lägga in UserControllern i [codi]CDIFactoryDefault[/codi]  (I mitt fall [codi]CDIFactory[/codi] ) som en tjänst där och så funkade länkarna ändå. I initialize functionen la jag in så att navigeringen fungerade:
 ```
 public function initialize()
 {
@@ -30,22 +15,13 @@ public function initialize()
     $this->di->get('session');
 }
 ```
-Sätter även [codi]$this->di->get('session')[/codi] för att fixa så att session alltid används. Mycket snyggare lösning än [codi]$this->session[/codi]. Tycker mos ska fixa en snygg lösning. Gjorde en ännu snyggare lösning. Extendade [codi]Anax\Kernel\CAnax[/codi] och la till funktionen [codi]withSession()[/codi]. Detta är en snyggare lösning.  
+I min [codi]CDIFactory[/codi] la jag till [codi]CForm[/codi], [codi]CDatabaseBasic[/codi] och som sagt [codi]CDIFactory[/codi]. Detta gjorde jag för att tyckte det tillhör ramverket. Fixade även en [codi]src/vendor[/codi] för att jag tyckte det var ett bättre ställe att lägga klasser som tillhör ramverket. Dock tog jag inte bort [codi]/vendor[/codi]. Den kan man ju ha kvar för andra projekt. Man kanske till och med kan flytta den till [codi]app/vendor[/codi]? Jag menar de klasserna man lägger där brukar man bara vilja ha till en webbapplication.
 
+I min User klass lade jag till lite funktionallitet så som logga in, logga ut och kolla om användaren har rättigheter aka [codi]isAuth()[/codi]. I samband med detta lade jag till den magiska [codi]__get() [/codi] funktionen och den magiska [codi]__set();[/codi]. Det visade sig inte vara en så bra idé för de skrev över [codi]$this->di[/codi] get funktion och sätt funktion.
 
-Jag utökade user - klassen lite och la in inloggning, isAuth mm. Tyckte de är något som ska tillhöra en userklass. La också till den magiska funktionen __get(). De funkar inte som jag hade tänkt mig! Det visade sig att den skrev över $di:s __get(). Vilket gjorde så att jag aldrig fick tag i tex $db.
+CForm klassen gillar jag starkt! Tycker det är riktigt drygt att skriva forumär i html så men CForm så tar man bort den jobbiga delen. När vi kommer till CDatabaseBasic och dess trait så gillar jag den klassen med. Väldigt smidigt sätt att köra sql frågor med. Att slippa skriva långa sql frågor själv är något som är rätt gött det med. Dock kanske de kan vara bra att skriva egna SQL-frågor, då får man ju mer kontroll på de. Men till mindre projekt är CDatabaseBasic bra.
 
-
-Problem! När jag ska savea mina editeringar så får jag varför?
-[code]
-Catchable fatal error: Object of class Anax\Comment\CommentsController
- could not be converted to string in
- /home/saxon/students/20132/jokd13/www/phpmvc
- /kmom04/src/MVC/CDispatcherBasic.php
- on line 140[/code]
-
-De försvann magists. Dock hade jag problem emed "[codi]Header already sent[/codi]". De visa sig vara för att [codi]date_default_timezone_set()[/codi]. 
-
+När vi kommer till hur jag gjorde med kommentarerna så var de inte några större problem. Utan gjorde en Controller till den och integrerade den på nästan samma sätt som UserController. Men lite trix och fix så löste jag det.
 
 ##KMOM03
 
@@ -64,7 +40,7 @@ Sen fixade jag så att Anax-Mvc loadade klasserna:
 });
 [/code]
 Där efter flyttade jag ut samtliga .less-filer till theme/anax-grid/css.
-Dock [b]inte[/b] [codi]Style.php[/codi] eller [codi]style_config.php[/codi]
+Dock **inte** [codi]Style.php[/codi] eller [codi]style_config.php[/codi]
 
 Där efter redigerade jag [codi]style_config.php[/codi] och la in en funktion som letar upp vägen till temat.
 Temas sätt i [codi]config/theme.php.[/codi]

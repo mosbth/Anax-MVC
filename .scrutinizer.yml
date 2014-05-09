@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 imports:
     - php
 
@@ -16,3 +17,14 @@ tools:
 
     # Some Metrics + Bug Detection/Auto-Fixes
     php_analyzer: true
+=======
+imports:
+    - php
+
+filter:
+    excluded_paths: [vendor/*, test/*]
+
+tools:
+    external_code_coverage:
+        timeout: 600 # Timeout in seconds.
+>>>>>>> upstream/master
