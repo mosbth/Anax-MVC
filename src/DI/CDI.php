@@ -125,6 +125,22 @@ class CDI implements IDI
 
 
     /**
+     * Magic method to get and create services. 
+     * When created it is also stored as a parameter of this object.
+     *
+     * @param string $service   name of class property not existing.
+     * @param array  $arguments currently NOT USED.
+     *
+     * @return class as the service requested.
+     */
+    public function __call($service, $arguments = [])
+    {
+        return $this->get($service);
+    }
+
+
+
+    /**
      * Lazy load a service object and create an instance of it.
      *
      * @param string $service as a service label, naming this service.
@@ -134,7 +150,7 @@ class CDI implements IDI
      */
     protected function load($service)
     {
-        $sol = isset($this->loaded[$service]['loader']) 
+        $sol = isset($this->loaded[$service]['loader'])
             ? $this->loaded[$service]['loader']
             : null;
 
