@@ -3,7 +3,7 @@
 namespace Anax\Kernel;
 
 /**
- * Anax base class for wrapping sessions.
+ * Anax base class for an application.
  *
  */
 class CAnax
