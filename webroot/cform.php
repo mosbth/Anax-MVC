@@ -32,7 +32,21 @@ $app->router->add('', function () use ($app) {
     $app->theme->setTitle("Testing CForm with Anax");
     $app->views->add('default/page', [
         'title' => "Try out a form using CForm",
-        'content' => "Hello",
+        'content' => "This is a example showing how to use CForm with Anax MVC",
+        'links' => [
+            [
+                'href' => $app->url->create('test1'),
+                'text' => "Form as a route",
+            ],
+            [
+                'href' => $app->url->create('form'),
+                'text' => "Form as a controller",
+            ],
+            [
+                'href' => $app->url->create('form-small'),
+                'text' => "Form as own class, used by a controller",
+            ],
+        ],
     ]);
 
 });
