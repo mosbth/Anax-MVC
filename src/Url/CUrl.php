@@ -31,16 +31,20 @@ class CUrl
     /**
      * Create an url and prepending the baseUrl.
      *
-     * @param string $uri part of uri to use when creating an url.
+     * @param string $uri part of uri to use when creating an url. "" or null means baseurl to  
+     * current frontcontroller.
      *
      * @return string as resulting url.
      */
-    public function create($uri)
+    public function create($uri = null)
     {
         if (empty($uri)) {
             
-            // Empty url means baseurl
-            return $this->baseUrl . (($this->urlType == self::URL_APPEND) ? "/$this->scriptName" : null);
+            // Empty uri means baseurl
+            return $this->baseUrl
+                . (($this->urlType == self::URL_APPEND)
+                    ? "/$this->scriptName"
+                    : null);
 
         } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
             
@@ -56,12 +60,10 @@ class CUrl
 
         $uri = rtrim($uri, '/');
         if ($this->urlType == self::URL_CLEAN) {
-            return $this->baseUrl . '/' . $uri; 
+            return $this->baseUrl . '/' . $uri;
         } else {
-            return $this->baseUrl . '/' . $this->scriptName . '/' . $uri; 
+            return $this->baseUrl . '/' . $this->scriptName . '/' . $uri;
         }
-
-        return $this->baseUrl . '/' . $uri; 
     }
 
 
@@ -92,7 +94,7 @@ class CUrl
         }
 
         $baseUrl = isset($this->staticBaseUrl) ? $this->staticBaseUrl : $this->baseUrl;
-        return $baseUrl . '/' . $uri; 
+        return $baseUrl . '/' . $uri;
     }
 
 
