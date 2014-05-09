@@ -15,7 +15,7 @@ class CDI implements IDI
      *
      */
     public $loaded = [];  // Store all lazy loaded services, ready to be instantiated
-    public $active = [];  // A service is instantiated into this array, once its accessed  
+    public $active = [];  // A service is instantiated into this array, once its accessed
 
 
 
@@ -26,6 +26,30 @@ class CDI implements IDI
     public function __construct()
     {
         ;
+    }
+
+
+
+    /**
+     * Return an arry with all loaded services names.
+     *
+     * @return void
+     */
+    public function getServices()
+    {
+        return array_keys($this->loaded);
+    }
+
+
+
+    /**
+     * Return an arry with all active services names.
+     *
+     * @return void
+     */
+    public function getActiveServices()
+    {
+        return array_keys($this->active);
     }
 
 
