@@ -2,17 +2,8 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, tests/*]
+    excluded_paths: [vendor/*, test/*]
 
 tools:
     external_code_coverage:
         timeout: 600 # Timeout in seconds.
-
-    # Copy/Paste Detector
-    php_cpd: true
-
-    # Metrics
-    php_pdepend: true
-
-    # Some Metrics + Bug Detection/Auto-Fixes
-    php_analyzer: true
