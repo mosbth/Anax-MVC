@@ -175,7 +175,7 @@ class CommentsController extends \Anax\MVC\CDatabaseModel
                 $id = $_SESSION['form-save']['id']['value'];
 
                 $this->session->remove('form-save');
-
+                
                 $now = date("Y-m-d h:i:s");
 
                 $comment->name = $name;
