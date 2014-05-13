@@ -35,6 +35,11 @@ return [
             'url'  => 'users/',
             'title' => ''
         ],
+        'sprak' => [
+            'text'  =>'<i class="fa fa-plane"></i> Språk',
+            'url'   =>'lang',
+            'title' => ''
+        ],
     ],
 
     // Callback tracing the current selected menu item base on scriptname

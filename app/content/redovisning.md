@@ -1,9 +1,23 @@
 Redovisningar
 ==================
 
+##KMOM05
+
+Då var även detta kursmomenet klart. Riktigt roligt och lärorikt. Det var kul att skriva en egen klass/module från grunden samt att hitta på själv vad man skulle göra. Jag valde att göra en module som tar hand om språkhantering för sidans content, navbar och meta-names. Var ända jag har gjort någon större sida har jag alltid funderat på hur man kan göra med språkhantering. Alla jag har pratat med säger att de ska vara enkelt och bara lägga till arrayer för de olika språken. Det visade sig vara så enkelt med, nästan allafall.
+
+Tanken med [codi]CLanguge[/codi] var att den ska vara riktigt enkel att använda och de tror jag att jag lyckades med. För exakt hantering kolla [github](https://github.com/cjonqtan/CLanguage). 
+
+Själva utvecklandet av modulen gick rätt snabbt framåt. Innan jag började med kodandet hade jag nästan en klar bild på vilka funktioner jag ville ha med. Hade tänkt mig en [codi]get()[/codi] och en [codi]set()[/codi] funktion. Dock slutade det med flera olika varianter av getters och inte mer än en setter. För att sätta default variablar så valde jag att skicka in en array från en configure-fil. Hade lite problem med hur jag skulle göra med hänta default-värden. Efter lite olika varianter slutade de med en specifik funktion som kör om värdet man frågar efter inte hittas. 
+
+Innan jag började kolla på Packagist så trodde jag att de skulle bli svårt att få publicerat mitt packet. Men de visade sig vara jätte enkelt. Gick på ett enda kick! 
+
+För en gång skull så var inte dokumentationen tråkig att skriva. Utan det flöt på rätt fint då man fick skriva om något eget. Själva testet med Anax-MVC gick jätte fint. Måste nog säga att detta kursmomentet var det minst problem med av samtliga kursmomentet jag har gjort i någon php-kurs.
+
+
+
 ##KMOM04
 
-Mycket roligt kursmomänt. Tog upp många värdefulla saker, såsom hur man kodar en controller och hur man gör på ett smidigt sätt med databasen. Man börjar helt klart få en bild över hur man ska jobba med ramverket.
+Mycket roligt kursmoment. Tog upp många värdefulla saker, såsom hur man kodar en controller och hur man gör på ett smidigt sätt med databasen. Man börjar helt klart få en bild över hur man ska jobba med ramverket.
 
 Till en början lade jag in routers till hela userControllern. Men efter jag läst FAQ:n så förstod jag att jag hade tänkt helt fel. Det räckte ju med att lägga in UserControllern i [codi]CDIFactoryDefault[/codi]  (I mitt fall [codi]CDIFactory[/codi] ) som en tjänst där och så funkade länkarna ändå. I initialize functionen la jag in så att navigeringen fungerade:
 ```
@@ -92,13 +106,13 @@ Efter jag var klar med alla dessa stegen så tänkte jag att jag skulle fixa i o
 
 Där efter började jag med Font-awesome. Hade lite små problem med detta momäntet med kan man säga... Jag följde mos guide men märkte genast att efter sin jag [codi]style.less[/codi] i [codi] theme/anax-grid/css/ [/codi] så funkarde inte detta. Lösningen blev att jag skapade [codi]webroot/fonts[/codi] där jag lade in font-awesomes samtliga font filer. Men jag flyttade dock ut alla less filer till där dom hör hemma. Det vill säga [codi] theme/../css/font-awesome-4.0.3/[/codi].
 
-Tyckte detta kursmomäntet var svårt. Dock var det nog mest för att jag gjorde de krågligt för mig, men det var lärorikt! Har tidigare erfarenhet av Bootstraps css-biblotek. Borde den nyaste varianten och den äldre varianten. Gillar Bootstrap mycket starkt, dock så märker man att det är många som använder det. Så för att va lite hipp så borde man kanske börja göra sina egna varianter (dvs bygga vidare på detta kursmomäntet).
+Tyckte detta kursmomentet var svårt. Dock var det nog mest för att jag gjorde de krågligt för mig, men det var lärorikt! Har tidigare erfarenhet av Bootstraps css-biblotek. Borde den nyaste varianten och den äldre varianten. Gillar Bootstrap mycket starkt, dock så märker man att det är många som använder det. Så för att va lite hipp så borde man kanske börja göra sina egna varianter (dvs bygga vidare på detta kursmomentet).
 
 ##KMOM02
 
 Jag började med att installera Composer. Inga större problem mer än att jag är lite noob på Linux. Men fick löst de efter lite hjälp på labben. När jag väl hade fått ner Composer och installerat det så visade det sig att Mos hade gjort en uppdatering i <code>CDIFactoryDefault</code>. Så jag forkade <code>mosbth/Anax-mvc</code> och tog hem det på min dator. Lade in *kmom01* som en ny webroot och tagga de som "*kmom01*" på git. Skapade en ny webroot med namnet *kmom02* som är en kopia på *kmom01* och så va de frid och fröjd.
 Hade lite problem med att förstå hur allting hängde ihop, hur allt kallas, vilka funktioner som kallas och så vidare. Men med lite diskussion mellan mig, Henrik och Kalle så fick vi nog ihop det.
-Gillar starkt Composer och Packagist. Riktigt smidig att hämta paket och plugins via det. Hittade bland annat Twig där som jag har tänkt att använda senare som "View-controller". När vi kommer till <code>php-mvc/comment </code> så fick jag lägga till en del funtioner där för att de skulle fungera. Några av funtionerna: <code>editAction</code>, som körs när doEdit är klickad, <code>saveAction</code> som körs när man ska spara den nya editerade informationen. Börjar greppa hur model-view-controller kommunicerar nu. Riktig lärolikt kursmomänt. Dock förstår jag inte riktigt varför vi inte använde en databas istället för session?
+Gillar starkt Composer och Packagist. Riktigt smidig att hämta paket och plugins via det. Hittade bland annat Twig där som jag har tänkt att använda senare som "View-controller". När vi kommer till <code>php-mvc/comment </code> så fick jag lägga till en del funtioner där för att de skulle fungera. Några av funtionerna: <code>editAction</code>, som körs när doEdit är klickad, <code>saveAction</code> som körs när man ska spara den nya editerade informationen. Börjar greppa hur model-view-controller kommunicerar nu. Riktig lärolikt kursmoment. Dock förstår jag inte riktigt varför vi inte använde en databas istället för session?
 
 ##KMOM01
 

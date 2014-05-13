@@ -10,17 +10,17 @@ $app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 
 $app->router->add('', function() use($app) {
-	$app->theme->setTitle('Hem');
-  $content = $app->fileContent->get('me.md');
-  $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+    $app->theme->setTitle('Hem');
+    $content = $app->fileContent->get('me.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
 
-  $byline = $app->fileContent->get('byline.md');
-  $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+    $byline = $app->fileContent->get('byline.md');
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
 
-  $app->views->add('me/page', [
+    $app->views->add('me/page', [
     'content' => $content,
     'byline' => $byline,
-  ]);
+    ]);
 });
 
 $app->router->add('source', function() use ($app) {
@@ -64,7 +64,6 @@ $app->router->add('redovisning', function() use ($app) {
     ]);
 });
 
-
 $app->router->add('tema', function() use ($app) {
     $app->theme->setTitle('Mitt tema');
 
@@ -100,6 +99,32 @@ $app->router->add('tema', function() use ($app) {
                ->addString('footer-col-2', 'footer-col-2')
                ->addString('footer-col-3', 'footer-col-3')
                ->addString('footer-col-4', 'footer-col-4');
+});
+
+$app->router->add('lang', function () use ($app) {
+    $lang = $app->request->getGet('lang');
+    $app->lang->setLang($lang);
+    
+    $app->navbar->configure($app->lang->getNavbar());
+
+    $app->theme->setTitle($app->lang->getlang() . " page ");
+
+    $content = $app->lang->get('about');
+
+    $de = $app->url->create('lang?lang=de');
+    $sv = $app->url->create('lang?lang=sv');
+    $en = $app->url->create('lang?lang=en');
+    $default = $app->url->create('lang');
+
+    $sidebar = 
+    "<li><a href='{$sv}'>Swe</a></li>
+    <li><a href='{$en}'>English</a></li>
+    <li><a href='{$de}'>Deutsch</a></li>
+    <li><a href='{$default}'>default</a></li>
+    ";
+
+    $app->views->addString($content, 'main')
+               ->addString($sidebar, 'sidebar');
 });
 
 

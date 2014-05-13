@@ -13,7 +13,7 @@ class CDIFactory extends CDIFactoryDefault
 
         // adds the db connection
         $this->setShared('db', function() {
-            $db = new \Mos\Database\CDatabaseBasic();
+            $db = new \Anax\Database\CDatabaseBasic();
             $db->setOptions(require ANAX_APP_PATH . 'config/config_mysql.php');
             $db->connect();
             return $db;
@@ -32,6 +32,11 @@ class CDIFactory extends CDIFactoryDefault
             return $controller;
         });
         
+        $this->setShared('lang', function() {
+            $conf = require ANAX_APP_PATH . 'config/config_language.php';
+            $lang = new \Anax\Language\Language($conf);
+            return $lang;
+        });
 
         // adds CForm
         $this->set('form', '\Mos\HTMLForm\CForm');
