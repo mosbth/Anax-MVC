@@ -111,7 +111,7 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
     public function isCallable()
     {
         $handler = [$this->controller, $this->action];
-        return is_callable($handler);
+        return method_exists($this->controller, $this->action) && is_callable($handler);
     }
 
 
@@ -128,16 +128,12 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
             call_user_func($handler);
         }
 
-        $handler = [$this->controller, $this->action];
-
-        if (is_callable($handler)) {
-            return call_user_func_array($handler, $this->params);
+        if ($this->isCallable()) {
+            return call_user_func_array([$this->controller, $this->action], $this->params);
         } else {
             throw new \Exception(
                 "Trying to dispatch to a non callable item. Controllername = '"
                 . $this->controllerName
-                . ", Controller = '"
-                . $this->controller
                 . "', Action = '"
                 . $this->action
                 . "'."
@@ -171,6 +167,16 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
         $this->setActionName($action);
         $this->setParams($params);
 
-        return $this->dispatch();
+        if ($this->isCallable()) {
+            return $this->dispatch();
+        } else {
+            throw new \Exception(
+                "Trying to forward to a non callable item. Controllername = '"
+                . $this->controllerName
+                . "', Action = '"
+                . $this->action
+                . "'."
+            );
+        }
     }
 }
