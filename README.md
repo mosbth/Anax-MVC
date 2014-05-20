@@ -66,7 +66,8 @@ v2.0.x (latest)
 * Adding flash message (not storing in session).
 * Adding testcases for CDispatcherBasic and now throwing exceptions from `dispatch()` as #3.
 * Adding example for integrating CForm in Anax MVC and as a result some improvements to several places.
-* Adding check to `Anax\MVC\CDispatherBasic` to really check if the methods are part of the controller class and not using `__call()`.
+* Adding check to `Anax\MVC\CDispatcherBasic` to really check if the methods are part of the controller class and not using `__call()`.
+* Improved error handling in `Anax\MVC\CDispatcherBasic` and testcase in `webroot/test_errormessages.php`.
 
 
 v2.0.0 (2014-03-26)
