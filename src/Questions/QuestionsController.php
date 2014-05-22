@@ -91,7 +91,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
 
         $this->db->insert(
             'question',
-            ['user_id','title', 'slug', 'question','created']
+            ['user_id', 'title', 'slug', 'question', 'created']
         );
 
         $now = date("Y-m-d h:i:s");
