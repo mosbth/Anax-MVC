@@ -32,7 +32,7 @@ class CDIFactoryDefault extends CDI
         });
 
         $this->setShared('log', function () {
-            $log = new \Anax\Logger\CLog();
+            $log = new \Anax\Log\CLogger();
             $log->setContext('development');
             return $log;
         });

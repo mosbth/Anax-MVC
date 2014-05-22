@@ -21,7 +21,10 @@ return [
      */
     'paths' => [
         'navbar' => ANAX_APP_PATH . 'content/$1/navbar.php',
+        'profile_text' => ANAX_APP_PATH . 'content/$1/profile_text.php',
         'about' => ANAX_APP_PATH . 'content/$1/about.md',
+        'fontpage' => ANAX_APP_PATH . 'content/$1/fontpage.md',
+        'titles'    => ANAX_APP_PATH . 'content/$1/titles.php',
     ],
 
     /**

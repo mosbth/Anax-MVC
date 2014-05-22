@@ -40,5 +40,11 @@ trait TConfigure
         $this->config = array_merge($this->config, $options);
         return $this->config;
     }
+
+
+    public function getConfig($what) 
+    {
+        return $this->config[$what];
+    }
    
 }

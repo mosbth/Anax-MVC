@@ -3,8 +3,6 @@
 <head>
 <meta charset='utf-8'/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta name="keywords" content="<?=$this->lang->getMeta('keywords')?>">
-<meta name="description" content="<?=$this->lang->getMeta('description')?>">
 <title><?=$title . $title_append ?></title>
 <?php if(isset($favicon)): ?><link rel='icon' href='<?=$this->url->asset($favicon)?>'/><?php endif; ?>
 <?php foreach($stylesheets as $stylesheet): ?>

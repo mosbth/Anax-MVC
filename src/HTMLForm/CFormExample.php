@@ -6,7 +6,7 @@ namespace Anax\HTMLForm;
  * Anax base class for wrapping sessions.
  *
  */
-class CFormExample extends \Mos\HTMLForm\CForm
+class CFormExample extends \Anax\HTMLForm\CForm
 {
     use \Anax\DI\TInjectionaware,
         \Anax\MVC\TRedirectHelpers;

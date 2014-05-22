@@ -7,11 +7,13 @@ namespace Anax\Language;
  * 
  * @author Jonatan Karlsson
  * @license MIT
- * @version 1.0.0
+ * @version 1.0.2
  *
- **/
-class Language
+ */
+class Language implements \Anax\DI\IInjectionAware
 {
+    use \Anax\DI\TInjectable;
+
     protected $lang;
     protected $saveType;
     protected $options;
@@ -36,13 +38,16 @@ class Language
      *
      * @return String based on $key
      */
-    public function get($key) 
+    public function get($key, $isArray = false) 
     {
         $var = $this->options['paths'][$key];
-        $default = $this->getDefault($key);
         if (isset($var)) {
             $var = str_replace('$1', $this->getLang(), $var);
-            return file_get_contents($var);
+            if ($isArray) {
+                return require $var;
+            } else {                
+                return file_get_contents($var);
+            }
         } 
         return $this->getDefault($key);
     }
@@ -95,13 +100,28 @@ class Language
      * 
      * @return Array with for the navbar configure
      */
-    public function getNavbar() 
+    public function getNavbar($key = null)
     {
-        if (isset($this->options['paths']['navbar'])) {
-            return str_replace('$1', $this->getLang(), $this->options['paths']['navbar']);
-        } else {
-            return $this->options['default']['navbar'];
+        if ($key !== null) {
+            if (isset($this->options['paths'][$key])) {
+                $var = $this->options['paths'][$key];
+                // get the default key
+                $default = $this->navbarStructure();
+                // gets the navbar items
+                $var = str_replace('$1', $this->getLang(), $var);
+                $nav = require $var;
+               
+                $default['items'] = $nav['items'];
+
+                return $default;
+            }
         }
+        return false;
+    }
+
+    public function navbarStructure() 
+    {
+        return require ANAX_APP_PATH . 'config/navbar.php';
     }
 
     /**

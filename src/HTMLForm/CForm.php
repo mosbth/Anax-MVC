@@ -1,8 +1,8 @@
 <?php
 
-namespace Mos\HTMLForm;
+namespace Anax\HTMLForm;
 
-/**
+/**i
  * A utility class to easy creating and handling of forms
  * 
  * @package CForm

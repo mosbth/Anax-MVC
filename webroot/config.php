@@ -36,3 +36,12 @@ include(ANAX_INSTALL_PATH . 'src/functions.php');
 // Create services and inject into the app.
 $di  = new \Anax\DI\CDIFactory();
 $app = new \Anax\Kernel\CAnaxExtended($di);
+
+$titles = [
+    'titles' => $app->lang->get('titles', true),
+];
+
+
+$app->configure($titles);
+
+date_default_timezone_set('Europe/Paris');

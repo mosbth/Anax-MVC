@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<h1><?=$title?></h1>
-
-<?=$content?>
-=======
 <h1><?=$title?></h1>
 
 <?=$content?>
@@ -14,4 +9,3 @@
 <?php endforeach; ?>
 </ul>
 <?php endif; ?>
->>>>>>> upstream/master

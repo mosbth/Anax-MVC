@@ -85,7 +85,7 @@ class CDI implements IDI
         } elseif (isset($this->loaded[$service])) {
             // Is the service loaded?
             return $this->load($service);
-        }
+        } 
 
         throw new \Exception("The service accessed is not loaded in the DI-container.");
     }

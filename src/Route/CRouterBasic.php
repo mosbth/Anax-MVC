@@ -73,9 +73,7 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
             throw new \Anax\Exception\NotFoundException("No internal route to handle: " . $rule);
         }
     }
-
-
-
+    
     /**
      * Handle the routes and match them towards the request, dispatch them when a match is made.
      *
@@ -100,9 +98,9 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
             $dispatcher->setControllerName(isset($parts[0]) ? $parts[0] : 'index');
 
             if ($dispatcher->isValidController()) {
-
+                
                 $dispatcher->setActionName(isset($parts[1]) ? $parts[1] : 'index');
-
+                
                 $params = [];
                 if (isset($parts[2])) {
                     $params = $parts;

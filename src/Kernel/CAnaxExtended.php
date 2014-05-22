@@ -8,6 +8,7 @@ namespace Anax\Kernel;
  */ 
 class CAnaxExtended extends \Anax\Kernel\CAnax
 {
+    use \Anax\TConfigure;
     
     public function __construct($di)
     {

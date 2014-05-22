@@ -43,8 +43,8 @@ return [
      * compressed — Compresses all the unrequired whitespace
      * classic — lessphp’s original formatter
      */
-    'formatter' => null,
-    //'formatter' => 'compressed',
+    //'formatter' => null,
+    'formatter' => 'compressed',
     //$config['formatter'] = 'compressed',
 
 

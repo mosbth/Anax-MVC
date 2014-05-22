@@ -3,8 +3,6 @@ require '../config.php';
 
 use \Lessc;
 
-
-
 /**
  * Add config-file if available
  *

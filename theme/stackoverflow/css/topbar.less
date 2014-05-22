@@ -1,0 +1,70 @@
+.topbar.left {
+    float:left;
+}
+.topbar.right {
+    float:right;
+}
+
+.topbar ul {
+    list-style: none;
+    margin: -8px 0 0 0;
+    padding: 0;
+}
+
+.topbar li {
+  display: inline-block;
+  border-top: 4px solid transparent;
+  color: @colorMenuItems;
+  position: relative;
+}
+
+.topbar a {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  text-decoration: none;
+  color: @white;
+  white-space: nowrap;
+}
+
+.topbar a:hover {
+    color: @topbarColorMenuItemsHover;
+}
+
+.topbar li:hover {
+  color: @topbarColorMenuItems;
+  border-color: @colorBorderSelected;;
+}
+
+.topbar li.selected-parent,
+.topbar li.selected{
+  color: @topbarColorMenuItemsSelected;
+}
+
+.topbar ul ul {
+  background-color: @black;
+  padding: 8px;
+  position: absolute;
+  left: -9999px;
+  z-index: 2;
+}
+
+.topbar li li {
+  border-top: none;
+  padding-top: 2px;
+  border-left: 4px solid transparent;
+}
+
+.topbar li:hover ul {
+  left: 0;
+}
+
+.topbar li li:hover {
+  color: @topbarColorMenuItemsHover;
+  border-color: @colorBorderLight;
+}
+
+.topbar li li.selected {
+  color: @topbarColorMenuItemsSelected;
+  border-color: @colorBorderSelected;
+}

@@ -253,7 +253,7 @@ class CDatabaseModel implements \Anax\DI\IInjectionAware
                  ->where("acronym = ?");
 
         $this->db->execute([$name]);
-        return $this->db->fetchInto($this);
+        return $this->db->fetchOne();
     }
 
     /**

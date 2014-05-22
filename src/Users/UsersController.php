@@ -9,6 +9,8 @@ class UsersController implements \Anax\DI\IInjectionAware
 {
     use \Anax\DI\TInjectable;
 
+    private $text;
+    
     /**
      * Checks the values and calls other functions
      *
@@ -33,10 +35,14 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function initialize()
     {
+        $this->auth->initialize();
+        $this->text = $this->lang->get('profile_text', true);
         $this->users = new \Anax\Users\User();
         $this->users->setDI($this->di);
-        $this->navbar->configure(ANAX_APP_PATH .'config/navbar_users.php');
-        $this->di->get('session');
+
+        if ($this->auth->isAdmin()) {
+            $this->navbar->configure(ANAX_APP_PATH .'config/navbar_users.php');
+        }
     }
     /**
      * The index page
@@ -57,13 +63,41 @@ class UsersController implements \Anax\DI\IInjectionAware
      * @return void
      */
     public function listAction()
-    {
+    {   
+        $this->auth->isAdmin();
         $all = $this->users->findAll();
-
+        $flash = $this->sflash->get();
         $this->theme->setTitle("List all users");
         $this->views->add('users/list-all', [
             'users' => $all,
             'title' => "View all users",
+        ]);
+    }
+
+
+    public function profileAction($acronym) 
+    {
+        $this->theme->setTitle("$acronym's profil");
+        
+        $isOwner = false;
+
+        $user = $this->checkTypeAndFind($acronym);
+
+        if ($user === false) {
+            throw new \Anax\Exception\NotFoundException();
+        }
+        if ($this->session->get('user')->id == $user->id) {
+            // de är jag som är ägaren av filen.
+            $isOwner = true;
+        }
+        $anwsers = null;
+        $questions = null;
+        $this->views->add('stack/profile', [
+            'user'      => $user,
+            'questions' => $questions,
+            'anwsers'   => $anwsers,
+            'owner'     => $isOwner,
+            'text'      => $this->text,
         ]);
     }
 
@@ -76,6 +110,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function idAction($id = null)
     {
+        $this->isAdmin();
         if(!isset($id)) {
              $this->theme->setTitle('Search user');
             $form = $this->form;
@@ -120,7 +155,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         } else {
             $user = $this->checkTypeAndFind($id);
 
-            if($user === false) {
+            if ($user === false) {
                 throw new \Anax\Exception\NotFoundException();
             }
 
@@ -142,6 +177,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function addAction($acronym = null)
     {
+        $this->isAdmin();
         $this->theme->setTitle('Lägg till');
         $form = $this->form;
         if (!isset($acronym)) {
@@ -212,6 +248,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function deleteAction($id = null)
     {
+        $this->isAdmin();
         if (!isset($id)) {
             $this->theme->setTitle('Tabort en användare');
 
@@ -282,6 +319,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function updateAction($id = null)
     {
+        $this->isAdmin();
         $form = $this->form;
         $user = $this->checkTypeAndFind($id);
 
@@ -379,6 +417,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function softDeleteAction($id = null)
     {
+        $this->isAdmin();
         if (!isset($id)) {
             throw new \Anax\Exception\NotFoundException();
         }
@@ -403,6 +442,8 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function softUndoAction($id)
     {
+        $this->isAdmin();
+
         if (!isset($id)) {
             die('Missing id');
         }
@@ -425,6 +466,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function activeAction()
     {
+        $this->isAdmin();
         $all = $this->users->query()
             ->where('active IS NOT NULL')
             ->andWhere('deleted is NULL')
@@ -444,6 +486,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function inactiveAction()
     {
+        $this->isAdmin();
 
         $all = $this->users->query()
             ->where('deleted IS NOT NULL')
@@ -463,6 +506,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function statusAction($id)
     {
+        $this->isAdmin();
         $user = $this->checkTypeAndFind($id);
 
         if ($user === false) {
@@ -483,6 +527,74 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->response->redirect($url);
     }
 
+    public function logoutAction()
+    {
+        $user = $this->session->get('user');
+        $this->auth->logout();
+        $this->sflash->notice("Välkommen åter {$user->username}!");
+        $this->response->redirect($this->url->create(''));
+    }
+
+    public function loginAction() 
+    {
+        if ($this->auth->isAuthenticated()) {
+            $this->response->redirect($this->url->create(''));
+            $this->sflash->notice('Du är redan inloggad.');
+            exit();
+        }
+
+        $this->theme->setTitle('Logga in');
+
+        $form = $this->form;
+        $form = $form->create([],
+            [
+            'username' => [
+                'type' => 'text',
+                'name' => 'username',
+                'label' => 'Användarnamn',
+                'required' => true,
+                'validation' => ['not_empty'],
+            ],
+            'password' => [
+                'type' => 'password',
+                'name' => 'password',
+                'lable' => 'Lösenord',
+                'required' => true,
+                'validation' => ['not_empty'],
+            ],
+            'submit' => [
+                'type' => 'submit',
+                'callback' => function($form) {
+                    $form->saveInSession = true;
+                    return true;
+                }
+            ],
+        ]);
+
+        $status = $form->check();
+        if ($status === true) {
+            $acronym = $_SESSION['form-save']['username']['value'];
+            $password = $_SESSION['form-save']['password']['value'];
+            $this->session->remove('form-save');
+            if ($this->auth->authenticate($acronym, $password)) {
+                $name = $this->session->get('user')->username;
+                $this->sflash->success("Välkommen {$name}");
+                $url = $this->url->create('questions');
+            } else {
+                $this->sflash->error("Fel användarnamn eller lösenord");
+                $url = $this->url->create('users/login');
+            }
+            
+            $this->response->redirect($url);
+            exit();
+        }
+        $flash = $this->sflash->get();
+        $this->views->add('default/page', [
+            'title' => 'Logga in',
+            'content' => $form->getHTML(),
+        ]);
+    }
+
     /**
      * Setup / resets the database
      *
@@ -490,6 +602,8 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function setupAction()
     {
+        $this->isAdmin();
+
         $this->theme->setTitle('Setup');
 
         $this->db->dropTableIfExists('user')->execute();
@@ -502,6 +616,7 @@ class UsersController implements \Anax\DI\IInjectionAware
                 'email' => ['varchar(80)'],
                 'name' => ['varchar(80)'],
                 'password' => ['varchar(255)'],
+                'level' => ['integer', 'DEFAULT 1'],
                 'created' => ['datetime'],
                 'updated' => ['datetime'],
                 'deleted' => ['datetime'],
@@ -538,5 +653,14 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->views->add('grid/page', [
             'content' => '<h3>Setup n\' stuff</h3><p>The database has be reseted!</p>'
         ]);
+    }
+
+    private function isAdmin() 
+    {
+        if (!$this->auth->isAdmin()) {
+            $this->sflash->error('Du är inte administratör!');
+            $this->response->redirect($this->url->create('users/list'));
+            exit();
+        }
     }
 }

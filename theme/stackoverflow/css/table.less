@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr:nth-child(odd) {
+    background-color: @bgColorTableStripe;
+}
+
+table th{
+    border:1px solid @colorBorderLight;
+    background-color: @bgTableTh;
+}
+table tr:hover {
+    border:1px solid @colorTableRowBorderHover;
+}
+table tr {
+    border:1px solid @colorBorderLight;
+}
+
+table th {
+    color: @colorBody;
+    font-weight: bold;
+}
+table th,
+table td {
+  padding: .5em .5em;
+  text-align: left;
+}

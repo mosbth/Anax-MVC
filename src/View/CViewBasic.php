@@ -74,7 +74,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
                 break;
 
             case 'string':
-
+            
                 echo $this->template;
 
                 break;

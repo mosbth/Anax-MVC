@@ -13,19 +13,18 @@ return [
      */
     'settings' => [
         'path' => ANAX_INSTALL_PATH . 'theme/',
-        'name' => 'anax-grid',
+        'name' => 'stackoverflow',
     ],
     'views' => [
         [
-            'region'   => 'header',
-            'template' => 'me/header',
-            'data'     => [
-                'siteTitle' => "Donald Duck",
-                'siteTagline' => "Mitt arbete i phpmvc på BTH",
-            ],
-            'sort'     => -1
+            'region' => 'header', 
+            'template' => 'stack/header', 
+            'data' => [
+                'siteTagline'   => 'Allt om hur man slackar!'
+            ], 
+            'sort' => -1
         ],
-      [
+        [
           'region' => 'navbar',
           'template' => [
               'callback' => function() {
@@ -34,11 +33,9 @@ return [
           ],
           'data' => [],
           'sort' => -1,
-        ],
-        ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
+        ],        
+        ['region' => 'footer', 'template' => 'stack/footer', 'data' => [], 'sort' => -1],
     ],
-
-
     /**
      * Data to extract and send as variables to the main template file.
      */
@@ -48,17 +45,16 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Anax a web template',
+        'title_append' => ' -slackoverflow',
 
         // Stylesheets
-        'stylesheets' => ['css/anax-base/style.css', 'css/anax-base/navbar.css','css/anax-base
-        /form.css'],
+        'stylesheets' => ['css/style.php', '//www.student.bth.se/~jokd13/phpmvc/kmom05/webroot/css/anax-base/source.css'],
 
         // Inline style
         'style' => null,
 
         // Favicon
-        'favicon' => 'favicon.ico',
+        'favicon' => 'img/favicon.ico',
 
         // Path to modernizr or null to disable
         'modernizr' => 'js/modernizr.js',
@@ -70,6 +66,6 @@ return [
         'javascript_include' => [],
 
         // Use google analytics for tracking, set key or null to disable
-        'google_analytics' => 'UA-38445302-3',
+        'google_analytics' => '',
     ],
 ];

@@ -20,8 +20,8 @@ trait TSQLQueryBuilderBasic
     private $from;      // From part
     private $where;     // Where part
     private $orderby;   // Order by part
-
-
+    private $join;
+    private $limit;
 
     /**
      * Get SQL.
@@ -52,6 +52,7 @@ trait TSQLQueryBuilderBasic
             . ($this->join    ? $this->join           : null)
             . ($this->where   ? $this->where . "\n"   : null)
             . ($this->orderby ? $this->orderby . "\n" : null)
+            . ($this->limit   ? $this->limit   . "\n" : null)
             . ";";
 
         return $sql;
@@ -447,6 +448,13 @@ trait TSQLQueryBuilderBasic
     {
         $this->orderby = "ORDER BY " . $condition;
 
+        return $this;
+    }
+
+
+    public function limit($condition)
+    {
+        $this->limit = "LIMIT 0, " . $condition;
         return $this;
     }
 }

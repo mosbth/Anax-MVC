@@ -1,6 +1,6 @@
 <?php
 
-namespace Mos\HTMLForm;
+namespace Anax\HTMLForm;
 
 /**
  * A utility class to easy creating and handling of forms
@@ -102,38 +102,38 @@ class CFormElement implements \ArrayAccess
         $types = [
 
             // Standard HTML 4.01
-            'text'              => '\Mos\HTMLForm\CFormElementText',
-            'file'              => '\Mos\HTMLForm\CFormElementFile',
-            'password'          => '\Mos\HTMLForm\CFormElementPassword',
-            'hidden'            => '\Mos\HTMLForm\CFormElementHidden',
-            'textarea'          => '\Mos\HTMLForm\CFormElementTextarea',
-            'radio'             => '\Mos\HTMLForm\CFormElementRadio',
-            'checkbox'          => '\Mos\HTMLForm\CFormElementCheckbox',
-            'select'            => '\Mos\HTMLForm\CFormElementSelect',
-            'select-multiple'   => '\Mos\HTMLForm\CFormElementSelectMultiple',
-            'submit'            => '\Mos\HTMLForm\CFormElementSubmit',
-            'reset'             => '\Mos\HTMLForm\CFormElementReset',
-            'button'            => '\Mos\HTMLForm\CFormElementButton',
+            'text'              => '\Anax\HTMLForm\CFormElementText',
+            'file'              => '\Anax\HTMLForm\CFormElementFile',
+            'password'          => '\Anax\HTMLForm\CFormElementPassword',
+            'hidden'            => '\Anax\HTMLForm\CFormElementHidden',
+            'textarea'          => '\Anax\HTMLForm\CFormElementTextarea',
+            'radio'             => '\Anax\HTMLForm\CFormElementRadio',
+            'checkbox'          => '\Anax\HTMLForm\CFormElementCheckbox',
+            'select'            => '\Anax\HTMLForm\CFormElementSelect',
+            'select-multiple'   => '\Anax\HTMLForm\CFormElementSelectMultiple',
+            'submit'            => '\Anax\HTMLForm\CFormElementSubmit',
+            'reset'             => '\Anax\HTMLForm\CFormElementReset',
+            'button'            => '\Anax\HTMLForm\CFormElementButton',
 
             // HTML5
-            'color'             => '\Mos\HTMLForm\CFormElementColor',
-            'date'              => '\Mos\HTMLForm\CFormElementDate',
-            'number'            => '\Mos\HTMLForm\CFormElementNumber',
-            'range'             => '\Mos\HTMLForm\CFormElementRange',
-            'tel'               => '\Mos\HTMLForm\CFormElementTel',
-            'email'             => '\Mos\HTMLForm\CFormElementEmail',
-            'url'               => '\Mos\HTMLForm\CFormElementUrl',
-            'search'            => '\Mos\HTMLForm\CFormElementSearch',
-            'file-multiple'     => '\Mos\HTMLForm\CFormElementFileMultiple',
-            'datetime'          => '\Mos\HTMLForm\CFormElementDatetime',
-            'datetime-local'    => '\Mos\HTMLForm\CFormElementDatetimeLocal',
-            'month'             => '\Mos\HTMLForm\CFormElementMonth',
-            'time'              => '\Mos\HTMLForm\CFormElementTime',
-            'week'              => '\Mos\HTMLForm\CFormElementWeek',
+            'color'             => '\Anax\HTMLForm\CFormElementColor',
+            'date'              => '\Anax\HTMLForm\CFormElementDate',
+            'number'            => '\Anax\HTMLForm\CFormElementNumber',
+            'range'             => '\Anax\HTMLForm\CFormElementRange',
+            'tel'               => '\Anax\HTMLForm\CFormElementTel',
+            'email'             => '\Anax\HTMLForm\CFormElementEmail',
+            'url'               => '\Anax\HTMLForm\CFormElementUrl',
+            'search'            => '\Anax\HTMLForm\CFormElementSearch',
+            'file-multiple'     => '\Anax\HTMLForm\CFormElementFileMultiple',
+            'datetime'          => '\Anax\HTMLForm\CFormElementDatetime',
+            'datetime-local'    => '\Anax\HTMLForm\CFormElementDatetimeLocal',
+            'month'             => '\Anax\HTMLForm\CFormElementMonth',
+            'time'              => '\Anax\HTMLForm\CFormElementTime',
+            'week'              => '\Anax\HTMLForm\CFormElementWeek',
 
             // Custom
-            'search-widget'     => '\Mos\HTMLForm\CFormElementSearchWidget',
-            'checkbox-multiple' => '\Mos\HTMLForm\CFormElementCheckboxMultiple',
+            'search-widget'     => '\Anax\HTMLForm\CFormElementSearchWidget',
+            'checkbox-multiple' => '\Anax\HTMLForm\CFormElementCheckboxMultiple',
             // Address
         ];
 

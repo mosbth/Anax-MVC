@@ -1,0 +1,40 @@
+@color: #555;
+
+.errorMessage, .successMessage, .noticeMessage, .warningMessage {
+    margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+    padding: 8px;
+}
+
+.errorMessage {
+   // color: @color;
+   // background-color: #ffecec;
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+.successMessage {
+    //color: @color;
+    //background-color: #e9ffd9;
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.noticeMessage {
+   // color: @color;
+   // background-color: #e3f7fc;
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+
+.warningMessage {
+    //color: @color;
+    //background-color: #fff8c4;
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.errorMessage i, .successMessage i, .noticeMessage i, .warningMessage i {
+    margin: 10px 20px;
+    font-size: 2em;
+    vertical-align: middle;
+}
