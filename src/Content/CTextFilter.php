@@ -151,6 +151,8 @@ class CTextFilter
 
     /**
      * Shortcode for <figure>.
+     * 
+     * Usage example: [FIGURE src="img/home/me.jpg" caption="Me" alt="Bild på mig" nolink="nolink"]
      *
      * @param string $options for the shortcode.
      *
@@ -188,6 +190,8 @@ class CTextFilter
             $href = $pos ? substr($src, 0, $pos) : $src;
         }
 
+        $a_start = null;
+        $a_end = null;
         if (!$nolink) {
             $a_start = "<a href='{$href}'>";
             $a_end = "</a>";
