@@ -238,5 +238,18 @@ EOD;
             $text
         );
     }
+    
+    
+    /**
+     * For convenience access to nl2br
+     * 
+     * @param string $text text to be converted.
+     *
+     * @return string the formatted text.
+     */
+     public function nl2br($text)
+     {
+         return nl2br($text);
+     }
 
 }
