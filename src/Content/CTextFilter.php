@@ -3,7 +3,7 @@
 namespace Anax\Content;
 
 /**
- * A container for routes.
+ * Filter and format content.
  *
  */
 class CTextFilter
@@ -20,15 +20,15 @@ class CTextFilter
      *
      * @return string the formatted text.
      */
-    public function doFilter($text, $filters) 
+    public function doFilter($text, $filters)
     {
         // Define all valid filters with their callback function.
         $callbacks = array(
             'bbcode'    => 'bbcode2html',
             'clickable' => 'makeClickable',
             'markdown'  => 'markdown',
-            'nl2br'     => 'nl2br',  
-            'shortcode' => 'shortCode',  
+            'nl2br'     => 'nl2br',
+            'shortcode' => 'shortCode',
         );
 
         // Make an array of the comma separated string $filters
@@ -58,24 +58,24 @@ class CTextFilter
      *
      * @link http://dbwebb.se/coachen/reguljara-uttryck-i-php-ger-bbcode-formattering
      */
-    public function bbcode2html($text) 
+    public function bbcode2html($text)
     {
-        $search = [ 
-            '/\[b\](.*?)\[\/b\]/is', 
-            '/\[i\](.*?)\[\/i\]/is', 
-            '/\[u\](.*?)\[\/u\]/is', 
-            '/\[img\](https?.*?)\[\/img\]/is', 
-            '/\[url\](https?.*?)\[\/url\]/is', 
-            '/\[url=(https?.*?)\](.*?)\[\/url\]/is' 
+        $search = [
+            '/\[b\](.*?)\[\/b\]/is',
+            '/\[i\](.*?)\[\/i\]/is',
+            '/\[u\](.*?)\[\/u\]/is',
+            '/\[img\](https?.*?)\[\/img\]/is',
+            '/\[url\](https?.*?)\[\/url\]/is',
+            '/\[url=(https?.*?)\](.*?)\[\/url\]/is'
         ];
 
         $replace = [
-            '<strong>$1</strong>', 
-            '<em>$1</em>', 
-            '<u>$1</u>', 
-            '<img src="$1" />', 
-            '<a href="$1">$1</a>', 
-            '<a href="$1">$2</a>' 
+            '<strong>$1</strong>',
+            '<em>$1</em>',
+            '<u>$1</u>',
+            '<img src="$1" />',
+            '<a href="$1">$1</a>',
+            '<a href="$1">$2</a>'
         ];
 
         return preg_replace($search, $replace, $text);
@@ -92,15 +92,15 @@ class CTextFilter
      *
      * @link http://dbwebb.se/coachen/lat-php-funktion-make-clickable-automatiskt-skapa-klickbara-lankar
      */
-    public function makeClickable($text) 
+    public function makeClickable($text)
     {
         return preg_replace_callback(
             '#\b(?<![href|src]=[\'"])https?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#',
-            function($matches) {
+            function ($matches) {
                 return "<a href=\'{$matches[0]}\'>{$matches[0]}</a>";
             },
             $text
-       );
+        );
     }
 
 
@@ -114,7 +114,7 @@ class CTextFilter
      *
      * @link http://dbwebb.se/coachen/skriv-for-webben-med-markdown-och-formattera-till-html-med-php
      */
-    public function markdown($text) 
+    public function markdown($text)
     {
         return \Michelf\MarkdownExtra::defaultTransform($text);
     }
@@ -128,7 +128,7 @@ class CTextFilter
     *
     * @return array with all the options.
     */
-    protected static function shortCodeInit($options) 
+    protected static function shortCodeInit($options)
     {
         preg_match_all('/[a-zA-Z0-9]+="[^"]+"|\S+/', $options, $matches);
 
@@ -158,7 +158,7 @@ class CTextFilter
      *
      * @return array with all the options.
      */
-    protected static function shortCodeFigure($options) 
+    protected static function shortCodeFigure($options)
     {
         extract(
             array_merge(
@@ -171,7 +171,7 @@ class CTextFilter
                     'caption' => null,
                     'href' => null,
                     'nolink' => false,
-                ], 
+                ],
                 CTextFilter::ShortCodeInit($options)
             ),
             EXTR_SKIP
@@ -216,29 +216,30 @@ EOD;
      *
      * @return string the formatted text.
      */
-    public function shortCode($text) 
+    public function shortCode($text)
     {
         $patterns = [
             '/\[(FIGURE)[\s+](.+)\]/',
         ];
 
         return preg_replace_callback(
-            $patterns, 
-            function($matches) {
+            $patterns,
+            function ($matches) {
                 switch ($matches[1]) {
 
-                    case 'FIGURE': 
-                        return CTextFilter::ShortCodeFigure($matches[2]); 
+                    case 'FIGURE':
+                        return CTextFilter::ShortCodeFigure($matches[2]);
                         break;
                     
-                    default: 
-                        return "{$matches[1]} is unknown shortcode."; 
+                    default:
+                        return "{$matches[1]} is unknown shortcode.";
                 }
-            }, 
+            },
             $text
         );
     }
-    
+
+
     
     /**
      * For convenience access to nl2br
@@ -247,9 +248,8 @@ EOD;
      *
      * @return string the formatted text.
      */
-     public function nl2br($text)
-     {
-         return nl2br($text);
-     }
-
+    public function nl2br($text)
+    {
+        return nl2br($text);
+    }
 }
