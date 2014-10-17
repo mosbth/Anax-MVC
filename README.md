@@ -56,6 +56,7 @@ History
 
 v2.0.x (latest)
 
+* Added `phpdoc.dist.xml`.
 * Enhanced `Anax\Navigation\CNavBar` with class in menu item.
 * Added phpdocs to `docs/api`.
 
