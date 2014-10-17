@@ -54,7 +54,7 @@ History
 
 ###History for Anax-MVC
 
-v2.0.x (latest)
+v2.0.1 (2014-10-17)
 
 * Updates to match comments example.
 * Introduced and corrected bug (issue #1) where exception was thrown instead of presenting a 404-page.
