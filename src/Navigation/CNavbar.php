@@ -58,10 +58,11 @@ class CNavbar
             if ($selected) {
               $hasItemIsSelected = true;
             }
-
+            
+            $class = isset($item['class']) && !is_null($item['class']) ? " class='{$item['class']}'" : null;
             $selected = ($selected || $selectedParent) ? " class='${selected}{$selectedParent}' " : null;      
             $url = $createUrl($item['url']);
-            $html .= "\n<li{$selected}><a href='{$url}' title='{$item['title']}'>{$item['text']}</a>{$submenu}</li>\n";
+            $html .= "\n<li{$selected} {$class}><a href='{$url}' title='{$item['title']}'>{$item['text']}</a>{$submenu}</li>\n";
           }
 
           return array("\n<ul>$html</ul>\n", $hasItemIsSelected);
