@@ -54,6 +54,12 @@ History
 
 ###History for Anax-MVC
 
+v2.0.x (latest)
+
+* Enhanced `Anax\Navigation\CNavBar` with class in menu item.
+* Added phpdocs to `docs/api`.
+
+
 v2.0.1 (2014-10-17)
 
 * Updates to match comments example.
