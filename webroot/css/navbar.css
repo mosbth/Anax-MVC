@@ -2,6 +2,10 @@
  * Based on http://dbwebb.se/coachen/en-navbar-med-drop-down-meny-i-ren-html-och-css
  * Changed to only style li-items instead of a.
  */
+#navbar {
+  margin-bottom: 44px;
+}
+
 .navbar {}
  
 .navbar ul {
