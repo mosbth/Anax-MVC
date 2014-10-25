@@ -8,7 +8,8 @@ namespace Anax\Content;
  */
 class CTextFilter
 {
-    use \Anax\TConfigure;
+    use \Anax\TConfigure,
+        \Anax\DI\TInjectionAware;
 
 
 
@@ -122,7 +123,63 @@ class CTextFilter
 
 
     /**
-    * Init shortcode handling by preparing the option list to an array.
+     * For convenience access to nl2br
+     * 
+     * @param string $text text to be converted.
+     *
+     * @return string the formatted text.
+     */
+    public function nl2br($text)
+    {
+        return nl2br($text);
+    }
+
+
+
+    /**
+     * Shortcode to to quicker format text as HTML.
+     *
+     * @param string $text text to be converted.
+     *
+     * @return string the formatted text.
+     */
+    public function shortCode($text)
+    {
+        $patterns = [
+            '/\[(FIGURE)[\s+](.+)\]/',
+            '/\[(BASEURL)\]/',
+            '/\[(RELURL)\]/',
+        ];
+
+        return preg_replace_callback(
+            $patterns,
+            function ($matches) {
+                switch ($matches[1]) {
+
+                    case 'FIGURE':
+                        return CTextFilter::ShortCodeFigure($matches[2]);
+                        break;
+                    
+                    case 'BASEURL':
+                        return CTextFilter::ShortCodeBaseurl();
+                        break;
+                    
+                    case 'RELURL':
+                        return CTextFilter::ShortCodeRelurl();
+                        break;
+                    
+                    default:
+                        return "{$matches[1]} is unknown shortcode.";
+                }
+            },
+            $text
+        );
+    }
+
+
+    
+    /**
+    * Init shortcode handling by preparing the option list to an array, for those using arguments.
     *
     * @param string $options for the shortcode.
     *
@@ -210,46 +267,28 @@ EOD;
 
 
     /**
-     * Shortcode to to quicker format text as HTML.
+     * Shortcode for adding BASEURL to links.
+     * 
+     * Usage example: [BASEURL]
      *
-     * @param string $text text to be converted.
-     *
-     * @return string the formatted text.
+     * @return array with all the options.
      */
-    public function shortCode($text)
+    protected function shortCodeBaseurl()
     {
-        $patterns = [
-            '/\[(FIGURE)[\s+](.+)\]/',
-        ];
-
-        return preg_replace_callback(
-            $patterns,
-            function ($matches) {
-                switch ($matches[1]) {
-
-                    case 'FIGURE':
-                        return CTextFilter::ShortCodeFigure($matches[2]);
-                        break;
-                    
-                    default:
-                        return "{$matches[1]} is unknown shortcode.";
-                }
-            },
-            $text
-        );
+        return $this->di->url->create() . "/";
     }
 
 
-    
+
     /**
-     * For convenience access to nl2br
+     * Shortcode for adding RELURL to links.
      * 
-     * @param string $text text to be converted.
+     * Usage example: [RELURL]
      *
-     * @return string the formatted text.
+     * @return array with all the options.
      */
-    public function nl2br($text)
+    protected function shortCodeRelurl()
     {
-        return nl2br($text);
+        return $this->di->url->createRelative() . "/";
     }
 }
