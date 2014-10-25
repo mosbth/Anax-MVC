@@ -27,7 +27,7 @@ class CRouteBasic
      *
      * @return $this
      */
-    public function set($rule, $action) 
+    public function set($rule, $action)
     {
         $this->rule = $rule;
         $this->action = $action;
@@ -44,9 +44,9 @@ class CRouteBasic
      *
      * @return boolean true if query matches the route
      */
-    public function match($query) 
+    public function match($query)
     {
-        if ($this->rule == $query) {
+        if ($this->rule === $query) {
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ class CRouteBasic
      *
      * @return void
      */
-    public function handle() 
+    public function handle()
     {
         return call_user_func($this->action);
     }
@@ -73,9 +73,10 @@ class CRouteBasic
      *
      * @return $this
      */
-    public function setName($name) 
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
 }
+

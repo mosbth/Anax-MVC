@@ -32,7 +32,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function add($template, $data = [], $region = 'main', $sort = 0) 
+    public function add($template, $data = [], $region = 'main', $sort = 0)
     {
         $view = $this->di->get('view');
 
@@ -54,6 +54,29 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
 
 
     /**
+     * Add a callback to be rendered as a view.
+     *
+     * @param string $callback function to call to get the content of the view
+     * @param array  $data     variables to make available to the view, default is empty
+     * @param string $region   which region to attach the view
+     * @param int    $sort     which order to display the views
+     *
+     * @return $this
+     */
+    public function addCallback($callback, $data = [], $region = 'main', $sort = 0)
+    {
+        $view = $this->di->get('view');
+
+        $view->set(['callback' => $callback], $data, $sort, 'callback');
+        $view->setDI($this->di);
+        $this->views[$region][] = $view;
+
+        return $this;
+    }
+
+
+
+    /**
      * Add a string as a view.
      *
      * @param string $content the content
@@ -62,7 +85,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function addString($content, $region = 'main', $sort = 0) 
+    public function addString($content, $region = 'main', $sort = 0)
     {
         $view = $this->di->get('view');
         $view->set($content, [], $sort, 'string');
@@ -81,7 +104,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function setFileSuffix($suffix) 
+    public function setFileSuffix($suffix)
     {
         $this->suffix = $suffix;
     }
@@ -95,7 +118,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function setBasePath($path) 
+    public function setBasePath($path)
     {
         if (!is_dir($path)) {
             throw new \Exception("Base path for views is not a directory: " . $path);
@@ -112,7 +135,7 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function hasContent($region) 
+    public function hasContent($region)
     {
         return isset($this->views[$region]);
     }
@@ -126,13 +149,13 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function render($region = 'main') 
+    public function render($region = 'main')
     {
         if (!isset($this->views[$region])) {
             return $this;
         }
 
-        mergesort($this->views[$region], function($a, $b) {
+        mergesort($this->views[$region], function ($a, $b) {
             $sa = $a->sortOrder();
             $sb = $b->sortOrder();
 
@@ -150,3 +173,4 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
         return $this;
     }
 }
+

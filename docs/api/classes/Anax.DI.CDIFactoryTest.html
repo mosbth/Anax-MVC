@@ -21,54 +21,54 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-        <script type="text/javascript">
-        function loadExternalCodeSnippets() {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-                var src = pre.getAttribute('data-src');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
 
-                pre.textContent = '';
+            pre.textContent = '';
 
-                code.textContent = 'Loading…';
+            code.textContent = 'Loading…';
 
-                pre.appendChild(code);
+            pre.appendChild(code);
 
-                var xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
 
-                xhr.open('GET', src, true);
+            xhr.open('GET', src, true);
 
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
 
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
 
-                            Prism.highlightElement(code);
-                        }
-                        else if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                        }
-                        else {
-                            code.textContent = '✖ Error: File does not exist or is empty';
-                        }
+                        Prism.highlightElement(code);
                     }
-                };
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
 
-                xhr.send(null);
-            });
-        }
-
-        $(document).ready(function(){
-            loadExternalCodeSnippets();
+            xhr.send(null);
         });
-        $('#source-view').on('shown', function () {
-            loadExternalCodeSnippets();
-        })
-    </script>
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
 
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1362790874"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-989926885"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1362790874" class="accordion-body collapse in">
+            <div id="namespace-989926885" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-426124135"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2112765258"></a>
                                 <a href="../namespaces/Anax.html" style="margin-left: 30px; padding-left: 0">Anax</a>
             </div>
-            <div id="namespace-426124135" class="accordion-body collapse ">
+            <div id="namespace-2112765258" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-786561625"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1019211304"></a>
                                 <a href="../namespaces/Anax.Content.html" style="margin-left: 30px; padding-left: 0">Content</a>
             </div>
-            <div id="namespace-786561625" class="accordion-body collapse ">
+            <div id="namespace-1019211304" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -181,10 +181,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1983744313"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1878542494"></a>
                                 <a href="../namespaces/Anax.DI.html" style="margin-left: 30px; padding-left: 0">DI</a>
             </div>
-            <div id="namespace-1983744313" class="accordion-body collapse ">
+            <div id="namespace-1878542494" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -207,10 +207,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1844158905"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1884028600"></a>
                                 <a href="../namespaces/Anax.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
             </div>
-            <div id="namespace-1844158905" class="accordion-body collapse ">
+            <div id="namespace-1884028600" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -227,10 +227,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-558368545"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1711987363"></a>
                                 <a href="../namespaces/Anax.Flash.html" style="margin-left: 30px; padding-left: 0">Flash</a>
             </div>
-            <div id="namespace-558368545" class="accordion-body collapse ">
+            <div id="namespace-1711987363" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -245,10 +245,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-901686181"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1889466452"></a>
                                 <a href="../namespaces/Anax.HTMLForm.html" style="margin-left: 30px; padding-left: 0">HTMLForm</a>
             </div>
-            <div id="namespace-901686181" class="accordion-body collapse ">
+            <div id="namespace-1889466452" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -265,10 +265,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-923833072"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2071839390"></a>
                                 <a href="../namespaces/Anax.Kernel.html" style="margin-left: 30px; padding-left: 0">Kernel</a>
             </div>
-            <div id="namespace-923833072" class="accordion-body collapse ">
+            <div id="namespace-2071839390" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -284,10 +284,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-623615005"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1158467853"></a>
                                 <a href="../namespaces/Anax.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
             </div>
-            <div id="namespace-623615005" class="accordion-body collapse ">
+            <div id="namespace-1158467853" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -302,10 +302,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1804436823"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-672712690"></a>
                                 <a href="../namespaces/Anax.Log.html" style="margin-left: 30px; padding-left: 0">Log</a>
             </div>
-            <div id="namespace-1804436823" class="accordion-body collapse ">
+            <div id="namespace-672712690" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -320,10 +320,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-481910812"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1262285622"></a>
                                 <a href="../namespaces/Anax.MVC.html" style="margin-left: 30px; padding-left: 0">MVC</a>
             </div>
-            <div id="namespace-481910812" class="accordion-body collapse ">
+            <div id="namespace-1262285622" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -341,10 +341,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-943368924"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1436613792"></a>
                                 <a href="../namespaces/Anax.Navigation.html" style="margin-left: 30px; padding-left: 0">Navigation</a>
             </div>
-            <div id="namespace-943368924" class="accordion-body collapse ">
+            <div id="namespace-1436613792" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -359,10 +359,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1360634792"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1695525191"></a>
                                 <a href="../namespaces/Anax.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
             </div>
-            <div id="namespace-1360634792" class="accordion-body collapse ">
+            <div id="namespace-1695525191" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -377,10 +377,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-198162005"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-441064058"></a>
                                 <a href="../namespaces/Anax.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
             </div>
-            <div id="namespace-198162005" class="accordion-body collapse ">
+            <div id="namespace-441064058" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -395,10 +395,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1052553355"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-673197077"></a>
                                 <a href="../namespaces/Anax.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
             </div>
-            <div id="namespace-1052553355" class="accordion-body collapse ">
+            <div id="namespace-673197077" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -414,10 +414,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1592831135"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1110935277"></a>
                                 <a href="../namespaces/Anax.Session.html" style="margin-left: 30px; padding-left: 0">Session</a>
             </div>
-            <div id="namespace-1592831135" class="accordion-body collapse ">
+            <div id="namespace-1110935277" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -432,10 +432,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1754324187"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1643780415"></a>
                                 <a href="../namespaces/Anax.ThemeEngine.html" style="margin-left: 30px; padding-left: 0">ThemeEngine</a>
             </div>
-            <div id="namespace-1754324187" class="accordion-body collapse ">
+            <div id="namespace-1643780415" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -451,10 +451,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1403328549"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1292536830"></a>
                                 <a href="../namespaces/Anax.Url.html" style="margin-left: 30px; padding-left: 0">Url</a>
             </div>
-            <div id="namespace-1403328549" class="accordion-body collapse ">
+            <div id="namespace-1292536830" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -469,10 +469,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1378504083"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1544403758"></a>
                                 <a href="../namespaces/Anax.Validate.html" style="margin-left: 30px; padding-left: 0">Validate</a>
             </div>
-            <div id="namespace-1378504083" class="accordion-body collapse ">
+            <div id="namespace-1544403758" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -487,10 +487,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1794916175"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1513295509"></a>
                                 <a href="../namespaces/Anax.View.html" style="margin-left: 30px; padding-left: 0">View</a>
             </div>
-            <div id="namespace-1794916175" class="accordion-body collapse ">
+            <div id="namespace-1513295509" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -530,60 +530,94 @@
             <div class="row-fluid">
                 <div class="span8 content class">
                     <nav>
-                                                <a href="../namespaces/Anax.DI.html">\Anax\DI</a>
+                                                <a href="../namespaces/Anax.DI.html">\Anax\DI</a> <i class="icon-level-up"></i>
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\Anax\DI</small>IInjectionAware</h1>
-                    <p><em>Interface to implement for DI aware services to let them know of the current $di</em></p>
+                    <h1><small>\Anax\DI</small>CDIFactoryTest</h1>
+                    <p><em>Extended factory for Anax documentation.</em></p>
                     
-
+                    
+                                        
                     <section id="summary">
                         <h2>Summary</h2>
                         <section class="row-fluid heading">
-                            <section class="span6">
+                            <section class="span4">
                                 <a href="#methods">Methods</a>
                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
                                 <a href="#constants">Constants</a>
                             </section>
                         </section>
                         <section class="row-fluid public">
-                            <section class="span6">
-                                                                    <a href="../classes/Anax.DI.IInjectionAware.html#method_setDI">setDI()</a><br />
+                            <section class="span4">
+                                                                    <a href="../classes/Anax.DI.CDIFactoryTest.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_getServices" class="">getServices()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_getActiveServices" class="">getActiveServices()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_set" class="">set()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_setShared" class="">setShared()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_get" class="">get()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_has" class="">has()</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#method___call" class="">__call()</a><br />
                                                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                                                    <a href="../classes/Anax.DI.CDI.html#property_loaded" class="">$loaded</a><br />
+                                                                    <a href="../classes/Anax.DI.CDI.html#property_active" class="">$active</a><br />
+                                                            </section>
+                            <section class="span4">
                                                                     <em>No constants found</em>
                                                             </section>
                         </section>
                         <section class="row-fluid protected">
-                            <section class="span6">
-                                                                    <em>No protected methods found</em>
+                            <section class="span4">
+                                                                    <a href="../classes/Anax.DI.CDI.html#method_load" class="">load()</a><br />
                                                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
                                 <em>N/A</em>
                             </section>
                         </section>
                         <section class="row-fluid private">
-                            <section class="span6">
+                            <section class="span4">
                                                                     <em>No private methods found</em>
                                                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
                                 <em>N/A</em>
                             </section>
                         </section>
                     </section>
                 </div>
                 <aside class="span4 detailsbar">
-                                        <dl>
+                                        
+                    
+                    <dl>
                         <dt>File</dt>
-                            <dd>
-                                <a href="../files/DI.IInjectionAware.html"><div class="path-wrapper">DI/IInjectionAware.php</div></a>
-                            </dd>
+                            <dd><a href="../files/DI.CDIFactoryTest.html"><div class="path-wrapper">DI/CDIFactoryTest.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\Default</div></dd>
-                                                
-                                            </dl>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper"><a href="../classes/Anax.DI.CDI.html">\Anax\DI\CDI</a></div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/Anax.DI.CDIFactoryDefault.html">\Anax\DI\CDIFactoryDefault</a></div>
+                                                                                                    <div class="namespace-wrapper">\Anax\DI\CDIFactoryTest</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
                                             <tr><td colspan="2"><em>None found</em></td></tr>
@@ -591,37 +625,87 @@
                 </aside>
             </div>
 
-            
-                        <div class="row-fluid">
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
                 <div class="span8 content class">
-                    <h2>Methods</h2>
+                    <h2>Properties</h2>
                 </div>
                 <aside class="span4 detailsbar"></aside>
             </div>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_setDI" name="method_setDI" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setDI()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setDI(\Anax\DI\class  <span class="argument">$di</span>) : $this</pre>
-                <p><em>Set the service container to use</em></p>
+            <a id="property_loaded" name="property_loaded" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$loaded</h3>
+                <pre class="signature">$loaded : </pre>
+                <p><em>Properties</em></p>
                 
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\Anax\DI\class</td>
-                                <td>$di </td>
-                                <td><p>a service container</p></td>
-                            </tr>
-                                            </table>
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_active" name="property_active" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$active</h3>
+                <pre class="signature">$active : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em>Construct.</em></p>
+                
+
                 
                 
-                                    <h4>Returns</h4>
-                    $this
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -635,16 +719,377 @@
         </aside>
     </div>
 
-                                                                    </div>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getServices" name="method_getServices" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getServices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getServices() : void</pre>
+                <p><em>Return an arry with all loaded services names.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getActiveServices" name="method_getActiveServices" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getActiveServices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getActiveServices() : void</pre>
+                <p><em>Return an arry with all active services names.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_set" name="method_set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">set(string  <span class="argument">$service</span>, mixed  <span class="argument">$loader</span>, boolean  <span class="argument">$singleton = false</span>) : \Anax\DI\nothing.</pre>
+                <p><em>Set a service and connect it to a task which creates the object (lazy loading).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>as a service label, naming this service.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$loader </td>
+                                <td><p>contains a pre-defined object, a string with classname or an</p>
+<pre><code> callable which returns an instance of the service object. Its the way to
+ actually load, insantiate, the serviceobject.</code></pre></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$singleton </td>
+                                <td><p>set if service is to act as singleton or not, default is false.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Anax\DI\nothing.
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setShared" name="method_setShared" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setShared()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setShared(string  <span class="argument">$service</span>, mixed  <span class="argument">$loader</span>) : \Anax\DI\nothing.</pre>
+                <p><em>Set a singleton service and connect it to a task which creates the object (lazy loading).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>as a service label, naming this service.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$loader </td>
+                                <td><p>contains a pre-defined object, a string with classname or an</p>
+<pre><code> callable which returns an instance of the service object. Its the way to
+ actually load, insantiate, the serviceobject.</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Anax\DI\nothing.
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get" name="method_get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get(string  <span class="argument">$service</span>) : object</pre>
+                <p><em>Get an instance of the service object, managing singletons.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>as a service label, naming this service.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anax\DI\Exception</dt>
+                            <dd><p>when service accessed is not loaded.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>as instance of the service object.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(string  <span class="argument">$service</span>) : \Anax\DI\class</pre>
+                <p><em>Magic method to get and create services.</em></p>
+                <p>When created it is also stored as a parameter of this object.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>name of class property not existing.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Anax\DI\class
+                                            &mdash; <p>as the service requested.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_has" name="method_has" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">has()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">has(string  <span class="argument">$service</span>) : boolean</pre>
+                <p><em>Check if service exists by name.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>as a service label, naming this service.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the service exists, otherwise false.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___call" name="method___call" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__call()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__call(string  <span class="argument">$service</span>, array  <span class="argument">$arguments = array()</span>) : \Anax\DI\class</pre>
+                <p><em>Magic method to get and create services.</em></p>
+                <p>When created it is also stored as a parameter of this object.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>name of class property not existing.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$arguments </td>
+                                <td><p>currently NOT USED.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Anax\DI\class
+                                            &mdash; <p>as the service requested.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_load" name="method_load" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">load()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">load(string  <span class="argument">$service</span>) : object</pre>
+                <p><em>Lazy load a service object and create an instance of it.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$service </td>
+                                <td><p>as a service label, naming this service.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Anax\DI\Exception</dt>
+                            <dd><p>when service could not be loaded.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>as instance of the service object.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Anax.DI.CDI.html"><div class="path-wrapper">\Anax\DI\CDI</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">IInjectionAware.php</h3>
+            <h3 id="source-view-label">CDIFactoryTest.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/DI/IInjectionAware.php.txt" class="language-php"></pre>
+            <pre data-src="../files/DI/CDIFactoryTest.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

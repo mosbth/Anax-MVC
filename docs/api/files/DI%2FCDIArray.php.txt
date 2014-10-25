@@ -1,11 +1,11 @@
 <?php
 /**
- * Anax base class for wrapping sessions.
+ * A CDI version implementing the array interface.
  */
 
 namespace Anax\DI;
 
-class CDIArray extends Anax\DI implements ArrayInterface
+class CDIArray extends CDI implements \ArrayAccess
 {
     
     /**
@@ -21,9 +21,9 @@ class CDIArray extends Anax\DI implements ArrayInterface
      *
      * @param array $options to configure options.
      */
-    private function __construct($options = [])
+    public function __construct($options = [])
     {
-        ;
+        parent::__construct();
     }
 
 
@@ -32,12 +32,11 @@ class CDIArray extends Anax\DI implements ArrayInterface
      *
      * @param array $options to configure options.
      */
-    public function offsetSet($offset, $value) 
+    public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
             $this->container[] = $value;
-        } 
-        else {
+        } else {
             $this->container[$offset] = $value;
         }
     }
@@ -49,7 +48,8 @@ class CDIArray extends Anax\DI implements ArrayInterface
      *
      * @param array $options to configure options.
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset)
+    {
         return isset($this->container[$offset]);
     }
 
@@ -60,7 +60,7 @@ class CDIArray extends Anax\DI implements ArrayInterface
      *
      * @param array $options to configure options.
      */
-    public function offsetUnset($offset) 
+    public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
     }
@@ -72,10 +72,10 @@ class CDIArray extends Anax\DI implements ArrayInterface
      *
      * @param array $options to configure options.
      */
-    public function offsetGet($offset) 
+    public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) 
-            ? $this->container[$offset] 
+        return isset($this->container[$offset])
+            ? $this->container[$offset]
             : null;
     }
 }

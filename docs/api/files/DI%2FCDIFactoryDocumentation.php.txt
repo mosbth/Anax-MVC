@@ -16,11 +16,14 @@ class CDIFactoryDocumentation extends CDIFactoryDefault
     {
         parent::__construct();
 
-        $this->set('documentation', function() {
+        $this->set('documentation', function () {
             $fc = new \Anax\Content\CFileContent();
-            $fc->setBasePath(ANAX_INSTALL_PATH . 'docs/');
+            $fc->setBasePath(ANAX_INSTALL_PATH . 'docs/documentation');
             return $fc;
         });
+
+        $this->theme->setVariable('style', "article {max-width: 650px;}");
+        $this->theme->setBaseTitle(" - Anax documentation");
     }
 }
 

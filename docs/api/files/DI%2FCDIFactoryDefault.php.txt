@@ -48,6 +48,8 @@ class CDIFactoryDefault extends CDI
             $url = new \Anax\Url\CUrl();
             $url->setSiteUrl($this->request->getSiteUrl());
             $url->setBaseUrl($this->request->getBaseUrl());
+            $url->setStaticSiteUrl($this->request->getSiteUrl());
+            $url->setStaticBaseUrl($this->request->getBaseUrl());
             $url->setScriptName($this->request->getScriptName());
             $url->setUrlType($url::URL_APPEND);
             return $url;
@@ -72,7 +74,7 @@ class CDIFactoryDefault extends CDI
                     'action' => 'statusCode',
                     'params' => [
                         'code' => 403,
-                        'message' => "CRouter says: This is a forbidden route.",
+                        'message' => "HTTP Status Code 403: This is a forbidden route.",
                     ],
                 ]);
             })->setName('403');
@@ -83,7 +85,7 @@ class CDIFactoryDefault extends CDI
                     'action' => 'statusCode',
                     'params' => [
                         'code' => 404,
-                        'message' => "CRouter says: This route is not found.",
+                        'message' => "HTTP Status Code 404: This route is not found.",
                     ],
                 ]);
             })->setName('404');
@@ -94,7 +96,7 @@ class CDIFactoryDefault extends CDI
                     'action' => 'statusCode',
                     'params' => [
                         'code' => 500,
-                        'message' => "CRouter says: There was an internal server or processing error.",
+                        'message' => "HTTP Status Code 500: There was an internal server or processing error.",
                     ],
                 ]);
             })->setName('500');
@@ -125,8 +127,8 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('navbar', function () {
             $navbar = new \Anax\Navigation\CNavbar();
-            $navbar->configure(ANAX_APP_PATH . 'config/navbar.php');
             $navbar->setDI($this);
+            $navbar->configure(ANAX_APP_PATH . 'config/navbar.php');
             return $navbar;
         });
 
@@ -139,6 +141,7 @@ class CDIFactoryDefault extends CDI
         $this->setShared('textFilter', function () {
             $filter = new \Anax\Content\CTextFilter();
             $filter->configure(ANAX_APP_PATH . 'config/text_filter.php');
+            $filter->setDI($this);
             return $filter;
         });
     }

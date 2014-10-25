@@ -13,11 +13,12 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
 
 
     /**
-    * Properties
-    *
-    */
-    private $routes;         // All the routes
-    private $internalRoutes; // All internal routes
+     * Properties
+     *
+     */
+    private $routes;                    // All the routes
+    private $internalRoutes;            // All internal routes
+    private $defaultRoute    = null;    // A default rout to catch all
 
 
 
@@ -34,6 +35,12 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
         $route = $this->di->get('route');
         $route->set($rule, $action);
         $this->routes[] = $route;
+
+        // Set as default route
+        if ($rule == "*") {
+            $this->defaultRoute = $route;
+        }
+        
         return $route;
     }
 
@@ -115,6 +122,11 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
                 if ($dispatcher->isCallable()) {
                     return $dispatcher->dispatch();
                 }
+            }
+
+            // Use the "catch-all" route
+            if ($this->defaultRoute) {
+                return $this->defaultRoute->handle();
             }
 
             // No route was matched
