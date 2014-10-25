@@ -36,6 +36,20 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 
 
     /**
+     * Set a base title which is appended to the page title.
+     *
+     * @param string $value of the variable.
+     *
+     * @return $this
+     */
+    public function setBaseTitle($value)
+    {
+        return $this->setVariable('title_append', $value);
+    }
+
+
+
+    /**
      * Set a variable which will be exposed to the template files during render.
      *
      * @param string $which variable to set value of.
