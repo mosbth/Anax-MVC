@@ -112,7 +112,7 @@ class CDI implements IDI
             return $this->load($service);
         }
 
-        throw new \Exception("The service accessed is not loaded in the DI-container.");
+        throw new \Exception("The service accessed '$service' is not loaded in the DI-container.");
     }
 
 
