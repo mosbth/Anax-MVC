@@ -127,8 +127,8 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('navbar', function () {
             $navbar = new \Anax\Navigation\CNavbar();
-            $navbar->configure(ANAX_APP_PATH . 'config/navbar.php');
             $navbar->setDI($this);
+            $navbar->configure(ANAX_APP_PATH . 'config/navbar.php');
             return $navbar;
         });
 
