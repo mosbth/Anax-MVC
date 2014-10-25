@@ -49,7 +49,7 @@ class CRequestBasic
      *
      * @return void
      */
-    public function setGlobals() 
+    public function setGlobals()
     {
         $this->server = $_SERVER;
         $this->get    = $_GET;
@@ -63,7 +63,7 @@ class CRequestBasic
      *
      * @return $this
      */
-    public function init() 
+    public function init()
     {
         $this->requestUri = $this->getServer('REQUEST_URI');
         $scriptName = $this->getServer('SCRIPT_NAME');
@@ -76,8 +76,8 @@ class CRequestBasic
         // Prepare to create siteUrl and baseUrl by using currentUrl
         $this->currentUrl = $this->getCurrentUrl();
         $parts = parse_url($this->currentUrl);
-        $this->siteUrl = "{$parts['scheme']}://{$parts['host']}" . (isset($parts['port']) 
-            ? ":{$parts['port']}" 
+        $this->siteUrl = "{$parts['scheme']}://{$parts['host']}" . (isset($parts['port'])
+            ? ":{$parts['port']}"
             : '');
         $this->baseUrl = $this->siteUrl . $this->path;
 
@@ -91,7 +91,7 @@ class CRequestBasic
      *
      * @return string
      */
-    public function getSiteUrl() 
+    public function getSiteUrl()
     {
         return $this->siteUrl;
     }
@@ -103,7 +103,7 @@ class CRequestBasic
      *
      * @return string
      */
-    public function getBaseUrl() 
+    public function getBaseUrl()
     {
         return $this->baseUrl;
     }
@@ -115,7 +115,7 @@ class CRequestBasic
      *
      * @return string
      */
-    public function getScriptName() 
+    public function getScriptName()
     {
         return $this->scriptName;
     }
@@ -127,7 +127,7 @@ class CRequestBasic
      *
      * @return array
      */
-    public function getRouteParts() 
+    public function getRouteParts()
     {
         return $this->routeParts;
     }
@@ -139,7 +139,7 @@ class CRequestBasic
      *
      * @return string as the current extracted route
      */
-    public function getRoute() 
+    public function getRoute()
     {
         return $this->route;
     }
@@ -151,18 +151,18 @@ class CRequestBasic
      *
      * @return string as the current extracted route
      */
-    public function extractRoute() 
+    public function extractRoute()
     {
         $requestUri = $this->getServer('REQUEST_URI');
         $scriptName = $this->getServer('SCRIPT_NAME');
         $scriptPath = dirname($scriptName);
         $scriptFile = basename($scriptName);
 
-        // Compare REQUEST_URI and SCRIPT_NAME as long they match, 
+        // Compare REQUEST_URI and SCRIPT_NAME as long they match,
         // leave the rest as current request.
         $i = 0;
         $len = min(strlen($requestUri), strlen($scriptPath));
-        while ($i < $len 
+        while ($i < $len
                && $requestUri[$i] == $scriptPath[$i]
         ) {
             $i++;
@@ -185,10 +185,12 @@ class CRequestBasic
             $route = substr($route, 0, $queryPos);
         }
 
+        $route = ($route === false) ? '' : $route;
+
         $this->route = $route;
         $this->routeParts = explode('/', trim($route, '/'));
-
-        return $route;
+//var_dump($route);
+        return $this->route;
     }
 
 
@@ -198,18 +200,18 @@ class CRequestBasic
      *
      * @return string as current url.
      */
-    public function getCurrentUrl() 
+    public function getCurrentUrl()
     {
         $rs    = $this->getServer('REQUEST_SCHEME');
         $https = $this->getServer('HTTPS') == 'on' ? true : false;
-        $sn    = $this->getServer('SERVER_NAME'); 
-        $ru    = rtrim($this->getServer('REQUEST_URI'), '/'); 
-        $port  = $this->getServer('SERVER_PORT'); 
+        $sn    = $this->getServer('SERVER_NAME');
+        $ru    = rtrim($this->getServer('REQUEST_URI'), '/');
+        $port  = $this->getServer('SERVER_PORT');
 
-        $port  = ($port == '80') 
-            ? '' 
-            : (($port == 443 && $https) 
-                ? '' 
+        $port  = ($port == '80')
+            ? ''
+            : (($port == 443 && $https)
+                ? ''
                 : ':' . $port);
 
         $url  = $rs ? $rs : 'http';
@@ -230,7 +232,7 @@ class CRequestBasic
      *
      * @return mixed
      */
-    public function getServer($key, $default = null) 
+    public function getServer($key, $default = null)
     {
         return isset($this->server[$key]) ? $this->server[$key] : $default;
     }
@@ -245,7 +247,7 @@ class CRequestBasic
      *
      * @return $this
      */
-    public function setServer($key, $value = null) 
+    public function setServer($key, $value = null)
     {
         if (is_array($key)) {
             $this->server = array_merge($this->server, $key);
@@ -264,7 +266,7 @@ class CRequestBasic
      *
      * @return mixed
      */
-    public function getGet($key, $default = null) 
+    public function getGet($key, $default = null)
     {
         return isset($this->get[$key]) ? $this->get[$key] : $default;
     }
@@ -279,7 +281,7 @@ class CRequestBasic
      *
      * @return mixed
      */
-    public function getPost($key = null, $default = null) 
+    public function getPost($key = null, $default = null)
     {
         if ($key) {
             return isset($this->post[$key]) ? $this->post[$key] : $default;
@@ -287,5 +289,4 @@ class CRequestBasic
             return $this->post;
         }
     }
-
 }
