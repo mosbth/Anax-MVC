@@ -67,3 +67,8 @@
   color: #22f; 
   border-color: #22f;
 }
+
+/* Just to sho off how class works */
+.navbar li .italic {
+  font-style: italic;
+}
