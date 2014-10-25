@@ -4,26 +4,35 @@
  *
  */
 // Get environment & autoloader.
-require __DIR__.'/config.php';
+require __DIR__.'/../config.php';
 
 // Create services and inject into the app. 
-$di  = new \Anax\DI\CDIFactoryDocumentation();
+$di  = new \Anax\DI\CDIFactoryTest();
 $app = new \Anax\Kernel\CAnax($di);
-
-$app->theme->setVariable('style', "article {max-width: 650px;}");
 
 
 
 // Home route
 $app->router->add('', function () use ($app) {
 
-    $app->theme->setTitle("HTTP errorcodes");
-
-    $content = $app->documentation->get('http-error-codes.md');
-    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
-
-    $app->views->add('default/article', [
-        'content' => $content,
+    $app->theme->setTitle("Throw exceptions to generate HTTP error pages");
+    $app->views->add('default/page', [
+        'title' => "Throw exceptions to generate HTTP error pages",
+        'content' => "Testcases for exception to generate HTTP error pages.",
+        'links' => [
+            [
+                'href' => $app->url->create('403'),
+                'text' => "\Anax\Exception\ForbiddenException() as 403",
+            ],
+            [
+                'href' => $app->url->create('404'),
+                'text' => "\Anax\Exception\NotFoundException() as 404",
+            ],
+            [
+                'href' => $app->url->create('500'),
+                'text' => "\Anax\Exception\InternalServerErrorException() as 500",
+            ],
+        ]
     ]);
 
 });

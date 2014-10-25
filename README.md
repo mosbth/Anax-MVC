@@ -56,6 +56,12 @@ History
 
 v2.0.x (latest)
 
+* Added empryt directory for app-specific file content `app/content`.
+* Minor fixes to error messages.
+* Several minor fixes to code formatting.
+* Added `CUrl::createRelative()` for urls relative current frontcontroller.
+* Reorganized and added testprograms in `webroot/test`.
+* Improved documentation in `docs/documentation` and `webroot/docs.php`.
 * Added config-file for phpunit `phpunit.xml.dist`.
 * Added `phpdoc.dist.xml`.
 * Enhanced `Anax\Navigation\CNavBar` with class in menu item.

@@ -5,10 +5,10 @@
  */
 
 // Get environment & autoloader.
-require __DIR__.'/config.php';
+require __DIR__.'/../config.php';
 
 // Create services and inject into the app. 
-$di  = new \Anax\DI\CDIFactoryDefault();
+$di  = new \Anax\DI\CDIFactoryTest();
 $app = new \Anax\Kernel\CAnax($di);
 
 
@@ -25,7 +25,7 @@ class TestController
 
     public function indexAction()
     {
-        $this->theme->setTitle("Anax MVC error reporting");
+        $this->theme->setTitle("How verbose is the error reporting");
         $this->views->add('default/page', [
             'title' => "Testing error reporting from Anax MVC",
             'content' => "Trying out some missusage of Anax MVC to see if the errors are easy to understand.",
