@@ -14,11 +14,6 @@ $app = new \Anax\Kernel\CAnax($di);
 
 
 
-// Change to use the demo navbar
-$app->navbar->configure(ANAX_APP_PATH . 'config/navbar_demo.php');
-
-
-
 // Create the home route
 $app->router->add('*', function () use ($app) {
 
