@@ -54,6 +54,12 @@ History
 
 ###History for Anax-MVC
 
+v2.0.x (latest)
+
+* Improved errorhandling in trait `TInjectable`, now throwing more verbose exceptions on which class is using the trait. 
+
+
+
 v2.0.2 (2014-10-25)
 
 * Added example for navigation bar and how to create urls in navbar.

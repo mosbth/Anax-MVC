@@ -46,8 +46,46 @@ class TestController
                     'href' => $this->url->create('t4'),
                     'text' => "Forward to non-existing action",
                 ],
+                [
+                    'href' => $this->url->create('test/no-di-call'),
+                    'text' => "Using TInjectable forgot to set \$di, accessing session() via __call()",
+                ],
+                [
+                    'href' => $this->url->create('test/no-di-get'),
+                    'text' => "Using TInjectable forgot to set \$di, accessing session via __get()",
+                ],
+                [
+                    'href' => $this->url->create('test/no-such-service-property'),
+                    'text' => "Using TInjectable forgot to set \$di, accessing session() via __call()",
+                ],
+                [
+                    'href' => $this->url->create('test/no-such-service-method'),
+                    'text' => "Using TInjectable forgot to set \$di, accessing session via __get()",
+                ],
             ]
         ]);
+    }
+
+    public function noDiCallAction()
+    {
+        $this->di = null;
+        $this->session();
+    }
+
+    public function noDiGetAction()
+    {
+        $this->di = null;
+        $this->session;
+    }
+
+    public function noSuchServicePropertyAction()
+    {
+        $this->session1();
+    }
+
+    public function noSuchServiceMethodAction()
+    {
+        $this->session1;
     }
 }
 
@@ -63,7 +101,6 @@ $app->router->add('', function () use ($app) {
 $app->router->add('t1', function () use ($app) {
 
     $app->dispatchNO;
-
     $app->dispatcher->forward(['controller' => 'test']);
 
 });
@@ -72,7 +109,6 @@ $app->router->add('t1', function () use ($app) {
 $app->router->add('t2', function () use ($app) {
 
     $app->dispatchNO();
-
     $app->dispatcher->forward(['controller' => 'test']);
 
 });
@@ -81,7 +117,6 @@ $app->router->add('t2', function () use ($app) {
 $app->router->add('t3', function () use ($app) {
 
     $app->dispatcher->forward(['controller' => 'testNO']);
-
     $app->dispatcher->forward(['controller' => 'test']);
 
 });
@@ -90,10 +125,10 @@ $app->router->add('t3', function () use ($app) {
 $app->router->add('t4', function () use ($app) {
 
     $app->dispatcher->forward(['controller' => 'test', 'action' => 'NONE']);
-
     $app->dispatcher->forward(['controller' => 'test']);
 
 });
+
 
 
 // Check for matching routes and dispatch to controller/handler of route
