@@ -56,11 +56,11 @@ class TestController
                 ],
                 [
                     'href' => $this->url->create('test/no-such-service-property'),
-                    'text' => "Using TInjectable forgot to set \$di, accessing session() via __call()",
+                    'text' => "Using TInjectable - no such method, accessing session1() via __call()",
                 ],
                 [
                     'href' => $this->url->create('test/no-such-service-method'),
-                    'text' => "Using TInjectable forgot to set \$di, accessing session via __get()",
+                    'text' => "Using TInjectable - no such property, accessing session1 via __get()",
                 ],
             ]
         ]);

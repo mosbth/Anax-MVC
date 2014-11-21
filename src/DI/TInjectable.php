@@ -41,7 +41,11 @@ trait TInjectable
     public function __get($service)
     {
         if (!$this->di) {
-            throw new \Exception('In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get a property from $this->di, but $this->di is not set. Did you forget to call setDI()?');
+            throw new \Exception(
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get
+                message, code a property from $this->di, but $this->di is not set. Did you 
+                forget to call setDI()?'
+            );
         }
 
         try {
@@ -50,7 +54,12 @@ trait TInjectable
             return $this->$service;
 
         } catch (\Exception $e) {
-            throw new \Exception('In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get a property (service) "' . $service . '" from $this->di, but the service is not set in $this->di. Did you misspell the service you are trying to reach or did you forget to load it into the $di container?');
+            throw new \Exception(
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get 
+                a property (service) "' . $service . '" from $this->di, but the service is not 
+                set in $this->di. Did you misspell the service you are trying to reach or did 
+                you forget to load it into the $di container?'
+            );
         }
     }
 
@@ -68,7 +77,10 @@ trait TInjectable
     public function __call($service, $arguments = [])
     {
         if (!$this->di) {
-            throw new \Exception('In trait TInjectable used by class ' . __CLASS__ . '. You are trying to call a method in $this->di, but $this->di is not set. Did you forget to call setDI()?');
+            throw new \Exception(
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to call a 
+                method in $this->di, but $this->di is not set. Did you forget to call setDI()?'
+            );
         }
 
         try {
@@ -77,7 +89,12 @@ trait TInjectable
             return $this->$service;
 
         } catch (\Exception $e) {
-            throw new \Exception('In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get a method (service) "' . $service . '" from $this->di, but the service is not set in $this->di. Did you misspell the service you are trying to reach or did you forget to load it into the $di container?');
+            throw new \Exception(
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get a 
+                method (service) "' . $service . '" from $this->di, but the service is not set 
+                in $this->di. Did you misspell the service you are trying to reach or did you 
+                forget to load it into the $di container?'
+            );
         }
     }
 }
