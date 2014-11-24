@@ -125,6 +125,9 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
     {
         $validController = $this->isValidController();
 
+        $isMethod   = null;
+        $isCallable = null;
+
         if ($validController) {
             $handler = [$this->controller, $this->action];
             $isMethod   = method_exists($this->controller, $this->action);
