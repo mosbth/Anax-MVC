@@ -145,11 +145,19 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
 
             $not = $validController ? "" : "NOT";
             $msg .=
-                " The class '$this->controllerName' does $not exist 
-                and can $not be loaded by the autoloader.";
+                " The controller named '$this->controllerName' does $not exist as part of of the
+                service-container \$di.
+                ";
 
-            $not = $isMethod ? "" : "NOT";
-            $msg .= " The method '$this->action' does $not exist in the class '$this->controllerName'.";
+            if ($validController) {
+                $not = $isMethod ? "" : "NOT";
+                $msg .= " The method '$this->action' does $not exist in the class '$this->controllerName'.";
+
+                $not = $isCallable ? "" : "NOT";
+                $msg .=
+                    " The method '$this->action' is $not callable in the class '$this->controllerName'
+                    (taking magic methods into consideration).";
+            }
 
             throw new \Exception($msg);
         }

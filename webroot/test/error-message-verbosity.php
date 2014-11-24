@@ -47,6 +47,10 @@ class TestController
                     'text' => "Forward to non-existing action",
                 ],
                 [
+                    'href' => $this->url->create('t5'),
+                    'text' => "Forward to existing, but private, action",
+                ],
+                [
                     'href' => $this->url->create('test/no-di-call'),
                     'text' => "Using TInjectable forgot to set \$di, accessing session() via __call()",
                 ],
@@ -87,6 +91,11 @@ class TestController
     {
         $this->session1;
     }
+
+    private function privateAction()
+    {
+        ;
+    }
 }
 
 
@@ -122,6 +131,12 @@ $app->router->add('t3', function () use ($app) {
 $app->router->add('t4', function () use ($app) {
 
     $app->dispatcher->forward(['controller' => 'test', 'action' => 'NONE']);
+
+});
+
+$app->router->add('t5', function () use ($app) {
+
+    $app->dispatcher->forward(['controller' => 'test', 'action' => 'private']);
 
 });
 
