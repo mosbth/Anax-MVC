@@ -56,6 +56,7 @@ History
 
 v2.0.x (latest)
 
+* Improved error messages in `CDispatcherbasic`.
 * Improved errorhandling in trait `TInjectable`, now throwing more verbose exceptions on which class is using the trait. 
 
 

@@ -101,7 +101,6 @@ $app->router->add('', function () use ($app) {
 $app->router->add('t1', function () use ($app) {
 
     $app->dispatchNO;
-    $app->dispatcher->forward(['controller' => 'test']);
 
 });
 
@@ -109,7 +108,6 @@ $app->router->add('t1', function () use ($app) {
 $app->router->add('t2', function () use ($app) {
 
     $app->dispatchNO();
-    $app->dispatcher->forward(['controller' => 'test']);
 
 });
 
@@ -117,7 +115,6 @@ $app->router->add('t2', function () use ($app) {
 $app->router->add('t3', function () use ($app) {
 
     $app->dispatcher->forward(['controller' => 'testNO']);
-    $app->dispatcher->forward(['controller' => 'test']);
 
 });
 
@@ -125,7 +122,6 @@ $app->router->add('t3', function () use ($app) {
 $app->router->add('t4', function () use ($app) {
 
     $app->dispatcher->forward(['controller' => 'test', 'action' => 'NONE']);
-    $app->dispatcher->forward(['controller' => 'test']);
 
 });
 
