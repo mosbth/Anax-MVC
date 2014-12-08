@@ -21,8 +21,8 @@ return [
         // This is a menu item
         'test'  => [
             'text'  => 'Submenu',
-            'url'   => $this->di->get('url')->createRelative('test.php'),
-            'title' => 'Submenu with url to relative frontcontroller',
+            'url'   => $this->di->get('url')->create('submenu'),
+            'title' => 'Submenu with url as internal route within this frontcontroller',
 
             // Here we add the submenu, with some menu items, as part of a existing menu item
             'submenu' => [
@@ -30,10 +30,10 @@ return [
                 'items' => [
 
                     // This is a menu item of the submenu
-                    'item 1'  => [
-                        'text'  => 'Item 1',
-                        'url'   => $this->di->get('url')->createRelative('test.php/about'),
-                        'title' => 'Url to specific route on specific frontcontroller'
+                    'item 0'  => [
+                        'text'  => 'Item 0',
+                        'url'   => $this->di->get('url')->create('submenu/item-0'),
+                        'title' => 'Url as internal route within this frontcontroller'
                     ],
 
                     // This is a menu item of the submenu
@@ -55,6 +55,15 @@ return [
         ],
  
         // This is a menu item
+        /*
+        'relative' => [
+            'text'  =>'Relative',
+            'url'   => $this->di->get('url')->createRelative('navigation-bar.php'),
+            'title' => 'Url to relative frontcontroller, other file'
+        ],
+        */
+
+        // This is a menu item
         'about' => [
             'text'  =>'About',
             'url'   => $this->di->get('url')->create('about'),
@@ -64,7 +73,7 @@ return [
  
     // Callback tracing the current selected menu item base on scriptname
     'callback' => function ($url) {
-        if ($url == $this->di->get('request')->getRoute()) {
+        if ($this->di->get('request')->getCurrentUrl($url) == $this->di->get('url')->create($url)) {
                 return true;
         }
     },

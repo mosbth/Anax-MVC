@@ -56,6 +56,7 @@ History
 
 v2.0.x (latest)
 
+* Correcting example `webroot/test/navigation-bar.php` to correctly show current menu item.
 * Improved error messages in `CDispatcherbasic`.
 * Improved errorhandling in trait `TInjectable`, now throwing more verbose exceptions on which class is using the trait. 
 
