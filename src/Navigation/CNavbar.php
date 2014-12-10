@@ -92,7 +92,7 @@ class CNavbar
         };
 
         // Call the anonomous function to create the menu, and submenues if any.
-        list($html, $ignore) = $createMenu($menu['items'], $menu['callback']);
+        list($html) = $createMenu($menu['items'], $menu['callback']);
 
 
         // Set the id & class element, only if it exists in the menu-array
