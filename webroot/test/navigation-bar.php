@@ -20,7 +20,7 @@ $app->router->add('*', function () use ($app) {
     $app->theme->setTitle("Testing navigation bar");
     $app->views->add('default/page', [
         'title' => "Test navigation bar",
-        'content' => "Testing the navigation bar and linking within it. The urls are just for show and clicking them may result in 404. Review how links are created by seeing the source for the configuration of the navbar in site/config/navbar.php.",
+        'content' => "<p>Testing the navigation bar and linking within it. The urls are just for show and clicking them may result in 404. Review how links are created by seeing the source for the configuration of the navbar in site/config/navbar.php.</p> <p>To try out the menu-choice that is marked when descendents are visited - manually add actions to the url.</p>",
     ]);
 
     // Create the navbar as a view

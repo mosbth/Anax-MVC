@@ -55,13 +55,12 @@ return [
         ],
  
         // This is a menu item
-        /*
-        'relative' => [
-            'text'  =>'Relative',
-            'url'   => $this->di->get('url')->createRelative('navigation-bar.php'),
-            'title' => 'Url to relative frontcontroller, other file'
+        'controller' => [
+            'text'  =>'Controller (marked for all descendent actions)',
+            'url'   => $this->di->get('url')->create('controller'),
+            'title' => 'Url to relative frontcontroller, other file',
+            'mark-if-parent-of' => 'controller',
         ],
-        */
 
         // This is a menu item
         'about' => [
@@ -71,15 +70,39 @@ return [
         ],
     ],
  
-    // Callback tracing the current selected menu item base on scriptname
+
+
+    /**
+     * Callback tracing the current selected menu item base on scriptname
+     *
+     */
     'callback' => function ($url) {
         if ($this->di->get('request')->getCurrentUrl($url) == $this->di->get('url')->create($url)) {
-                return true;
+            return true;
         }
     },
 
-    // Callback to create the urls
+
+
+    /**
+     * Callback to check if current page is a decendant of the menuitem, this check applies for those
+     * menuitems that has the setting 'mark-if-parent' set to true.
+     *
+     */
+    'is_parent' => function ($parent) {
+        $route = $this->di->get('request')->getRoute();
+        return !substr_compare($parent, $route, 0, strlen($parent));
+    },
+
+
+
+   /**
+     * Callback to create the url, if needed, else comment out.
+     *
+     */
+   /*
     'create_url' => function ($url) {
         return $this->di->get('url')->create($url);
     },
+    */
 ];

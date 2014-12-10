@@ -36,6 +36,7 @@
 } 
  
 .navbar li.selected-parent, 
+.navbar li.is-parent, 
 .navbar li.selected {
   color: #22f; 
   border-color: #22f;
