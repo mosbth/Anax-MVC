@@ -25,14 +25,36 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
         $this->request = new \Anax\Request\CRequestBasic();
         $this->request->setGlobals(
             [
-                'REQUEST_SCHEME' => "http",
-                'HTTPS'       => null, //"on",
-                'SERVER_NAME' => "dbwebb.se",
-                'SERVER_PORT' => "80",
-                'REQUEST_URI' => "/anax-mvc/webroot/app.php",
-                'SCRIPT_NAME' => "/anax-mvc/webroot/app.php",
+                'server' => [
+                    'REQUEST_SCHEME' => "http",
+                    'HTTPS'       => null, //"on",
+                    'SERVER_NAME' => "dbwebb.se",
+                    'SERVER_PORT' => "80",
+                    'REQUEST_URI' => "/anax-mvc/webroot/app.php",
+                    'SCRIPT_NAME' => "/anax-mvc/webroot/app.php",
+                ]
             ]
         );
+    }
+
+
+
+    /**
+     * Test 
+     *
+     * @return void
+     *
+     */
+    public function testGet()
+    {
+        $get = $this->request->getGet("nothing");
+        $this->assertEmpty($get, "Nothing is NOT empty.");
+
+        $key = "somekey";
+        $value = "somevalue";
+        $this->request->setGet($key, $value);
+        $get = $this->request->getGet($key);
+        $this->assertEquals($get, $value, "Missmatch between " . $get . " and " . $value);
     }
 
 
@@ -69,7 +91,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
     public function testGetRoute($route)
     {
         $uri = $this->request->getServer('REQUEST_URI');
-        $this->assertEmpty($uri, "REQUEST_URI is empty.");
+        //$this->assertEmpty($uri, "REQUEST_URI is empty.");
 
         $this->request->setServer('REQUEST_URI', $uri . '/' . $route);
         $this->assertEquals($route, $this->request->extractRoute(), "Failed extractRoute: " . $route);

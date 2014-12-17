@@ -47,13 +47,15 @@ class CRequestBasic
     /**
      * Read info from the globals.
      *
+     * @param array $globals use to initiate globals with values.
+     * 
      * @return void
      */
-    public function setGlobals()
+    public function setGlobals($globals = [])
     {
-        $this->server = $_SERVER;
-        $this->get    = $_GET;
-        $this->post   = $_POST;
+        $this->server = isset($globals['server']) ? array_merge($_SERVER, $globals['server']) : $_SERVER;
+        $this->get    = isset($globals['get'])    ? array_merge($_GET, $globals['get'])       : $_GET;
+        $this->post   = isset($globals['post'])   ? array_merge($_POST, $globals['post'])     : $_POST;
     }
 
 
@@ -269,6 +271,25 @@ class CRequestBasic
     public function getGet($key, $default = null)
     {
         return isset($this->get[$key]) ? $this->get[$key] : $default;
+    }
+
+
+
+    /**
+     * Set variable in the get array.
+     *
+     * @param mixed  $key   the key an the , or an key-value array
+     * @param string $value the value of the key
+     *
+     * @return $this
+     */
+    public function setGet($key, $value = null)
+    {
+        if (is_array($key)) {
+            $this->get = array_merge($this->get, $key);
+        } else {
+            $this->get[$key] = $value;
+        }
     }
 
 
