@@ -56,6 +56,7 @@ History
 
 v2.0.x (latest)
 
+* Adding autoloader to composer.json to enable download from packagist using composer and require.
 * Add PHP 5.6 as testenvironment in Travis.
 * Testcases for \Anax\Session\CSession.
 * Testcases for \Anax\DI\CDI.
