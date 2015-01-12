@@ -56,6 +56,7 @@ History
 
 v2.0.x (latest)
 
+* Add PHP 5.6 as testenvironment in Travis.
 * Testcases for \Anax\Session\CSession.
 * Testcases for \Anax\DI\CDI.
 * Improved exception when creation of service failes in $di.
