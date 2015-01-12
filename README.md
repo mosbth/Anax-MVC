@@ -56,6 +56,9 @@ History
 
 v2.0.x (latest)
 
+* Testcases for \Anax\Session\CSession.
+* Testcases for \Anax\DI\CDI.
+* Improved exception when creation of service failes in $di.
 * CNavbar now works for descendants of a menuitem.
 * Correcting example `webroot/test/navigation-bar.php` to correctly show current menu item.
 * Improved error messages in `CDispatcherbasic`.

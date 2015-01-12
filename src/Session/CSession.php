@@ -33,9 +33,9 @@ class CSession
     {
         $name = isset($aName)
             ? $aName
-            : isset($this->config['name'])
+            : (isset($this->config['name'])
                 ? $this->config['name']
-                : "anax";
+                : "anax");
 
         session_name($name);
     }
@@ -76,7 +76,7 @@ class CSession
      * @param string $key   in session variable.
      * @param mixed  $value to set in session.
      *
-     * @return mixed
+     * @return void
      */
     public function set($key, $value)
     {

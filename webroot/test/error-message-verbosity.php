@@ -19,6 +19,12 @@ $di->set('TestController', function () use ($di) {
 });
 
 
+$di->set('fails', function () {
+    throw new \Exception("Custom exception thrown by callback creating service.");
+});
+
+
+
 class TestController
 {
     use \Anax\DI\TInjectable;
@@ -66,6 +72,10 @@ class TestController
                     'href' => $this->url->create('test/no-such-service-method'),
                     'text' => "Using TInjectable - no such property, accessing session1 via __get()",
                 ],
+                [
+                    'href' => $this->url->create('test/create-service-fails-with-exception'),
+                    'text' => "Loading service in service container but throws exception during load.",
+                ],
             ]
         ]);
     }
@@ -95,6 +105,11 @@ class TestController
     private function privateAction()
     {
         ;
+    }
+
+    public function createServiceFailsWithExceptionAction()
+    {
+        $this->fails();
     }
 }
 
