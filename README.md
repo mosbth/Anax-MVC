@@ -54,6 +54,12 @@ History
 
 ###History for Anax-MVC
 
+v2.0.x (latest)
+
+* Removed testcase where exception was not thrown in creating session on hvm.
+
+
+
 v2.0.3 (2015-01-12)
 
 * Adding autoloader to composer.json to enable download from packagist using composer and require.

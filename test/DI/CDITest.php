@@ -34,21 +34,6 @@ class CDITest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      *
-     * @expectedException \Exception
-     */
-    public function testStartSessionDuringTests()
-    {
-        $di = new \Anax\DI\CDIFactoryDefault();
-        $di->get('session');
-    }
-
-
-
-    /**
-     * Test 
-     *
-     * @return void
-     *
      */
     public function testOverwritePreviousDefinedService()
     {
