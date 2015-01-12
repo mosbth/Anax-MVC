@@ -54,7 +54,7 @@ History
 
 ###History for Anax-MVC
 
-v2.0.x (latest)
+v2.0.3 (2015-01-12)
 
 * Adding autoloader to composer.json to enable download from packagist using composer and require.
 * Add PHP 5.6 as testenvironment in Travis.
