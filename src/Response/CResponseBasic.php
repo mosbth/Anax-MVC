@@ -41,8 +41,6 @@ class CResponseBasic
      */
     public function checkIfHeadersAlreadySent()
     {
-        echo "hej";
-        
         if (headers_sent($file, $line)) {
             throw new \Exception("Trying to send headers but headers already sent, output started at $file line $line.");
         }
