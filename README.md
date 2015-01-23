@@ -56,6 +56,7 @@ History
 
 v2.0.x (latest)
 
+* `CDispatcherBasic->foward()` now returns a value, fix #12.
 * Throw exception when headers already sent, fix #11.
 * Removed testcase where exception was not thrown in creating session on hvm.
 
