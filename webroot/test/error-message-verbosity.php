@@ -57,6 +57,10 @@ class TestController
                     'text' => "Forward to existing, but private, action",
                 ],
                 [
+                    'href' => $this->url->create('test/forward-protected'),
+                    'text' => "Forward to existing, but protected, action",
+                ],
+                [
                     'href' => $this->url->create('test/no-di-call'),
                     'text' => "Using TInjectable forgot to set \$di, accessing session() via __call()",
                 ],
@@ -109,6 +113,16 @@ class TestController
     private function privateAction()
     {
         ;
+    }
+
+    protected function protectedAction()
+    {
+        ;
+    }
+
+    public function forwardProtectedAction()
+    {
+        $this->dispatcher->forward(['controller' => 'test', 'action' => 'protected']);
     }
 
     public function createServiceFailsWithExceptionAction()
