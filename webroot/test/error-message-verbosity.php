@@ -76,6 +76,10 @@ class TestController
                     'href' => $this->url->create('test/create-service-fails-with-exception'),
                     'text' => "Loading service in service container but throws exception during load.",
                 ],
+                [
+                    'href' => $this->url->create('test/headers-already-sent'),
+                    'text' => "Headers are already sent.",
+                ],
             ]
         ]);
     }
@@ -110,6 +114,12 @@ class TestController
     public function createServiceFailsWithExceptionAction()
     {
         $this->fails();
+    }
+
+    public function headersAlreadySentAction()
+    {
+        echo "Simulating output";
+        $this->response->redirect("http://example.com");
     }
 }
 
