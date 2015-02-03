@@ -37,7 +37,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @param string $route the route part
      *
@@ -134,7 +134,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @param string $route the route part
      *
@@ -231,7 +231,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      *
      * @return void
@@ -299,7 +299,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -358,7 +358,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -379,24 +379,7 @@ class CUrlTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
-     *
-     * @expectedException Exception
-     *
-     * @return void
-     *
-     */
-    public function testEmptyAssetThrowsException()
-    {
-        $url = new \Anax\Url\CUrl();
-
-        $res = $url->asset(null);
-    }
-
-
-
-    /**
-     * Test 
+     * Test
      *
      * @expectedException Exception
      *
