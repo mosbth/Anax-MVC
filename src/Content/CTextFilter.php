@@ -124,7 +124,7 @@ class CTextFilter
 
     /**
      * For convenience access to nl2br
-     * 
+     *
      * @param string $text text to be converted.
      *
      * @return string the formatted text.
@@ -149,6 +149,7 @@ class CTextFilter
             '/\[(FIGURE)[\s+](.+)\]/',
             '/\[(BASEURL)\]/',
             '/\[(RELURL)\]/',
+            '/\[(ASSET)\]/',
         ];
 
         return preg_replace_callback(
@@ -159,15 +160,19 @@ class CTextFilter
                     case 'FIGURE':
                         return CTextFilter::ShortCodeFigure($matches[2]);
                         break;
-                    
+
                     case 'BASEURL':
                         return CTextFilter::ShortCodeBaseurl();
                         break;
-                    
+
                     case 'RELURL':
                         return CTextFilter::ShortCodeRelurl();
                         break;
-                    
+
+                    case 'ASSET':
+                        return CTextFilter::ShortCodeAsset();
+                        break;
+
                     default:
                         return "{$matches[1]} is unknown shortcode.";
                 }
@@ -177,7 +182,7 @@ class CTextFilter
     }
 
 
-    
+
     /**
     * Init shortcode handling by preparing the option list to an array, for those using arguments.
     *
@@ -208,7 +213,7 @@ class CTextFilter
 
     /**
      * Shortcode for <figure>.
-     * 
+     *
      * Usage example: [FIGURE src="img/home/me.jpg" caption="Me" alt="Bild på mig" nolink="nolink"]
      *
      * @param string $options for the shortcode.
@@ -268,7 +273,7 @@ EOD;
 
     /**
      * Shortcode for adding BASEURL to links.
-     * 
+     *
      * Usage example: [BASEURL]
      *
      * @return array with all the options.
@@ -282,7 +287,7 @@ EOD;
 
     /**
      * Shortcode for adding RELURL to links.
-     * 
+     *
      * Usage example: [RELURL]
      *
      * @return array with all the options.
@@ -290,5 +295,18 @@ EOD;
     protected function shortCodeRelurl()
     {
         return $this->di->url->createRelative() . "/";
+    }
+
+
+    /**
+    * Shortcode for adding RELURL to links.
+    *
+    * Usage example: [RELURL]
+    *
+    * @return array with all the options.
+    */
+    protected function shortCodeAsset()
+    {
+        return $this->di->url->asset() . "/";
     }
 }

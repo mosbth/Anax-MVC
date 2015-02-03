@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * This is a Anax frontcontroller.
  *
@@ -9,7 +9,7 @@ require __DIR__.'/config.php';
 
 
 
-// Create services and inject into the app. 
+// Create services and inject into the app.
 $di  = new \Anax\DI\CDIFactoryDocumentation();
 $app = new \Anax\Kernel\CAnax($di);
 
@@ -25,6 +25,7 @@ $pages = [
     ''                  => ['title' => 'Home', 'file' => 'index.md'],
     'http-error-codes'  => ['title' => 'Exceptions as HTTP error codes'],
     'create-urls'       => ['title' => 'Creating urls'],
+    'create-urls-in-md' => ['title' => 'Creating urls in text or Markdown'],
 ];
 
 
