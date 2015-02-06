@@ -65,7 +65,7 @@ class CSession
     {
         return isset($_SESSION) && isset($_SESSION[$key])
             ? $_SESSION[$key]
-            : null;
+            : $default;
     }
 
 
