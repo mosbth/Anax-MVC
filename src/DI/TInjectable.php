@@ -31,7 +31,7 @@ trait TInjectable
 
 
     /**
-     * Magic method to get and create services. 
+     * Magic method to get and create services.
      * When created it is also stored as a parameter of this object.
      *
      * @param string $service name of class property not existing.
@@ -43,9 +43,8 @@ trait TInjectable
         if (!$this->di) {
             throw new \Exception(
                 'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get
-                message, code a property from $this->di, but $this->di is not set. Did you 
+                message, code a property from $this->di, but $this->di is not set. Did you
                 forget to call setDI()?'
-                . $e->getMessage()
             );
         }
 
@@ -56,9 +55,9 @@ trait TInjectable
 
         } catch (\Exception $e) {
             throw new \Exception(
-                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get 
-                a property (service) "' . $service . '" from $this->di, but the service is not 
-                set in $this->di. Did you misspell the service you are trying to reach or did 
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get
+                a property (service) "' . $service . '" from $this->di, but the service is not
+                set in $this->di. Did you misspell the service you are trying to reach or did
                 you forget to load it into the $di container?'
                 . $e->getMessage()
             );
@@ -68,7 +67,7 @@ trait TInjectable
 
 
    /**
-     * Magic method to get and create services as a method call. 
+     * Magic method to get and create services as a method call.
      * When created it is also stored as a parameter of this object.
      *
      * @param string $service   name of class property not existing.
@@ -80,9 +79,8 @@ trait TInjectable
     {
         if (!$this->di) {
             throw new \Exception(
-                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to call a 
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to call a
                 method in $this->di, but $this->di is not set. Did you forget to call setDI()?'
-                . $e->getMessage()
             );
         }
 
@@ -93,9 +91,9 @@ trait TInjectable
 
         } catch (\Exception $e) {
             throw new \Exception(
-                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get a 
-                method (service) "' . $service . '" from $this->di, but the service is not set 
-                in $this->di. Did you misspell the service you are trying to reach or did you 
+                'In trait TInjectable used by class ' . __CLASS__ . '. You are trying to get a
+                method (service) "' . $service . '" from $this->di, but the service is not set
+                in $this->di. Did you misspell the service you are trying to reach or did you
                 forget to load it into the $di container? '
                 . $e->getMessage()
             );
