@@ -15,7 +15,6 @@ script:
     - phpunit --bootstrap test/config.php --coverage-clover build/logs/clover.xml test
 
 after_script:
-  #- php mosbth/bin/coveralls -v
     - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
 notifications:

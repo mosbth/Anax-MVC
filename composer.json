@@ -16,11 +16,6 @@
     "require": {
         "php": ">=5.4"
     },
-/*
-    "require-dev": {
-        "satooshi/php-coveralls": "dev-master"
-    },
-*/
     "autoload": {
         "psr-4": { "Anax\\": "src/" }
     }

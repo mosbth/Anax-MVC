@@ -56,6 +56,8 @@ History
 
 v2.0.x (latest)
 
+* Updated composer.json and removed dependency to coverall.io.
+* updated .travis.yml to remove dependency to coverall.io and do not install composer.phar.
 * Adding example for shortcodes [BASEURL], [RELURL] and [ASSET].
 * Adding example code on using forward and view creation, fix #13.
 * `CDispatcherBasic->foward()` now returns a value, fix #12.
