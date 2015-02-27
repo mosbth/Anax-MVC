@@ -20,7 +20,7 @@ class CRequestBasic
 
     private $route;      // The route
     private $routeParts; // The route as an array
- 
+
 
     private $currentUrl; // Current url
     private $siteUrl;    // Url to this site, http://dbwebb.se
@@ -35,7 +35,7 @@ class CRequestBasic
     /**
      * Constructor.
      *
-     * @return void
+     *
      */
     public function __construct()
     {
@@ -48,7 +48,7 @@ class CRequestBasic
      * Read info from the globals.
      *
      * @param array $globals use to initiate globals with values.
-     * 
+     *
      * @return void
      */
     public function setGlobals($globals = [])
@@ -170,7 +170,7 @@ class CRequestBasic
             $i++;
         }
         $route = trim(substr($requestUri, $i), '/');
-     
+
         // Does the request start with script-name - remove it.
         $len1 = strlen($route);
         $len2 = strlen($scriptFile);
