@@ -33,6 +33,22 @@ class CResponseBasic
 
 
     /**
+     * Check if headers are already sent and throw exception if it is.
+     *
+     * @return void
+     *
+     * @throws \Exception
+     */
+    public function checkIfHeadersAlreadySent()
+    {
+        if (headers_sent($file, $line)) {
+            throw new \Exception("Trying to send headers but headers already sent, output started at $file line $line.");
+        }
+    }
+
+
+
+    /**
      * Send headers.
      *
      * @return $this
@@ -42,6 +58,8 @@ class CResponseBasic
         if (empty($this->headers)) {
             return;
         }
+
+        $this->checkIfHeadersAlreadySent();
 
         foreach ($this->headers as $header) {
             switch ($header) {
@@ -58,7 +76,7 @@ class CResponseBasic
                     break;
 
                 default:
-                    throw new \Exception("Unkown header type.");
+                    throw new \Exception("Trying to sen unkown header type: '$header'.");
             }
         }
 
@@ -72,10 +90,12 @@ class CResponseBasic
      *
      * @param string $url to redirect to
      *
-     * @return $this
+     * @return void
      */
     public function redirect($url)
     {
+        $this->checkIfHeadersAlreadySent();
+
         header('Location: ' . $url);
         exit();
     }

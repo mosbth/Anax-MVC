@@ -25,20 +25,18 @@ class CNavbar
     {
         // Keep default options in an array and merge with incoming options that can override the defaults.
         $default = array(
-          'id'          => null,
-          'class'       => null,
-          'wrapper'     => 'nav',
-          'create_url'  => function ($url) {
-            return $url;
-          },
+            'id'          => null,
+            'class'       => null,
+            'wrapper'     => 'nav',
+            'create_url'  => function ($url) {
+                return $url;
+            },
         );
         $menu = array_replace_recursive($default, $this->config);
 
-        // Function to create urls
-        $createUrl = $menu['create_url'];
-
-        // Create the ul li menu from the array, use an anonomous recursive function that returns an array of values.
-        $createMenu = function ($items, $callback) use (&$createMenu, $createUrl) {
+        // Create the ul li menu from the array, use an anonomous recursive function that returns an
+        // array of values.
+        $createMenu = function ($items, $callback) use (&$createMenu, $menu) {
             
             $html = null;
             $hasItemIsSelected = false;
@@ -61,18 +59,26 @@ class CNavbar
                     ? "selected "
                     : null;
                 
+                // Check if the menuitem is a parent of current page, /controller for /controller/action
+                $isParent = null;
+                if (isset($item['mark-if-parent-of']) && $item['mark-if-parent-of'] == true) {
+                    $isParent = $menu['is_parent']($item['mark-if-parent-of'])
+                        ? "is-parent "
+                        : null;
+                }
+                
                 // Is there a class set for this item, then use it
                 $class = isset($item['class']) && ! is_null($item['class'])
                     ? $item['class']
                     : null;
 
                 // Prepare the class-attribute, if used
-                $class = ($selected || $selectedParent || $class)
-                    ? " class='{$selected}{$selectedParent}{$class}' "
+                $class = ($selected || $selectedParent || $isParent || $class)
+                    ? " class='{$selected}{$selectedParent}{$isParent}{$class}' "
                     : null;
 
                 // Add the menu item
-                $url = $createUrl($item['url']);
+                $url = $menu['create_url']($item['url']);
                 $html .= "\n<li{$class}><a href='{$url}' title='{$item['title']}'>{$item['text']}</a>{$submenu}</li>\n";
                 
                 // To remember there is selected children when going up the menu hierarchy
@@ -86,7 +92,7 @@ class CNavbar
         };
 
         // Call the anonomous function to create the menu, and submenues if any.
-        list($html, $ignore) = $createMenu($menu['items'], $menu['callback']);
+        list($html) = $createMenu($menu['items'], $menu['callback']);
 
 
         // Set the id & class element, only if it exists in the menu-array

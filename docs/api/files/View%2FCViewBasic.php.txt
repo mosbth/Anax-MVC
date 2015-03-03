@@ -16,7 +16,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
     * Properties
     *
     */
-    private $template;          // Template file or array 
+    private $template;          // Template file or array
     private $templateData = []; // Data to send to template file
     private $sortOrder;         // For sorting views
     private $type;              // Type of view
@@ -33,7 +33,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
      *
      * @return $this
      */
-    public function set($template, $data = [], $sort = 0, $type = 'file') 
+    public function set($template, $data = [], $sort = 0, $type = 'file')
     {
         $this->template     = $template;
         $this->templateData = $data;
@@ -48,7 +48,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
      *
      * @return void
      */
-    public function render() 
+    public function render()
     {
         switch ($this->type) {
 
@@ -91,8 +91,9 @@ class CViewBasic implements \Anax\DI\IInjectionAware
      *
      * @return int
      */
-    public function sortOrder() 
-    {   
+    public function sortOrder()
+    {
         return $this->sortOrder;
     }
 }
+

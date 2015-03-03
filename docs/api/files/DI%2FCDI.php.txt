@@ -112,7 +112,7 @@ class CDI implements IDI
             return $this->load($service);
         }
 
-        throw new \Exception("The service accessed '$service' is not loaded in the DI-container.");
+        throw new \Exception("CDI the service accessed '$service' is not loaded in the DI-container.");
     }
 
 
@@ -180,15 +180,23 @@ class CDI implements IDI
 
         // Load by calling a function
         if (is_callable($sol)) {
-            $this->active[$service] = $sol();
+
+            try {
+                $this->active[$service] = $sol();
+            } catch (\Exception $e) {
+                throw new \Exception("CDI could not load service '$service'. Failed in the callback that instantiates the service. " . $e->getMessage());
+            }
+
         } elseif (is_object($sol)) {
             // Load by pre-instantiated object
             $this->active[$service] = $sol;
+
         } elseif (is_string($sol)) {
             // Load by creating a new object from class-string
             $this->active[$service] = new $sol();
+
         } else {
-            throw new Exception("The service could not be loaded.");
+            throw new Exception("CDI could not load service '$service'. It is unknown how to load it.");
         }
 
         $this->$service = $this->active[$service];

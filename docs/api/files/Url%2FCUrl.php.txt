@@ -31,7 +31,7 @@ class CUrl
     /**
      * Create an url and prepending the baseUrl.
      *
-     * @param string $uri part of uri to use when creating an url. "" or null means baseurl to  
+     * @param string $uri part of uri to use when creating an url. "" or null means baseurl to
      * current frontcontroller.
      *
      * @return string as resulting url.
@@ -39,7 +39,7 @@ class CUrl
     public function create($uri = null)
     {
         if (empty($uri)) {
-            
+
             // Empty uri means baseurl
             return $this->baseUrl
                 . (($this->urlType == self::URL_APPEND)
@@ -47,7 +47,7 @@ class CUrl
                     : null);
 
         } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
-            
+
             // Fully qualified, just leave as is.
             return rtrim($uri, '/');
 
@@ -71,7 +71,7 @@ class CUrl
     /**
      * Create an url and prepend the baseUrl to the directory of the frontcontroller.
      *
-     * @param string $uri part of uri to use when creating an url. "" or null means baseurl to  
+     * @param string $uri part of uri to use when creating an url. "" or null means baseurl to
      * directory of the current frontcontroller.
      *
      * @return string as resulting url.
@@ -84,7 +84,7 @@ class CUrl
             return $this->baseUrl;
 
         } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
-            
+
             // Fully qualified, just leave as is.
             return rtrim($uri, '/');
 
@@ -108,14 +108,14 @@ class CUrl
      *
      * @return string as resulting url.
      */
-    public function asset($uri)
+    public function asset($uri = null)
     {
         if (empty($uri)) {
-            
-            throw new \Exception("Asset can not be empty.");
+
+            // Allow empty
 
         } elseif (substr($uri, 0, 7) == "http://" || substr($uri, 0, 2) == "//") {
-            
+
             // Fully qualified, just leave as is.
             return rtrim($uri, '/');
 
@@ -127,7 +127,10 @@ class CUrl
         }
 
         $baseUrl = isset($this->staticBaseUrl) ? $this->staticBaseUrl : $this->baseUrl;
-        return $baseUrl . '/' . $uri;
+
+        return empty($uri)
+            ? $baseUrl
+            : $baseUrl . '/' . $uri;
     }
 
 
