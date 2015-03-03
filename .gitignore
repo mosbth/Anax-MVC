@@ -18,3 +18,7 @@ Thumbs.db
 composer.json
 composer.lock
 vendor
+
+# Test
+coverage
+
