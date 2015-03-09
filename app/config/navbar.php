@@ -77,7 +77,7 @@ return [
      *
      */
     'callback' => function ($url) {
-        if ($this->di->get('request')->getCurrentUrl($url) == $this->di->get('url')->create($url)) {
+        if ($url == $this->di->get('request')->getCurrentUrl(false)) {
             return true;
         }
     },
