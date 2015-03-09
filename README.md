@@ -55,6 +55,7 @@ History
 
 v2.0.x (latest)
 
+* Navbar to display current item even if ? is present, fix 15.
 * Updated composer.json and removed dependency to coverall.io.
 * updated .travis.yml to remove dependency to coverall.io and do not install composer.phar.
 * Adding example for shortcodes [BASEURL], [RELURL] and [ASSET].

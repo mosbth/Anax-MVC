@@ -200,14 +200,15 @@ class CRequestBasic
     /**
      * Get the current url.
      *
+     * @param boolean $queryString attach query string, default is true.
+     * 
      * @return string as current url.
      */
-    public function getCurrentUrl()
+    public function getCurrentUrl($queryString = true)
     {
         $rs    = $this->getServer('REQUEST_SCHEME');
         $https = $this->getServer('HTTPS') == 'on' ? true : false;
         $sn    = $this->getServer('SERVER_NAME');
-        $ru    = rtrim($this->getServer('REQUEST_URI'), '/');
         $port  = $this->getServer('SERVER_PORT');
 
         $port  = ($port == '80')
@@ -216,10 +217,19 @@ class CRequestBasic
                 ? ''
                 : ':' . $port);
 
+        if ($queryString) {
+            $ru = rtrim($this->getServer('REQUEST_URI'), '/');
+        } else {
+            $ru = rtrim(strtok($this->getServer('REQUEST_URI'), '?'), '/');
+        }
+
+
         $url  = $rs ? $rs : 'http';
         $url .= $https ? 's' : '';
         $url .= '://';
         $url .= $sn . $port . htmlspecialchars($ru);
+        
+        echo "$ru<br>";
 
         return $url;
     }
