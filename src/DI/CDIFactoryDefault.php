@@ -120,8 +120,8 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('theme', function () {
             $themeEngine = new \Anax\ThemeEngine\CThemeBasic();
-            $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php');
             $themeEngine->setDI($this);
+            $themeEngine->configure(ANAX_APP_PATH . 'config/theme.php');
             return $themeEngine;
         });
 
@@ -140,8 +140,8 @@ class CDIFactoryDefault extends CDI
 
         $this->setShared('textFilter', function () {
             $filter = new \Anax\Content\CTextFilter();
-            $filter->configure(ANAX_APP_PATH . 'config/text_filter.php');
             $filter->setDI($this);
+            $filter->configure(ANAX_APP_PATH . 'config/text_filter.php');
             return $filter;
         });
     }
