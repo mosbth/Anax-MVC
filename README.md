@@ -53,7 +53,7 @@ History
 
 ###History for Anax-MVC
 
-v2.0.x (latest)
+v2.0.4 (2015-04-05)
 
 * Navbar to display current item even if ? is present, fix 15.
 * Updated composer.json and removed dependency to coverall.io.
