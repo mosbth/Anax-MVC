@@ -16,9 +16,33 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
      * Properties
      *
      */
-    private $routes;                    // All the routes
-    private $internalRoutes;            // All internal routes
-    private $defaultRoute    = null;    // A default rout to catch all
+    private $routes         = [];    // All the routes
+    private $internalRoutes = [];    // All internal routes
+    private $defaultRoute   = null;  // A default rout to catch all
+
+
+
+    /**
+     * Get all routes.
+     *
+     * @return array with all routes.
+     */
+    public function getAll()
+    {
+        return $this->routes;
+    }
+
+
+
+    /**
+     * Get all internal routes.
+     *
+     * @return array with internal routes.
+     */
+    public function getInternal()
+    {
+        return $this->internalRoutes;
+    }
 
 
 

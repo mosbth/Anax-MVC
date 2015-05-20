@@ -88,6 +88,10 @@ class CDIFactoryDefault extends CDI
                         'message' => "HTTP Status Code 404: This route is not found.",
                     ],
                 ]);
+                $this->dispatcher->forward([
+                    'controller' => 'error',
+                    'action' => 'displayValidRoutes',
+                ]);
             })->setName('404');
             
             $router->addInternal('500', function () {

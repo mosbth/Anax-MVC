@@ -53,6 +53,11 @@ History
 
 ###History for Anax-MVC
 
+v2.0.x (latest)
+
+* Display valid routes and controllers to aid in 404 debugging.
+
+
 v2.0.4 (2015-04-05)
 
 * Navbar to display current item even if ? is present, fix 15.

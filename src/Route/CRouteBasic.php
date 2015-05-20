@@ -78,4 +78,16 @@ class CRouteBasic
         $this->name = $name;
         return $this;
     }
+
+
+
+    /**
+     * Get the rule for the route.
+     *
+     * @return string
+     */
+    public function getRule()
+    {
+        return $this->rule;
+    }
 }
