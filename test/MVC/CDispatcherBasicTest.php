@@ -18,7 +18,9 @@ class CDispatcherBasicTest extends \PHPUnit_Framework_TestCase
      */
     public function testDispatchWrongRoute1()
     {
+        $di = new \Anax\DI\CDI();
         $disp = new \Anax\MVC\CDispatcherBasic();
+        $disp->setDI($di);
         $disp->dispatch();
     }
 

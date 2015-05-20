@@ -141,7 +141,6 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
         if ($validController) {
             $handler = [$this->controller, $this->action];
             $isMethod   = method_exists($this->controller, $this->action);
-            //$isCallable = is_callable($handler);
             $isCallable = $this->isCallable();
         }
 
@@ -159,6 +158,11 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
                 " The controller named '$this->controllerName' does $not exist as part of of the
                 service-container \$di.
                 ";
+
+            $services = $this->di->getServices();
+            natcasesort($services);
+            $services = implode("\n", $services);
+            $msg .= " Loaded services are: <pre>$services</pre>\n";
 
             if ($validController) {
                 $not = $isMethod ? "" : "NOT";

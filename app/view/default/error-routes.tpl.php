@@ -16,9 +16,7 @@
 
 <p>The following controllers are loaded as services in <code>$di</code>.</p>
 <ul>
-<?php foreach($services as $service) {
-    if (strpos($service, "Controller") !== false) {
-        echo "<li><code>" . $service . "</code></li>";
-    }
+<?php foreach($controllers as $controller) {
+    echo "<li><code>" . $controller . "</code></li>";
 }?>
 </ul>

@@ -43,6 +43,23 @@ class CDI implements IDI
 
 
     /**
+     * Return an array with all loaded services that are controllers.
+     *
+     * @return void
+     */
+    public function getControllers()
+    {
+        return array_filter(
+            array_keys($this->loaded),
+            function ($val) {
+                return strpos($val, "Controller") !== false;
+            }
+        );
+    }
+
+
+
+    /**
      * Return an arry with all active services names.
      *
      * @return void
@@ -77,9 +94,10 @@ class CDI implements IDI
      * Set a singleton service and connect it to a task which creates the object (lazy loading).
      *
      * @param string $service as a service label, naming this service.
-     * @param mixed  $loader  contains a pre-defined object, a string with classname or an
-     *      callable which returns an instance of the service object. Its the way to 
-     *      actually load, insantiate, the serviceobject.
+     * @param mixed  $loader  contains a pre-defined object, a string with
+     *                        classname or an callable which returns an
+     *                        instance of the service object. Its the way
+     *                        to actually load, insantiate, the serviceobject.
      *
      * @return nothing.
      */
@@ -96,7 +114,7 @@ class CDI implements IDI
      * @param string $service as a service label, naming this service.
      *
      * @return object as instance of the service object.
-     * @throws Exception when service accessed is not loaded. 
+     * @throws Exception when service accessed is not loaded.
      */
     public function get($service)
     {
@@ -112,13 +130,19 @@ class CDI implements IDI
             return $this->load($service);
         }
 
-        throw new \Exception("CDI the service accessed '$service' is not loaded in the DI-container.");
+        $message  = "CDI the service accessed '$service' is not loaded in the DI-container.";
+        $services = $this->getServices();
+        natcasesort($services);
+        $services = implode("\n", $services);
+        $message .= " Loaded services are: <pre>$services</pre>";
+        
+        throw new \Exception($message);
     }
 
 
 
     /**
-     * Magic method to get and create services. 
+     * Magic method to get and create services.
      * When created it is also stored as a parameter of this object.
      *
      * @param string $service name of class property not existing.

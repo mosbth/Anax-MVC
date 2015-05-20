@@ -57,7 +57,7 @@ class ErrorController
               'route'           => $this->di->request->getRoute(),
               'routes'          => $this->di->router->getAll(),
               'internalRoutes'  => $this->di->router->getInternal(),
-              'services'        => $this->di->getServices(),
+              'controllers'     => $this->di->getControllers(),
           ]);
       }
 }
