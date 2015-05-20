@@ -19,7 +19,7 @@ $app->router->add('', function () use ($app) {
 
     $app->theme->setTitle("Wrong route error verbosity");
     $app->views->add('default/page', [
-        'title' => "Verbose rror message using wrong route",
+        'title' => "Verbose error message using wrong route",
         'content' => "Examples of wrong routes, to display verbose error messages.",
         'links' => [
             [
