@@ -10,6 +10,8 @@ return [
  
     // Here comes the menu strcture
     'items' => [
+        
+        'class' => 'nav navbar-nav',
 
         // This is a menu item
         'home'  => [

@@ -318,4 +318,12 @@ class CRequestBasic
             return $this->post;
         }
     }
+    
+/* ==== GET LAST URL ==== */
+    public function getLastUrl($default = null)
+    {
+    	$url = !empty($this->server['HTTP_REFERER']) ? $this->server['HTTP_REFERER'] : $default;
+    	 
+    	return $url;
+    }
 }

@@ -27,7 +27,7 @@ class CNavbar
         $default = array(
             'id'          => null,
             'class'       => null,
-            'wrapper'     => 'nav',
+            'wrapper'     => 'div',
             'create_url'  => function ($url) {
                 return $url;
             },
@@ -40,6 +40,9 @@ class CNavbar
             
             $html = null;
             $hasItemIsSelected = false;
+            
+            
+            //LÄGGA IN UL HÄR
 
             foreach ($items as $item) {
 
@@ -88,7 +91,7 @@ class CNavbar
             }
 
             // Return the menu
-            return array("\n<ul>$html</ul>\n", $hasItemIsSelected);
+            return array("\n<ul class='nav navbar-nav'>$html</ul>\n", $hasItemIsSelected);
         };
 
         // Call the anonomous function to create the menu, and submenues if any.
