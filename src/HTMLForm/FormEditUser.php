@@ -111,7 +111,7 @@ class FormEditUser extends \Mos\HTMLForm\CForm
 /* === Callback What to do if the form was submitted? ====*/
 	public function callbackSuccess()
 	{
-		$this->redirect('/gnar2/kmom06/Anax-MVC/webroot/users/id/'. $this->userId, 'Din användare är uppdaterad', 'success');
+		$this->redirect('users/id/'. $this->userId, 'Din användare är uppdaterad', 'success');
 	}
 	
 /* ==== Callback What to do when form could not be processed? === */

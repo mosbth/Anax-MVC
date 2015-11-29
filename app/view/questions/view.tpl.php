@@ -1,5 +1,5 @@
 <div id="question">
-    <h4><?=$question->questionTitle?></h4>
+    <h1><?=$question->questionTitle?></h1>
     <p><a href="<?=$this->url->create('questions/answer/' . $question->id)?>"><button class="btn">Svara</button></a>
     
     <?php if($userId==$questioncreator) :?>
@@ -102,7 +102,9 @@
                     <?php if($userId==$questioncreator) :?>
                       <?php if($userId!=$answer->userId) :?>
                        <?php if($answer->accepted == false) :?>
+                       <?php if (empty($acceptedanswers)) :?>
                         <p><a href="<?=$this->url->create('questions/acceptAnswer/' . $answer->id)?>"><i class="fa fa-check"></i> Acceptera detta svar</a></p>
+                        <? endif ?>
                         <? endif ?>
                         <? endif ?>
                     <? endif ?>

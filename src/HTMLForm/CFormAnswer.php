@@ -66,7 +66,7 @@ class CFormAnswer extends \Mos\HTMLForm\CForm
 /* ==== Callback What to do if the form was submitted? ==== */
 	public function callbackSuccess()
 	{	
-		$this->redirectTo('questions/id/' . $this->question->id);
+		$this->redirect('questions/id/' . $this->question->id);
 
 	}
 	

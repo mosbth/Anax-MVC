@@ -93,12 +93,12 @@ class CFormQuestionEdit extends \Mos\HTMLForm\CForm
 /* === Callback What to do if the form was submitted? ====*/
 	public function callbackSuccess()
 	{	
-		$this->redirect('/gnar2/kmom06/Anax-MVC/webroot/questions/list/timestamp', 'Frågan är uppdaterad', 'success');
+		$this->redirect('questions/list/timestamp', 'Frågan är uppdaterad', 'success');
 	}
 	
 /* ==== Callback What to do when form could not be processed? === */
 	public function callbackFail()
 	{
-		$this->redirect('/gnar2/kmom06/Anax-MVC/webroot/questions/id/' . $this->questionId, 'Det gick inte att uppdatera frågan', 'error');
+		$this->redirect('questions/id/' . $this->questionId, 'Det gick inte att uppdatera frågan', 'error');
 	}
 }

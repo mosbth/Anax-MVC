@@ -108,6 +108,14 @@ class Question extends \Anax\MVC\CDatabaseModel
 		return $this->db->fetchAll();
     }
     
+/* ==== 15. Does the question have an accepted anser ==== */
+    public function hasAcceptedAnswer($id){
+        $sql = "SELECT accepted FROM kmom07_answer as A
+        WHERE A.questionId = '{$id}' AND accepted = true";
+        $this->db->execute($sql);
+		return $this->db->fetchAll();
+    }//END OF ACCEPTED ANSWERS
+    
 ///* === 10. GET QUESTION ID FOR ANSWERCOMMENTS=== */
 //    public function getQuestionId($id){
 //        $sql = "SELECT * FROM kmom07_answer as A, kmom07_question as Q

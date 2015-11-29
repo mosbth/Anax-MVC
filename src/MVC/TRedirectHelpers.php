@@ -43,7 +43,9 @@ trait TRedirectHelpers
             $_SESSION['message_type'] = $message_type;
         }
         
-        header('Location: ' . $url);
+        $route = $this->di->url->create($url);
+        
+        header('Location: ' . $route);
         exit();
     }//END OF REDIRECT
     

@@ -103,7 +103,6 @@ class QuestionsController implements \Anax\DI\IInjectionAware
 
 		$question = $this->questions->find($id);
         
-//        var_dump($question);
         if(!empty($question)){
             $email = $this->users->getUserEmail($question->userId);
             $question->userEmail = $email[0]->email;
@@ -115,14 +114,14 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             $userId =  isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
 
             $answers = $this->answers->getAnswers($id);
-//            var_dump($answers);
             
             foreach($answers as $answer){
                 $res2= $this->users->getUserEmail($answer->userId);
                 $answer->userEmail = $res2[0]->email;
                 $answer->comments = $this->comments->getCommentstoAnswer($answer->id);
             }
-//            var_dump($answer->comments);
+            
+            $acceptedanswers = $this->questions->hasAcceptedAnswer($id);
 
             $question->comments = $this->comments->getCommentstoQuestion($id);
             $tags = $this->questions->getQuestionTags($id);
@@ -131,6 +130,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             $this->views->add('questions/view', [
                 'question' => $question,
                 'answers' => $answers,
+                'acceptedanswers' => $acceptedanswers,
                 'tags' => $tags,
                 'questioncreator' => $questioncreator,
                 'userId' => $userId,
@@ -421,7 +421,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
 			$value = $this->request->getPost('searchvalue');
 			
                 $sql = "SELECT DISTINCT Q.* FROM kmom07_question as Q, kmom07_comment as C, kmom07_answer as A
-                WHERE A.answer LIKE '%{$value}%' OR C.commentText LIKE '%{$value}%' OR Q.questiontext LIKE '%{$value}' OR Q.questionTitle LIKE '%{$value}%'";
+                WHERE A.answer LIKE '%" . $value . "%' OR C.commentText LIKE '%" . $value . "%' OR Q.questiontext LIKE '%" . $value . "%' OR Q.questionTitle LIKE '%" . $value . "%'";
                 $this->db->execute($sql);
                 $questions = $this->db->fetchAll();
 
@@ -437,5 +437,9 @@ class QuestionsController implements \Anax\DI\IInjectionAware
 		}
         
     }//END OF SEARCH
+    
+
+
+
 	
 }

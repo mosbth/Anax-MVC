@@ -64,7 +64,7 @@ class CFormComment extends \Mos\HTMLForm\CForm
 /* === Callback What to do if the form was submitted? ====*/
 	public function callbackSuccess()
 	{	
-		$this->redirect('/gnar2/kmom06/Anax-MVC/webroot/questions/list/timestamp' , 'Kommentar inlagd', 'success');
+		$this->redirect('questions/list/timestamp' , 'Kommentar inlagd', 'success');
 	}
     
 /* ==== Callback What to do when form could not be processed? === */

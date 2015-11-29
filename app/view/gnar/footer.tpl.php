@@ -1,6 +1,6 @@
 
     
-        <div class="col-md-3 col-lg-3 gnarfooter">
+        <div class="col-md-2 col-lg-2 gnarfooter">
         
         <h5>Navigera</h5>
         <p><a href="<?= $this->di->get('url')->create('questions/list/timestamp') ?>">Frågor</a></p>
@@ -10,7 +10,7 @@
 
         </div><!--COL-->
     
-        <div class="col-md-3 col-lg-3 gnarfooter">
+        <div class="col-md-4 col-lg-4 gnarfooter">
         
         <form action="search.php" method="post" id="searchform">
         <input class="form-control" type="text "placeholder="Sök..." name="searchvalue">
