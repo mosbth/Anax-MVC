@@ -92,11 +92,39 @@ class CResponseBasic
      *
      * @return void
      */
-    public function redirect($url)
-    {
-        $this->checkIfHeadersAlreadySent();
-
+    public function redirect($url, $message = NULL, $message_type = NULL){
+ 
+        if($message !=NULL){
+            $_SESSION['message'] = $message;
+        }
+        if($message_type !=NULL){
+            $_SESSION['message_type'] = $message_type;
+        }
+        
         header('Location: ' . $url);
         exit();
-    }
+    }//END OF REDIRECT
+
+/* ==== DISPLAY ERROR OR SUCCESS MESSAGE ==== */
+    function displayMessage(){
+        if(!empty($_SESSION['message'])){
+            $message = $_SESSION['message'];
+            
+            if(!empty($_SESSION['message_type'])){
+                $message_type = $_SESSION['message_type'];
+                
+                if($message_type == 'error'){
+                    echo '<div id="errormessage" class="alert alert-danger">' . $message . '</div>';
+                }else{
+                    echo '<div id="successmessage" class="alert alert-success">' . $message . '</div>';
+                }
+            }//END OF MESSAGE TYPE
+            unset($_SESSION['message']);
+            unset($_SESSION['message_type']);
+        }else{
+            echo '';
+        }     
+                                
+    }//END OF DISPLAY MESSAGE
+           
 }

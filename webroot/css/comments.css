@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+.timestamp{
+    font-size: 9px; 
+}
+
+#comment {
+    padding: 5px;
+    border-bottom: #E6E6E6, thin, solid;
+    border-top: #E6E6E6, thin, solid;
+
+}
+#comment:nth-child(2n+1) {
+    background: #E6E6E6;
+}
+
+#buttons{
+    border-top: solid;
+    border-top-color: #E6E6E6;
+    border-top-width: thin;
+    padding: 5px;
+}

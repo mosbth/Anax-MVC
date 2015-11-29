@@ -6,6 +6,7 @@
 <?php if(isset($favicon)): ?><link rel='icon' href='<?=$this->url->asset($favicon)?>'/><?php endif; ?>
 <?php foreach($stylesheets as $stylesheet): ?>
 <link rel='stylesheet' type='text/css' href='<?=$this->url->asset($stylesheet)?>'/>
+<link rel="stylesheet" href="css/anax-grid/font-awesome-4.4.0/css/font-awesome.min.css">
 <?php endforeach; ?>
 <?php if(isset($style)): ?><style><?=$style?></style><?php endif; ?>
 <script src='<?=$this->url->asset($modernizr)?>'></script>

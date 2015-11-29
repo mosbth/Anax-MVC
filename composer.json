@@ -14,7 +14,11 @@
         }
     ],
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "phpmvc/comment": "dev-master",
+        "mos/cform": "2.*@dev",
+        "mos/cdatabase": "dev-master",
+        "emmawi/cflashmessage": "dev-master"
     },
     "autoload": {
         "psr-4": { "Anax\\": "src/" }

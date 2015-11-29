@@ -1,0 +1,229 @@
+/**
+ * General elements
+ */
+
+@import url(figure.css);
+@import url(users.css);
+
+
+body {
+  color: #333;
+  font-family: Helvetica, arial, sans-serif;
+  overflow-y: scroll;
+  margin:0;
+  padding:0;
+  background: #222;
+}
+
+h1 {font-size: 1.5em;text-transform:uppercase;}
+
+h4{text-transform: uppercase;font-weight: bold;}
+
+p{font-size:0.8em;font-family: Helvetica, Arial, sans-serif;}
+.bold{font-weight: bold;}
+
+.user{font-weight: bold;font-size: 1em;}
+.timestamp{color:lightgray;}
+
+th{text-transform: uppercase;font-size: 12px;}
+
+
+a{color:#004865;}
+a:hover{color: #01394f;}
+
+.undecorated{list-style: none;padding: 0;}
+
+/* ==== NAVBAR ====*/
+
+.navbar-default{
+    background: #004865;
+    margin: 0 auto;
+    min-height: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    border-radius: 0;
+    border: none !important;   
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {border:none;}
+.navbar-default li{margin-top: 40px;}
+
+.navbar a{color: white !important;}
+
+#main{
+    background: #FFF;
+    margin-bottom: 10px;
+    clear: both;
+    overflow:auto;
+    min-height: 400px;
+    padding: 20px;
+}
+
+#header{min-height: 20px;background: #222;font-size: 10px;padding:5px;margin-bottom: 1px;}
+#header a{color:white;}
+
+
+/* ===== TAGGAR ===== */
+
+.label{background: #004865;margin-right: 5px;}
+.label a{color:white;}
+
+/* ==== BUTTONS ==== */
+.btn{text-transform: uppercase;font-size: 10px;background: #004865;color:white;}
+.btn:hover{background: #01394f;color:lightgray;text-decoration: none;}
+
+.tagsinput{min-width: 100px;}
+
+#buttongnar{display: inline;}
+
+/* ==== CONTAINER ==== */
+.container {
+    margin: 0 auto;
+    max-width: 1000px; 
+    overflow:auto;
+}
+.container-fluid{
+    padding: 0;
+}
+
+#logomenu{height: 60px;}
+#logomenu2{
+    height:45px;
+    float:left;
+    display:inline-block;
+}
+
+
+#questions{}
+
+.fa-comment{color: #004865;}
+
+/* === FRONTPAGE === */
+#frontcol1{width: 66%;float: left; }
+#frontcol2{width: 33%;float: right;padding-left: 5px;}
+.frontpage{width: 100%;border-radius: 5px;-moz-border-radius: 5px; -webkit-border-radius: 5px; margin-bottom: 10px;}
+.blogfrontpage{overflow: auto;}
+.blogfrontpage h5, .blogfrontpage p{display: inline}
+.blogfrontpage img{width: 150px; border-radius: 5px;-moz-border-radius: 5px; -webkit-border-radius: 5px;margin: 5px;}
+.blog p{margin-top:10px;}
+#loginfirstpage{display: inline;}
+#loginfirstpage2 div{display: inline;}
+#loginfirstpage2 a{display: inline;}
+
+.link{text-decoration:underline;cursor: pointer;}
+
+
+/* ==== GRAVATAR ==== */
+.gravatar{width: 80px;border-radius: 100%;}
+.gravatardiv{float: left;}
+
+
+/* ==== ONE USER VIEW ===== */
+
+
+#usertitle{color: #004865;font-weight: bold;}
+
+#usertext{color:#004865;}
+
+#usertext, #usertitle{padding-left: 100px;}
+#logoutpageuser{display: inline-block;}
+#activity{
+    float:right;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #004865;
+}
+#activity table{width: 300px;}
+
+#points span{font-size: 4em;}
+
+.usernumber{font-size: 2em;}
+#user{min-height: 120px;}
+#funstuff{margin-bottom: 10px;font-size: 12px;}
+#funstuff table{min-width: 45%;}
+
+#userhr{display:none;}
+
+#buttonsuser{margin-bottom: 10px;}
+
+
+/* === QUESTIONS VIEW ONE ==== */
+.loginmessage{cursor:pointer}
+
+#questionpoints, .answerpoints{
+    margin-top: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.points{text-align: center;}
+
+.fa-check{color: forestgreen; margin-top: 5px;}
+
+.comment p{display: inline;font-size: 10px;}
+.commentpoints{display: inline;}
+
+.answerscount{padding-left: 30px;}
+
+/* ===== OVERRIDING SOME PROPERTIES IN TABS UI ===== */
+.ui-widget-content{border:none;}
+.ui-widget{font-family: inherit;font-size: inherit;}
+.ui-widget-header{border:none; border-bottom: 1px solid #ccc; background:white;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {background:white;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{background:#004865;color:white;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active a{color:white;}
+
+
+/* ==== FOOTER ==== */
+
+#footer {
+    font-size:10px;
+    text-transform: uppercase;
+    text-align: left;
+    background: url(../img/bg2.png) 100% no-repeat;
+    background-position: bottom;
+    color: white;
+}
+
+#footer2{min-height: 450px;}
+.gnarfooter{position: relative;}
+
+.gnarfooter a{color:white;}
+.gnarfooter a:hover{color: #ccc;}
+
+/* ==== MEDIA QUERIES ==== */
+
+@media screen and (max-width: 991px){
+
+}
+
+@media screen and (max-width: 768px){
+    
+}
+
+@media screen and (max-width: 568px){
+    
+    .displaynone{display:none;}
+    .navbar-default{min-height:100px;}
+    .navbar-default li{margin-top: 0 auto;}
+    
+    #main{min-height: 800px;}
+    
+    #frontcol1, #frontcol2{width: 100%;float: none;}
+    
+    #loginfirstpage{display: none;}
+    #logomenu{margin-bottom: 20px;}
+    
+/* ===== USER VIEW ====*/
+    .gravatar{}
+    #textquestion, #usertext, #textanswer, #usertitle{padding-left: 0px;}
+    #activity{float:none;font-size: 10px;text-transform: uppercase;font-weight: bold;}
+    #activity table{width: 100%;}
+    .gravatardiv{float:none;margin-bottom: 10px;}
+    #user{}
+    #userhr{display:inherit;}
+    #userQuestions,#userAnswers, #userComments{font-size: 0.8em;}
+}
+

@@ -96,4 +96,14 @@ class CSession
     {
         return isset($_SESSION[$key]);
     }
+    
+    	/**
+	 * Destroy the session
+	 */
+	public function destroy() 
+	{
+		session_destroy();
+	}
 }
+
+
