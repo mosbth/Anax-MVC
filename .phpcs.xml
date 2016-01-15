@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
-<ruleset name="PHPCS rule set">
-    <description>Custom rule set.</description>
+<ruleset name="PHPCS rule set"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+                     http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="
+                     http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>
+        Rule set for Anax-MVC.
+    </description>
 
     <file>app</file>
     <file>src</file>
@@ -10,20 +18,14 @@
     <exclude-pattern>*.tpl.*</exclude-pattern>
     <exclude-pattern>test/config.php</exclude-pattern>
 
-<!--
     <arg name="encoding" value="utf-8"/>
-    <arg name="show_warnings" value="1"/>
-    <arg name="colors" value="1"/>
-    <arg name="tab_width" value="4"/>
-    
--->
-    <!--<arg name="extensions" value=".php"/>-->
-    <!--<arg name="warning-severity" value="5"/>-->
+    <arg name="warning-severity" value="0"/>
 
     <rule ref="PSR2">
-<!--
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />         <exclude name="Squiz.Commenting.FileComment" />
         <exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace" />
-    -->
+
+        <!-- Below may be removed for a rougher check -->
+        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace" />
     </rule>
+    
 </ruleset>

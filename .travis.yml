@@ -7,22 +7,32 @@ php:
     - 5.4
     - hhvm
 
+
+
 matrix:
     allow_failures:
         - php: nightly
+
+
 
 before_script:
     #- wget http://getcomposer.org/composer.phar
     #- php composer.phar install --no-interaction
     - wget https://scrutinizer-ci.com/ocular.phar
 
+
+
 script: 
     - mkdir -p build/logs
     - phpunit --bootstrap test/config.php --coverage-clover build/logs/clover.xml test
     - make test
 
+
+
 after_script:
     - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+
+
 
 notifications:
     irc: "irc.freenode.org#dbwebb"
