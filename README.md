@@ -53,7 +53,7 @@ History
 
 ###History for Anax-MVC
 
-v2.0.x (latest)
+v2.0.5 (2016-01-15)
 
 * Codestyle using phpcs.
 * Enhancing verbosity on exception messages by printing out $di.
