@@ -17,7 +17,7 @@ return [
     ],
 
     
-    /** 
+    /**
      * Add default views.
      */
     'views' => [
@@ -26,7 +26,7 @@ return [
     ],
 
 
-    /** 
+    /**
      * Data to extract and send as variables to the main template file.
      */
     'data' => [
@@ -59,4 +59,3 @@ return [
         'google_analytics' => null,
     ],
 ];
-

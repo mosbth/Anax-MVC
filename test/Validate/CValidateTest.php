@@ -20,20 +20,20 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
             [ 0, ['int'] ],
             [ 1, ['range' => [1, 100]] ],
             [ 100, ['range' => [1, 100]] ],
-      ];
+        ];
     }
 
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
      * @dataProvider providerCheck
      *
      */
-    public function testCheck($value, $rules) 
+    public function testCheck($value, $rules)
     {
         $validate = new \Anax\Validate\CValidate();
 
@@ -44,7 +44,7 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @dataProvider providerCheckFail
      *
@@ -53,7 +53,7 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
      * @return void
      *
      */
-    public function testValidationRuleMissing() 
+    public function testValidationRuleMissing()
     {
         $validate = new \Anax\Validate\CValidate();
         $validate->check(0, ['not_exists']);
@@ -79,7 +79,7 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @dataProvider providerCheckFail
      *
@@ -88,7 +88,7 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
      * @return void
      *
      */
-    public function testCheckFailException($value, $rules) 
+    public function testCheckFailException($value, $rules)
     {
         $validate = new \Anax\Validate\CValidate();
         $validate->check($value, $rules, true);
@@ -97,14 +97,14 @@ class CValidateTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @dataProvider providerCheckFail
      *
      * @return void
      *
      */
-    public function testCheckFail($value, $rules) 
+    public function testCheckFail($value, $rules)
     {
         $validate = new \Anax\Validate\CValidate();
         $res = $validate->check($value, $rules);

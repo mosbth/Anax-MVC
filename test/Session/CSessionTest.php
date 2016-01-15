@@ -9,7 +9,7 @@ namespace Anax\Request;
 class CSessionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -23,7 +23,7 @@ class CSessionTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -41,7 +41,7 @@ class CSessionTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *

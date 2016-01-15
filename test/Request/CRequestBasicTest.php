@@ -40,7 +40,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -79,7 +79,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @param string $route the route part
      *
@@ -184,7 +184,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @param string $server the $_SERVER part
      *
@@ -193,7 +193,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerGetCurrentUrl
      *
      */
-    public function testGetCurrentUrl($server) 
+    public function testGetCurrentUrl($server)
     {
         $this->request->setServer('REQUEST_SCHEME', $server['REQUEST_SCHEME']);
         $this->request->setServer('HTTPS', $server['HTTPS']);
@@ -265,14 +265,14 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
                     'siteUrl'     => "https://dbwebb.se",
                     'baseUrl'     => "https://dbwebb.se/anax-mvc/webroot",
                 ]
-            ]            
+            ]
         ];
     }
 
 
 
     /**
-     * Test 
+     * Test
      *
      * @param string $server the route part
      *
@@ -281,7 +281,7 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
      * @dataProvider providerInit
      *
      */
-    public function testInit($server) 
+    public function testInit($server)
     {
         $this->request->setServer('REQUEST_SCHEME', $server['REQUEST_SCHEME']);
         $this->request->setServer('HTTPS', $server['HTTPS']);
@@ -300,4 +300,3 @@ class CRequestBasicTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($baseUrl, $this->request->getBaseUrl(), "Failed baseurl: " . $baseUrl);
     }
 }
-

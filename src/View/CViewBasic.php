@@ -26,7 +26,7 @@ class CViewBasic implements \Anax\DI\IInjectionAware
     /**
      * Set values for the view.
      *
-     * @param string/array $template the template file, or array 
+     * @param string/array $template the template file, or array
      * @param array        $data     variables to make available to the view, default is empty
      * @param int          $sort     which order to display the views, if suitable
      * @param string       $type     which type of view
@@ -53,7 +53,6 @@ class CViewBasic implements \Anax\DI\IInjectionAware
         switch ($this->type) {
 
             case 'file':
-
                 if (!is_readable($this->template)) {
                     throw new \Exception("Could not find template file: " . $this->template);
                 }
@@ -64,7 +63,6 @@ class CViewBasic implements \Anax\DI\IInjectionAware
                 break;
 
             case 'callback':
-    
                 if (!isset($this->template['callback']) || !is_callable($this->template['callback'])) {
                     throw new \Exception("View missing callback.");
                 }
@@ -74,7 +72,6 @@ class CViewBasic implements \Anax\DI\IInjectionAware
                 break;
 
             case 'string':
-
                 echo $this->template;
 
                 break;

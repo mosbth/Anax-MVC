@@ -5,7 +5,7 @@ namespace Anax\Validate;
  * A helper to validate variables.
  *
  */
-class CValidate 
+class CValidate
 {
 
     /**
@@ -26,56 +26,56 @@ class CValidate
      * @return boolean true or false
      * @throws Exception when check fails
      */
-    public function check($value, $rules, $throws = false) 
+    public function check($value, $rules, $throws = false)
     {
         $tests = [
             'fail' => [
-                'message' => 'Will always fail.', 
-                'test' => function() {
+                'message' => 'Will always fail.',
+                'test' => function () {
                     return false;
                 },
             ],
             'pass' => [
-                'message' => 'Will always pass.', 
-                'test' => function() {
+                'message' => 'Will always pass.',
+                'test' => function () {
                     return true;
                 },
             ],
             'not_empty' => [
-                'message' => 'Can not be empty.', 
-                'test' => function($value) {
+                'message' => 'Can not be empty.',
+                'test' => function ($value) {
                     return !empty($value);
                 },
             ],
             'not_equal' => [
-                'message' => 'Not equal.', 
-                'test' => function($value, $arg) {
+                'message' => 'Not equal.',
+                'test' => function ($value, $arg) {
                     return $value != $arg;
                 },
             ],
             'numeric' => [
-                'message' => 'Must be numeric.', 
-                'test' => function($value) {
+                'message' => 'Must be numeric.',
+                'test' => function ($value) {
                     return is_numeric($value);
                 }
             ],
             'int' => [
-                'message' => 'Must be an integer.', 
-                'test' => function($value) {
+                'message' => 'Must be an integer.',
+                'test' => function ($value) {
                     $int = (int) $value;
                     return "$int" == "$value";
                 }
             ],
             'range' => [
-                'message' => 'Out of range.', 
-                'test' => function($value, $min, $max) {
+                'message' => 'Out of range.',
+                'test' => function ($value, $min, $max) {
                     return $value >= $min && $value <= $max;
                 }
             ],
             'email_adress' => [
-                'message' => 'Must be an email adress.', 
-                'test' => function($value) { 
-                    return preg_match(self::REGEXP_EMAIL, $value) === 1; 
+                'message' => 'Must be an email adress.',
+                'test' => function ($value) {
+                    return preg_match(self::REGEXP_EMAIL, $value) === 1;
                 }
             ],
         ];
@@ -85,7 +85,7 @@ class CValidate
 
             if (!isset($tests[$rule])) {
                 throw new \Exception("Validation rule does not exist.");
-            } 
+            }
     
             $param = is_int($key) ? null : $val;
             $test  =  $tests[$rule];
@@ -94,7 +94,7 @@ class CValidate
 
                 if (isset($param) && is_array($param)) {
                     $param = array_merge([$value], $param);
-                } else if (isset($param)) {
+                } elseif (isset($param)) {
                     $param = [$value, $param];
                 } else {
                     $param = [$value];
@@ -108,7 +108,7 @@ class CValidate
                     }
                 }
             }
-        } 
+        }
 
         return true;
     }

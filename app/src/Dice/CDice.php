@@ -21,10 +21,10 @@ class CDice
      * Roll the dice
      *
      * @param int $times the number of times to roll.
-     * 
+     *
      * @return void
      */
-    public function roll($times) 
+    public function roll($times)
     {
         $this->lastRoll = array();
         for ($i = 0; $i < $times; $i++) {
@@ -39,7 +39,7 @@ class CDice
      *
      * @return int
      */
-    public function getNumOfRolls() 
+    public function getNumOfRolls()
     {
         return count($this->lastRoll);
     }
@@ -51,7 +51,7 @@ class CDice
      *
      * @return void
      */
-    public function getResults() 
+    public function getResults()
     {
         return $this->lastRoll;
     }
@@ -63,7 +63,7 @@ class CDice
      *
      * @return void
      */
-    public function getTotal() 
+    public function getTotal()
     {
         return array_sum($this->lastRoll);
     }

@@ -10,7 +10,7 @@ class CTextFilterTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *

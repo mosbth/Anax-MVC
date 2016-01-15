@@ -66,7 +66,7 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 
 
     /**
-     * Get a value of a variable which will be exposed to the template files 
+     * Get a value of a variable which will be exposed to the template files
      * during render.
      *
      * @param string $which variable to get value of.
@@ -118,7 +118,7 @@ class CThemeBasic implements IThemeEngine, \Anax\DI\IInjectionAware
 
     /**
      * Render the theme by applying the variables onto the template files.
-     * 
+     *
      * @return void
      */
     public function render()

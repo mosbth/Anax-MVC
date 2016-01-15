@@ -21,8 +21,8 @@ trait TSingleton
      */
     static public function instance()
     {
-        return isset(static::$instance) 
+        return isset(static::$instance)
             ? self::$instance
-            : self::$instance = new static; 
+            : self::$instance = new static;
     }
 }

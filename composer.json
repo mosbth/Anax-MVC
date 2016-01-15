@@ -14,7 +14,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "mos/ctextfilter": "dev-master",
+        "mos/cform": "2.x-dev"
     },
     "autoload": {
         "psr-4": { "Anax\\": "src/" }

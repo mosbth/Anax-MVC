@@ -1,6 +1,6 @@
 <?php
 /**
- * Config-file for sessions. 
+ * Config-file for sessions.
  */
 
 return [

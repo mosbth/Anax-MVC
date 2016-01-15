@@ -9,7 +9,7 @@ namespace Anax\MVC;
 class CDispatcherBasicTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -27,7 +27,7 @@ class CDispatcherBasicTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *

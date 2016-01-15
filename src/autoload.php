@@ -12,7 +12,7 @@
  */
 spl_autoload_register(function ($class) {
     $path = ANAX_SOURCE_PATH . "/{$class}/{$class}.php";
-    if(is_file($path)) {
+    if (is_file($path)) {
         require($path);
     }
 });
@@ -44,7 +44,7 @@ spl_autoload_register(function ($className) {
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
-    if(is_file($fileName)) {
+    if (is_file($fileName)) {
         require $fileName;
     }
 });
@@ -86,5 +86,3 @@ spl_autoload_register(function ($class) {
         require $file;
     }
 });
-
-

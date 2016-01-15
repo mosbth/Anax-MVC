@@ -3,7 +3,7 @@
 namespace Anax\DI;
 
 /**
- * Anax base class implementing Dependency Injection / Service Locator 
+ * Anax base class implementing Dependency Injection / Service Locator
  * of the services used by the framework, using lazy loading.
  *
  */

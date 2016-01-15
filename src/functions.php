@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrapping functions, essential and needed for Anax to work together with some common helpers. 
+ * Bootstrapping functions, essential and needed for Anax to work together with some common helpers.
  *
  */
 
@@ -13,7 +13,7 @@
  *
  * @return void
  */
-function dump($array) 
+function dump($array)
 {
     echo "<pre>" . htmlentities(print_r($array, 1)) . "</pre>";
 }
@@ -30,10 +30,12 @@ function dump($array)
  * @return void
  *
  */
-function mergesort(&$array, $cmp_function) 
+function mergesort(&$array, $cmp_function)
 {
     // Arrays of size < 2 require no action.
-    if (count($array) < 2) return;
+    if (count($array) < 2) {
+        return;
+    }
     // Split the array in half
     $halfway = count($array) / 2;
     $array1 = array_slice($array, 0, $halfway);
@@ -57,7 +59,11 @@ function mergesort(&$array, $cmp_function)
         }
     }
     // Merge the remainder
-    while ($ptr1 < count($array1)) $array[] = $array1[$ptr1++];
-    while ($ptr2 < count($array2)) $array[] = $array2[$ptr2++];
+    while ($ptr1 < count($array1)) {
+        $array[] = $array1[$ptr1++];
+    }
+    while ($ptr2 < count($array2)) {
+        $array[] = $array2[$ptr2++];
+    }
     return;
 }

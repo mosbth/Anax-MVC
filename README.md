@@ -55,7 +55,7 @@ History
 
 v2.0.x (latest)
 
-* Enhancing verbosity on exceptino messages by printing out $di
+* Enhancing verbosity on exception messages by printing out $di.
 * Display valid routes and controllers to aid in 404 debugging.
 
 

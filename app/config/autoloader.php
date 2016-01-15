@@ -11,7 +11,7 @@
  */
 require ANAX_INSTALL_PATH . 'src/Loader/CPsr4Autoloader.php';
 
-call_user_func(function() {
+call_user_func(function () {
     $loader = new \Anax\Loader\CPsr4Autoloader();
     $loader->addNameSpace('Anax', ANAX_INSTALL_PATH . 'src')
            ->addNameSpace('', ANAX_APP_PATH . 'src')
@@ -26,7 +26,6 @@ call_user_func(function() {
  *
  * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading
  */
-if(is_file(ANAX_INSTALL_PATH . 'vendor/autoload.php')) {
+if (is_file(ANAX_INSTALL_PATH . 'vendor/autoload.php')) {
     include ANAX_INSTALL_PATH . 'vendor/autoload.php';
 }
-

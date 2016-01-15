@@ -9,7 +9,7 @@ namespace Anax\DI;
 class CDITest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test 
+     * Test
      *
      * @return void
      *
@@ -30,7 +30,7 @@ class CDITest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test 
+     * Test
      *
      * @return void
      *

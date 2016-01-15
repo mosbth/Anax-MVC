@@ -201,7 +201,7 @@ class CRequestBasic
      * Get the current url.
      *
      * @param boolean $queryString attach query string, default is true.
-     * 
+     *
      * @return string as current url.
      */
     public function getCurrentUrl($queryString = true)

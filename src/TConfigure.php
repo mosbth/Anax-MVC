@@ -28,12 +28,10 @@ trait TConfigure
     {
         if (is_array($what)) {
             $options = $what;
-        }
-        elseif (is_readable($what)) {
+        } elseif (is_readable($what)) {
             $options = include $what;
-        }
-        else {
-            throw new Exception("Configure item '" . htmlentities($what) 
+        } else {
+            throw new Exception("Configure item '" . htmlentities($what)
                 . "' is not an array nor a readable file.");
         }
 

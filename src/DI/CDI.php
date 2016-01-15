@@ -3,7 +3,7 @@
 namespace Anax\DI;
 
 /**
- * Anax base class implementing Dependency Injection / Service Locator of the services used by the 
+ * Anax base class implementing Dependency Injection / Service Locator of the services used by the
  * framework, using lazy loading.
  *
  */
@@ -76,7 +76,7 @@ class CDI implements IDI
      *
      * @param string  $service   as a service label, naming this service.
      * @param mixed   $loader    contains a pre-defined object, a string with classname or an
-     *      callable which returns an instance of the service object. Its the way to 
+     *      callable which returns an instance of the service object. Its the way to
      *      actually load, insantiate, the serviceobject.
      * @param boolean $singleton set if service is to act as singleton or not, default is false.
      *
@@ -173,7 +173,7 @@ class CDI implements IDI
 
 
     /**
-     * Magic method to get and create services. 
+     * Magic method to get and create services.
      * When created it is also stored as a parameter of this object.
      *
      * @param string $service   name of class property not existing.
@@ -194,7 +194,7 @@ class CDI implements IDI
      * @param string $service as a service label, naming this service.
      *
      * @return object as instance of the service object.
-     * @throws Exception when service could not be loaded. 
+     * @throws Exception when service could not be loaded.
      */
     protected function load($service)
     {
@@ -208,7 +208,9 @@ class CDI implements IDI
             try {
                 $this->active[$service] = $sol();
             } catch (\Exception $e) {
-                throw new \Exception("CDI could not load service '$service'. Failed in the callback that instantiates the service. " . $e->getMessage());
+                $msg = "CDI could not load service '$service'. Failed in the callback that instantiates the service. "
+                    . $e->getMessage();
+                throw new \Exception($msg);
             }
 
         } elseif (is_object($sol)) {
