@@ -17,7 +17,7 @@ $roll = isset($_GET['roll']) && is_numeric($_GET['roll'])
     ? $_GET['roll'] 
     : 0;
 
-if($roll > 100) {
+if ($roll > 100) {
     throw new Exception("To many rolls on the dice. Not allowed.");
 }
 
@@ -25,11 +25,11 @@ if($roll > 100) {
 
 // Make roll and prepare reply
 $html = null;
-if($roll) {
+if ($roll) {
     $dice->roll($roll);
 
     $html = "<p>You made {$roll} roll(s) and you got this serie.</p>\n<ul class='dice'>";
-    foreach($dice->getResults() as $val) {
+    foreach ($dice->getResults() as $val) {
         $html .= "\n<li class='dice-{$val}'></li>";
     }
     $html .= "\n</ul>\n";

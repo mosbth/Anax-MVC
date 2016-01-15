@@ -14,6 +14,7 @@
     <file>src</file>
     <file>test</file>
     <file>theme</file>
+    <file>webroot</file>
 
     <exclude-pattern>*.tpl.*</exclude-pattern>
     <exclude-pattern>test/config.php</exclude-pattern>
