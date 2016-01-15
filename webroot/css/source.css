@@ -22,7 +22,7 @@
 .src-header {
   color: #000;
   border: solid 1px #999;
-  border-bottom: 0px;
+  border-bottom: 0;
   background: #eee;
   padding: 0.5em 0.5em 0.5em 0.5em;
 } 

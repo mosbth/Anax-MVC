@@ -5,7 +5,7 @@ jQuery(function() {
    *
    */
   var slideShow = (function(){
-    var cssId = '#slideshow', 
+    var cssId = '#slideshow',
       wrapper,
       image,
       orig,
@@ -21,7 +21,7 @@ jQuery(function() {
       durationPause = 9000,
       durationFirst = durationPause,
       easing='linear',
-    
+
       rotate = function() {
       $(cssId + ' img')
         .eq(current)
@@ -69,7 +69,7 @@ jQuery(function() {
 
         current = 0;
         wrapper.css('position', 'relative');
-        image.css('position', 'relative');        
+        image.css('position', 'relative');
         image.css('top', '0');
         image.css('left', '0');
         zindex = parseInt(image.css('z-index')) | 0;
@@ -89,7 +89,7 @@ jQuery(function() {
 
       return {
         init: init
-      }
+    };
   })();
 
 
