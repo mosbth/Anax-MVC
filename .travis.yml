@@ -16,6 +16,14 @@ matrix:
 
 
 before_script:
+    # Store all files in your own bin
+    - mkdir bin
+    - export PATH=$PATH:$PWD/bin/
+
+    # Install phpcs
+    - curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+    - install --mode 0755 phpcs.phar $PWD/bin/phpcs
+
     #- wget http://getcomposer.org/composer.phar
     #- php composer.phar install --no-interaction
     - wget https://scrutinizer-ci.com/ocular.phar
