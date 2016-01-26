@@ -17,7 +17,9 @@
     <file>webroot</file>
 
     <exclude-pattern>*.tpl.*</exclude-pattern>
+    <exclude-pattern>*.js</exclude-pattern>
     <exclude-pattern>test/config.php</exclude-pattern>
+    <exclude-pattern>webroot/test</exclude-pattern>
 
     <arg name="encoding" value="utf-8"/>
     <arg name="warning-severity" value="0"/>
