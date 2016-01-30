@@ -1,0 +1,1 @@
+[Fredrik Nilsson](https://github.com/fnlive) studerar på Blekinge Tekniska Högskola och läser kursen "Databaser, HTML, CSS, JavaScript och PHP". På dagtid arbetar Fredrik på ett telekom-bolag med utveckling av produkter för mobilt bredband, och på fritiden blir det tid över för att bredda kunnandet inom webbutveckling.
