@@ -2,6 +2,11 @@
  * Styling for me-pages
 */
 
+.sitetitle, p {
+    /*font-family: 'Pragati+Narrow';*/
+    font-family: 'Raleway', sans-serif;
+}
+
 blockquote {
     background: #f9f9f9;
     border-left: 10px solid #ccc;
@@ -19,4 +24,39 @@ blockquote:before {
 }
 blockquote p {
     display: inline;
+}
+
+body {
+  /*background: #eeeded;*/
+}
+#wrapper {
+    /*background-color: #f8f8f8;*/
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: block;
+  padding: 10px;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-1:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.article1 img {
+    float: left;
+    margin: 0 1em 0 0;
+}
+.byline {
+    overflow: auto;
 }

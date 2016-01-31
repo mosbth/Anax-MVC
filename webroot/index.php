@@ -11,6 +11,9 @@ $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
 $app->router->add('', function() use ($app) {
+    $app->theme->addStylesheet('css/me.css');
+    // $app->theme->addStylesheet('https://fonts.googleapis.com/css?family=Raleway:400,200');
+    // $app->theme->setVariable('me-fonts', 'https://fonts.googleapis.com/css?family=Pragati+Narrow');
     $app->theme->setTitle("Om mig");
     $content = $app->fileContent->get('me.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
@@ -25,6 +28,7 @@ $app->router->add('', function() use ($app) {
 });
 
 $app->router->add('redovisning', function() use ($app) {
+    $app->theme->addStylesheet('css/me.css');
     $app->theme->setTitle("Redovisning");
     $content = $app->fileContent->get('report.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');

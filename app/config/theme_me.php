@@ -55,10 +55,10 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Fredrik @ PHPMVC',
+        'title_append' => ' | Fredrik@PHPMVC',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css', 'css/navbar.css', 'css/me.css'],
+        'stylesheets' => ['css/style.css', 'css/navbar_me.css'],
 
         // Inline style
         'style' => null,
