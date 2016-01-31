@@ -19,11 +19,30 @@ return [
         ],
 
         // This is a menu item
-        'controller' => [
+        'report' => [
             'text'  =>'Redovisning',
             'url'   => $this->di->get('url')->create('redovisning'),
             'title' => 'Redovisning',
-            'mark-if-parent-of' => 'controller',
+        ],
+
+        // This is a menu item
+        'dice' => [
+            'text'  =>'Tärning',
+            'url'   => $this->di->get('url')->create('dice'),
+            'title' => 'Kasta tärning',
+            // Here we add the submenu, with some menu items, as part of a existing menu item
+            'submenu' => [
+                'items' => [
+
+                    // This is a menu item of the submenu
+                    'roll'  => [
+                        'text'  => 'Kasta tärning',
+                        'url'   => $this->di->get('url')->create('dice/roll'),
+                        'title' => 'Kasta tärning'
+                    ],
+
+                ],
+            ],
         ],
 
         // This is a menu item
@@ -32,6 +51,7 @@ return [
             'url'   => $this->di->get('url')->create('source'),
             'title' => 'Sourcecode browser'
         ],
+
     ],
 
 

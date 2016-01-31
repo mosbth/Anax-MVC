@@ -9,3 +9,10 @@ Jag har inte arbetat med några ramverk tidigare. Om man möjligen räknar WordP
 Jag är inte direkt bekant med de olika begreppen runt ramverk, mönster och arkitektur mer än möjligen att jag hört namen. MVC t.ex. är ju ett välkänt namn, så det ska bli kul att se hur det kan användas.
 
 > Din uppfattning om Anax, och speciellt Anax-MVC?
+
+För att lägga till tärning:
+
+1. skapa routes till sidor i index.php under webroot.
+2. lägg till menyval i navbar_me.php som pekar till routes i index.php.
+3. Struktur för dice fanns upplagd under app/view/dice/index.tpl.php. Lägg till en div för att styra klass på app-innehållet.
+4. Uppdatera webroot/css/dice.css med ny klass som sätter bredd på tärnings-sidan.
