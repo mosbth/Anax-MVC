@@ -20,7 +20,7 @@ h1 {
  */
 #wrapper {
   margin: 0 auto;
-  width: 980px;
+  max-width: 980px;
   padding: 10px;
 }
 

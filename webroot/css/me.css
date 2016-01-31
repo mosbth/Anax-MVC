@@ -4,7 +4,7 @@
 
 .sitetitle, p {
     /*font-family: 'Pragati+Narrow';*/
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
 }
 
 blockquote {
@@ -24,13 +24,6 @@ blockquote:before {
 }
 blockquote p {
     display: inline;
-}
-
-body {
-  /*background: #eeeded;*/
-}
-#wrapper {
-    /*background-color: #f8f8f8;*/
 }
 
 .card {
@@ -60,4 +53,21 @@ body {
 }
 .byline {
     overflow: auto;
+}
+
+/*
+* Link colors
+* link: 5C7BA1
+* visited: 1755A1
+* hoover: 9EB3D7
+*/
+a {
+    text-decoration: none;
+    color: #5C7BA1;
+}
+a:hover {
+    color: #9EB3D7;
+}
+a:visited {
+    color: #1755A1;
 }

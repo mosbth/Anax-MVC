@@ -29,8 +29,8 @@ return [
             'region'   => 'header',
             'template' => 'me/header',
             'data'     => [
-                'siteTitle' => "Min me-sida i PHPMVC",
-                'siteTagline' => "Ramverk ger struktur och stadga!",
+                'siteTitle' => "Fredrik Nilsson",
+                'siteTagline' => "Studerar php ramverk",
             ],
             'sort'     => -1
         ],
@@ -44,7 +44,11 @@ return [
             'data' => [],
             'sort' => -1
         ],
-        ['region' => 'footer', 'template' => 'me/footer', 'data' => [], 'sort' => -1],
+        ['region' => 'footer', 'template' => 'me/footer', 'data' => [
+            'liveReload' => function () {
+                return ($_SERVER['SERVER_NAME']=='localhost') ? '<script src="http://localhost:35729/livereload.js"></script>' : '';
+            },
+        ], 'sort' => -1],
     ],
     /**
      * Data to extract and send as variables to the main template file.
