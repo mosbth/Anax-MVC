@@ -10,7 +10,7 @@ $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
-$app->router->add('', function() use ($app) {
+$app->router->add('', function () use ($app) {
     $app->theme->addStylesheet('css/me.css');
     // $app->theme->addStylesheet('https://fonts.googleapis.com/css?family=Raleway:400,200');
     // $app->theme->setVariable('me-fonts', 'https://fonts.googleapis.com/css?family=Pragati+Narrow');
@@ -27,7 +27,7 @@ $app->router->add('', function() use ($app) {
     ]);
 });
 
-$app->router->add('redovisning', function() use ($app) {
+$app->router->add('redovisning', function () use ($app) {
     $app->theme->addStylesheet('css/me.css');
     $app->theme->setTitle("Redovisning");
     $content = $app->fileContent->get('report.md');
@@ -43,7 +43,7 @@ $app->router->add('redovisning', function() use ($app) {
 
 });
 
-$app->router->add('source', function() use ($app) {
+$app->router->add('source', function () use ($app) {
     $app->theme->addStylesheet('css/source.css');
     $app->theme->setTitle("Källkod");
 

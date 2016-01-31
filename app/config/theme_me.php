@@ -37,7 +37,7 @@ return [
         [
             'region' => 'navbar',
             'template' => [
-                'callback' => function() {
+                'callback' => function () {
                     return $this->di->navbar->create();
                 },
             ],

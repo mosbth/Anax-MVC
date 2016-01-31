@@ -9,7 +9,7 @@ require __DIR__.'/config_with_app.php';
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
-$app->router->add('', function() use ($app) {
+$app->router->add('', function () use ($app) {
     $app->theme->setTitle("Om mig");
     $content = $app->fileContent->get('me.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
@@ -21,7 +21,7 @@ $app->router->add('', function() use ($app) {
     ]);
 });
 
-$app->router->add('redovisning', function() use ($app) {
+$app->router->add('redovisning', function () use ($app) {
     $app->theme->setTitle("Redovisning");
     $content = $app->fileContent->get('report.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
@@ -34,7 +34,7 @@ $app->router->add('redovisning', function() use ($app) {
 
 });
 
-$app->router->add('source', function() use ($app) {
+$app->router->add('source', function () use ($app) {
     $app->theme->addStylesheet('css/source.css');
     $app->theme->setTitle("Källkod");
 

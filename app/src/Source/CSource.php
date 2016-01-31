@@ -7,6 +7,7 @@
  * @link      https://github.com/mosbth/csource
  */
 namespace Mos\Source;
+
 class CSource
 {
 
