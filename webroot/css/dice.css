@@ -23,7 +23,3 @@ ul.dice li.dice-3 { background-position:  -96px 0; }
 ul.dice li.dice-4 { background-position:  -64px 0; }
 ul.dice li.dice-5 { background-position:  -32px 0; }
 ul.dice li.dice-6 { background-position:    0   0; }
-
-.dice-card {
-    width: 700px;
-}

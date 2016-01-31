@@ -1,4 +1,4 @@
-<div class="dice-card card card-2">
+<div class="card card-2">
 
 <h1>Throw a dice</h1>
 

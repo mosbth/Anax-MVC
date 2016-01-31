@@ -52,6 +52,26 @@ $app->router->add('dice', function () use ($app) {
 
 });
 
+// Route to calendar
+$app->router->add('calendar', function () use ($app) {
+    $app->theme->addStylesheet('css/calendar.css');
+    $app->theme->setTitle("Kalender");
+
+    $today = new DateTime();
+    $date = $app->request->getGet('date', $today->format('Y-m-d'));
+    $calendar = new \Mos\Calendar\CCalendar($date);
+
+    $app->views->add('calendar/index', [
+        'prevMonth' => $calendar->prevMonth(),
+        'nextMonth' => $calendar->nextMonth(),
+        'prevMonthDate' => $calendar->prevMonthDate(),
+        'nextMonthDate' => $calendar->nextMonthDate(),
+        'thisMonth' => $calendar->thisMonth(),
+        'dates' => $calendar->datesInMonth(),
+    ]);
+
+});
+
 // Route to roll dice and show results
 $app->router->add('dice/roll', function () use ($app) {
 

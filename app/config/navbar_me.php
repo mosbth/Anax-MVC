@@ -26,6 +26,13 @@ return [
         ],
 
         // This is a menu item
+        'calendar' => [
+            'text'  =>'Kalender',
+            'url'   => $this->di->get('url')->create('calendar'),
+            'title' => 'Kalender',
+        ],
+
+        // This is a menu item
         'dice' => [
             'text'  =>'Tärning',
             'url'   => $this->di->get('url')->create('dice'),
