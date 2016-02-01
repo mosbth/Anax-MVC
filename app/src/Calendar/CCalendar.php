@@ -46,6 +46,7 @@ class CCalendar
         $year = $date->format('Y');
         $month = $date->format('m');
         $this->firstDayInMonth = new DateTime();
+        $this->firstDayInMonth->setTime(0, 0);
         $this->firstDayInMonth->setDate($year, $month, 1);
         $dayOfWeek = $this->firstDayInMonth->format('N');
         $subtractDays = $dayOfWeek - 1;
@@ -55,6 +56,7 @@ class CCalendar
         // Find last week and day in month and last day in that week
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         $this->lastDayInMonth = new DateTime("$year-$month-$daysInMonth");
+        $this->lastDayInMonth->setTime(0, 0);
         $dayOfWeek = $this->lastDayInMonth->format('N');
         $addDays = 7 - $dayOfWeek;
         $this->lastDayInLastWeek = new DateTime($this->lastDayInMonth->format('Y-m-d'));
