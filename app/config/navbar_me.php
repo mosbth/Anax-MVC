@@ -53,6 +53,19 @@ return [
         ],
 
         // This is a menu item
+        'discuss1' => [
+            'text'  =>'Diskutera',
+            'url'   => $this->di->get('url')->create('comment'),
+            'title' => 'Comment thread 1'
+        ],
+        // This is a menu item
+        'discuss2' => [
+            'text'  =>'Kommentera',
+            'url'   => $this->di->get('url')->create('comment-2'),
+            'title' => 'Comment thread 2'
+        ],
+
+        // This is a menu item
         'source' => [
             'text'  =>'Källkod',
             'url'   => $this->di->get('url')->create('source'),

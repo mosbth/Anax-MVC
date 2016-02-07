@@ -1,14 +1,17 @@
-<?php 
+<?php
 /**
  * This is a Anax pagecontroller.
  *
  */
 // Include the essential settings.
-require __DIR__.'/config.php'; 
+require __DIR__.'/config_with_app.php';
+// TODO: when using pretty urls index is used to serve page.
+ // This page is then not called. 1st workaround: copy code to
+ // index.php. 2nd workaround: call page-with-comments.php from
+ // index.php.
 
-
-// Create services and inject into the app. 
-$di  = new \Anax\DI\CDIFactoryDefault();
+// Create services and inject into the app.
+// $di  = new \Anax\DI\CDIFactoryDefault();
 
 $di->set('CommentController', function() use ($di) {
     $controller = new Phpmvc\Comment\CommentController();
@@ -16,7 +19,7 @@ $di->set('CommentController', function() use ($di) {
     return $controller;
 });
 
-$app = new \Anax\Kernel\CAnax($di);
+// $app = new \Anax\Kernel\CAnax($di);
 
 
 
