@@ -13,7 +13,7 @@ require __DIR__.'/config_with_app.php';
 // Create services and inject into the app.
 // $di  = new \Anax\DI\CDIFactoryDefault();
 
-$di->set('CommentController', function() use ($di) {
+$di->set('CommentController', function () use ($di) {
     $controller = new Phpmvc\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
@@ -24,7 +24,7 @@ $di->set('CommentController', function() use ($di) {
 
 
 // Home route
-$app->router->add('', function() use ($app) {
+$app->router->add('', function () use ($app) {
 
     $app->theme->setTitle("Welcome to Anax Guestbook");
     $app->views->add('comment/index');

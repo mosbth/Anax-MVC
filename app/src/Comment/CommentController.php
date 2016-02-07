@@ -8,6 +8,23 @@ class CommentController extends \Phpmvc\Comment\CommentController
 {
 
     /**
+     * View all comments.
+     *
+     * @return void
+     */
+    public function viewAction()
+    {
+        $comments = new \Loom\Comment\CommentsInSession();
+        $comments->setDI($this->di);
+
+        $all = $comments->findAll();
+        $this->views->add('comment/comments', [
+            'comments' => $all,
+        ]);
+    }
+
+
+    /**
      * Add a comment.
      *
      * @return void

@@ -8,6 +8,24 @@ class CommentsInSession extends \Phpmvc\Comment\CommentsInSession
 {
 
     /**
+     * Find and return all comments within the page comment flow.
+     *
+     * @return array with all comments.
+     */
+    public function findAll()
+    {
+        $result = array();
+        $flow = $this->request->getRoute();
+        $comments = $this->session->get('comments', []);
+        foreach ($comments as $comment) {
+            if ($comment['comment-flow']==$flow) {
+                $result[] = $comment;
+            }
+        }
+        return $result;
+    }
+
+    /**
      * Update a comment.
      *
      * @param array $comment with all details.
