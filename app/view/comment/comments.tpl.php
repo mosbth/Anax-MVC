@@ -9,7 +9,7 @@
 <h4>Comment #<?=$id?></h4>
 <p>
     <a href="http://<?=$comment['web']?>"><?=$comment['name']?></a>
-    för <?=$comment['timestamp']?> sedan.
+    för <?=$comment['since-time']?> sedan.
     <a href="http://<?=$comment['web']?>">
         <span class="fa fa-globe "></span>
         <span class="screen-reader-text">webbplats</span>
@@ -30,7 +30,7 @@
     <span class="fa fa-pencil"></span>
     <span class="screen-reader-text">redigera</span>
 </a>
-
+<?php //dump($comment); ?>
 </div>
 <?php endforeach; ?>
 </div>
