@@ -1,7 +1,11 @@
 <div class='comment-form'>
     <form method=post>
-        <?php $redirect = $this->request->getCurrentUrl() ?>
+        <?php
+        $redirect = $this->request->getCurrentUrl();
+        $page = $this->request->getRoute();
+        ?>
         <input type=hidden name="redirect" value="<?=$this->url->create("{$redirect}")?>">
+        <input type=hidden name="comment-flow" value="<?=$this->request->getRoute()?>">
         <fieldset>
         <legend>Leave a comment</legend>
         <p><label>Comment:<br/><textarea name='content'><?=$content?></textarea></label></p>

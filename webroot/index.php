@@ -108,15 +108,35 @@ $app->router->add('source', function () use ($app) {
 
 // Add page with comment system
 $di->set('CommentController', function () use ($di) {
-    $controller = new Phpmvc\Comment\CommentController();
+    $controller = new Loom\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
 });
 
-// Home route
+// Home route first comment page
 $app->router->add('comment', function () use ($app) {
 
-    $app->theme->setTitle("Welcome to Anax Guestbook");
+    $app->theme->setTitle("Diskutera");
+    $app->views->add('comment/discuss');
+
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'web'       => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+    ]);
+});
+
+// Home route second comment page
+$app->router->add('comment-2', function () use ($app) {
+
+    $app->theme->setTitle("Kommentera");
     $app->views->add('comment/index');
 
     $app->dispatcher->forward([
