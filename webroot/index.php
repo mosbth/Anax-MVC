@@ -153,5 +153,17 @@ $app->router->add('comment-2', function () use ($app) {
     ]);
 });
 
+// Route to edit comment
+$app->router->add('comment/edit', function () use ($app) {
+
+    $app->theme->setTitle("Redigera kommentar");
+
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'commentedit',
+    ]);
+});
+
+
 $app->router->handle();
 $app->theme->render();
