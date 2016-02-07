@@ -95,7 +95,7 @@ class CommentController extends \Phpmvc\Comment\CommentController
     }
 
     /**
-     * Update a comment.
+     * Delete a comment.
      *
      * @return void
      */
@@ -106,7 +106,7 @@ class CommentController extends \Phpmvc\Comment\CommentController
         $comments->setDI($this->di);
 
         $comments->delete($id);
-        // TODO: Lägg till metod i CRequestBasic med referer url. Check if HTTP_REFERER exists also and escape also. 
+        // TODO: Lägg till metod i CRequestBasic med referer url. Check if HTTP_REFERER exists also and escape also.
         $this->response->redirect($_SERVER['HTTP_REFERER']);
     }
 }
