@@ -93,4 +93,20 @@ class CommentController extends \Phpmvc\Comment\CommentController
 
         $this->response->redirect($this->request->getPost('redirect'));
     }
+
+    /**
+     * Update a comment.
+     *
+     * @return void
+     */
+    public function deleteAction()
+    {
+        $id = $this->request->getGet('id');
+        $comments = new \Loom\Comment\CommentsInSession();
+        $comments->setDI($this->di);
+
+        $comments->delete($id);
+        // TODO: Lägg till metod i CRequestBasic med referer url. Check if HTTP_REFERER exists also and escape also. 
+        $this->response->redirect($_SERVER['HTTP_REFERER']);
+    }
 }
