@@ -1,4 +1,4 @@
-<div class='comment-form'>
+<div class='comment-form card card-1'>
     <form method=post>
         <?php
         $redirect = $this->request->getCurrentUrl();

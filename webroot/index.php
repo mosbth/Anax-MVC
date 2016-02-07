@@ -106,6 +106,7 @@ $app->router->add('source', function () use ($app) {
 
 });
 
+$app->theme->addStylesheet('css/comments.css');
 // Add page with comment system
 $di->set('CommentController', function () use ($di) {
     $controller = new Loom\Comment\CommentController();

@@ -1,12 +1,12 @@
 <h1>Redigera kommentar</h1>
 
-<div class='comment-form'>
+<div class='comment-form card card-1'>
     <form method=post>
         <input type=hidden name="redirect" value="<?=$this->url->create("{$commentFlow}")?>">
         <input type=hidden name="id" value="<?=$id?>">
         <input type=hidden name="comment-flow" value="<?=$commentFlow?>">
         <fieldset>
-        <legend>Leave a comment</legend>
+        <legend>Edit comment</legend>
         <p><label>Comment:<br/><textarea name='content'><?=$content?></textarea></label></p>
         <p><label>Name:<br/><input type='text' name='name' value='<?=$name?>'/></label></p>
         <p><label>Homepage:<br/><input type='text' name='web' value='<?=$web?>'/></label></p>
