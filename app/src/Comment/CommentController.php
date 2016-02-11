@@ -64,9 +64,7 @@ class CommentController extends \Phpmvc\Comment\CommentController
     {
         $comments = new \Phpmvc\Comment\CommentsInSession();
         $comments->setDI($this->di);
-        // TODO: hämta get id index till kommentar, visa sedan kommentaren i tpl
         $id = $this->request->getGet('id');
-        $all = $comments->findAll();
         $comment = $comments->findAll()[$id];
         $this->views->add('comment/edit', [
             'mail'      => $comment['mail'],

@@ -23,9 +23,10 @@ class CommentsInSession extends \Phpmvc\Comment\CommentsInSession
         );
 
         foreach ($tokens as $unit => $text) {
-            if ($time < $unit) continue;
+            if ($time < $unit) {
+                continue;
+            }
             $numberOfUnits = floor($time / $unit);
-            // TODO: Fix plural of swedish units, skip s below.
             return $numberOfUnits.' '.$text.(($numberOfUnits>1)?' ':'');
         }
     }
@@ -38,6 +39,7 @@ class CommentsInSession extends \Phpmvc\Comment\CommentsInSession
     public function findAll()
     {
         $result = array();
+        // TODO: add flow tag through object instantiation instead?
         $flow = $this->request->getRoute();
         $comments = $this->session->get('comments', []);
         foreach ($comments as $comment) {

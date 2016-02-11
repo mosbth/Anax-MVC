@@ -12,7 +12,12 @@ $di  = new \Anax\DI\CDIFactoryDefault();
 $app = new \Anax\Kernel\CAnax($di);
 
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
-$app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
+// On production server, set pretty urls and use rewrite in .htaccess
+$app->url->setUrlType(
+    ($_SERVER['SERVER_NAME']=='localhost') ?
+    \Anax\Url\CUrl::URL_APPEND : \Anax\Url\CUrl::URL_CLEAN
+);
+// $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
 $app->theme->addStylesheet('css/me.css');

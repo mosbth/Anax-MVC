@@ -107,6 +107,8 @@ $app->router->add('source', function () use ($app) {
 });
 
 $app->theme->addStylesheet('css/comments.css');
+// TODO: use resourc on maxcdn instead. Just trying out local install.
+// $app->theme->addStylesheet('css/font-awesome-4.5.0/css/font-awesome.min.css');
 // Add page with comment system
 $di->set('CommentController', function () use ($di) {
     $controller = new Loom\Comment\CommentController();
@@ -158,7 +160,7 @@ $app->router->add('comment-2', function () use ($app) {
 $app->router->add('comment/edit', function () use ($app) {
 
     $app->theme->setTitle("Redigera kommentar");
-
+// TODO: validate query id of comment???
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'commentedit',
