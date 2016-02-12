@@ -30,7 +30,6 @@
     <span class="fa fa-pencil"></span>
     <span class="screen-reader-text">redigera</span>
 </a>
-<?php //dump($comment); ?>
 </div>
 <?php endforeach; ?>
 </div>

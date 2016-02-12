@@ -2,7 +2,7 @@
 
 <div class='comment-form card card-1'>
     <form method=post>
-        <input type=hidden name="redirect" value="<?=$this->url->create("{$commentFlow}")?>">
+        <input type=hidden name="redirect" value="<?=$this->url->create($commentFlow)?>">
         <input type=hidden name="id" value="<?=$id?>">
         <input type=hidden name="comment-flow" value="<?=$commentFlow?>">
         <fieldset>

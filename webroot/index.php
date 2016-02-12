@@ -133,6 +133,8 @@ $app->router->add('comment', function () use ($app) {
         'name'      => null,
         'content'   => null,
         'output'    => null,
+        'redirect'    => $app->url->create($app->request->getCurrentUrl()),
+        'page'    => $app->request->getRoute(),
     ]);
 });
 
@@ -153,6 +155,8 @@ $app->router->add('comment-2', function () use ($app) {
         'name'      => null,
         'content'   => null,
         'output'    => null,
+        'redirect'    => $app->url->create($app->request->getCurrentUrl()),
+        'page'    => $app->request->getRoute(),
     ]);
 });
 

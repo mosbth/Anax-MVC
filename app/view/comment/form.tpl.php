@@ -1,12 +1,7 @@
 <div class='comment-form card card-1'>
     <form method=post>
-        <?php
-        // TODO: Move this to controller and inject variable. 
-        $redirect = $this->request->getCurrentUrl();
-        $page = $this->request->getRoute();
-        ?>
-        <input type=hidden name="redirect" value="<?=$this->url->create("{$redirect}")?>">
-        <input type=hidden name="comment-flow" value="<?=$this->request->getRoute()?>">
+        <input type=hidden name="redirect" value="<?=$redirect?>">
+        <input type=hidden name="comment-flow" value="<?=$page?>">
         <fieldset>
         <legend>Leave a comment</legend>
         <p><label>Comment:<br/><textarea name='content'><?=$content?></textarea></label></p>
