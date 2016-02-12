@@ -167,7 +167,7 @@ $app->router->add('comment/edit', function () use ($app) {
 // TODO: validate query id of comment???
     $app->dispatcher->forward([
         'controller' => 'comment',
-        'action'     => 'commentedit',
+        'action'     => 'edit',
     ]);
 });
 

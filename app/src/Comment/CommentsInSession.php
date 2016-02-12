@@ -42,9 +42,10 @@ class CommentsInSession extends \Phpmvc\Comment\CommentsInSession
         // TODO: add flow tag through object instantiation instead?
         $flow = $this->request->getRoute();
         $comments = $this->session->get('comments', []);
-        foreach ($comments as $comment) {
+        foreach ($comments as $id => $comment) {
             if ($comment['comment-flow']==$flow) {
                 $comment['since-time'] = $this->humanTiming($comment['timestamp']);
+                $comment['id'] = $id;
                 $result[] = $comment;
             }
         }

@@ -60,12 +60,15 @@ class CommentController extends \Phpmvc\Comment\CommentController
      *
      * @return void
      */
-    public function commenteditAction()
+    public function editAction()
     {
         $comments = new \Phpmvc\Comment\CommentsInSession();
         $comments->setDI($this->di);
         $id = $this->request->getGet('id');
-        $comment = $comments->findAll()[$id];
+        $theComments = $comments->findAll();
+        $this->validate->check($id, ['int', 'range' => [0, count($theComments)]])
+            or die("Wrong index. Comment does not exist!");
+        $comment = $theComments[$id];
         $this->views->add('comment/edit', [
             'mail'      => $comment['mail'],
             'web'       => $comment['web'],

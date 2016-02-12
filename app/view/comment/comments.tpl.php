@@ -22,11 +22,11 @@
 <p><?=$comment['content']?></p>
 
 
-<a href="<?=$this->url->create('comment/delete')?><?='?id='.$id?>" title="Radera">
+<a href="<?=$this->url->create('comment/delete')?><?='?id='.$comment['id']?>" title="Radera">
     <span class="fa fa-trash"></span>
     <span class="screen-reader-text">radera</span>
 </a>
-<a href="<?=$this->url->create('comment/edit')?><?='?id='.$id?>" title="Redigera">
+<a href="<?=$this->url->create('comment/edit')?><?='?id='.$comment['id']?>" title="Redigera">
     <span class="fa fa-pencil"></span>
     <span class="screen-reader-text">redigera</span>
 </a>
