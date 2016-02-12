@@ -66,6 +66,20 @@ $app->router->add('calendar', function () use ($app) {
         'dates' => $calendar->datesInMonth(),
     ]);
 
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'web'       => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+        'redirect'    => $app->url->create($app->request->getCurrentUrl()),
+        'page'    => $app->request->getRoute(),
+    ]);
 });
 
 // Route to roll dice and show results
@@ -114,28 +128,6 @@ $di->set('CommentController', function () use ($di) {
     $controller = new Loom\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
-});
-
-// Home route first comment page
-$app->router->add('comment', function () use ($app) {
-
-    $app->theme->setTitle("Diskutera");
-    $app->views->add('comment/discuss');
-
-    $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'view',
-    ]);
-
-    $app->views->add('comment/form', [
-        'mail'      => null,
-        'web'       => null,
-        'name'      => null,
-        'content'   => null,
-        'output'    => null,
-        'redirect'    => $app->url->create($app->request->getCurrentUrl()),
-        'page'    => $app->request->getRoute(),
-    ]);
 });
 
 // Home route second comment page
