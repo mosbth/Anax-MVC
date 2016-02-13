@@ -6,6 +6,8 @@ Den här uppgiften kändes väldigt svår i början men det lossnade alltefterso
 
 Nästa större svårighet var att förstå hur dispatcher i förhållande till view skulle fungera. Med en dispatcher kan man flytta ut mer kontroll-logik från front-controller till i detta fall CommentController. Denna CommentController skapar och lägger till en vy i den route den blivit dispatchad från istället för att skapa vyn i front-controller. Vyn skapas med hjälp av modellen som ligger i CommentsInSession.
 
+Jag har lagt ett kommentarsflöde under sidan "Kalender" och ett annat flöde under sidan "Kommentera". Jag har valt att använda ikoner från för kommentars-funktionerna redigera och radera samt för webplats- och mail-adress. Validotorn hos Unicorn gillar dock inte deras css. Enligt [Font Awesome](https://fortawesome.github.io/Font-Awesome/get-started/) så innehåller de ett antal CSS browser hacks för att fungera med gamla browser-versioner som inte validatorn gillar. Hoppas det därför är OK med dessa validator-fel. 
+
 Det fungerade smidigt att arbeta med composer efter att jag fått det installerat. Jag fick inte igång det när jag hämtade hem det via php utan installerade det via en windows-installer.
 
 Då jag behövde lägga till funktionalitet i de två Comment-klasserna under vendor, valde jag att skapa subklasser till dessa som jag lade under app/src/Comment. Jag håller då isär mina ändringar från ursprungsklasserna och kan uppdatera via Composer för eventuella bugg-rättningar. Mina sub-klasser har samma namn som bas-klasserna så här fick jag chans att lära mig mer om namespace för att hålla isär dem.
