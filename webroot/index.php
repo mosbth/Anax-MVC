@@ -6,11 +6,7 @@
 
 require __DIR__.'/config_with_app.php';
 
-$app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
-$app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
-$app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
-$app->theme->addStylesheet('css/me.css');
 // TODO: Learn/adapt how to add external resources e.g. fonts
 // $app->theme->addStylesheet('https://fonts.googleapis.com/css?family=Raleway:400,200');
 // $app->theme->setVariable('me-fonts', 'https://fonts.googleapis.com/css?family=Pragati+Narrow');
@@ -70,6 +66,25 @@ $app->router->add('calendar', function () use ($app) {
         'dates' => $calendar->datesInMonth(),
     ]);
 
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+    $app->views->add('comment/hide', [
+        'link'      => $app->url->create($app->request->getRoute().'?showform=true'),
+    ]);
+
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'web'       => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+        'showForm'  => $app->request->getGet('showform', false),
+        'redirect'    => $app->url->create($app->request->getRoute()),
+        'page'    => $app->request->getRoute(),
+    ]);
 });
 
 // Route to roll dice and show results
@@ -109,6 +124,54 @@ $app->router->add('source', function () use ($app) {
     ]);
 
 });
+
+$app->theme->addStylesheet('css/comments.css');
+// TODO: use resourc on maxcdn instead. Just trying out local install.
+// $app->theme->addStylesheet('css/font-awesome-4.5.0/css/font-awesome.min.css');
+// Add page with comment system
+$di->set('CommentController', function () use ($di) {
+    $controller = new Loom\Comment\CommentController();
+    $controller->setDI($di);
+    return $controller;
+});
+
+// Home route second comment page
+$app->router->add('comment-2', function () use ($app) {
+
+    $app->theme->setTitle("Kommentera");
+    $app->views->add('comment/index');
+
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+    $app->views->add('comment/hide', [
+        'link'      => $app->url->create($app->request->getRoute().'?showform=true'),
+    ]);
+
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'web'       => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+        'showForm'  => $app->request->getGet('showform', false),
+        'redirect'    => $app->url->create($app->request->getRoute()),
+        'page'    => $app->request->getRoute(),
+    ]);
+});
+
+// Route to edit comment
+$app->router->add('comment/edit', function () use ($app) {
+
+    $app->theme->setTitle("Redigera kommentar");
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'edit',
+    ]);
+});
+
 
 $app->router->handle();
 $app->theme->render();
