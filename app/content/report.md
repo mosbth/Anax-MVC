@@ -36,7 +36,7 @@ Jag browsade runt på Packagist webbplats och hittade en hel del paket som skull
 
 *Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?*
 
-
+...
 
 *Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något?*
 
@@ -44,4 +44,6 @@ Den uppenbara förbättringen var att lägga till stöd för olika kommentars-fl
 
 En egen liten förbättringen var att lägga till funktion för att omvandla unix tidsstämpel till en relativ tid, typ "postad för 3 minueter sedan." Hittade en funktion för detta på StackExhange som passade in bra. Då tiden är relativ måste den genereras varje gång en kommentar hämtas från CommentsInSession.
 
-För extrauppgiften att dölja kommentarsformuläret och få fram det genom att klicka på en länk så började med att försöka lösa det med två olika routes: en route som inte innehöll vyn med kommentarsformuläret samt en route med vyn av kommentarsformuläret. Enkel lösning men kändes lite klumpigt att upprepa två nästan identiska routes. Istället använde jag mig av en query-variabel i url'en för att visa formuläret. Är variabeln 'showform' satt så visas formuläret. Annars döljs formuläret mha css display:none. En ännu smidigare och enklare lösning vore att använda js och jquery med .show()/.hide()/.toggle() på något sätt. Men det kommer nog i nästa kurs. 
+För extrauppgiften att dölja kommentarsformuläret och få fram det genom att klicka på en länk så började med att försöka lösa det med två olika routes: en route som inte innehöll vyn med kommentarsformuläret samt en route med vyn av kommentarsformuläret. Enkel lösning men kändes lite klumpigt att upprepa två nästan identiska routes. Istället använde jag mig av en query-variabel i url'en för att visa formuläret. Är variabeln 'showform' satt så visas formuläret. Annars döljs formuläret mha css display:none. En ännu smidigare och enklare lösning vore att använda js/jquery med .show()/.hide()/.toggle() på något sätt. Men det kommer nog i nästa kurs.
+
+Att lägga till gravatarer gick smidigt. I modellen för kommentarer, CommentsInSession/findAll(), beräknas gravatar-url och läggs till i array för kommentar. Url'en kan sedan läsas ut i vyn för kommentarer i comments.tpl.php.

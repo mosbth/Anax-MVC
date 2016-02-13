@@ -8,6 +8,7 @@
 <div class="comment-single card card-1">
 <h4>Comment #<?=$id?></h4>
 <p>
+    <a href=""http://<?=$comment['web']?>""><img src="<?=$comment['gravatar']?>" alt="gravatar" /></a>
     <a href="http://<?=$comment['web']?>"><?=$comment['name']?></a>
     för <?=$comment['since-time']?> sedan.
     <a href="http://<?=$comment['web']?>" title="Besök <?=$comment['web']?>">
