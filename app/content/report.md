@@ -16,34 +16,20 @@ Filen index.php börjar redan nu bli ganska stor och innehåller flera olika fun
 
 ## Kmom02
 
-*Skriv redovisningstext på din me-sida. Skriv ett stycke (minst 15 meningar) om kursmomentet. Reflektera över svårigheter, problem, lösningar, erfarenheter, lärdomar, resultatet, etc.*
+Den här uppgiften kändes väldigt svår i början men det lossnade allteftersom pusselbitarna föll på plats och jag fick lite bättre översikt på ramverket. Första stora problemet var att förstå hur redirect efter sparande av kommentar skulle fungera och hur värden för redirect-sidan överfördes mellan de olika komponenterna. Spara-kommentar-formuläret postar ett gömt fält som skall innehålla redirect-sidan. Denna hämtas mha getPost i controller-sidan som då kan göra redirect efter att kommentaren sparats. Till att börja med hämtade jag redirect-sidan med getCurrentUrl() i form.tpl.php men flyttade sedan ut det till front-controller index.php och skickar istället in redirect-sidan via variabel för att hålla borta php-kod från template-sidorna.
 
-Den här uppgiften kändes väldigt svår i början men det lossnade allteftersom pusselbitarna föll på plats och jag fick lite bättre översikt på ramverket. Första stora problemet var att förstå hur redirect efter sparande av kommentar skulle fungera och hur värden för redirect-sidan överfördes mellan de olika komponenterna. Spara-kommentar-formuläret postar tt gömt fält som skall innehålla redirect-sidan. Denna hämtas mha getPost i controller-sidan som då kan göra redirect efter att kommentaren sparats. Till att börja med hämtade jag redirect-sidan med getCurrentUrl() i form.tpl.php men flyttade sedan ut det till front-controller index.php och skickar istället in redirect-sidan via variabel därifrån för att hålla borta php-kod från template-sidorna.
+Nästa större svårighet var att förstå hur dispatcher i förhållande till view skulle fungera. Med en dispatcher kan man flytta ut mer kontroll-logik från front-controller till i detta fall CommentController. Denna CommentController skapar och lägger till en vy i den route den blivit dispatchad från istället för att skapa vyn i front-controller. Vyn skapas med hjälp av modellen som ligger i CommentsInSession.
 
-Nästa större svårighet var att förstå hur dispatcher i förhållande till view skulle fungera ... ...
-
-*Se till att följande frågor besvaras i texten:*
-
-*Hur känns det att jobba med Composer?*
-
-Det fungerade smidigt att arbeta med composer eftter att jag fått det installerat. Jag fick inte igånt det när jag hämtade hem det via php utan installerade det via en windows-installer.
+Det fungerade smidigt att arbeta med composer efter att jag fått det installerat. Jag fick inte igång det när jag hämtade hem det via php utan installerade det via en windows-installer.
 
 Då jag behövde lägga till funktionalitet i de två Comment-klasserna under vendor, valde jag att skapa subklasser till dessa som jag lade under app/src/Comment. Jag håller då isär mina ändringar från ursprungsklasserna och kan uppdatera via Composer för eventuella bugg-rättningar. Mina sub-klasser har samma namn som bas-klasserna så här fick jag chans att lära mig mer om namespace för att hålla isär dem.
 
-*Vad tror du om de paket som finns i Packagist, är det något du kan tänka dig att använda och hittade du något spännande att inkludera i ditt ramverk?*
-
 Jag browsade runt på Packagist webbplats och hittade en hel del paket som skulle kunna vara intressanta, t.ex. modul för markdown, modul för mail-service, google api-client, blogg för phalcon, rss-feeds, etc. Den stora tröskeln för att använda en modul är nog svårigheten att veta hur mycket arbete det är att integrera en modul, samt kvaliteten på modulen. Antalet nedladdningar och stjärnmärkningar kan kanske kan ge lite vägledning om kvalitet och användbarheten.
 
-*Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?*
-
-...
-
-*Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något?*
-
-Den uppenbara förbättringen var att lägga till stöd för olika kommentars-flöden. Här valde jag att använda mig av kommentars-sidans route som tag för flödet. Denna tag lagras i varje kommentar. Till att börja med lade jag tag-filtreringen i template-filen men fick sedan flyttat filtreringen till CommentsInSession.php. Verkade vettigt då det mer hänger ihop med modelleringen av kommentarer och flödet.Även funktioner för att uppdatera och radera kommentarer har lagts till.
+Den uppenbara förbättringen var att lägga till stöd för olika kommentars-flöden. Här valde jag att använda mig av kommentars-sidans route som tag för flödet. Denna tag lagras i varje kommentar. Till att börja med lade jag tag-filtreringen i template-filen men fick sedan flyttat filtreringen till CommentsInSession.php. Verkade vettigt då det mer hänger ihop med modelleringen av kommentarer och flödet. Även funktioner för att uppdatera och radera kommentarer har lagts till.
 
 En egen liten förbättringen var att lägga till funktion för att omvandla unix tidsstämpel till en relativ tid, typ "postad för 3 minueter sedan." Hittade en funktion för detta på StackExhange som passade in bra. Då tiden är relativ måste den genereras varje gång en kommentar hämtas från CommentsInSession.
 
-För extrauppgiften att dölja kommentarsformuläret och få fram det genom att klicka på en länk så började med att försöka lösa det med två olika routes: en route som inte innehöll vyn med kommentarsformuläret samt en route med vyn av kommentarsformuläret. Enkel lösning men kändes lite klumpigt att upprepa två nästan identiska routes. Istället använde jag mig av en query-variabel i url'en för att visa formuläret. Är variabeln 'showform' satt så visas formuläret. Annars döljs formuläret mha css display:none. En ännu smidigare och enklare lösning vore att använda js/jquery med .show()/.hide()/.toggle() på något sätt. Men det kommer nog i nästa kurs.
+För extrauppgiften att dölja kommentarsformuläret och få fram det genom att klicka på en länk så började jag  att försöka lösa det mha två olika routes: en route som **utan** vyn med kommentarsformuläret samt en route **med** vyn för kommentarsformuläret. Enkel lösning men kändes lite klumpigt att upprepa två nästan identiska routes. Istället använde jag mig av en query-variabel i url'en för att visa formuläret. Är variabeln 'showform' satt så visas formuläret. Annars döljs formuläret mha css display:none. En ännu smidigare och enklare lösning vore att använda js/jquery med .show()/.hide()/.toggle() på något sätt. Men det kommer nog i nästa kurs.
 
 Att lägga till gravatarer gick smidigt. I modellen för kommentarer, CommentsInSession/findAll(), beräknas gravatar-url och läggs till i array för kommentar. Url'en kan sedan läsas ut i vyn för kommentarer i comments.tpl.php.
