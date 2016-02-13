@@ -71,13 +71,18 @@ $app->router->add('calendar', function () use ($app) {
         'action'     => 'view',
     ]);
 
+    $app->views->add('comment/hide', [
+        'link'      => $app->url->create($app->request->getRoute().'?showform=true'),
+    ]);
+
     $app->views->add('comment/form', [
         'mail'      => null,
         'web'       => null,
         'name'      => null,
         'content'   => null,
         'output'    => null,
-        'redirect'    => $app->url->create($app->request->getCurrentUrl()),
+        'showForm'  => $app->request->getGet('showform', false),
+        'redirect'    => $app->url->create($app->request->getRoute()),
         'page'    => $app->request->getRoute(),
     ]);
 });
@@ -141,13 +146,18 @@ $app->router->add('comment-2', function () use ($app) {
         'action'     => 'view',
     ]);
 
+    $app->views->add('comment/hide', [
+        'link'      => $app->url->create($app->request->getRoute().'?showform=true'),
+    ]);
+
     $app->views->add('comment/form', [
         'mail'      => null,
         'web'       => null,
         'name'      => null,
         'content'   => null,
         'output'    => null,
-        'redirect'    => $app->url->create($app->request->getCurrentUrl()),
+        'showForm'  => $app->request->getGet('showform', false),
+        'redirect'    => $app->url->create($app->request->getRoute()),
         'page'    => $app->request->getRoute(),
     ]);
 });
@@ -156,7 +166,6 @@ $app->router->add('comment-2', function () use ($app) {
 $app->router->add('comment/edit', function () use ($app) {
 
     $app->theme->setTitle("Redigera kommentar");
-// TODO: validate query id of comment???
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'edit',

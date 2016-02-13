@@ -1,4 +1,4 @@
-<div class='comment-form card card-1'>
+<div class='comment-form card card-1' <?= $showForm ? '' : 'style="display: none;"' ?>>
     <form method=post>
         <input type=hidden name="redirect" value="<?=$redirect?>">
         <input type=hidden name="comment-flow" value="<?=$page?>">
