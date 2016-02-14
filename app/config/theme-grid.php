@@ -22,6 +22,7 @@ return [
      */
     'views' => [
         ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
+        ['region' => 'grid', 'template' => 'grid/index', 'data' => [], 'sort' => -1],
         [
             'region' => 'navbar',
             'template' => [
