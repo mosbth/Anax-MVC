@@ -15,7 +15,7 @@
 
 /**
  * Add config-file if available
- * 
+ *
  */
 $configFile = defined('STYLE_CONFIG') ? constant('STYLE_CONFIG') : __DIR__.'/style_config.php';
 
@@ -29,8 +29,8 @@ include $config['path_lessphp'];
  * Check settins before proceeding
  */
 if (!isset($config['style_file'])) {
-    preg_match('#^[a-z0-9A-Z-_]+$#', $config['style_file']) 
-        or die('Filename for style_file contains invalid characters.');    
+    preg_match('#^[a-z0-9A-Z-_]+$#', $config['style_file'])
+        or die('Filename for style_file contains invalid characters.');
 }
 
 
@@ -46,7 +46,7 @@ if (!isset($config['style_file'])) {
  *
  * @return void
  */
-function autoCompileLess($inputFile, $outputFile, $config) 
+function autoCompileLess($inputFile, $outputFile, $config)
 {
     $cacheFile = $inputFile.".cache";
 
@@ -62,14 +62,14 @@ function autoCompileLess($inputFile, $outputFile, $config)
     if (isset($config['functions'])) {
         foreach ($config['functions'] as $key => $val) {
             $less->registerFunction($key, $val);
-        }    
+        }
     }
 
     // Add import dirs
     if (isset($config['imports'])) {
         foreach($config['imports'] as $val) {
             $less->addImportDir($val);
-        }    
+        }
     }
 
     // Set output formatter
@@ -107,11 +107,10 @@ $gmdate = gmdate("D, d M Y H:i:s", $time);
 // Write it out and leave a response, use gzip if available
 //
 ob_start("ob_gzhandler") or ob_start();
-header('Last-Modified: ' . $gmdate . " GMT"); 
-if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $time){  
-    header("HTTP/1.0 304 Not Modified");  
-} else {  
+header('Last-Modified: ' . $gmdate . " GMT");
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $time){
+    header("HTTP/1.0 304 Not Modified");
+} else {
     header('Content-type: text/css');
-    readfile($css);  
+    readfile($css);
 }
-

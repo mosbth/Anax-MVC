@@ -14,11 +14,12 @@ $app->router->add('regioner', function () use ($app) {
     $app->theme->setTitle("Regioner");
 
     $app->views->addString('flash', 'flash')
-               ->addString('featured-1', 'featured-1')
+               ->addString(file_get_contents('css/anax-grid/font-awesome-ex.html'), 'featured-1')
                ->addString('featured-2', 'featured-2')
                ->addString('featured-3', 'featured-3')
                ->addString(file_get_contents('css/anax-grid/typography.html'), 'main')
                ->addString(file_get_contents('css/anax-grid/typography.html'), 'sidebar')
+            //    ->addString(file_get_contents('css/anax-grid/font-awesome-ex.html'), 'sidebar')
                ->addString('triptych-1', 'triptych-1')
                ->addString('triptych-2', 'triptych-2')
                ->addString('triptych-3', 'triptych-3')
