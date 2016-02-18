@@ -2,14 +2,16 @@
 /**
  * Enable configuration details for style.php.
  *
- * Make configurations here to make it easer to use one installed base of lessphp on a server 
+ * Make configurations here to make it easer to use one installed base of lessphp on a server
  * and to make it easier to make non breaking updates to style.php.
  *
  */
 return array(
     /**
-     * Path to lessphp compiler include script 
+     * Path to lessphp compiler include script
      */
+    //  Put less script under phpmvc folder.
+    // 'path_lessphp' => __DIR__."/../../../../../../lessphp/lessc.inc.php",
     'path_lessphp' => __DIR__."/lessphp/lessc.inc.php",
 
 
@@ -54,9 +56,9 @@ return array(
         * Function unit
         *
         * mixins.less:  font: 100.01%/(unit((@magicNumber)/unit(@fontSizeBody))) @fontFamilyBody;
-        * mixins.less:  line-height: unit(@magicNumber/(@fontSize*@fontSizeBody)); 
+        * mixins.less:  line-height: unit(@magicNumber/(@fontSize*@fontSizeBody));
         */
-        'unit' => function($arg) {
+        'unit' => function ($arg) {
             list($type, $value) = $arg;
             return array($type, $value);
         },

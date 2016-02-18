@@ -1,5 +1,5 @@
 <?php
-
+// @codingStandardsIgnoreStart
 /**
  * lessphp v0.4.0
  * http://leafo.net/lessphp
@@ -1209,7 +1209,7 @@ class lessc {
 	    $darkColor  = array('color', 0, 0, 0);
 	    $lightColor = array('color', 255, 255, 255);
 	    $threshold  = 0.43;
-	     
+
 	    if ( $args[0] == 'list' ) {
 	        $inputColor = ( isset($args[2][0]) ) ? $this->assertColor($args[2][0])  : $lightColor;
 	        $darkColor  = ( isset($args[2][1]) ) ? $this->assertColor($args[2][1])  : $darkColor;
@@ -2330,7 +2330,7 @@ class lessc_parser {
 			$this->throwError();
 
 		// TODO report where the block was opened
-		if ( !property_exists($this->env, 'parent') || !is_null($this->env->parent) ) 
+		if ( !property_exists($this->env, 'parent') || !is_null($this->env->parent) )
 			throw new exception('parse error: unclosed block');
 
 		return $this->env;
@@ -3730,5 +3730,3 @@ class lessc_formatter_lessjs extends lessc_formatter_classic {
 	public $assignSeparator = ": ";
 	public $selectorSeparator = ",";
 }
-
-

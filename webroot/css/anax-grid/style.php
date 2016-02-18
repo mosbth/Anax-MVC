@@ -51,7 +51,7 @@ function autoCompileLess($inputFile, $outputFile, $config)
     $cacheFile = $inputFile.".cache";
 
     if (file_exists($cacheFile)) {
-       $cache = unserialize(file_get_contents($cacheFile));
+        $cache = unserialize(file_get_contents($cacheFile));
     } else {
         $cache = $inputFile;
     }
@@ -67,7 +67,7 @@ function autoCompileLess($inputFile, $outputFile, $config)
 
     // Add import dirs
     if (isset($config['imports'])) {
-        foreach($config['imports'] as $val) {
+        foreach ($config['imports'] as $val) {
             $less->addImportDir($val);
         }
     }
@@ -108,7 +108,7 @@ $gmdate = gmdate("D, d M Y H:i:s", $time);
 //
 ob_start("ob_gzhandler") or ob_start();
 header('Last-Modified: ' . $gmdate . " GMT");
-if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $time){
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $time) {
     header("HTTP/1.0 304 Not Modified");
 } else {
     header('Content-type: text/css');
