@@ -10,7 +10,7 @@
 <?php if(isset($style)): ?><style><?=$style?></style><?php endif; ?>
 <script src='<?=$this->url->asset($modernizr)?>'></script>
 <?php // TODO: Add below resource in a better way using the framework?>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 </head>
 
 <body>
