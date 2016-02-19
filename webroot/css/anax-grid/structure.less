@@ -1,8 +1,9 @@
 
 #wrapper {
-  background-image: url(grid_12_60_20.png);
+  // background-image: url(grid_12_60_20.png);
   max-width: 960px;
 padding-top: 12px;
+margin: auto;
 }
 
 #header,
@@ -10,21 +11,21 @@ padding-top: 12px;
 #flash,
 #footer {
     .column(@columns);
-    // margin-bottom: 22px;
-    padding-bottom: 22px;
+    margin-bottom: 22px;
+    // padding-bottom: 22px;
     // background-color: lightgray;
 }
 
 #main {
     .column(@columns / 3 * 2);
-    // margin-bottom: 22px;
+    margin-bottom: 22px;
     padding-bottom: 22px;
     // background-color: lightgray;
 }
 
 #sidebar {
     .column(@columns / 3);
-    // margin-bottom: 22px;
+    margin-bottom: 22px;
     padding-bottom: 22px;
     // background-color: lightgray;
 }
@@ -36,7 +37,7 @@ padding-top: 12px;
 #triptych-2,
 #triptych-3 {
     .column(@columns / 3);
-    // margin-bottom: 22px;
+    margin-bottom: 22px;
     padding-bottom: 22px;
     // background-color: lightgray;
 }

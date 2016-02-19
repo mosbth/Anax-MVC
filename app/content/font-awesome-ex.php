@@ -1,4 +1,4 @@
-<h1>HTML Ipsum Presents</h1>
+<h1>FA Ipsum Presents</h1>
 <p>
 <i class="fa fa-camera-retro"></i> fa-camera-retro
 <i class="fa fa-camera-retro fa-lg"></i> fa-lg

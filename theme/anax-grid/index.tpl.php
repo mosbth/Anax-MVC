@@ -13,7 +13,7 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 </head>
 
-<body>
+<body id='<?=implode('-', $this->request->getRouteParts())?>'>
 
 <div id='wrapper'>
 
@@ -34,35 +34,39 @@
 
 <?php if ($this->views->hasContent('featured-1', 'featured-2', 'featured-3')) : ?>
 <div id='wrap-featured'>
-    <div id='featured-1'><?php $this->views->render('featured-1')?></div>
-    <div id='featured-2'><?php $this->views->render('featured-2')?></div>
-    <div id='featured-3'><?php $this->views->render('featured-3')?></div>
+    <div id='featured-1'><div class="cont"><?php $this->views->render('featured-1')?></div></div>
+    <div id='featured-2'><div class="cont"><?php $this->views->render('featured-2')?></div></div>
+    <div id='featured-3'><div class="cont"><?php $this->views->render('featured-3')?></div></div>
 </div>
 <?php endif; ?>
 
-<div id='main'>
-<?php if(isset($main)) echo $main?>
-<?php $this->views->render('main')?>
-</div>
-
-<?php if ($this->views->hasContent('sidebar')) : ?>
-    <div id='sidebar'><?php $this->views->render('sidebar')?></div>
+<div id='wrap-main'>
+    <?php if ($this->views->hasContent('main')) : ?>
+    <div id='main'><div class="cont">
+    <?php if(isset($main)) echo $main?>
+    <?php $this->views->render('main')?>
+    </div></div>
 <?php endif; ?>
+
+    <?php if ($this->views->hasContent('sidebar')) : ?>
+        <div id='sidebar'><div class="cont"><?php $this->views->render('sidebar')?></div></div>
+    <?php endif; ?>
+</div>
 
 <?php if ($this->views->hasContent('triptych-1', 'triptych-2', 'triptych-3')) : ?>
 <div id='wrap-triptych'>
-    <div id='triptych-1'><?php $this->views->render('triptych-1')?></div>
-    <div id='triptych-2'><?php $this->views->render('triptych-2')?></div>
-    <div id='triptych-3'><?php $this->views->render('triptych-3')?></div>
+    <div id='triptych-1'><div class="cont"><?php $this->views->render('triptych-1')?></div></div>
+    <div id='triptych-2'><div class="cont"><?php $this->views->render('triptych-2')?></div></div>
+    <div id='triptych-3'><div class="cont"><?php $this->views->render('triptych-3')?></div></div>
 </div>
 <?php endif; ?>
 
 <?php if ($this->views->hasContent('footer-col-1', 'footer-col-2', 'footer-col-3', 'footer-col-4')) : ?>
 <div id='wrap-footer-col'>
-    <div id='footer-col-1'><?php $this->views->render('footer-col-1')?></div>
-    <div id='footer-col-2'><?php $this->views->render('footer-col-2')?></div>
-    <div id='footer-col-3'><?php $this->views->render('footer-col-3')?></div>
-    <div id='footer-col-4'><?php $this->views->render('footer-col-4')?></div>
+    <div id='footer-col-1'><div class="cont"><?php $this->views->render('footer-col-1')?></div></div>
+    <div id='footer-col-2'><div class="cont"><?php $this->views->render('footer-col-2')?></div></div>
+    <div id='footer-col-3'><div class="cont"><?php $this->views->render('footer-col-3')?></div></div>
+    <div id='footer-col-4'><div class="cont"><?php $this->views->render('footer-col-4')?></div></div>
 </div>
 <?php endif; ?>
 
