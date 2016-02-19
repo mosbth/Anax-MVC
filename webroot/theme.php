@@ -48,7 +48,7 @@ $app->router->add('regioner', function () use ($app) {
 });
 
 $app->router->add('regioner/typography', function () use ($app) {
-    $app->theme->setTitle("typography");
+    $app->theme->setTitle("Typography");
 
     $grid = $app->fileContent->get('show_grid.php');
     $contentFlash = $app->fileContent->get('typography-flash.php');
@@ -76,7 +76,7 @@ $app->router->add('regioner/typography', function () use ($app) {
 });
 
 $app->router->add('regioner/fontawesome', function () use ($app) {
-    $app->theme->setTitle("fontawesome");
+    $app->theme->setTitle("Fontawesome");
 
     $grid = $app->fileContent->get('show_grid.php');
     $contentParagraph = $app->fileContent->get('typography_p.php');
