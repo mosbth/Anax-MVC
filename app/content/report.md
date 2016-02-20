@@ -2,7 +2,13 @@
 
 ## Kmom03
 
-Problem med variables.less och grid.less där bägge definierat @total-width.
+Jag har inte arbetat med några CSS-ramverk tidigare, så det var ett väldigt nyttigt kursmoment. Det var ett ganska omfattande material att läsa in med mycket nya begrepp. LESS kändes väldigt enkelt att komma igång med. Det löser många problem jag känt vid arbete med CSS, t.ex. att kunna definiera variabler för att enkelt ändra en färg som används på flera ställen, mixins för att enkelt kunna återanvända definitioner. lessphp var ett smidigt sätt för att komma igång med LESS. En nackdel är att firebug inte direkt visar definitionerna från less-filerna utan man får försöka tolka vilken LESS-konstruktion som skapat vilken css-konstruktion. Skriver man fel LESS-syntax är det inte heller helt lätt att förstå vad som är fel var nånstans. När jag skapade filen variables.less glömde jag ta bort motsvarande definition av @total-width i grid.less. Det tog en del tid att förstå varför när jag inte fick fluid layout att fungera.
+
+Semantic.gs var enkelt att få igång för att få till en robust layout och enkelt att få den responsiv. När jag ville styla mina olika sektioner i layout genom att lägga till borders och padding fick jag lite problem. Sektionen tog då större bredd och puttade ner sektioner som skulle ligga till höger. För att lösa det skapade jag en ".cont"-div inuti varje layout-sektion. Denna ".cont"-div kunde jag då styla och ändå få rätt bredd på omslutande sektion.
+
+Font Awesome kikade jag lite på i förra uppgiften kmom02. Enkelt sätt att få in många olika grafiska ikoner på ett enkelt sätt. Något jag funderade på är hur accessibility, "a11y", påverkas. Jag löste det i kmom02 genom att lägga till text för ikonen med en klass .screen-reader-text som döljer texten. Normalize verkar vara en bra metod få till ett känt utgångsläge för att börja styla ett tema. Bootstrap har jag inte tittat så djupt in i. Det verkar innehålla mycket användbart alltifrån "grid system" till stylade html-element som rubriker, formulär och knappar.
+
+Jag har gett några sidor olika utseende baserat på route. I body-elementet lägger jag till ett id döpt efter route och använder detta i min less-fil för styling av individuella sidor. På [about-](about) och [redovisnings-sidan](redovisning) har sneglat lite på koncept  från ["Google material design"](https://www.google.com/design/spec/material-design/introduction.html) där varje sektion i grid-systemet blir ett ark som ligger upphöjt ovanför bottenplanet. På sidan "regioner/typography" har jag tittat på webbplatsen [New York Times](http://www.nytimes.com/) där sektioner i rutnätet avdelas med en tunn linje. För att få fram bild över rutsystemet går det att lägga till query-variabel [?show-grid=1](?show-grid=1) efter varje route. Då jag valt att ha en border och padding på innehåll så hamnar inte rad-start på grid-systemet utan 22+1 pixlar in från kolumn-start.
 
 ## Kmom02
 

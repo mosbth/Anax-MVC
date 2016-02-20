@@ -151,18 +151,21 @@ a:visited {
     #flash {
     text-align: center;
     font-size: x-large;
-    .card;
-    .card-2;
     }
+    #main .cont,
+    #sidebar .cont,
     [id|=featured] .cont,
     [id|=triptych] .cont,
     [id|=footer-col] .cont {
         border-left: 1px solid lightgray;
         padding-left: 1em;
     }
-    #main .cont {
-        border: 2px solid gray;
-        padding-left: 1em;
+    #wrap-featured,
+    #wrap-main,
+    #wrap-triptych,
+    #wrap-footer-col {
+        border-bottom: 4px solid gray;
+        margin-bottom: @magicNumber;
     }
     ul {
         list-style-type: none;
