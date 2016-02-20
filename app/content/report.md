@@ -10,6 +10,10 @@ Font Awesome kikade jag lite på i förra uppgiften kmom02. Enkelt sätt att få
 
 Jag har gett några sidor olika utseende baserat på route. I body-elementet lägger jag till ett id döpt efter route och använder detta i min less-fil för styling av individuella sidor. På [about-](about) och [redovisnings-sidan](redovisning) har sneglat lite på koncept  från ["Google material design"](https://www.google.com/design/spec/material-design/introduction.html) där varje sektion i grid-systemet blir ett ark som ligger upphöjt ovanför bottenplanet. På sidan "regioner/typography" har jag tittat på webbplatsen [New York Times](http://www.nytimes.com/) där sektioner i rutnätet avdelas med en tunn linje. För att få fram bild över rutsystemet går det att lägga till query-variabel [?show-grid=1](?show-grid=1) efter varje route. Då jag valt att ha en border och padding på innehåll så hamnar inte rad-start på grid-systemet utan 22+1 pixlar in från kolumn-start.
 
+Det blir många valideringsfel från font-awesome och från lessphp's genererade css-fil. Enligt "Font awesom" beror det på medvetna browser-hacks för att kunna stödja gamla browser-versioner. Även less.inc.php genererade många lint-varningar som jag stängde av med direktivet @codingStandardsIgnoreStart. I övrigt bör html och less/css validera OK.
+
+Denna gång gav jag mig inte på någon av extrauppgifterna. Huvuduppgiften gav en tillräcklig utmaning.
+
 ## Kmom02
 
 Den här uppgiften kändes väldigt svår i början men det lossnade allteftersom pusselbitarna föll på plats och jag fick lite bättre översikt på ramverket. Första stora problemet var att förstå hur redirect efter sparande av kommentar skulle fungera och hur värden för redirect-sidan överfördes mellan de olika komponenterna. Spara-kommentar-formuläret postar ett gömt fält som skall innehålla redirect-sidan. Denna hämtas mha getPost i controller-sidan som då kan göra redirect efter att kommentaren sparats. Till att börja med hämtade jag redirect-sidan med getCurrentUrl() i form.tpl.php men flyttade sedan ut det till front-controller index.php och skickar istället in redirect-sidan via variabel för att hålla borta php-kod från template-sidorna.
