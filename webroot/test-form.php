@@ -94,7 +94,7 @@ $app->router->add('form/array', function () use ($app) {
         $form->AddOUtput("<p><i>Form was submitted and the callback method returned true.</i></p>");
         header("Location: " . $_SERVER['PHP_SELF']);
 
-    } else if ($status === false) {
+    } elseif ($status === false) {
 
         // What to do when form could not be processed?
         $form->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
@@ -118,12 +118,13 @@ $app->router->add('form/array', function () use ($app) {
 // 4408 0412 3456 7893
 // 4417 1234 5678 9113
 //
-function isValidCCNumber( $ccNum ) {
+function isValidCCNumber($ccNum)
+{
     $digitsOnly = "";
     // Filter out non-digit characters
-    for( $i = 0; $i < strlen( $ccNum ); $i++ ) {
-        if( is_numeric( substr( $ccNum, $i, 1 ) ) ) {
-            $digitsOnly .= substr( $ccNum, $i, 1 );
+    for ($i = 0; $i < strlen($ccNum); $i++) {
+        if (is_numeric(substr($ccNum, $i, 1))) {
+            $digitsOnly .= substr($ccNum, $i, 1);
         }
     }
     // Perform Luhn check
@@ -131,11 +132,11 @@ function isValidCCNumber( $ccNum ) {
     $digit = 0;
     $addend = 0;
     $timesTwo = false;
-    for( $i = strlen( $digitsOnly ) - 1; $i >= 0; $i-- ) {
-        $digit = substr( $digitsOnly, $i, 1 );
-        if( $timesTwo ) {
+    for ($i = strlen($digitsOnly) - 1; $i >= 0; $i--) {
+        $digit = substr($digitsOnly, $i, 1);
+        if ($timesTwo) {
             $addend = $digit * 2;
-            if( $addend > 9 ) {
+            if ($addend > 9) {
                 $addend -= 9;
             }
         } else {
@@ -266,10 +267,8 @@ $app->router->add('form/creditcard', function () use ($app) {
     if ($status === true) {
         $form->AddOUtput("<p><i>Form was submitted and the callback method returned true.</i></p>");
         header("Location: " . $_SERVER['PHP_SELF']);
-    }
-
-    // What to do when form could not be processed?
-    else if ($status === false){
+    } elseif ($status === false) {
+        // What to do when form could not be processed?
         $form->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
         header("Location: " . $_SERVER['PHP_SELF']);
     }
