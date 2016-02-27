@@ -1,5 +1,13 @@
 # Rapporter
 
+## Kmom04
+
+Bekymmer:
+- får inte redirectTo att funka med ny controller, saknade namespace "use \Anax\MVC\TRedirectHelpers;" i FormController.php.
+- Löst hantering med mkt routes ej formulär
+- debuggin av sq.-satser
+- lägga forms i FormController, fel idé. 
+
 ## Kmom03
 
 Jag har inte arbetat med några CSS-ramverk tidigare, så det var ett väldigt nyttigt kursmoment. Det var ett ganska omfattande material att läsa in med mycket nya begrepp. LESS kändes väldigt enkelt att komma igång med. Det löser många problem jag känt vid arbete med CSS, t.ex. att kunna definiera variabler för att enkelt ändra en färg som används på flera ställen, mixins för att enkelt kunna återanvända definitioner. lessphp var ett smidigt sätt för att komma igång med LESS. En nackdel är att firebug inte direkt visar definitionerna från less-filerna utan man får försöka tolka vilken LESS-konstruktion som skapat vilken css-konstruktion. Skriver man fel LESS-syntax är det inte heller helt lätt att förstå vad som är fel var nånstans. När jag skapade filen variables.less glömde jag ta bort motsvarande definition av @total-width i grid.less. Det tog en del tid att förstå varför när jag inte fick fluid layout att fungera.

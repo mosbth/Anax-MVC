@@ -8,8 +8,22 @@
 require __DIR__.'/config.php';
 
 // Create services and inject into the app.
-$di  = new \Anax\DI\CDIFactoryDefault();
-$app = new \Anax\Kernel\CAnax($di);
+$di  = new \Anax\DI\CDIFactory();
+
+$di->set('UsersController', function () use ($di) {
+    $controller = new \Anax\Users\UsersController();
+    $controller->setDI($di);
+    return $controller;
+});
+
+$di->set('FormController', function () use ($di) {
+    $controller = new \Anax\Users\FormController();
+    $controller->setDI($di);
+    return $controller;
+});
+
+// $app = new \Anax\Kernel\CAnax($di);
+$app = new \Anax\MVC\CApplicationBasic($di);
 
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 // On production server, set pretty urls and use rewrite in .htaccess
