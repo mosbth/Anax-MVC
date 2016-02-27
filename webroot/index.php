@@ -162,15 +162,11 @@ $app->router->add('commentadmin', function () use ($app) {
         'links' => [
             [
                 'href' => $app->url->create('commentadmin/lorem'),
-                'text' => "Test page for user comments",
+                'text' => "Test page for user comments on subpage",
             ],
             [
                 'href' => $app->url->create('comment/setup'),
                 'text' => "Setup comment system",
-            ],
-            [
-                'href' => $app->url->create('comment/add'),
-                'text' => "Add comment",
             ],
         ],
     ]);

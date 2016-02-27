@@ -38,8 +38,8 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
 
         $this->db->execute([
             'commentadmin',
-            'Kelly Martin',
-            'kelly@dbwebb.se',
+            'Fredrik Nilsson',
+            'fn@live.se',
             'www.dbwebb.se',
             'Lorem ipsum dolor sit amet, ad nam graeci dissentias, te verear utroque per. Doming intellegat mea id, mel ei dicta iudico. Dicunt fabulas usu ad. Per nemore possim commune ut, eu probo dicta has. ',
             $now

@@ -161,64 +161,6 @@ class CommentController implements \Anax\DI\IInjectionAware
         $this->redirectTo();
     }
 
-
-
-    /**
-     * Edit a comment.
-     *
-     * @return void
-     */
-    // public function editAction()
-    // {
-    //     $comments = new \Phpmvc\Comment\CommentsInSession();
-    //     $comments->setDI($this->di);
-    //     $id = $this->request->getGet('id');
-    //     $theComments = $comments->findAll();
-    //     $this->validate->check($id, ['int', 'range' => [0, count($theComments)]])
-    //         or die("Wrong index. Comment does not exist!");
-    //     $comment = $theComments[$id];
-    //     $this->views->add('comment/edit', [
-    //         'mail'      => $comment['mail'],
-    //         'web'       => $comment['web'],
-    //         'name'      => $comment['name'],
-    //         'content'   => $comment['content'],
-    //         'output'    => null,
-    //         'id'        => $id,
-    //         'commentFlow' => $comment['comment-flow'],
-    //     ]);
-    // }
-
-    /**
-     * Update a comment.
-     *
-     * @return void
-     */
-    public function updateActionRemove()
-    {
-        $isPosted = $this->request->getPost('doUpdate');
-
-        if (!$isPosted) {
-            $this->response->redirect($this->request->getPost('redirect'));
-        }
-
-        $comment = [
-            'content'   => $this->request->getPost('content'),
-            'name'      => $this->request->getPost('name'),
-            'web'       => $this->request->getPost('web'),
-            'mail'      => $this->request->getPost('mail'),
-            'timestamp' => time(),
-            'ip'        => $this->request->getServer('REMOTE_ADDR'),
-            'comment-flow'        => $this->request->getPost('comment-flow'),
-        ];
-        $id = $this->request->getPost('id');
-
-        $comments = new \Loom\Comment\CommentsInSession();
-        $comments->setDI($this->di);
-
-        $comments->update($comment, $id);
-
-        $this->response->redirect($this->request->getPost('redirect'));
-    }
     /**
      * Update user.
      *
