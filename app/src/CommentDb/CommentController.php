@@ -125,9 +125,9 @@ class CommentController implements \Anax\DI\IInjectionAware
             'created' => $now,
         ]);
 
-        $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
-        $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
-        $form->saveInSession = true;
+        // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
+        // $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
+        $form->saveInSession = false;
         return true;
     }
     /**
@@ -212,6 +212,10 @@ class CommentController implements \Anax\DI\IInjectionAware
                 'label'       => 'Email:',
                 'validation'  => ['not_empty', 'email_adress'],
             ],
+            'flow' => [
+                'type'        => 'hidden',
+                'value'       => $comment->flow,
+            ],
             'submit' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitUpdateComment'],
@@ -234,9 +238,9 @@ class CommentController implements \Anax\DI\IInjectionAware
             'mail' => $form->Value('mail'),
         ]);
 
-        $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
-        $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
-        $form->saveInSession = true;
+        // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
+        // $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
+        $form->saveInSession = false;
         return true;
     }
     /**
