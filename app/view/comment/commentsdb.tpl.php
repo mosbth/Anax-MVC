@@ -1,5 +1,9 @@
 <hr>
 
+<p>
+    <a href="<?=$comment_link?>">Make a comment&hellip;</a>
+</p>
+
 <h2>Comments</h2>
 
 <?php if (is_array($comments)) : ?>

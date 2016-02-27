@@ -37,11 +37,15 @@ class CommentController implements \Anax\DI\IInjectionAware
      */
     public function viewAction()
     {
+        $route = $this->request->getRoute();
+
         $all = $this->comments->findAll();
         // TODO: Filter out comment flow
         // echo __FILE__ . " : " . __LINE__ . "<br>";dump($all);
+        $link = $this->url->create('comment/add/' . $route);
         $this->views->add('comment/commentsdb', [
             'comments' => $all,
+            'comment_link' => $link,
         ]);
     }
 
@@ -82,11 +86,12 @@ class CommentController implements \Anax\DI\IInjectionAware
      *
      * @return void
      */
-    public function addAction()
+    public function addAction($route = null)
     {
         // TODO: Need to sweep session?
+        // Add route as flow somehow.
         $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddCommentForm();
+        $form = $this->createAddCommentForm($route);
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
         $this->di->theme->setTitle("Add user");
         $this->di->views->add('default/page', [
@@ -94,7 +99,7 @@ class CommentController implements \Anax\DI\IInjectionAware
             'content' => $form->getHTML()
         ]);
     }
-    private function createAddCommentForm()
+    private function createAddCommentForm($route)
     {
         return $this->di->form->create([], [
             'content' => [
@@ -121,6 +126,10 @@ class CommentController implements \Anax\DI\IInjectionAware
                 'label'       => 'Email:',
                 'validation'  => ['not_empty', 'email_adress'],
             ],
+            'flow' => [
+                'type'        => 'hidden',
+                'value'       => $route,
+            ],
             'submit' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitAddComment'],
@@ -142,7 +151,7 @@ class CommentController implements \Anax\DI\IInjectionAware
         // Save comment to database
         $now = time();
         $this->comments->save([
-            'flow' => $this->request->getRoute(),
+            'flow' => $form->Value('flow'),
             'content' => $form->Value('content'),
             'name' => $form->Value('name'),
             'web' => $form->Value('web'),
@@ -172,8 +181,8 @@ class CommentController implements \Anax\DI\IInjectionAware
     public function callbackSuccess($form)
     {
         $form->AddOUtput("<p><i>Form was submitted and the callback method returned true.</i></p>");
-        // TODO: What redirect?
-        $this->redirectTo();
+        // Redirect to page posted from.
+        $this->redirectTo($form->Value('flow'));
     }
     /**
      * Callback What to do when form could not be processed?
@@ -182,7 +191,7 @@ class CommentController implements \Anax\DI\IInjectionAware
     public function callbackFail($form)
     {
         $form->AddOutput("<p><i>Form was submitted and the Check() method returned false.</i></p>");
-        // TODO: What redirect?
+        // Redirect to comment form.
         $this->redirectTo();
     }
 

@@ -121,7 +121,7 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
             $comment->since_time = $this->humanTiming($comment->created);
             $comment->gravatar = $this->getGravatar($comment->mail);
         }
-        echo __FILE__ . " : " . __LINE__ . "<br>";dump($comments);
+        // echo __FILE__ . " : " . __LINE__ . "<br>";dump($comments);
         return $comments;
     }
 

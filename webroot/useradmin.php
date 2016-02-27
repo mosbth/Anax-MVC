@@ -9,11 +9,9 @@ $app->theme->addStylesheet('css/users.css');
 $app->router->add('', function () use ($app) {
 
     // temp
-    $route = $app->request->getRoute();
     $app->theme->setTitle("User administration");
     $app->views->add('default/page', [
         'title' => "User administration",
-        'content' => "Use links to test user admin functionality. " . "Route is $route.",
         'links' => [
             [
                 'href' => $app->url->create('users/setup'),
@@ -40,6 +38,10 @@ $app->router->add('', function () use ($app) {
                 'text' => "Add user",
             ],
             [
+                'href' => $app->url->create('lorem'),
+                'text' => "Test page for user comments",
+            ],
+            [
                 'href' => $app->url->create('comment/setup'),
                 'text' => "Setup comment system",
             ],
@@ -58,7 +60,20 @@ $app->router->add('', function () use ($app) {
 
 });
 
+// Test route subpage with dummy content to test comment flow.
+$app->router->add('lorem', function () use ($app) {
+    $route = $app->request->getRoute();
+    $app->theme->setTitle("Test comment flow");
+    $app->views->add('default/page', [
+        'title' => "Test comment flow",
+        'content' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras turpis nisi, cursus ac leo ac, tempor faucibus lacus. Etiam iaculis ornare libero, elementum sagittis est finibus sed. Route is <em>$route</em>.",
+    ]);
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
 
+});
 
 // Check for matching routes and dispatch to controller/handler of route
 $app->router->handle();
