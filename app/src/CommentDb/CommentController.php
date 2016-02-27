@@ -37,12 +37,9 @@ class CommentController implements \Anax\DI\IInjectionAware
      */
     public function viewAction()
     {
-        $route = $this->request->getRoute();
-
-        $all = $this->comments->findAll();
-        // TODO: Filter out comment flow
-        // echo __FILE__ . " : " . __LINE__ . "<br>";dump($all);
-        $link = $this->url->create('comment/add/' . $route);
+        $flow = $this->request->getRoute();
+        $all = $this->comments->findFlow($flow);
+        $link = $this->url->create('comment/add/' . $flow);
         $this->views->add('comment/commentsdb', [
             'comments' => $all,
             'comment_link' => $link,
@@ -356,7 +353,6 @@ class CommentController implements \Anax\DI\IInjectionAware
         }
 
         $res = $this->comments->delete($id);
-        // TODO: redirect to what?
-        $this->redirectTo('');
+        $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
 }
