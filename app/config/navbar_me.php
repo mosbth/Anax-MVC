@@ -53,10 +53,17 @@ return [
         ],
 
         // This is a menu item
-        'discuss2' => [
+        'commentadmin' => [
             'text'  =>'Kommentera',
-            'url'   => $this->di->get('url')->create('comment-2'),
-            'title' => 'Comment thread 2'
+            'url'   => $this->di->get('url')->create('commentadmin'),
+            'title' => 'Comment administration page'
+        ],
+
+        // This is a menu item
+        'useradmin' => [
+            'text'  =>'Användare',
+            'url'   => $this->di->get('url')->create('useradmin'),
+            'title' => 'Användare'
         ],
 
         // This is a menu item

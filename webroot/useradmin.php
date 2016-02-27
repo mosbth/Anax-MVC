@@ -12,6 +12,7 @@ $app->router->add('', function () use ($app) {
     $app->theme->setTitle("User administration");
     $app->views->add('default/page', [
         'title' => "User administration",
+        'content' => "Page to test user administration. List users in order to edit or delete users. ",
         'links' => [
             [
                 'href' => $app->url->create('users/setup'),

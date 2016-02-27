@@ -42,3 +42,4 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
 $app->theme->addStylesheet('css/me.css');
 $app->theme->addStylesheet('css/comments.css');
+$app->theme->addStylesheet('css/users.css');

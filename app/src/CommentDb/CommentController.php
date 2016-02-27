@@ -28,7 +28,7 @@ class CommentController implements \Anax\DI\IInjectionAware
     public function setupAction()
     {
         $this->comments->init();
-        $this->redirectTo('');
+        $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
     /**
      * View all comments.

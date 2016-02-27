@@ -37,20 +37,29 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         $now = time();
 
         $this->db->execute([
-            '',
-            'Bo Jonsson Grip',
-            'admin@dbwebb.se',
-            'bosse.dbwebb.se',
-            'Jag är Bo Jonsson Grip. Även kallad Bosse. ',
+            'commentadmin',
+            'Kelly Martin',
+            'kelly@dbwebb.se',
+            'www.dbwebb.se',
+            'Lorem ipsum dolor sit amet, ad nam graeci dissentias, te verear utroque per. Doming intellegat mea id, mel ei dicta iudico. Dicunt fabulas usu ad. Per nemore possim commune ut, eu probo dicta has. ',
             $now
         ]);
 
         $this->db->execute([
-            '',
+            'commentadmin',
+            'Joe Doe',
+            'doe@dbwebb.se',
+            'test.dbwebb.se',
+            'Accusam eleifend qui ex. Has duis iuvaret salutatus id, dico illud porro ea mei, id oblique tibique eos. Ne eam meis equidem admodum, eos nisl maluisset id. Ancillae lucilius persecuti no sed.',
+            $now
+        ]);
+
+        $this->db->execute([
+            'calendar',
             'Jane Doe',
             'doe@dbwebb.se',
             'jane.dbwebb.se',
-            'Jag heter Jane. Jag jobbar på BTH. Vilken bra sida detta är.',
+            'Sea te vocibus dolores pertinax, quodsi insolens appellantur sit an, dicam definitionem sed ne.',
             $now
         ]);
 
