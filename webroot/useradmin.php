@@ -8,10 +8,12 @@ $app->theme->addStylesheet('css/users.css');
 // Home route
 $app->router->add('', function () use ($app) {
 
+    // temp
+    $route = $app->request->getRoute();
     $app->theme->setTitle("User administration");
     $app->views->add('default/page', [
         'title' => "User administration",
-        'content' => "Use links to test user admin functionality.",
+        'content' => "Use links to test user admin functionality. " . "Route is $route.",
         'links' => [
             [
                 'href' => $app->url->create('users/setup'),
@@ -37,8 +39,22 @@ $app->router->add('', function () use ($app) {
                 'href' => $app->url->create('users/add'),
                 'text' => "Add user",
             ],
+            [
+                'href' => $app->url->create('comment/setup'),
+                'text' => "Setup comment system",
+            ],
+            [
+                'href' => $app->url->create('comment/add'),
+                'text' => "Add comment",
+            ],
         ],
     ]);
+
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
 
 });
 

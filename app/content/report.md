@@ -6,7 +6,13 @@ Bekymmer:
 - får inte redirectTo att funka med ny controller, saknade namespace "use \Anax\MVC\TRedirectHelpers;" i FormController.php.
 - Löst hantering med mkt routes ej formulär
 - debuggin av sq.-satser
-- lägga forms i FormController, fel idé. 
+- installera SQLite Manager
+- lägga forms i FormController, fel idé.
+- How are parameters extracted from route?
+
+Ny CommentController klass i annan namespace än den gamla.
+- 
+
 
 ## Kmom03
 

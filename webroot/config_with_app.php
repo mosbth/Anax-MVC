@@ -22,6 +22,12 @@ $di->set('FormController', function () use ($di) {
     return $controller;
 });
 
+$di->set('CommentController', function () use ($di) {
+    $controller = new \Anax\CommentDb\CommentController();
+    $controller->setDI($di);
+    return $controller;
+});
+
 // $app = new \Anax\Kernel\CAnax($di);
 $app = new \Anax\MVC\CApplicationBasic($di);
 
@@ -35,3 +41,4 @@ $app->url->setUrlType(
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
 $app->theme->addStylesheet('css/me.css');
+$app->theme->addStylesheet('css/comments.css');
