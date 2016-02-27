@@ -47,36 +47,6 @@ class CommentController implements \Anax\DI\IInjectionAware
     }
 
     /**
-     * Add a comment.
-     *
-     * @return void
-     */
-    public function addOldCommentAction()
-    {
-        $isPosted = $this->request->getPost('doCreate');
-
-        if (!$isPosted) {
-            $this->response->redirect($this->request->getPost('redirect'));
-        }
-
-        $comment = [
-            'content'   => $this->request->getPost('content'),
-            'name'      => $this->request->getPost('name'),
-            'web'       => $this->request->getPost('web'),
-            'mail'      => $this->request->getPost('mail'),
-            'timestamp' => time(),
-            'ip'        => $this->request->getServer('REMOTE_ADDR'),
-            'comment-flow'        => $this->request->getPost('comment-flow'),
-        ];
-
-        $comments = new \Phpmvc\Comment\CommentsInSession();
-        $comments->setDI($this->di);
-
-        $comments->add($comment);
-
-        $this->response->redirect($this->request->getPost('redirect'));
-    }
-    /**
      * Add new comment.
      *
      * @param .
@@ -85,8 +55,7 @@ class CommentController implements \Anax\DI\IInjectionAware
      */
     public function addAction($route = null)
     {
-        // TODO: Need to sweep session?
-        // Add route as flow somehow.
+        // TODO: Need to sweep session? How?
         $this->di->session(); // Will load the session service which also starts the session
         $form = $this->createAddCommentForm($route);
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
