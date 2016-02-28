@@ -31,7 +31,23 @@ class CommentController implements \Anax\DI\IInjectionAware
         $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
     /**
-     * View all comments.
+     * List all comments for all flows.
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $all = $this->comments->findAll();
+        $flow = $this->request->getRoute();
+        $link = $this->url->create('comment/add/' . $flow);
+        $this->theme->setTitle("List all users");
+        $this->views->add('comment/commentsdb', [
+            'comments' => $all,
+            'comment_link' => $link,
+        ]);
+    }
+    /**
+     * View all comments in page flow.
      *
      * @return void
      */
@@ -49,12 +65,14 @@ class CommentController implements \Anax\DI\IInjectionAware
     /**
      * Add new comment.
      *
-     * @param .
+     * @param string $route to page for comment flow.
      *
      * @return void
      */
     public function addAction($route = null)
     {
+        // Route parts are are in argument array. Glue them together again.
+        $route = implode("/", func_get_args());
         // TODO: Need to sweep session? How?
         $this->di->session(); // Will load the session service which also starts the session
         $form = $this->createAddCommentForm($route);
@@ -162,7 +180,7 @@ class CommentController implements \Anax\DI\IInjectionAware
     }
 
     /**
-     * Update user.
+     * Edit comment.
      *
      * @param string $acronym of user to update.
      *
