@@ -164,6 +164,7 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
         $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        $acronym = $form->Value('acronym');
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
         $this->users->save([

@@ -127,7 +127,7 @@ class CommentController implements \Anax\DI\IInjectionAware
 
         // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
         // $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
-        $form->saveInSession = false;
+        $form->saveInSession = true;
         return true;
     }
     /**
@@ -240,7 +240,7 @@ class CommentController implements \Anax\DI\IInjectionAware
 
         // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
         // $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
-        $form->saveInSession = false;
+        $form->saveInSession = true;
         return true;
     }
     /**

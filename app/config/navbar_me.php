@@ -62,7 +62,7 @@ return [
         // This is a menu item
         'useradmin' => [
             'text'  =>'Användare',
-            'url'   => $this->di->get('url')->create('useradmin'),
+            'url'   => $this->di->get('url')->create('users'),
             'title' => 'Användare'
         ],
 

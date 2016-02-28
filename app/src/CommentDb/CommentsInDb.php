@@ -37,7 +37,7 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         $now = time();
 
         $this->db->execute([
-            'commentadmin',
+            'commentadmin/lorem',
             'Fredrik Nilsson',
             'fn@live.se',
             'www.dbwebb.se',
@@ -46,7 +46,7 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         ]);
 
         $this->db->execute([
-            'commentadmin',
+            'commentadmin/lorem',
             'Joe Doe',
             'doe@dbwebb.se',
             'test.dbwebb.se',

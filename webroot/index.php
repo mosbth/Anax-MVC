@@ -113,7 +113,7 @@ $app->router->add('source', function () use ($app) {
 
 
 // Home route
-$app->router->add('useradmin', function () use ($app) {
+$app->router->add('users', function () use ($app) {
     $app->theme->setTitle("User administration");
     $app->views->add('default/page', [
         'title' => "User administration",
@@ -146,11 +146,6 @@ $app->router->add('useradmin', function () use ($app) {
         ],
     ]);
 
-    $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'view',
-    ]);
-
 });
 
 // Route to administer comments
@@ -161,19 +156,14 @@ $app->router->add('commentadmin', function () use ($app) {
         'content' => "Page to test comments administration. ",
         'links' => [
             [
-                'href' => $app->url->create('commentadmin/lorem'),
-                'text' => "Test page for user comments on subpage",
-            ],
-            [
                 'href' => $app->url->create('comment/setup'),
                 'text' => "Setup comment system",
             ],
+            [
+                'href' => $app->url->create('commentadmin/lorem'),
+                'text' => "Test page for user comments on subpage",
+            ],
         ],
-    ]);
-
-    $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'view',
     ]);
 
 });
