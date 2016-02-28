@@ -1,0 +1,30 @@
+/**
+ * Style for comments
+ */
+
+ /*
+ * Add hidden text available for screen readers
+ * Use with font-awesome icons <span class="screen-reader-text">...</span>
+ */
+a .screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  /*position: absolute !important;*/
+  position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.comment-single {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-form fieldset {
+    border-style: none;
+}
+.comment-form legend {
+    font-weight: bold;
+    text-decoration: underline;
+}
+/* TODO: fontawsome does not pass W3C unicorn */
