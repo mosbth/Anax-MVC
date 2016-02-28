@@ -2,9 +2,9 @@
 
 return [
     // Its best to add an absolute path to the dsn
-    'dsn'     => "sqlite:.htsqlite.db",
+    // 'dsn'     => "sqlite:.htsqlite.db",
     // 'dsn'     => "sqlite: /home/Fredrik/db/.htsqlite.db",
-    // 'dsn'     => "sqlite:/home/saxon/students/20152/frnf15/db/.htsqlite.db",
+    'dsn'     => "sqlite:/home/saxon/students/20152/frnf15/db/.htsqlite.db",
 
     // Display details on what happens
     'verbose' => false,

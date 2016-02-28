@@ -54,9 +54,22 @@ return [
 
         // This is a menu item
         'commentadmin' => [
-            'text'  =>'Kommentera',
+            'text'  =>'Kommentarer',
             'url'   => $this->di->get('url')->create('commentadmin'),
-            'title' => 'Comment administration page'
+            'title' => 'Comment administration page',
+            // Here we add the submenu, with some menu items, as part of a existing menu item
+            'submenu' => [
+                'items' => [
+
+                    // This is a menu item of the submenu
+                    'lorem'  => [
+                        'text'  => 'Commenting test',
+                        'url'   => $this->di->get('url')->create('commentadmin/lorem'),
+                        'title' => 'Commenting test'
+                    ],
+
+                ],
+            ],
         ],
 
         // This is a menu item

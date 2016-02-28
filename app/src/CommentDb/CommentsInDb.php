@@ -14,7 +14,7 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
      */
     public function init()
     {
-        $this->db->setVerbose();
+        // $this->db->setVerbose();
         $this->db->dropTableIfExists('commentsindb')->execute();
 
         $this->db->createTable(
@@ -149,19 +149,4 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         }
         return $comments;
     }
-
-    /**
-     * Update a comment.
-     *
-     * @param array $comment with all details.
-     * @param integer $id of comment to be updated
-     *
-     * @return void
-     */
-    // public function update($comment, $id)
-    // {
-    //     $comments = $this->session->get('comments', []);
-    //     $comments[$id] = $comment;
-    //     $this->session->set('comments', $comments);
-    // }
 }
