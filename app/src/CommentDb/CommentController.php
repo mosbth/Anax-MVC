@@ -130,8 +130,8 @@ class CommentController implements \Anax\DI\IInjectionAware
      */
     public function callbackSubmitAddComment($form)
     {
-        $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
-        $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         // Save comment to database
         $now = time();
         $this->comments->save([
@@ -145,7 +145,7 @@ class CommentController implements \Anax\DI\IInjectionAware
 
         // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
         // $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
-        $form->saveInSession = true;
+        $form->saveInSession = false;
         return true;
     }
     /**
@@ -246,8 +246,8 @@ class CommentController implements \Anax\DI\IInjectionAware
     }
     public function callbackSubmitUpdateComment($form)
     {
-        $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
-        $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         // Save user data to database
         $this->comments->save([
             'content' => $form->Value('content'),
@@ -258,7 +258,7 @@ class CommentController implements \Anax\DI\IInjectionAware
 
         // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
         // $form->AddOutput("<p><b>Email: " . $form->Value('mail') . "</b></p>");
-        $form->saveInSession = true;
+        $form->saveInSession = false;
         return true;
     }
     /**
