@@ -16,7 +16,8 @@
     "require": {
         "php": ">=5.4",
         "mos/ctextfilter": "dev-master",
-        "mos/cform": "2.x-dev",
+        "mos/cform": "2.*@dev",
+        "mos/cdatabase": "dev-master",
         "phpmvc/comment": "dev-master"
     },
     "autoload": {

@@ -71,20 +71,6 @@ $app->router->add('calendar', function () use ($app) {
         'action'     => 'view',
     ]);
 
-    $app->views->add('comment/hide', [
-        'link'      => $app->url->create($app->request->getRoute().'?showform=true'),
-    ]);
-
-    $app->views->add('comment/form', [
-        'mail'      => null,
-        'web'       => null,
-        'name'      => null,
-        'content'   => null,
-        'output'    => null,
-        'showForm'  => $app->request->getGet('showform', false),
-        'redirect'    => $app->url->create($app->request->getRoute()),
-        'page'    => $app->request->getRoute(),
-    ]);
 });
 
 // Route to roll dice and show results
@@ -125,52 +111,85 @@ $app->router->add('source', function () use ($app) {
 
 });
 
-$app->theme->addStylesheet('css/comments.css');
-// TODO: use resourc on maxcdn instead. Just trying out local install.
-// $app->theme->addStylesheet('css/font-awesome-4.5.0/css/font-awesome.min.css');
-// Add page with comment system
-$di->set('CommentController', function () use ($di) {
-    $controller = new Loom\Comment\CommentController();
-    $controller->setDI($di);
-    return $controller;
+
+// Home route
+$app->router->add('users', function () use ($app) {
+    $app->theme->setTitle("User administration");
+    $app->views->add('default/page', [
+        'title' => "User administration",
+        'content' => "Page to test user administration. List users in order to edit or delete users. ",
+        'links' => [
+            [
+                'href' => $app->url->create('users/setup'),
+                'text' => "Setup user table with test data",
+            ],
+            [
+                'href' => $app->url->create('users/list'),
+                'text' => "List all users",
+            ],
+            [
+                'href' => $app->url->create('users/active'),
+                'text' => "List active users",
+            ],
+            [
+                'href' => $app->url->create('users/inactive'),
+                'text' => "List inactive users",
+            ],
+            [
+                'href' => $app->url->create('users/wastebasket'),
+                'text' => "List users in wastebasket",
+            ],
+            [
+                'href' => $app->url->create('users/add'),
+                'text' => "Add user",
+            ],
+        ],
+    ]);
+
 });
 
-// Home route second comment page
-$app->router->add('comment-2', function () use ($app) {
+// Route to administer comments
+$app->router->add('commentadmin', function () use ($app) {
+    $app->theme->setTitle("Comments administration");
+    $app->views->add('default/page', [
+        'title' => "Comments administration",
+        'content' => "Page to test comments administration. ",
+        'links' => [
+            [
+                'href' => $app->url->create('comment/setup'),
+                'text' => "Setup comment system",
+            ],
+            [
+                'href' => $app->url->create('comment/list'),
+                'text' => "List all comments in comment system",
+            ],
+            [
+                'href' => $app->url->create('commentadmin/lorem'),
+                'text' => "Test page for user comments on subpage",
+            ],
+        ],
+    ]);
 
-    $app->theme->setTitle("Kommentera");
-    $app->views->add('comment/index');
+});
 
+
+// Test route subpage with dummy content to test comment flow.
+$app->router->add('commentadmin/lorem', function () use ($app) {
+    $route = $app->request->getRoute();
+    $app->theme->setTitle("Test comment flow");
+    $app->views->add('default/page', [
+        'title' => "Test comment flow",
+        'content' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         Cras turpis nisi, cursus ac leo ac, tempor faucibus lacus. Etiam iaculis ornare libero,
+         elementum sagittis est finibus sed. Route is <em>$route</em>.",
+    ]);
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view',
     ]);
 
-    $app->views->add('comment/hide', [
-        'link'      => $app->url->create($app->request->getRoute().'?showform=true'),
-    ]);
-
-    $app->views->add('comment/form', [
-        'mail'      => null,
-        'web'       => null,
-        'name'      => null,
-        'content'   => null,
-        'output'    => null,
-        'showForm'  => $app->request->getGet('showform', false),
-        'redirect'    => $app->url->create($app->request->getRoute()),
-        'page'    => $app->request->getRoute(),
-    ]);
 });
 
-// Route to edit comment
-$app->router->add('comment/edit', function () use ($app) {
-
-    $app->theme->setTitle("Redigera kommentar");
-    $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'edit',
-    ]);
-});
 
 
 $app->router->handle();

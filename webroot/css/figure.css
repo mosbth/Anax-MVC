@@ -10,7 +10,7 @@ figure img {
     max-width: 100%;
     display: block;
 }
-  
+
 figure figcaption {
     font-style: italic;
     padding-top: 1em;
@@ -31,9 +31,9 @@ figure.figure {
 }
 
 figure.figure a { }
-  
+
 figure.figure img { }
-  
+
 /* Chrome shinks images in td */
 figure.figure td img {
     max-width: none;
@@ -69,7 +69,7 @@ figure.center {
 figure.center img {
     margin: 0 auto;
 }
-  
+
 figure.center figcaption {
     text-align: center;
 }
@@ -83,8 +83,8 @@ figure.border {
     border: 10px solid #000;
 }
 
-figure.rounded img {
+/*figure.rounded img {
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
-}
+}*/
