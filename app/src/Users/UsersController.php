@@ -162,8 +162,8 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function callbackSubmitAddUser($form)
     {
-        $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
-        $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         $acronym = $form->Value('acronym');
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
@@ -179,10 +179,10 @@ class UsersController implements \Anax\DI\IInjectionAware
         // Try instead create/display form from UsersController?
         // Check if acro exists, if so update instead. or exit with false?
 
-        $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
-        $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");
-        $form->AddOutput("<p><b>Phone: " . $form->Value('acronym') . "</b></p>");
-        $form->saveInSession = true;
+        // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
+        // $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");
+        // $form->AddOutput("<p><b>Acronym: " . $form->Value('acronym') . "</b></p>");
+        $form->saveInSession = false;
         return true;
     }
     /**
@@ -269,8 +269,8 @@ class UsersController implements \Anax\DI\IInjectionAware
     }
     public function callbackSubmitUpdateUser($form)
     {
-        $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
-        $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
         $this->users->save([
@@ -286,10 +286,10 @@ class UsersController implements \Anax\DI\IInjectionAware
         // Try instead create/display form from UsersController?
         // Check if acro exists, if so update instead. or exit with false?
 
-        $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
-        $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");
-        $form->AddOutput("<p><b>Phone: " . $form->Value('acronym') . "</b></p>");
-        $form->saveInSession = true;
+        // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
+        // $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");
+        // $form->AddOutput("<p><b>Phone: " . $form->Value('acronym') . "</b></p>");
+        $form->saveInSession = false;
         return true;
     }
     /**
