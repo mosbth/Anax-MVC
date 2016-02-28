@@ -13,7 +13,7 @@
 </table>
 
 <p>
-    <a href='<?=$this->url->create('users/edit/'.$properties['id'])?>'>Edit</a>
+    <a href='<?=$this->url->create('users/update/'.$properties['id'])?>'>Edit</a>
     <a href='<?=$this->url->create('users/soft-delete/'.$properties['id'])?>'> | Delete</a>
     <a href='<?=$this->url->create('users/delete/'.$properties['id'])?>'> | Hard delete</a>
 </p>

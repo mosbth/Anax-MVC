@@ -165,6 +165,13 @@ class UsersController implements \Anax\DI\IInjectionAware
         // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
         // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         $acronym = $form->Value('acronym');
+        // Check for duplicate acronym. Die if exists.
+        $all = $this->users->query()
+            ->where("acronym = '$acronym'")
+            ->execute();
+        if (count($all)!=0) {
+            die("User with acronym $acronym already in model.");
+        }
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
         $this->users->save([
@@ -175,9 +182,6 @@ class UsersController implements \Anax\DI\IInjectionAware
             'created' => $now,
             'active' => $now,
         ]);
-        // TODO: How to handle duplicate acronym? Exception
-        // Try instead create/display form from UsersController?
-        // Check if acro exists, if so update instead. or exit with false?
 
         // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
         // $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");
@@ -224,8 +228,14 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function updateAction($id = null)
     {
         $this->di->session(); // Will load the session service which also starts the session
+        // Check if valid entry exists.
+        $all = $this->users->query()
+            ->where("id = '$id'")
+            ->execute();
+        if (count($all)!=1) {
+            die("User with id $id not found.");
+        }
         $user = $this->users->find($id);
-        // TODO: check if we found valid entry
         $form = $this->createUpdateUserForm($user);
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
         $this->di->theme->setTitle("Update user");
@@ -257,6 +267,10 @@ class UsersController implements \Anax\DI\IInjectionAware
                 'required'    => true,
                 'validation'  => ['not_empty', 'email_adress'],
             ],
+            'id' => [
+                'type'        => 'hidden',
+                'value'       => $user->id,
+            ],
             'submit' => [
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitUpdateUser'],
@@ -271,6 +285,17 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
         // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // Handle update to duplicate acronym. Die if other user already has acronym.
+        $id = $form->Value('id');
+        $acronym = $form->Value('acronym');
+        $all = $this->users->query()
+            ->where("id != '$id'")
+            ->andwhere("acronym = '$acronym'")
+            ->execute();
+        if (count($all)==1) {
+            die("User with acronym $acronym alredy defined for other user. ");
+        }
+        // die();
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
         $this->users->save([
@@ -281,10 +306,6 @@ class UsersController implements \Anax\DI\IInjectionAware
             // 'created' => $now,
             // 'active' => $now,
         ]);
-        // TODO: How to handel password, dates, etc?
-        // TODO: How to handle duplicate acronym? Exception
-        // Try instead create/display form from UsersController?
-        // Check if acro exists, if so update instead. or exit with false?
 
         // $form->AddOutput("<p><b>Name: " . $form->Value('name') . "</b></p>");
         // $form->AddOutput("<p><b>Email: " . $form->Value('email') . "</b></p>");

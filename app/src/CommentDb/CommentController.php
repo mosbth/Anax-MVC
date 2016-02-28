@@ -74,6 +74,7 @@ class CommentController implements \Anax\DI\IInjectionAware
         // Route parts are are in argument array. Glue them together again.
         $route = implode("/", func_get_args());
         // TODO: Need to sweep session? How?
+        // Set saveInSession = false instead.
         $this->di->session(); // Will load the session service which also starts the session
         $form = $this->createAddCommentForm($route);
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
@@ -189,8 +190,13 @@ class CommentController implements \Anax\DI\IInjectionAware
     public function editAction($id = null)
     {
         $this->di->session(); // Will load the session service which also starts the session
+        $all = $this->comments->query()
+            ->where("id = '$id'")
+            ->execute();
+        if (count($all)!=1) {
+            die("Comment with id $id not found.");
+        }
         $comment = $this->comments->find($id);
-        // TODO: check if we found valid entry
         $form = $this->createEditCommentForm($comment);
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
         $this->di->theme->setTitle("Edit comment");

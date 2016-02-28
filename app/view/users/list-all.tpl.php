@@ -14,7 +14,7 @@
         <td><?=$properties['deleted']?'Yes':'No'?></td>
         <td>
             <a href='<?=$this->url->create('users/id/'.$properties['id'])?>'>View</a>
-            <a href='<?=$this->url->create('users/edit/'.$properties['id'])?>'>  | Edit</a>
+            <a href='<?=$this->url->create('users/update/'.$properties['id'])?>'>  | Edit</a>
             <a href='<?=$this->url->create('users/activate/'.$properties['id'])?>'>  | Activate</a>
             <a href='<?=$this->url->create('users/deactivate/'.$properties['id'])?>'>  | Deactivate</a>
             <a href='<?=$this->url->create('users/soft-delete/'.$properties['id'])?>'> | Delete</a>
