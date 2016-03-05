@@ -1,5 +1,23 @@
 # Rapporter
 
+## Kmom05
+
+Jag valde att göra en "Contact form"-modul med inspiration från två WordPress plugins [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) och [Flamingo](https://wordpress.org/plugins/flamingo/). Med CF7 kan man skapa flexibla formulär och få formulärdatat skickat till en email-mottagare. Flamingo lägger till möjligheten att spara meddelanden från CF7 till lokal databas utöver att mail skickas iväg, samt lagrar även kontaktuppgifter lokalt i databas för alla som via CF7 submittar namn, email etc. Normalt brukar "Contact form" plugins enbart skicka vidare meddelandet via mail. En risk med detta är att mailet kan försvinna i spam-filter hos mottagaren alternativt att webbservern får problem att skicka iväg mailet. Meddelandet går då förlorat. En lösning är då att spara meddelandet lokalt på servern i en databas. Min modul är en väldigt förenklad variant av detta. Användaren kan lägga till en vy mha dispatcher för att visa kontaktformuläret  på valfri sida. För att visa och adminstrera meddelandena behöver användaren lägga till en annan vy mha dispatcher på en lämplig route. Denna route bör enbart göras åtkomlig för webb-adminstratören.
+
+"Contact Form"-modulen är baserad på och lik Comment-modulen jag tog fram i Kmom04. Funktionen är dock annorlunda och fyller ett specifikt behov. Jag började med att bygga upp modulen i ett sub-repo under Anax-MVC/vendor. Efter lite felsökning, förmodligen problem med autoloader, så flyttade jag ut sub-repot utanför Anax-MVC. Istället testade jag ut funktionalitet med modulen under Anax-MVC/src.
+
+När det väl funkade under /src, flyttade jag in filerna till ett "Contactform"-repo utanför Anax-MVC, i rätt mapp-struktur, ändrade namespace, och skapade en autoloader-fil. Sedan var det "bara"  att koppla ihop så att repot pushades till github,  contactform-modulen hämtades från git till packagist, och sist från packagist ner till vendor-mappeni Anax-MVC. Efter några småjusteringar i koden så funkade det igen. Detta gick över förväntan smidigt. Efter att jag fick ner contactform-modulen till vendor-mappen kunde jag återigen jobba i denna mappen som ett sub-repo för contactform.
+
+Standardinstallation av Anax MVC har jag valt att definiera såsom min version av [Anax-MVC v.04 kmom04](https://github.com/fnlive/Anax-MVC/releases/tag/v0.4), dvs Anax-MVC från föregående moment. Utöver de beroenden som jag listat i installatins-anvisning på github/packagist så behövs även Anax-MVC/src/MVC/CDatabaseModel.php, som finns just i denna version av Anax-MVC.
+
+Jag prövade installation från scratch genom att följa min [instruktion](https://github.com/fnlive/contactform#installation), ladda ner [Anax-MVC v.04 kmom04](https://github.com/fnlive/Anax-MVC/releases/tag/v0.4), uppdatera composer-fil, köra composer-update, kopiera template-filer, testa test-fil i webbläsaren. Det funkade såklart inte direkt utan jag fick göra små modifieringar både i instruktion och  testContactform.php några gånger för att få allt på plats. Blir lätt omständligt att uppdatera hela vägen med git add/commit/push, update i packagist, och sedan composer update, för varje lite ändring man vill testa. Det skall gå att få till automatisk uppdatering av Packagist när github uppdateras, men jag har inte lyckats aktivera detta.  
+
+Kopieringen av template-filer känns lite onödig. Det kanske skulle gå att peka ut dessa på dess ursprungliga ställe.
+
+Jag har även integrerat contactform-modulen i denna Anax-installation. Exempel på kontaktformuläret kan man hitta under meny-valet [Tärning](dice). Adminstration av meddelanden kan man göra under meny-valet [Admin/Meddelanden](admincontacts). Insikt i struktur och funktion i Anax-MVC har ytterligare fördjupats med denna uppgift. Jag navigerar runt i koden lite mer självsäkert nu.
+
+Jag gjorde ingen extrauppgift.
+
 ## Kmom04
 
 Generellt var detta en omfattande och tung uppgift. Jag slogs med många relativt enkla fel som tog tid att hitta. T.ex. funkade redirectTo() fint i UsersController men inte i CommentController. Missat att lägga med "use 'namespace'". Fick även läsa på igen om sql-syntax och installera [SQLite Manager](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/) för att pröva ut queries i en kontrollerad miljö. Etc. Har definitivt utökat debugging erfarenheter i denna uppgift.

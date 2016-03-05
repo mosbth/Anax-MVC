@@ -39,12 +39,25 @@ $app->router->add('redovisning', function () use ($app) {
 
 });
 
+// TODO: move to config_with_app
+// Load Contact Form Controller
+$di->set('ContactformController', function () use ($di) {
+    $controller = new \Fnlive\Contactform\ContactFormController();
+    $controller->setDI($di);
+    return $controller;
+});
+
 $app->theme->addStylesheet('css/dice.css');
 // Route to show welcome to dice
 $app->router->add('dice', function () use ($app) {
 
     $app->views->add('dice/index');
     $app->theme->setTitle("Roll a dice");
+
+    $app->dispatcher->forward([
+        'controller' => 'contactform',
+        'action'     => 'display',
+    ]);
 
 });
 
@@ -188,6 +201,64 @@ $app->router->add('commentadmin/lorem', function () use ($app) {
         'action'     => 'view',
     ]);
 
+});
+
+$app->router->add('admin', function () use ($app) {
+    $app->theme->setTitle("Admin page");
+
+    $app->views->add('default/page', [
+        'title' => "Admin page",
+        'content' => "Page for various administration tasks.",
+        'links' => [
+            [
+                'href' => $app->url->create('admincontacts'),
+                'text' => "Administrate messages from contact form",
+            ],
+            [
+                'href' => $app->url->create('users'),
+                'text' => "Administrate users",
+            ],
+            [
+                'href' => $app->url->create('commentadmin'),
+                'text' => "Administrate comments",
+            ],
+        ],
+    ]);
+
+});
+
+
+// TODO: move to config_with_app???
+// Load Contact Form controller
+$di->set('ContactformadminController', function () use ($di) {
+    $controller = new \Fnlive\Contactform\ContactFormAdminController();
+    $controller->setDI($di);
+    return $controller;
+});
+
+$app->router->add('admincontacts', function () use ($app) {
+    $app->theme->setTitle("Admin contacts");
+
+    $app->views->add('default/page', [
+        'title' => "Admin contacts",
+        'content' => "Page for testing contact form message administration.",
+        'links' => [
+            [
+                'href' => $app->url->create('contactformadmin/setup'),
+                'text' => "Setup user table with test data (first time setup, erases all current messages)",
+            ],
+            [
+                'href' => $app->url->create('dice'),
+                'text' => "Check usage of comment form on Dice page",
+            ],
+        ],
+    ]);
+
+    $app->dispatcher->forward([
+        'controller' => 'contactformadmin',
+        // 'controller' => 'ContactFormAdminController',
+        'action'     => 'list',
+    ]);
 });
 
 
