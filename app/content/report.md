@@ -1,5 +1,27 @@
 # Rapporter
 
+## Kmom05
+
+Reflektera över svårigheter, problem, lösningar, erfarenheter, lärdomar, resultatet, etc.
+
+Se till att följande frågor besvaras i texten:
+
+    Var hittade du inspiration till ditt val av modul och var hittade du kodbasen som du använde?
+    Hur gick det att utveckla modulen och integrera i ditt ramverk?
+    Hur gick det att publicera paketet på Packagist?
+    Hur gick det att skriva dokumentationen och testa att modulen fungerade tillsammans med Anax MVC?
+    Gjorde du extrauppgiften? Beskriv i så fall hur du tänkte och vilket resultat du fick.
+
+Valde göra mini-"contactform/CRM"-modul baserad  på Comment/CForm inspierard av CF7+Flamingo.
+
+Jag valde att göra en "Contact form"-modul med inspiration från två WordPress plugins "Contact Form 7" och "Flamingo". Med CF7 kan man skapa flexibla formulär och få formulärdatat skickat till en email-mottagare. Flamingo lägger till möjligheten att spara meddelanden från CF7 till lokal databas utöver att mail skickas iväg, samt lagrar även kontaktuppgifter lokalt i databas för alla som via CF7 submittar namn, email etc. Normalt brukar "Contact form" plugins enbart skicka vidare meddelandet via mail. En risk med detta är att mailet kan försvinna i spam-filter hos mottagern alternativt att webbservern får problem att skicka iväg mailet. Meddelandet går då förlorat. En lösning är då att spara meddelandet lokalt på servern i en databas. Min modul är en väldigt förenklad variant av detta. Användaren kan lägga till en vy mha dispatcher för att visa kontaktformuläret  på valfri sida. För att visa och adminstrera meddelandena behöver användaren lägga till en annan via mha dispatcher på en lämplig route. Denna route bör enbart göras åtkomlig för webb-adminstratören.
+
+"Contact Form"-modulen är baserad på och lik Comment-modulen jag tog fram i Kmom04. Funktionen är dock annorlunda och fyller ett specifikt behov. Jag började med att bygga upp modulen i ett sub-repo under Anax-MVC/vendor. Efter lite felsökning, förmodligen problem med autoloader, så flyttade jag ut sub-repot utanför Anax-MVC. Istället testade jag ut funktionalitet med modulen under Anax-MVC/src.
+
+När det väl funkade under /src, flyttade jag in filerna till "Contactform"-repot i rätt mapp-struktur, ändrade namespace, och skapade en autoloader-fil. Sedan var det "bara"  att koppla ihop så att repot pushades till github och sedna att contactform-modulen hämtades från packagist ner till vendor-mappen. Efter några småjusteringar i koden så funkade det igen. Detta gick över förväntan smidigt.
+
+
+
 ## Kmom04
 
 Generellt var detta en omfattande och tung uppgift. Jag slogs med många relativt enkla fel som tog tid att hitta. T.ex. funkade redirectTo() fint i UsersController men inte i CommentController. Missat att lägga med "use 'namespace'". Fick även läsa på igen om sql-syntax och installera [SQLite Manager](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/) för att pröva ut queries i en kontrollerad miljö. Etc. Har definitivt utökat debugging erfarenheter i denna uppgift.

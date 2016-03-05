@@ -18,7 +18,8 @@
         "mos/ctextfilter": "dev-master",
         "mos/cform": "2.*@dev",
         "mos/cdatabase": "dev-master",
-        "phpmvc/comment": "dev-master"
+        "phpmvc/comment": "dev-master",
+		"fnlive/contactform":  "dev-master"
     },
     "autoload": {
         "psr-4": { "Anax\\": "src/" }

@@ -1,5 +1,6 @@
 # Logs and databases
 *.sqlite
+*.htsqlite.db
 *.log
 
 
