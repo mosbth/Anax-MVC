@@ -218,6 +218,10 @@ $app->router->add('admin', function () use ($app) {
                 'href' => $app->url->create('users'),
                 'text' => "Administrate users",
             ],
+            [
+                'href' => $app->url->create('commentadmin'),
+                'text' => "Administrate comments",
+            ],
         ],
     ]);
 
@@ -242,6 +246,10 @@ $app->router->add('admincontacts', function () use ($app) {
             [
                 'href' => $app->url->create('contactformadmin/setup'),
                 'text' => "Setup user table with test data (first time setup, erases all current messages)",
+            ],
+            [
+                'href' => $app->url->create('dice'),
+                'text' => "Check usage of comment form on Dice page",
             ],
         ],
     ]);

@@ -1,6 +1,6 @@
 <article>
     <div class="contactform">
-    <p>Contact us:</p>
+    <h2>Contact us:</h2>
         <?=$content?>
     </div>
 </article>
