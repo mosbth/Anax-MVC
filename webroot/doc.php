@@ -31,6 +31,16 @@ $pages = [
 
 
 // Create a default route to catch all
+$app->router->add('di', function () use ($app, $di) {
+    $app->theme->setTitle("Loaded services");
+    $app->views->add('helper/services', [
+        'di' => $di->getServices(),
+    ]);
+});
+
+
+
+// Create a default route to catch all
 $app->router->add('*', function () use ($app, $pages) {
 
     // Get current route
