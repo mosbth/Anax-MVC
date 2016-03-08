@@ -68,8 +68,8 @@ class CFormExample extends \Mos\HTMLForm\CForm
      */
     public function callbackSubmit()
     {
-        $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
-        $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        $this->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        $this->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         $this->AddOutput("<p><b>Name: " . $this->Value('name') . "</b></p>");
         $this->AddOutput("<p><b>Email: " . $this->Value('email') . "</b></p>");
         $this->AddOutput("<p><b>Phone: " . $this->Value('phone') . "</b></p>");
