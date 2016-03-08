@@ -19,6 +19,7 @@
         "mos/cform": "2.*@dev",
         "mos/cdatabase": "dev-master",
         "phpmvc/comment": "dev-master",
+		"fnlive/calendar":  "dev-master",
 		"fnlive/contactform":  "dev-master"
     },
     "autoload": {
