@@ -1,5 +1,31 @@
 # Rapporter
 
+## Kmom06
+
+Jag är bekant med enhetstester och continuous integration sedan tidigare då vi använder det på min arbetsplats. Däremot har jag inte själv praktiskt arbetat med detta. Väldigt rolig och nyttig övning.
+
+Jag valde att använda "calendar"-appen som jag gjorde i extrauppgiften för kmom01. Anledningen var att det varnades i uppgiftstexten att det kunde bli ganska krångligt göra enhetstester om modulen var beroende av andra moduler, databas och MVC-Anax. Min Contactform-modul är beroende av allt detta samt även en ny tjänst i ramverket, CDatabaseModel, som jag lade till i kmom04. Så då hade jag även behövt publicera mitt eget Anax-MVC på packagist. Det kändes som att det blev för många saker som kunde krångla.
+
+Jag valde att ha kvar calendar under app samtidigt som jag kopierade in den under vendor mha packagist då de har olika namespace. Med detta fick jag fick lite mer övning i [github](https://github.com/fnlive/calendar) och [packagist](https://packagist.org/packages/fnlive/calendar) genom publiceringen där.
+
+Det gick smidigt att börja göra enhetstester. CCalendar har en halvstor konstruktor, ett antal små get-metoder samt en större metod för att beräkna och returnera hur en kalender-månad ser ut. Jag började med att göra test-funktioner för de små metoderna och sedan den större. För den större metoden, datesInMonth(), testade jag bara stickprov på returnerat data. Jag valde att validera en vecka i mitten på en månad samt två datum som ligger i månaden före resp. månaden efter. Jag testar att datum är som förväntat samt att strängar som används för css-klasser sätts rätt, t.ex. helgdag, datum utanför månad. Klassens metoder innehåller ingen komplicerad "branch-logik" så det var enkelt att få 100% kodtäckningsgrad. Det jag inte har full täckning på är datarymden på in/ut-parameter där jag skulle kunna testa alla datum i månaden samt att testa för många fler månader, februari under skottår och icke skottår etc.
+
+[Travis](https://travis-ci.org/fnlive/calendar) var ganska rättframt att få fungera. Dock verkade Travis php-installation inte ha stöd för "Swedish" locale. Mina enhetstester förväntade sig svensk stavning på månader. Så jag plockade bort setlocale() och körde engelska istället i valideringarna. Då fick jag igenom körningar med php 5.4 och 5.5. Webb-servern på BTH stödde inte heller "Swedish" locale och jag gav mig inte på att gräva i det. HHVM gav dock fortfarande fel. php-funktionen cal_days_in_month() var okänd för HHVM. Jag valde då att plocka bort HHVM som test-mål. Jag tror inte jag vill kunna köra HHVM (just nu). Däremot skulle jag vilja pröva att testa med php 7.0. Men nu fick jag i varje fall ett grönt märke:
+
+[![Build Status](https://travis-ci.org/fnlive/calendar.svg?branch=master)](https://travis-ci.org/fnlive/calendar)&nbsp; (Jag testar med php 7.0 också. Jo, det funkade. :-)
+
+Det verkar såklart finnas lösningar på HHVM/cal_days_in_month() ([1](https://gist.github.com/rawcreative/c67f47b8d6508e6017c5), [2](https://github.com/facebook/hhvm/issues/4572)), men jag gick inte vidare med detta.
+
+[Scrutinizer](https://scrutinizer-ci.com/g/fnlive/calendar/) gick också väldigt enkelt att få igång. Jag var dock lite skeptisk till vad den skulle kunna hitta i min kod. Visade sig att den hittade två buggar eller kanske dålig/osäker kod. Jag hade glömt deklarera en medlems-variabel som jag tilldelade ett värde i konstruktorn och sedan använde variabeln i en klass-metod. php-tolken verkar ha kunnat hantera detta ändå, men fel var det ju. Andra felet var en arry-variabel som inte självklart tilldelades ett värde innan det returnerades i funktionen datesInMonth(). Utöver detta var det en del bortkommenterad kod som jag kunde rensa bort. Efter detta kände jag mig väldigt nöjd och kunde lägga till ytterligare två märken:
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fnlive/calendar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fnlive/calendar/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/fnlive/calendar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fnlive/calendar/?branch=master) &nbsp;
+
+Det här var bra verktyg som jag vill använda och lära mig mer om. Utöver att de hjälper till att få ett automatiserat skyddsnät när jag ändrar i något som fungerat tidigare, så hjälper det mig lära mig att förstå php och kodning bättre. Scrutinizer hjälper att fånga både allvarligare buggar som slunkit igenom enhetstest samt ger feedback på min kod för att göra den enklare och mer lättläst. Det verkar finnas en hel del mer som Scrutinizer kan hjälpa till med, t.ex. fånga "[XSS vulnerabilities](https://scrutinizer-ci.com/blog/php-security-analysis-finds-xss-vulnerability-in-popular-wordpress-plugins)".
+
+Vad gäller enhetstester så tror jag svårigheten som utvecklare ligger i att skriva bra enhetstester som verkligen testar funktionerna. Det är ofta lätt att skriva tester och få hög **kodtäckningsgrad**. För att även få tillräcklig **testtäckningsgrad** behöver man även ha koll på hur man ska variera indata till funktioner som testas. Normalfall, ytterlighetsfall, felfall, etc.
+
+Jag valde att inte göra extrauppgiften.
+
 ## Kmom05
 
 Jag valde att göra en "Contact form"-modul med inspiration från två WordPress plugins [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) och [Flamingo](https://wordpress.org/plugins/flamingo/). Med CF7 kan man skapa flexibla formulär och få formulärdatat skickat till en email-mottagare. Flamingo lägger till möjligheten att spara meddelanden från CF7 till lokal databas utöver att mail skickas iväg, samt lagrar även kontaktuppgifter lokalt i databas för alla som via CF7 submittar namn, email etc. Normalt brukar "Contact form" plugins enbart skicka vidare meddelandet via mail. En risk med detta är att mailet kan försvinna i spam-filter hos mottagaren alternativt att webbservern får problem att skicka iväg mailet. Meddelandet går då förlorat. En lösning är då att spara meddelandet lokalt på servern i en databas. Min modul är en väldigt förenklad variant av detta. Användaren kan lägga till en vy mha dispatcher för att visa kontaktformuläret  på valfri sida. För att visa och adminstrera meddelandena behöver användaren lägga till en annan vy mha dispatcher på en lämplig route. Denna route bör enbart göras åtkomlig för webb-adminstratören.
