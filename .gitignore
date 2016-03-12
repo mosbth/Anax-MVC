@@ -26,3 +26,6 @@ coverage
 # Less files automatically generated
 webroot/css/anax-grid/*.css
 webroot/css/anax-grid/*.cache
+
+# Other
+projectplan.md
