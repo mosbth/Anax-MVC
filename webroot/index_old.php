@@ -39,16 +39,76 @@ $app->router->add('redovisning', function () use ($app) {
 
 });
 
-// Route to all questions
-// TODO: remove this route and use /questions/list instead. change in menu. Or keep as alias.
-$app->router->add('questions', function () use ($app) {
-    $app->dispatcher->forward([
-        'controller' => 'questions',
-        'action'     => 'list',
-    ]);
+// TODO: move to config_with_app
+// Load Contact Form Controller
+$di->set('ContactformController', function () use ($di) {
+    $controller = new \Fnlive\Contactform\ContactFormController();
+    $controller->setDI($di);
+    return $controller;
 });
 
-// Route to source code page
+$app->theme->addStylesheet('css/dice.css');
+// Route to show welcome to dice
+$app->router->add('dice', function () use ($app) {
+
+    $app->views->add('dice/index');
+    $app->theme->setTitle("Roll a dice");
+
+    $app->dispatcher->forward([
+        'controller' => 'contactform',
+        'action'     => 'display',
+    ]);
+
+});
+
+// Route to calendar
+$app->router->add('calendar', function () use ($app) {
+    $app->theme->addStylesheet('css/calendar.css');
+    $app->theme->setTitle("Kalender");
+
+    $today = new DateTime();
+    $date = $app->request->getGet('date', $today->format('Y-m-d'));
+    $calendar = new \Fnlive\Calendar\CCalendar($date);
+    // $calendar = new \Mos\Calendar\CCalendar($date);
+
+    $app->views->add('calendar/index', [
+        'prevMonth' => $calendar->prevMonth(),
+        'nextMonth' => $calendar->nextMonth(),
+        'prevMonthDate' => $calendar->prevMonthDate(),
+        'nextMonthDate' => $calendar->nextMonthDate(),
+        'thisMonth' => $calendar->thisMonth(),
+        'dates' => $calendar->datesInMonth(),
+    ]);
+
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+});
+
+// Route to roll dice and show results
+$app->router->add('dice/roll', function () use ($app) {
+
+    // Check how many rolls to do
+    $roll = $app->request->getGet('roll', 1);
+    $app->validate->check($roll, ['int', 'range' => [1, 100]])
+        or die("Roll out of bounds");
+
+    // Make roll and prepare reply
+    $dice = new \Mos\Dice\CDice();
+    $dice->roll($roll);
+
+    $app->views->add('dice/index', [
+        'roll'      => $dice->getNumOfRolls(),
+        'results'   => $dice->getResults(),
+        'total'     => $dice->getTotal(),
+    ]);
+
+    $app->theme->setTitle("Rolled a dice");
+
+});
+
 $app->router->add('source', function () use ($app) {
     $app->theme->addStylesheet('css/source.css');
     $app->theme->setTitle("Källkod");
@@ -66,7 +126,7 @@ $app->router->add('source', function () use ($app) {
 });
 
 
-// Route to user administration
+// Home route
 $app->router->add('users', function () use ($app) {
     $app->theme->setTitle("User administration");
     $app->views->add('default/page', [
@@ -126,6 +186,24 @@ $app->router->add('commentadmin', function () use ($app) {
 
 });
 
+
+// Test route subpage with dummy content to test comment flow.
+$app->router->add('commentadmin/lorem', function () use ($app) {
+    $route = $app->request->getRoute();
+    $app->theme->setTitle("Test comment flow");
+    $app->views->add('default/page', [
+        'title' => "Test comment flow",
+        'content' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         Cras turpis nisi, cursus ac leo ac, tempor faucibus lacus. Etiam iaculis ornare libero,
+         elementum sagittis est finibus sed. Route is <em>$route</em>.",
+    ]);
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+});
+
 $app->router->add('admin', function () use ($app) {
     $app->theme->setTitle("Admin page");
 
@@ -133,22 +211,6 @@ $app->router->add('admin', function () use ($app) {
         'title' => "Admin page",
         'content' => "Page for various administration tasks.",
         'links' => [
-            [
-                'href' => $app->url->create('admin/setup'),
-                'text' => "Initialize complete database (warning: will erase all)",
-            ],
-            [
-                'href' => $app->url->create('answers/setup'),
-                'text' => "Initialize Answers model",
-            ],
-            [
-                'href' => $app->url->create('tags/setup'),
-                'text' => "Initialize Tags model",
-            ],
-            [
-                'href' => $app->url->create('adminquestions'),
-                'text' => "Administrate Questions",
-            ],
             [
                 'href' => $app->url->create('admincontacts'),
                 'text' => "Administrate messages from contact form",
@@ -166,58 +228,37 @@ $app->router->add('admin', function () use ($app) {
 
 });
 
-// Questions admin
-$app->router->add('adminquestions', function () use ($app) {
-    $app->theme->setTitle("Admin Questions");
 
-    $app->views->add('default/page', [
-        'title' => "Admin Questions",
-        'content' => "Page for Question administration.",
-        'links' => [
-            [
-                'href' => $app->url->create('questions/setup'),
-                'text' => "Setup Question table with test data (first time setup, erases all current Questions)",
-            ],
-            [
-                'href' => $app->url->create('questions'),
-                'text' => "Questions page",
-            ],
-        ],
-    ]);
-
+// TODO: move to config_with_app???
+// Load Contact Form controller
+$di->set('ContactformadminController', function () use ($di) {
+    $controller = new \Fnlive\Contactform\ContactFormAdminController();
+    $controller->setDI($di);
+    return $controller;
 });
 
-//Route to initialize and setup complete database with all tables.
-$app->router->add('admin/setup', function () use ($app) {
-    $app->dispatcher->forward([
-        'controller' => 'questions',
-        'action'     => 'setup',
-    ]);
-    $app->dispatcher->forward([
-        'controller' => 'answers',
-        'action'     => 'setup',
-    ]);
-    $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'setup',
-    ]);
-    $app->dispatcher->forward([
-        'controller' => 'tags',
-        'action'     => 'setup',
-    ]);
+$app->router->add('admincontacts', function () use ($app) {
+    $app->theme->setTitle("Admin contacts");
+
     $app->views->add('default/page', [
-        'title' => "Reset of database",
-        'content' => "The complete database has been reset.",
+        'title' => "Admin contacts",
+        'content' => "Page for testing contact form message administration.",
         'links' => [
             [
-                'href' => $app->url->create('questions/list'),
-                'text' => "Goto Questions page",
+                'href' => $app->url->create('contactformadmin/setup'),
+                'text' => "Setup user table with test data (first time setup, erases all current messages)",
             ],
             [
-                'href' => $app->url->create('users/list'),
-                'text' => "Goto Users page",
+                'href' => $app->url->create('dice'),
+                'text' => "Check usage of comment form on Dice page",
             ],
         ],
+    ]);
+
+    $app->dispatcher->forward([
+        'controller' => 'contactformadmin',
+        // 'controller' => 'ContactFormAdminController',
+        'action'     => 'list',
     ]);
 });
 

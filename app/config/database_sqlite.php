@@ -10,5 +10,5 @@ return [
     'verbose' => false,
 
     // Throw a more verbose exception when failing to connect
-    //'debug_connect' => 'true',
+    'debug_connect' => 'true',
   ];

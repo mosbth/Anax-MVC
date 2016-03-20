@@ -14,57 +14,53 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
      */
     public function init()
     {
-        // $this->db->setVerbose();
+        $this->db->setVerbose();
         $this->db->dropTableIfExists('commentsindb')->execute();
 
         $this->db->createTable(
             'commentsindb',
             [
                'id' => ['integer', 'primary key', 'not null', 'auto_increment'],
-               'flow' => ['varchar(80)'],
-               'name' => ['varchar(80)'],
-               'mail' => ['varchar(80)'],
-               'web' => ['varchar(80)'],
                'content' => ['varchar(1024)'],
+               'q_or_a' => ['char(1)'],
+               'q_or_a_id' => ['int'],
+               'user_id' => ['int'],
                'created' => ['datetime'],
             ]
         )->execute();
         $this->db->insert(
             'commentsindb',
-            ['flow', 'name', 'mail', 'web', 'content', 'created']
+            ['content', 'q_or_a', 'q_or_a_id', 'user_id', 'created']
         );
 
         $now = time();
 
         $this->db->execute([
-            'commentadmin/lorem',
-            'Fredrik Nilsson',
-            'fn@live.se',
-            'www.dbwebb.se',
             'Lorem ipsum dolor sit amet, ad nam graeci dissentias, te verear utroque per. Doming intellegat mea id, mel ei dicta iudico. Dicunt fabulas usu ad. Per nemore possim commune ut, eu probo dicta has. ',
+            'q',
+            1,
+            1,
             $now
         ]);
 
         $this->db->execute([
-            'commentadmin/lorem',
-            'Joe Doe',
-            'doe@dbwebb.se',
-            'test.dbwebb.se',
             'Accusam eleifend qui ex. Has duis iuvaret salutatus id, dico illud porro ea mei, id oblique tibique eos. Ne eam meis equidem admodum, eos nisl maluisset id. Ancillae lucilius persecuti no sed.',
+            'a',
+            1,
+            1,
             $now
         ]);
 
         $this->db->execute([
-            'calendar',
-            'Jane Doe',
-            'doe@dbwebb.se',
-            'jane.dbwebb.se',
             'Sea te vocibus dolores pertinax, quodsi insolens appellantur sit an, dicam definitionem sed ne.',
+            'a',
+            1,
+            1,
             $now
         ]);
 
     }
-    private function humanTiming($time)
+    public static function humanTiming($time)
     {
 
         $time = time() - $time; // to get the time since that moment
@@ -89,33 +85,6 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
     }
 
     /**
-     * Get either a Gravatar URL or complete image tag for a specified email address.
-     *
-     * @param string $email The email address
-     * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
-     * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
-     * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
-     * @param boole $img True to return a complete IMG tag False for just the URL
-     * @param array $atts Optional, additional key/value attributes to include in the IMG tag
-     * @return String containing either just a URL or a complete image tag
-     * @source http://gravatar.com/site/implement/images/php/
-     */
-    private function getGravatar($email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array())
-    {
-        $url = 'http://www.gravatar.com/avatar/';
-        $url .= md5(strtolower(trim($email)));
-        $url .= "?s=$s&d=$d&r=$r";
-        if ($img) {
-            $url = '<img src="' . $url . '"';
-            foreach ($atts as $key => $val) {
-                $url .= ' ' . $key . '="' . $val . '"';
-            }
-            $url .= ' />';
-        }
-        return $url;
-    }
-
-    /**
      * Find and return all comments in complete database.
      *
      * @return array with all comments.
@@ -125,8 +94,8 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         $comments = parent::findAll();
 
         foreach ($comments as $id => $comment) {
-            $comment->since_time = $this->humanTiming($comment->created);
-            $comment->gravatar = $this->getGravatar($comment->mail);
+            $comment->since_time = self::humanTiming($comment->created);
+            $comment->gravatar = \Anax\Users\User::getGravatar($comment->mail);
         }
         // echo __FILE__ . " : " . __LINE__ . "<br>";dump($comments);
         return $comments;
@@ -144,8 +113,8 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         ->execute();
         // Add human timing and gravatars to each comment post.
         foreach ($comments as $id => $comment) {
-            $comment->since_time = $this->humanTiming($comment->created);
-            $comment->gravatar = $this->getGravatar($comment->mail);
+            $comment->since_time = self::humanTiming($comment->created);
+            $comment->gravatar = \Anax\Users\User::getGravatar($comment->mail);
         }
         return $comments;
     }

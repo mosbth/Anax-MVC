@@ -29,8 +29,8 @@ return [
             'region'   => 'header',
             'template' => 'me/header',
             'data'     => [
-                'siteTitle' => "Fredrik Nilsson",
-                'siteTagline' => "Studerar php ramverk",
+                'siteTitle' => "Gamla Hus",
+                'siteTagline' => "Alla frågor och svar mellan tak och grund",
             ],
             'sort'     => -1
         ],
@@ -59,7 +59,7 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Fredrik@PHPMVC',
+        'title_append' => ' | Gamla Hus',
 
         // Stylesheets
         'stylesheets' => ['css/style.css', 'css/navbar_me.css'],
@@ -69,6 +69,7 @@ return [
 
         // Favicon
         'favicon' => 'favicon.ico',
+        // TODO: Fix a ico-file for stackhouse
 
         // Path to modernizr or null to disable
         'modernizr' => 'js/modernizr.js',

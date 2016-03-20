@@ -22,7 +22,7 @@ class CDIFactoryDefault extends CDI
         $this->setShared('response', '\Anax\Response\CResponseBasic');
         $this->setShared('validate', '\Anax\Validate\CValidate');
         $this->setShared('flash', '\Anax\Flash\CFlashBasic');
-        
+
         $this->set('route', '\Anax\Route\CRouteBasic');
         $this->set('view', '\Anax\View\CViewBasic');
 
@@ -64,7 +64,7 @@ class CDIFactoryDefault extends CDI
         });
 
         $this->setShared('router', function () {
-            
+
             $router = new \Anax\Route\CRouterBasic();
             $router->setDI($this);
 
@@ -78,7 +78,7 @@ class CDIFactoryDefault extends CDI
                     ],
                 ]);
             })->setName('403');
-            
+
             $router->addInternal('404', function () {
                 $this->dispatcher->forward([
                     'controller' => 'error',
@@ -93,7 +93,7 @@ class CDIFactoryDefault extends CDI
                     'action' => 'displayValidRoutes',
                 ]);
             })->setName('404');
-            
+
             $router->addInternal('500', function () {
                 $this->dispatcher->forward([
                     'controller' => 'error',
@@ -104,7 +104,7 @@ class CDIFactoryDefault extends CDI
                     ],
                 ]);
             })->setName('500');
-            
+
             return $router;
         });
 

@@ -25,6 +25,7 @@ class User extends \Anax\MVC\CDatabaseModel
                'acronym' => ['varchar(20)', 'unique', 'not null'],
                'email' => ['varchar(80)'],
                'name' => ['varchar(80)'],
+               'points' => ['int'],
                'password' => ['varchar(255)'],
                'created' => ['datetime'],
                'updated' => ['datetime'],
@@ -34,7 +35,7 @@ class User extends \Anax\MVC\CDatabaseModel
         )->execute();
         $this->db->insert(
             'user',
-            ['acronym', 'email', 'name', 'password', 'created', 'active']
+            ['acronym', 'email', 'name', 'points', 'password', 'created', 'active']
         );
 
         $now = gmdate('Y-m-d H:i:s');
@@ -43,7 +44,8 @@ class User extends \Anax\MVC\CDatabaseModel
             'admin',
             'admin@dbwebb.se',
             'Administrator',
-            password_hash('admin', PASSWORD_DEFAULT),
+            0,
+            md5('admin'),
             $now,
             $now
         ]);
@@ -52,10 +54,58 @@ class User extends \Anax\MVC\CDatabaseModel
             'doe',
             'doe@dbwebb.se',
             'John/Jane Doe',
-            password_hash('doe', PASSWORD_DEFAULT),
+            0,
+            md5('doe'),
             $now,
             $now
         ]);
 
+        $this->db->execute([
+            'fnlive',
+            'fn@live.se',
+            'Fredrik Nilsson',
+            0,
+            md5('qwerty'),
+            $now,
+            $now
+        ]);
+
+    }
+
+    /**
+     * Get either a Gravatar URL or complete image tag for a specified email address.
+     *
+     * @param string $email The email address
+     * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+     * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+     * @param boole $img True to return a complete IMG tag False for just the URL
+     * @param array $atts Optional, additional key/value attributes to include in the IMG tag
+     * @return String containing either just a URL or a complete image tag
+     * @source http://gravatar.com/site/implement/images/php/
+     */
+    public static function getGravatar($email, $s = 80, $d = 'monsterid', $r = 'g', $img = false, $atts = array())
+    {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= md5(strtolower(trim($email)));
+        $url .= "?s=$s&d=$d&r=$r";
+        if ($img) {
+            $url = '<img src="' . $url . '"';
+            foreach ($atts as $key => $val) {
+                $url .= ' ' . $key . '="' . $val . '"';
+            }
+            $url .= ' />';
+        }
+        return $url;
+    }
+
+    public function loggedIn()
+    {
+        if (null!==$this->session->get('user')) {
+            // echo "You are logged in, {$this->session->get('user')}";
+            return true;
+        }
+        // echo "You are logged out";
+        return false;
     }
 }

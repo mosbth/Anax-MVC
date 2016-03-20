@@ -1,25 +1,13 @@
-<h1>User details</h1>
-
-<table class="users">
-    <tr>
-        <th>Property</th><th>Value</th>
-    </tr>
 <?php $properties = $user->getProperties()?>
-<?php foreach ($properties as $property => $value) {
+<h1><?=$properties['name']?></h1>
 
-    echo "<tr><td>{$property}</td><td>{$value}</td></tr>";
-
-} ?>
-</table>
-
-<p>
-    <a href='<?=$this->url->create('users/update/'.$properties['id'])?>'>Edit</a>
-    <a href='<?=$this->url->create('users/soft-delete/'.$properties['id'])?>'> | Delete</a>
-    <a href='<?=$this->url->create('users/delete/'.$properties['id'])?>'> | Hard delete</a>
-</p>
-<p>
-    <a href='<?=$this->url->create('users')?>'>Home</a>
-    <a href='<?=$this->url->create('users/list')?>'> | All</a>
-    <a href='<?=$this->url->create('users/active')?>'> | All Active</a>
-    <a href='<?=$this->url->create('users/wastebasket')?>'> | All Deleted</a>
-</p>
+<div class="users-profile-card">
+    <a href='<?=$this->url->create('users/profile/'.$properties['acronym'])?>'>
+        <img src="<?=$properties['gravatar']?>" alt="gravatar" />
+        <p><?=$user->name?></p>
+    </a>
+    <p>
+        <?=$nrOfQuestions?> <a href="<?=$urlQuestions?>">frågor</a> |
+        <?=$nrOfAnswers?> <a href="<?=$urlAnswers?>">svar</a>
+    </p>
+</div>

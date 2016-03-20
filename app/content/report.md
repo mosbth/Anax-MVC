@@ -2,6 +2,26 @@
 
 ## Kmom10
 
+Utifrån kravtexten försökte jag först sätta ihop en "usecase" beskrivning av webbplatsen. Jag fick ihop en drygt 10 stycken som säger samma sak som kravtexten men på ett som kändes mer kopplat till vad slutanvändaren ser och även underlättar att implementera hela eller delar av ett usecase. Parallellt med detta drog jag upp en databasmodell med en entity-relationship modell. Centralpunkten tyckte jag var en "fråga" som allt annat utgår ifrån. En användare kan fråga en fråga med taggar som någon kan svara på. Fråga och svar kan kommenteras. Var och en av dessa saker fick bli en egen tabell i databasen. Jag hittade en många-till-många relation pga en fråga kan ha flera taggar och en tagg kan vara kopplad till frågor. För detta skapade jag en mappningstabell mellan fråga till tag och vice versa.
+
+/tags/single/1
+/questions/tag/Tak
+borde vara den sista.
+
+När jag skulle börja skapa databasen var jag inne på att knyta ihop tabellerna, framförallt mappningstabell för tags-fråga, med foreign keys. Samtidigt fanns CDatabaseModel sedan tidigare som var smidig att använda men som inte hade stöd för att knyta ihop flera tabeller. Jag prövvade därför med att göra alla tabeller som varsin modell baserad på CDatabaseModel. Detta har fungerat bra, men en framtida förbättring är att knyta ihop tabeller mha foreign keys och skapa ett lämpligt set av vyer för att få fram rätt data med en sökning. Som det är nu behöver jag ofta göra ett antal sökningar i de olika modellerna för att få fram rätt slutdata.
+
+För några av dessa modeller tog jag fram controllers för att få fram och presentera rätt innehåll. .... beskriv mer vad som ligger och inte ligger i resp controller.
+
+Halvvägs in i projektet kände jag att jag tappade översikt över vilka routes som fanns och i vilka controllers de var eller borde vara implementerade i. Jag tog därför fram en lista över alla routes och kunde då enklare mappa in behov av nya routes. ...
+
+Rätt routes hjälper till att får bättre och snyggare permalinks. Undvik numeriska id'n.
+
+Hade två kolumner i tags2question-tabell. borde haft med unikt id från början.
+
+3 queris för att komma från tag-name till tag-id till q-id till frågor.
+
+Gör route med tag-id istället för tag-name, åäö?
+
 1. På din redovisningssida, skriv följande:
 
 1.1. Länka till din projektsida för WGTOTW.
