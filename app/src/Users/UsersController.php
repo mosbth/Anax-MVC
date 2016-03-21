@@ -33,7 +33,25 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->redirectTo('users/list/');
     }
     /**
-     * List user with id for admin purpose.
+     * Display user with id.
+     *
+     * @param int $id of user to display
+     *
+     * @return void
+     */
+    public function profidAction($id = null)
+    {
+        $user = $this->users->find($id);
+
+        // Show users gravatar in big size somewhere here.
+        $this->dispatcher->forward([
+            'controller' => 'users',
+            'action'     => 'profile',
+            'params'    => [$user->acronym ],
+        ]);
+    }
+    /**
+     * Display user with acronym.
      *
      * @param int $id of user to display
      *

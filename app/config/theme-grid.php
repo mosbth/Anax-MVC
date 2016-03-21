@@ -51,7 +51,7 @@ return [
         'lang' => 'sv',
 
         // Append this value to each <title>
-        'title_append' => ' | Fredrik&LESS',
+        'title_append' => ' | Bygga Hus',
 
         // Stylesheets
         'stylesheets' => ['css/anax-grid/style.php'],

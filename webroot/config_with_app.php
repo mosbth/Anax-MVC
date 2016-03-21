@@ -51,7 +51,7 @@ $di->set('AnswersController', function () use ($di) {
 // $app = new \Anax\Kernel\CAnax($di);
 $app = new \Anax\MVC\CApplicationBasic($di);
 
-$app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
+$app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
 // On production server, set pretty urls and use rewrite in .htaccess
 $app->url->setUrlType(
     ($_SERVER['SERVER_NAME']=='localhost') ?

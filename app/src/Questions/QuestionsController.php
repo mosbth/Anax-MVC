@@ -179,7 +179,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
 
         // Add view with user card.
         $humanTime = \Anax\CommentDb\CommentsInDb::humanTiming($question->created);
-        $text = "Frågade $humanTime sedan";
+        $text = "Frågade för $humanTime sedan";
         $this->dispatcher->forward([
             'controller' => 'users',
             'action'     => 'card',

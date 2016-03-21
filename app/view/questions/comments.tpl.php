@@ -1,8 +1,8 @@
 <?php //echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";dump($comments); ?>
-<div class="answers">
+<div class="comments">
     <?php if (isset($comments)) :?>
         <?php foreach ($comments as $comment) : ?>
-            <div class="answer-comment">
+            <div class="comment">
                 <p><?=$comment['comment']['content']?> -
                     <a href='<?=$this->url->create('users/id/'.$comment['user']['id'])?>'>
                         <?=$comment['user']['name']?>
