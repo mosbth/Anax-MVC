@@ -24,6 +24,21 @@ $app->router->add('', function () use ($app) {
     ]);
 });
 
+$app->router->add('about', function () use ($app) {
+    $app->theme->setTitle("Om oss");
+    // TODO: write a about in md
+    $content = $app->fileContent->get('me.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+
+    $byline = $app->fileContent->get('byline.md');
+    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline' => $byline,
+    ]);
+});
+
 $app->router->add('redovisning', function () use ($app) {
     $app->theme->setTitle("Redovisning");
     $content = $app->fileContent->get('report.md');

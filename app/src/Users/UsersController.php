@@ -127,6 +127,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      *
      * @return array $user
      */
+     // TODO: Replace with User::loggedInUser()
     private function loggedInUser()
     {
         $userAcronym = $this->session->get('user');

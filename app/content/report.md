@@ -22,6 +22,9 @@ Hade två kolumner i tags2question-tabell. borde haft med unikt id från början
 
 Gör route med tag-id istället för tag-name, åäö?
 
+arrayer med objects inget bra.
+
+
 1. På din redovisningssida, skriv följande:
 
 1.1. Länka till din projektsida för WGTOTW.

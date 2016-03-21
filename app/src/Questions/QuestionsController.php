@@ -140,7 +140,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
      * Route to enable showing of comment or answer form
      * This is used in singleAction()
      *
-     * @param int $id of question to display
+     * @param int $form answer, comment_question, comment_answer
      *
      * @return void
      */
@@ -151,6 +151,39 @@ class QuestionsController implements \Anax\DI\IInjectionAware
     }
 
     /**
+     * Route to show link to or comment or answer form
+     *
+     * @param   string $form {answer, comment_question, comment_answer}
+     *          string $controller to handle form
+     *          int $id of question or answer
+     *          string $linkText to display on linkText
+     *          string 'q' or 'a' on comment on question or comment on answer
+     *
+     * @return void
+     */
+    private function showFormCommentOrAnswer($form, $controller, $id, $linkText, $qora = null)
+    {
+        // Add view to comment question
+        if ($this->session->get('ShowFormCorA')==$form) {
+                $this->dispatcher->forward([
+                    'controller' => $controller,
+                    'action'     => 'add',
+                    'params'    => [$id, $qora, ],
+                ]);
+        } else {
+            if ($this->users->loggedIn()) {
+                $route = "questions/showform/$form";
+            } else {
+                $route = 'users/login';
+            }
+            $commentFormUrl['href'] = $this->url->create($route);
+            $commentFormUrl['text'] = $linkText;
+            $this->views->add('default/link', [
+                'link' => $commentFormUrl,
+            ]);
+        }
+    }
+    /**
      * List single question
      *
      * @param int $id of question to display
@@ -159,7 +192,6 @@ class QuestionsController implements \Anax\DI\IInjectionAware
      */
     public function singleAction($id = null)
     {
-        echo __FILE__ . " : " . __LINE__ . "<br>";dump($this->session->get('ShowFormCorA'));
         $question = $this->questions->query()
         ->where('id = ' . "'$id'")
         ->execute()[0];
@@ -186,47 +218,13 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             'params'    => [$question->user_id, 'q', $text, ],
         ]);
 
-        // Add view to comment question
-        if ($this->session->get('ShowFormCorA')=='comment') {
-                $this->dispatcher->forward([
-                    'controller' => 'comment',
-                    'action'     => 'add',
-                    'params'    => [$question->id, 'q', ],
-                ]);
-        } else {
-            if ($this->users->loggedIn()) {
-                $route = 'questions/showform/comment';
-            } else {
-                $route = 'users/login';
-            }
-            $commentFormUrl['href'] = $this->url->create($route);
-            $commentFormUrl['text'] = 'Kommentera frågan';
-            $this->views->add('default/link', [
-                'link' => $commentFormUrl,
-            ]);
-        }
+        // Add view to comment question, form visible when logged in and clicking link.
+        $this->showFormCommentOrAnswer('comment_question', 'comment', $question->id, 'Kommentera frågan', 'q');
 
-        // Add view to answer question
-        if ($this->session->get('ShowFormCorA')=='answer') {
-            $this->dispatcher->forward([
-                'controller' => 'answers',
-                'action'     => 'add',
-                'params'    => [$question->id,  ],
-            ]);
-        } else {
-            if ($this->users->loggedIn()) {
-                $route = 'questions/showform/answer';
-            } else {
-                $route = 'users/login';
-            }
-            $commentFormUrl['href'] = $this->url->create($route);
-            $commentFormUrl['text'] = 'Besvara frågan';
-            $this->views->add('default/link', [
-                'link' => $commentFormUrl,
-            ]);
-        }
+        // Add view to answer question, form visible when logged in and clicking link.
+        $this->showFormCommentOrAnswer('answer', 'answers', $question->id, 'Besvara frågan');
 
-        // Add view with Comments to question TODO:
+        // Add view with Comments to question
         $allComments = $this->comments->query()
             ->where("q_or_a = 'q'")
             ->andwhere("q_or_a_id = $id")
@@ -239,68 +237,54 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             $user = $this->users->find($allComments[$j]->user_id);
             $commentsListData[$j]['user'] = $user->getProperties();
         }
-        // Add view to display all answers and comments to each answer.
         $this->views->add('questions/comments', [
             'comments' => $commentsListData,
         ]);
 
+        // Display all answers and comments to each answer.
         // Display all answers to question.
-        $answersListData = array();
         $allAnswers = $this->answers->query()
             ->where("q_id = $question->id")
             ->execute();
-        $nrOfAnswers = sizeof($allAnswers);
-        for ($i=0; $i < $nrOfAnswers; $i++) {
-            $answerId = $allAnswers[$i]->id;
-            $answersListData[$i]['answer'] = $allAnswers[$i]->getProperties();
-            // Get user of answer
-            $user = $this->users->find($allAnswers[$i]->user_id);
-            $answersListData[$i]['user'] = $user->getProperties();
+        $this->views->add('questions/answersheading', [
+            'title' => sizeof($allAnswers) . " svar",
+        ]);
+        foreach ($allAnswers as $answer) {
+            $user = $this->users->find($answer->user_id);
+            // Add view to display all answer.
+            $this->views->add('questions/answer', [
+                'answer' => $answer->getProperties(),
+                'user'  => $user->getProperties(),
+            ]);
+            // Display link or comment form for commenting the answer
+            // TODO: comment form visas en gång för varje svar. Visa bara för svaret som man vill kommentera på.
+            $this->showFormCommentOrAnswer('comment_answer_' . $answer->id, 'comment', $answer->id, 'Kommentera svaret', 'a');
+
             // Get all comments to answer
             $allComments = $this->comments->query()
                 ->where("q_or_a = 'a'")
-                ->andwhere("q_or_a_id = $answerId")
+                ->andwhere("q_or_a_id = $answer->id")
                 ->execute();
-            $nrOfComments = sizeof($allComments);
-            for ($j=0; $j < $nrOfComments; $j++) {
-                $answersListData[$i]['comments'][$j]['comment'] = $allComments[$j]->getProperties();
-                // Get user of comment
-                $user = $this->users->find($allComments[$j]->user_id);
-                $answersListData[$i]['comments'][$j]['user'] = $user->getProperties();
-                // TODO: Add view to comment answer.
-                // Need to display answers one by one instead
-                // and interleave with comments to answers.
-                // Add view to comment question TODO: remove line.
-                // if ($this->users->loggedIn() && $this->session->get('ShowFormCorA')=='comment') {
-                //     if ($this->users->loggedIn()) {
-                //         $this->dispatcher->forward([
-                //             'controller' => 'comment',
-                //             'action'     => 'add',
-                //             'params'    => [$question->id, 'a', ],
-                //         ]);
-                //     }
-                // } else {
-                //     $commentFormUrl['href'] = $this->url->create('questions/showform/comment');
-                //     $commentFormUrl['text'] = 'Kommentera frågan';
-                //     $this->views->add('default/link', [
-                //         'link' => $commentFormUrl,
-                //     ]);
-                // }
-
+            $commentsListData = array();
+            foreach ($allComments as $comment) {
+                $user = $this->users->find($comment->user_id);
+                $commentsListData[] = [
+                    'comment' => $comment->getProperties(),
+                    'user' => $user->getProperties(),
+                ];
             }
+            $this->views->add('questions/comments', [
+                'comments' => $commentsListData,
+            ]);
         }
-        // Add view to display all answers and comments to each answer.
-        $this->views->add('questions/answers', [
-            'answers' => $answersListData,
-        ]);
 
         // Add view with question form field to ask question if user is logged in
         // and no other forms are displayed.
+        // TODO: change this to link and to this dispatcher "questions/ask"?
         if ($this->users->loggedIn() && !$this->session->get('ShowFormCorA')) {
             $this->dispatcher->forward([
                 'controller' => 'questions',
                 'action'     => 'ask',
-                'params'    => [  ],
             ]);
         }
     }
@@ -373,12 +357,12 @@ class QuestionsController implements \Anax\DI\IInjectionAware
      *
      * @return void
      */
-    public function askAction($route = null)
+    public function askAction()
     {
         // TODO: Need to sweep session? How?
         // Set saveInSession = false instead.
         $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddQuestionForm($route);
+        $form = $this->createAddQuestionForm();
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
         // $this->di->theme->setTitle("Add user");
         $this->di->views->add('default/page', [
@@ -386,10 +370,9 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             'content' => $form->getHTML()
         ]);
     }
-    private function createAddQuestionForm($route)
+    private function createAddQuestionForm()
     {
         $tags = $this->tags->findAll();
-        // echo __FILE__ . " : " . __LINE__ . "<br>";dump($tags);
         foreach ($tags as $tag) {
             $tagArray[] = $tag->name;
         }
@@ -435,17 +418,12 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $this->questions->save([
             'headline' => $form->Value('headline'),
             'content' => $form->Value('content'),
-            // TODO: Fix real user
-            'user_id' => 3,
+            'user_id' => $this->users->loggedInUser()->id,
             'vote' => 0,
             'created' => $now,
         ]);
         // Pull out tags and store them in tags2question model
         $qid = $this->questions->id;
-        $this->tags2Questions = new \Anax\Tags\CTags2Question();
-        $this->tags2Questions->setDI($this->di);
-        $this->tags = new \Anax\Tags\CTags();
-        $this->tags->setDI($this->di);
         $tags = $form->Value('tags');
         foreach ($tags as $tag) {
             $tag_id = $this->tags->findTag($tag)->getProperties()['id'];

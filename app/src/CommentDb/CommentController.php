@@ -18,6 +18,8 @@ class CommentController implements \Anax\DI\IInjectionAware
     {
         $this->comments = new \Anax\CommentDb\CommentsInDb();
         $this->comments->setDI($this->di);
+        $this->users = new \Anax\Users\User();
+        $this->users->setDI($this->di);
     }
 
     /**
@@ -124,12 +126,12 @@ class CommentController implements \Anax\DI\IInjectionAware
             'content' => $form->Value('content'),
             'q_or_a' => $form->Value('q_or_a'),
             'q_or_a_id' => $form->Value('q_or_a_id'),
-            // TODO: fix real user.
-            'user_id' => 3,
+            'user_id' => $this->users->loggedInUser()->id,
             'created' => $now,
         ]);
 
         // $form->AddOutput("<p><b>Id: " . $form->Value('q_or_a_id') . "</b></p>");
+        // $form->AddOutput("<p><b>Q or A: " . $form->Value('q_or_a') . "</b></p>");
         // $form->AddOutput("<p><b>Kommentar: " . $form->Value('content') . "</b></p>");
         $form->saveInSession = false;
         // Unset ShowFormCorA so comment form wont be shown when returning to question.

@@ -108,4 +108,20 @@ class User extends \Anax\MVC\CDatabaseModel
         // echo "You are logged out";
         return false;
     }
+    /**
+     * Get user with acronym.
+     *
+     * @return array $user
+     */
+    public function loggedInUser()
+    {
+        $userAcronym = $this->session->get('user');
+        $user = $this->query()
+        ->where('acronym =' . "'$userAcronym'")
+        ->execute()[0];
+        return $user;
+    }
+    // $comments = $this->query()
+    // ->where('flow = ' . "'$flow'")
+    // ->execute();
 }

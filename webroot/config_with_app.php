@@ -74,3 +74,5 @@ $app->theme->addStylesheet('css/users.css');
 // $app->comments->setDI($di);
 // $app->answers = new \Anax\Answers\CAnswers();
 // $app->answers->setDI($di);
+$app->users = new \Anax\Users\User();
+$app->users->setDI($di);
