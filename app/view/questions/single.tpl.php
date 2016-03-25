@@ -6,8 +6,6 @@
             <?=$properties['headline']?>
         </a>
     </h1>
-    <p>
-        <?=$properties['content']?>
-    </p>
+    <?=$properties['content']?>
     <?php // TODO: Add tags listed for question. ?>
 </div>

@@ -1,6 +1,8 @@
 # Logs and databases
 *.sqlite
+*.htsqlite
 *.htsqlite.db
+webroot/.htsqlite.db
 *.log
 
 

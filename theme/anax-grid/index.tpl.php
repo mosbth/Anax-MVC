@@ -13,7 +13,7 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 </head>
 
-<body id='<?=implode('-', $this->request->getRouteParts())?>'>
+<body id='<?='body-'.implode('-', $this->request->getRouteParts())?>'>
 
 <div id='wrapper'>
 

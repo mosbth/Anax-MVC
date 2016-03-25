@@ -1,5 +1,5 @@
 <div class="answer">
-    <p><?=$this->textFilter->doFilter($answer['content'], 'shortcode, markdown')?></p>
+    <?=$this->textFilter->doFilter($answer['content'], 'shortcode, markdown')?>
     <div class="user-card-answer">
         <p>
             svarade <a href='<?=$this->url->create('users/profid/'.$user['id'])?>'>

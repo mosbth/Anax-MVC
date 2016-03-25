@@ -4,8 +4,6 @@
             <?=$question['headline']?>
         </a>
     </h2>
-    <p>
         <?=$this->textFilter->doFilter($question['content'], 'shortcode, markdown')?>
-    </p>
     <?php // TODO: Add tags listed for question. ?>
 </div>
