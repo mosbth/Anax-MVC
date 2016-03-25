@@ -36,7 +36,6 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function setupAction()
     {
         $this->users->init();
-        $this->redirectTo('users/list/');
     }
     /**
      * Display user with id.

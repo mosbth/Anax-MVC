@@ -61,8 +61,7 @@ $app->router->add('redovisning', function () use ($app) {
 
 });
 
-// Route to all questions
-// TODO: remove this route and use /questions/list instead. change in menu. Or keep as alias.
+// Route to all questions. Alias for route /questions/list.
 $app->router->add('questions', function () use ($app) {
     $app->dispatcher->forward([
         'controller' => 'questions',
@@ -97,7 +96,7 @@ $app->router->add('users', function () use ($app) {
         'links' => [
             [
                 'href' => $app->url->create('users/setup'),
-                'text' => "Setup user table with test data",
+                'text' => "Setup user table with test data (erases current user table)",
             ],
             [
                 'href' => $app->url->create('users/list'),
@@ -118,30 +117,6 @@ $app->router->add('users', function () use ($app) {
             [
                 'href' => $app->url->create('users/add'),
                 'text' => "Add user",
-            ],
-        ],
-    ]);
-
-});
-
-// Route to administer comments
-$app->router->add('commentadmin', function () use ($app) {
-    $app->theme->setTitle("Comments administration");
-    $app->views->add('default/page', [
-        'title' => "Comments administration",
-        'content' => "Page to test comments administration. ",
-        'links' => [
-            [
-                'href' => $app->url->create('comment/setup'),
-                'text' => "Setup comment system",
-            ],
-            [
-                'href' => $app->url->create('comment/list'),
-                'text' => "List all comments in comment system",
-            ],
-            [
-                'href' => $app->url->create('commentadmin/lorem'),
-                'text' => "Test page for user comments on subpage",
             ],
         ],
     ]);
@@ -172,16 +147,8 @@ $app->router->add('admin', function () use ($app) {
                 'text' => "Administrate Questions",
             ],
             [
-                'href' => $app->url->create('admincontacts'),
-                'text' => "Administrate messages from contact form",
-            ],
-            [
                 'href' => $app->url->create('users'),
                 'text' => "Administrate users",
-            ],
-            [
-                'href' => $app->url->create('commentadmin'),
-                'text' => "Administrate comments",
             ],
         ],
     ]);
@@ -225,6 +192,10 @@ $app->router->add('admin/setup', function () use ($app) {
     ]);
     $app->dispatcher->forward([
         'controller' => 'tags',
+        'action'     => 'setup',
+    ]);
+    $app->dispatcher->forward([
+        'controller' => 'users',
         'action'     => 'setup',
     ]);
     $app->theme->setTitle("Reset db");

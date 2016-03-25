@@ -7,6 +7,7 @@
 <div class="tag">
     <a href="<?=$this->url->create('questions/list/tags/'.$properties['id'])?>">
         <?=$properties['name']?>
+    </a>
 </div>
 <?php endforeach; ?>
 </div>

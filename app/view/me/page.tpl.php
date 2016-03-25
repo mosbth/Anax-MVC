@@ -1,9 +1,9 @@
-<article class="article1 card card-2">
+<article class="article1">
 
 <?=$content?>
 
 <?php if(isset($byline)) : ?>
-<footer class="byline card card-2">
+<footer class="byline">
 <?=$byline?>
 </footer>
 <?php endif; ?>

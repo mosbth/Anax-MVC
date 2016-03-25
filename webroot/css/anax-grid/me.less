@@ -102,14 +102,14 @@ a:visited {
 }
 
 // Styles for different routes.
-#about {
-    #main .cont {
-        .content-cards();
-    }
-    [id*=triptych-1] .cont {
-        .content-cards();
-    }
-}
+// #about {
+//     #main .cont {
+//         .content-cards();
+//     }
+//     [id*=triptych-1] .cont {
+//         .content-cards();
+//     }
+// }
 
 #redovisning {
     #main .cont {
@@ -144,9 +144,9 @@ a:visited {
     #footer-col-3,
     #footer-col-4 {
         background-color: lightgrey;
+    }
 }
 
-}
 #regioner-typography {
     #flash {
     text-align: center;
@@ -193,10 +193,29 @@ a:visited {
         border-radius: 8px;
     }
 }
-
+// Adding style classes for kmom10
+.tag-class {
+    font-size: 1.25em;
+    background-color: #E2EEF4;
+    color: #7F7F7F;
+    padding: 4px;
+    margin: 4px;
+}
+.divider {
+    border-bottom: 1px solid lightgray;
+}
 // Adding styles for kmom10
 .single-question {
-    background-color: pink;
+}
+.single-question h1{
+    .divider;
+    // border-bottom: 1px solid lightgray;
+}
+.single-question-short {
+    border-top: 1px solid lightgray;
+    margin-top: 1em;
+    padding-top: 0.5em;
+
 }
 .all-tags {
     float: left;
@@ -206,10 +225,20 @@ a:visited {
     display: inline;
 }
 .tag a {
-    background-color: blue;
-    color: white;
-    padding: 4px;
-    margin: 4px;
+    .tag-class;
+}
+.tag a:visited {
+    .tag-class;
+    color: #666;
+}
+.tag a:hover {
+    .tag-class;
+    color: #333;
+    background-color: #7FA8BF;
+}
+.user-card-q {
+    background-color: #E2EEF4;
+    float: right;
 }
 .user-card {
     float: right;
@@ -219,6 +248,14 @@ a:visited {
     float: right;
     display: inline;
     // clear: both;
+}
+.users {
+    display: inline;
+}
+.users-profile-card {
+    overflow: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 .clear {
     clear: both;
@@ -234,8 +271,14 @@ a:visited {
 .answers {
 
 }
-.answer {
+.answers-heading,
+.answer,
+.cont h1 {
     margin-top: 2em;
-    border-top: 1px solid lightgray;
-    background-color: #f8f8f8;
+    .divider;
+}
+.byline {
+    .card;
+    .card-1;
+    padding: 1em;
 }

@@ -60,9 +60,9 @@ $app->url->setUrlType(
 // $app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
-$app->theme->addStylesheet('css/me.css');
-$app->theme->addStylesheet('css/comments.css');
-$app->theme->addStylesheet('css/users.css');
+// $app->theme->addStylesheet('css/me.css');
+// $app->theme->addStylesheet('css/comments.css');
+// $app->theme->addStylesheet('css/users.css');
 
 
 // $di->set('answers', '\Anax\Answers\CAnswers');

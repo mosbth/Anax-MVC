@@ -75,34 +75,10 @@ return [
                         'title' => 'Frågor'
                     ],
                     // This is a menu item of the submenu
-                    'admincontacts'  => [
-                        'text'  => 'Meddelanden',
-                        'url'   => $this->di->get('url')->create('admincontacts'),
-                        'title' => 'Meddelanden'
-                    ],
-                    // This is a menu item of the submenu
                     'useradmin'  => [
                         'text'  => 'Användare',
                         'url'   => $this->di->get('url')->create('users'),
                         'title' => 'Användare'
-                    ],
-                    'commentadmin' => [
-                        'text'  =>'Kommentarer',
-                        'url'   => $this->di->get('url')->create('commentadmin'),
-                        'title' => 'Comment administration page',
-                        // Here we add the submenu, with some menu items, as part of a existing menu item
-                        'submenu' => [
-                            'items' => [
-
-                                // This is a menu item of the submenu
-                                'lorem'  => [
-                                    'text'  => 'Commenting test',
-                                    'url'   => $this->di->get('url')->create('commentadmin/lorem'),
-                                    'title' => 'Commenting test'
-                                ],
-
-                            ],
-                        ],
                     ],
 
                 ],
