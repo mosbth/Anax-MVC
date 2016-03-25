@@ -3,8 +3,9 @@
     <?php if (isset($comments)) :?>
         <?php foreach ($comments as $comment) : ?>
             <div class="comment">
-                <p><?=$comment['comment']['content']?> -
-                    <a href='<?=$this->url->create('users/id/'.$comment['user']['id'])?>'>
+                <?=$this->textFilter->doFilter($comment['comment']['content'], 'shortcode, markdown')?>
+                <p>
+                    - <a href='<?=$this->url->create('users/id/'.$comment['user']['id'])?>'>
                         <?=$comment['user']['name']?>
                     </a>
                     <?=\Anax\CommentDb\CommentsInDb::humanTiming($comment['comment']['created'])?> sedan.

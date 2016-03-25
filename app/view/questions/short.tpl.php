@@ -5,7 +5,7 @@
         </a>
     </h2>
     <p>
-        <?=$question['content']?>
+        <?=$this->textFilter->doFilter($question['content'], 'shortcode, markdown')?>
     </p>
     <?php // TODO: Add tags listed for question. ?>
 </div>

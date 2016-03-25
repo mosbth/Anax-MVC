@@ -36,7 +36,7 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         $now = time();
 
         $this->db->execute([
-            'Lorem ipsum dolor sit amet, ad nam graeci dissentias, te verear utroque per. Doming intellegat mea id, mel ei dicta iudico. Dicunt fabulas usu ad. Per nemore possim commune ut, eu probo dicta has. ',
+            'Lorem ipsum dolor sit amet, ad nam graeci **dissentias**, te verear utroque per. Doming intellegat mea id, mel ei dicta iudico. Dicunt fabulas usu ad. Per nemore possim commune ut, eu probo dicta has. ',
             'q',
             1,
             1,

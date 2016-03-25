@@ -38,7 +38,7 @@ class CAnswers extends \Anax\MVC\CDatabaseModel
         $now = time();
 
         $this->db->execute([
-            'That is a difficult question. Its a little bit more then 3.',
+            'That is a difficult *question*. Its a little bit more then 3.',
             1,
             2,
             0,

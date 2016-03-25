@@ -1,7 +1,5 @@
-<?php //echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";dump($answers); ?>
 <div class="answer">
-    <?php //echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";dump($answer); ?>
-    <?=$answer['content']  ?>
+    <p><?=$this->textFilter->doFilter($answer['content'], 'shortcode, markdown')?></p>
     <div class="user-card-answer">
         <p>
             svarade <a href='<?=$this->url->create('users/profid/'.$user['id'])?>'>
