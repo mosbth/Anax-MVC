@@ -36,6 +36,24 @@ class CDatabaseModel implements \Anax\DI\IInjectionAware
     }
 
     /**
+     * Find and return recent items.
+     * query requires column "created" in table.
+     *
+     * @return array
+     */
+    public function findRecent($count)
+    {
+        $this->db->select()
+                 ->from($this->getSource())
+                 ->orderby('created DESC')
+                 ->limit($count);
+
+        $this->db->execute();
+        $this->db->setFetchModeClass(__CLASS__);
+        return $this->db->fetchAll();
+    }
+
+    /**
      * Get object properties.
      *
      * @return array with object properties.

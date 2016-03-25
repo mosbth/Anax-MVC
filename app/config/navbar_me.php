@@ -11,6 +11,13 @@ return [
     // Here comes the menu strcture
     'items' => [
         // This is a menu item
+        'home' => [
+            'text'  =>'Hem',
+            'url'   => $this->di->get('url')->create(''),
+            'title' => 'Hem',
+        ],
+
+        // This is a menu item
         'questions' => [
             'text'  =>'Frågor',
             'url'   => $this->di->get('url')->create('questions'),
@@ -42,6 +49,12 @@ return [
             'text'  => 'Login',
             'url'   => $this->di->get('url')->create('users/login'),
             'title' => 'Logga in eller ut',
+        ],
+        'about' => [
+            // 'text'  => $this->di->get('users')->loggedIn() ? 'true text' : 'false text',
+            'text'  => 'Om oss',
+            'url'   => $this->di->get('url')->create('about'),
+            'title' => 'Om oss',
         ],
 
 

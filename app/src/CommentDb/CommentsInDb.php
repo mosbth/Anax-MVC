@@ -60,6 +60,26 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
         ]);
 
     }
+    /**
+     * Count number of questions each user has asked.
+     *
+     * @return array
+     */
+    // TODO: Move function CDatabaseModel and set count column as parameter.
+    // move from all others as well.
+    public function countByUser()
+    {
+        // SELECT user_id, COUNT(*) AS Cnt FROM cquestions GROUP BY user_id ORDER BY user_id ASC;
+        $this->db->select("user_id, COUNT(*) AS Cnt")
+            ->from($this->getSource())
+            ->groupby("user_id")
+            ->orderby('user_id ASC')
+            ->execute();
+        $this->db->execute();
+        $this->db->setFetchModeClass(__CLASS__);
+        return $this->db->fetchAll();
+    }
+
     public static function humanTiming($time)
     {
 

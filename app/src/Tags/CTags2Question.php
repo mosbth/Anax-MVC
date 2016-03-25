@@ -65,4 +65,24 @@ class CTags2Question extends \Anax\MVC\CDatabaseModel
         $this->db->execute([$qid]);
         return $this->db->fetchInto($this);
     }
+
+    /**
+     * Find and return most popular tags.
+     * Overrides function in CDatabaseModel
+     *
+     * @return array
+     */
+    public function mostPopularTags($count = 3)
+    {
+        // SELECT tag_id, COUNT(*) AS tagCnt FROM ctags2question GROUP BY tag_id ORDER BY tagCnt  DESC LIMIT 3;
+        $this->db->select("tag_id, COUNT(*) AS tagCnt")
+            ->from($this->getSource())
+            ->groupby("tag_id")
+            ->orderby('tagCnt DESC')
+            ->limit($count)
+            ->execute();
+        $this->db->execute();
+        $this->db->setFetchModeClass(__CLASS__);
+        return $this->db->fetchAll();
+    }
 }

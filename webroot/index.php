@@ -6,28 +6,35 @@
 
 require __DIR__.'/config_with_app.php';
 
-
-// TODO: Learn/adapt how to add external resources e.g. fonts
-// $app->theme->addStylesheet('https://fonts.googleapis.com/css?family=Raleway:400,200');
-// $app->theme->setVariable('me-fonts', 'https://fonts.googleapis.com/css?family=Pragati+Narrow');
+// Home page listing recent questions, most popular tags, most active users.
 $app->router->add('', function () use ($app) {
-    $app->theme->setTitle("Om mig");
-    $content = $app->fileContent->get('me.md');
-    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
-
-    $byline = $app->fileContent->get('byline.md');
-    $byline = $app->textFilter->doFilter($byline, 'shortcode, markdown');
-
-    $app->views->add('me/page', [
-        'content' => $content,
-        'byline' => $byline,
+    $app->theme->setTitle("Hem");
+    // dispatcher for recent Questions
+    $app->dispatcher->forward([
+        'controller' => 'questions',
+        'action'     => 'recentquestions',
+        'params'    => [ 3, ],
     ]);
+
+    // dispatcher for most popular Tags mostpopular
+    $app->dispatcher->forward([
+        'controller' => 'tags',
+        'action'     => 'mostpopular',
+        'params'    => [ 3, ],
+    ]);
+
+    // dispatcher for most active Users
+    $app->dispatcher->forward([
+        'controller' => 'users',
+        'action'     => 'mostactive',
+        'params'    => [ 3, ],
+    ]);
+
 });
 
 $app->router->add('about', function () use ($app) {
     $app->theme->setTitle("Om oss");
-    // TODO: write a about in md
-    $content = $app->fileContent->get('me.md');
+    $content = $app->fileContent->get('about.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
 
     $byline = $app->fileContent->get('byline.md');
@@ -220,6 +227,7 @@ $app->router->add('admin/setup', function () use ($app) {
         'controller' => 'tags',
         'action'     => 'setup',
     ]);
+    $app->theme->setTitle("Reset db");
     $app->views->add('default/page', [
         'title' => "Reset of database",
         'content' => "The complete database has been reset.",

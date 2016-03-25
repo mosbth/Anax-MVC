@@ -1,10 +1,9 @@
-<?php //echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";dump($question); ?>
 <div class="single-question-short">
-    <h1>
+    <h2>
         <a href="<?=$this->url->create('questions/single/'.$question['id'])?>">
             <?=$question['headline']?>
         </a>
-    </h1>
+    </h2>
     <p>
         <?=$question['content']?>
     </p>

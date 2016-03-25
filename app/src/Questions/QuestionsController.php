@@ -42,6 +42,30 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $this->questions->init();
         // $this->redirectTo('questions/');
     }
+
+    /**
+    * List recent questions.
+     *
+     * @return void
+     */
+    public function recentquestionsAction($count)
+    {
+        $this->views->add('default/page', [
+            'title'     => 'Senaste frågorna',
+            'content'     => 'Här hittad du de senast ställda frågorna',
+        ]);
+        $all = $this->questions->findRecent($count);
+        foreach ($all as $question) {
+            // TODO: Add more stuff into view? User, tags, ?
+            // or shorten down and place in grid-box?
+            // Add headline in view, "Senaste frågorna", or in index.php
+            $this->views->add('questions/short', [
+                'title'     => 'Senaste frågorna',
+                'question'  => $question->getProperties(),
+            ]);
+        }
+    }
+
     /**
      * List all questions.
      *
@@ -76,6 +100,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
                     ->where('id = ' . "'$answer->q_id'")
                     ->execute()[0]->getProperties();
                 }
+                // TODO: Filtrera bort kopior på samma fråga
                 $title = "Frågor svarade av {$user->name}";
                 $content = "Frågor besvarade av {$user->name}";
                 break;
@@ -112,6 +137,8 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             $allTagsId = $this->tags2Questions->query()
             ->where('question_id = ' . "'{$question['id']}'")
             ->execute();
+
+            // TODO: is below with $allTags needed?
             $allTags = array();
             foreach ($allTagsId as $tid) {
                 $allTags[] = $this->tags->find($tid->tag_id)->getProperties();
@@ -195,6 +222,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $question = $this->questions->query()
         ->where('id = ' . "'$id'")
         ->execute()[0];
+        $question->content = $this->textFilter->doFilter($question->content, 'shortcode, markdown');
 
         // Add view with the question.
         $this->theme->setTitle("$question->headline");
@@ -257,7 +285,6 @@ class QuestionsController implements \Anax\DI\IInjectionAware
                 'user'  => $user->getProperties(),
             ]);
             // Display link or comment form for commenting the answer
-            // TODO: comment form visas en gång för varje svar. Visa bara för svaret som man vill kommentera på.
             $this->showFormCommentOrAnswer('comment_answer_' . $answer->id, 'comment', $answer->id, 'Kommentera svaret', 'a');
 
             // Get all comments to answer
@@ -364,7 +391,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $this->di->session(); // Will load the session service which also starts the session
         $form = $this->createAddQuestionForm();
         $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        // $this->di->theme->setTitle("Add user");
+        $this->di->theme->setTitle("Fråga");
         $this->di->views->add('default/page', [
             'title' => "Ställ en fråga",
             'content' => $form->getHTML()

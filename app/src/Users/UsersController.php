@@ -20,6 +20,12 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $this->users = new \Anax\Users\User();
         $this->users->setDI($this->di);
+        $this->questions = new \Anax\Questions\CQuestions();
+        $this->questions->setDI($this->di);
+        $this->answers = new \Anax\Answers\CAnswers();
+        $this->answers->setDI($this->di);
+        $this->comments = new \Anax\CommentDb\CommentsInDb();
+        $this->comments->setDI($this->di);
     }
 
     /**
@@ -50,6 +56,48 @@ class UsersController implements \Anax\DI\IInjectionAware
             'params'    => [$user->acronym ],
         ]);
     }
+
+    /**
+     * Display most active users.
+     * Sum number of questions and answers contributed.
+     *
+     * @param int $id of user to display
+     *
+     * @return void
+     */
+    public function mostactiveAction($count = 3)
+    {
+        $questions = $this->questions->countByUser();
+        $answers = $this->answers->countByUser();
+        $comments = $this->comments->countByUser();
+        $useractivity = array();
+        foreach ($questions as $qActivity) {
+            $userActivity[$qActivity->user_id] = [
+                'activity'  => $qActivity->Cnt,
+                'user_id'   => $qActivity->user_id,
+            ];
+        }
+        foreach ($answers as $Activity) {
+            $userActivity[$Activity->user_id]['activity'] += $Activity->Cnt;
+        }
+        foreach ($comments as $Activity) {
+            $userActivity[$Activity->user_id]['activity'] += $Activity->Cnt;
+        }
+        arsort($userActivity);
+        $mostActiveUsers = array_slice($userActivity, 0, 3, true);
+        $all = array();
+        foreach ($mostActiveUsers as $user) {
+            $all[] = $this->users->find($user['user_id'])->getProperties();
+        }
+        $this->views->add('default/page', [
+            'title'     => 'Mest aktiva användare',
+            'content'     => '',
+        ]);
+        $this->views->add('users/view_short', [
+            'users' => $all,
+        ]);
+    }
+
     /**
      * Display user with acronym.
      *
@@ -63,8 +111,8 @@ class UsersController implements \Anax\DI\IInjectionAware
         ->where('acronym = ' . "'$acronym'")
         ->execute()[0];
         // Get user questions
-        $this->questions = new \Anax\Questions\CQuestions();
-        $this->questions->setDI($this->di);
+        // TODO: move queries to model?
+        // TODO: use sql count function instead.
         $questions = $this->questions->query()
         ->where('user_id = ' . "'$user->id'")
         ->execute();
@@ -73,8 +121,6 @@ class UsersController implements \Anax\DI\IInjectionAware
         $urlQuestions = $this->url->create('questions/list/questions/'.$acronym);
 
         // Get user answers
-        $this->answers = new \Anax\Answers\CAnswers();
-        $this->answers->setDI($this->di);
         $answers = $this->answers->query()
         ->where('user_id = ' . "'$user->id'")
         ->execute();
@@ -127,7 +173,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      *
      * @return array $user
      */
-     // TODO: Replace with User::loggedInUser()
+    // TODO: Replace with User::loggedInUser()
     private function loggedInUser()
     {
         $userAcronym = $this->session->get('user');
@@ -670,6 +716,7 @@ class UsersController implements \Anax\DI\IInjectionAware
             ->where("acronym = '$userName'")
             ->execute();
         if (sizeof($user)==1) {
+            // TODO: login of added users dont work.
             // Set user in session if successful authentication
             if (md5($password)==$user[0]->password) {
                 $this->session->set('user', $userName);

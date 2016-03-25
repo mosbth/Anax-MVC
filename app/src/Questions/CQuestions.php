@@ -38,7 +38,7 @@ class CQuestions extends \Anax\MVC\CDatabaseModel
 
         $this->db->execute([
             'Fråga 1?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non urna at lectus venenatis facilisis. Nullam rutrum tortor at aliquet tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut ullamcorper purus. Sed elementum purus quis tortor finibus, eget vestibulum lorem finibus. Vestibulum porta ligula in risus aliquam luctus. Ut eget sapien libero.',
+            'Lorem ipsum dolor sit amet, [consectetur](https://daringfireball.net/projects/markdown/syntax#link) adipiscing elit. Praesent non urna at lectus venenatis facilisis. Nullam rutrum tortor at aliquet tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut ullamcorper purus. Sed elementum purus quis tortor finibus, eget vestibulum lorem finibus. Vestibulum porta ligula in risus aliquam luctus. Ut eget sapien libero.',
             1,
             0,
             $now
@@ -79,6 +79,39 @@ class CQuestions extends \Anax\MVC\CDatabaseModel
             0,
             $now
         ]);
-
+    }
+    /**
+     * Count number of questions each user has asked.
+     *
+     * @return array
+     */
+    public function countByUser()
+    {
+        // SELECT user_id, COUNT(*) AS Cnt FROM cquestions GROUP BY user_id ORDER BY user_id ASC;
+        $this->db->select("user_id, COUNT(*) AS Cnt")
+            ->from($this->getSource())
+            ->groupby("user_id")
+            ->orderby('user_id ASC')
+            ->execute();
+        $this->db->execute();
+        $this->db->setFetchModeClass(__CLASS__);
+        return $this->db->fetchAll();
+    }
+    /**
+     * Find and return recent items.
+     * Overrides function in CDatabaseModel
+     *
+     * @return array
+     */
+    public function findRecent($count = 3)
+    {
+        $this->db->select()
+            ->from($this->getSource())
+            ->orderby('created DESC')
+            ->limit($count)
+            ->execute();
+        $this->db->execute();
+        $this->db->setFetchModeClass(__CLASS__);
+        return $this->db->fetchAll();
     }
 }

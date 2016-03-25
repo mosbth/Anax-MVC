@@ -7,6 +7,7 @@ namespace Anax\Users;
  */
 class User extends \Anax\MVC\CDatabaseModel
 {
+    public $gravatarSize = 80;
 
     /**
      * Initialize model.
@@ -70,6 +71,19 @@ class User extends \Anax\MVC\CDatabaseModel
             $now
         ]);
 
+    }
+
+    public function setGravatarSize($size = 80)
+    {
+        $this->gravatarSize = $size;
+    }
+
+    public function find($id)
+    {
+        $user = parent::find($id);
+        // Add Gravatar
+        $user->gravatar = $this->getGravatar($user->email, $this->gravatarSize);
+        return $user;
     }
 
     /**

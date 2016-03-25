@@ -56,4 +56,21 @@ class CAnswers extends \Anax\MVC\CDatabaseModel
         ]);
 
     }
+    /**
+     * Count number of answer each user has answered.
+     *
+     * @return array
+     */
+    public function countByUser()
+    {
+        // SELECT user_id, COUNT(*) AS Cnt FROM canswers GROUP BY user_id ORDER BY user_id ASC LIMIT 3;
+        $this->db->select("user_id, COUNT(*) AS Cnt")
+            ->from($this->getSource())
+            ->groupby("user_id")
+            ->orderby('user_id ASC')
+            ->execute();
+        $this->db->execute();
+        $this->db->setFetchModeClass(__CLASS__);
+        return $this->db->fetchAll();
+    }
 }

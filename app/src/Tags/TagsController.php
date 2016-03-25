@@ -31,7 +31,6 @@ class TagsController implements \Anax\DI\IInjectionAware
      */
     public function setupAction()
     {
-        echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";var_dump("Setup Questions!");
         $this->tags->init();
         $this->tags2Questions->init();
         // $this->redirectTo('questions/');
@@ -54,39 +53,6 @@ class TagsController implements \Anax\DI\IInjectionAware
 
 
     /**
-     * List  questions related to one tag
-     *
-     * @param int $id of tag for questions to display
-     *
-     * @return void
-     */
-     // Use route question/tag/id instead
-    // public function singleAction($id = null)
-    // {
-    //     // TODO: Add support for tag-name as parameter.
-    //     // or call this only with name, not id.
-    //     $this->questions = new \Anax\Questions\CQuestions();
-    //     $this->questions->setDI($this->di);
-    //
-    //     $tag = $this->tags->find($id);
-    //     $tagName = $tag->name;
-    //
-    //     $allQuestionsId = $this->tags2Questions->query()
-    //     ->where('id = ' . "'$id'")
-    //     ->execute();
-    //
-    //     foreach ($allQuestionsId as $qid) {
-    //         $allQuestions[] = $this->questions->find($qid->id)->getProperties();
-    //     }
-    //
-    //     $this->theme->setTitle("Kategori $tagName");
-    //     $this->views->add('questions/list-all', [
-    //         'questions' => $allQuestions,
-    //         'title' => "Kategori $tagName",
-    //     ]);
-    // }
-
-    /**
      * List tags related to one question
      *
      * @param int $id of question for tags to display
@@ -103,6 +69,29 @@ class TagsController implements \Anax\DI\IInjectionAware
             $allTags[] = $this->tags->find($tid->tag_id)->getProperties();
         }
 
+        $this->views->add('tags/list', [
+            'tags' => $allTags,
+        ]);
+    }
+
+    /**
+     * List most popular tags
+     *
+     * @param int $count number of tags to list
+     *
+     * @return void
+     */
+    public function mostpopularAction($count = 3)
+    {
+        $tags = $this->tags2Questions->mostPopularTags($count);
+        $allTags = array();
+        foreach ($tags as $tag) {
+            $allTags[] = $this->tags->find($tag->tag_id)->getProperties();
+        }
+        $this->views->add('default/page', [
+            'title'     => 'Mest använda kategorier',
+            'content'     => '',
+        ]);
         $this->views->add('tags/list', [
             'tags' => $allTags,
         ]);
