@@ -198,8 +198,6 @@ class UsersController implements \Anax\DI\IInjectionAware
         }
 
         // Display logged in user.
-        // TODO: create a view for this and display somewhere better?
-        // TODO: and logout to.
         if ($this->users->loggedIn()) {
             $user = $this->loggedInUser();
             // Show users gravatar in big size somewhere here.
@@ -210,7 +208,6 @@ class UsersController implements \Anax\DI\IInjectionAware
             ]);
         } else {
             // Dispatch to login Form
-            // TODO: Put login form in better place
             $this->dispatcher->forward([
                 'controller' => 'users',
                 'action'     => 'login',
@@ -358,7 +355,7 @@ class UsersController implements \Anax\DI\IInjectionAware
             ->where("acronym = '$acronym'")
             ->execute();
         if (count($all)!=0) {
-            die("User with acronym $acronym already in model.");
+            die("User with acronym $acronym already registered.");
         }
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
@@ -366,7 +363,7 @@ class UsersController implements \Anax\DI\IInjectionAware
             'acronym' => $form->Value('acronym'),
             'email' => $form->Value('email'),
             'name' => $form->Value('name'),
-            'password' => md5($acronym, PASSWORD_DEFAULT),
+            'password' => md5($acronym),
             'created' => $now,
             'active' => $now,
         ]);
