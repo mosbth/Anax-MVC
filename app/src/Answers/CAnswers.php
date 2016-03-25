@@ -24,7 +24,7 @@ class CAnswers extends \Anax\MVC\CDatabaseModel
                'id'         => ['integer', 'primary key', 'not null', 'auto_increment'],
                'content'    => ['varchar(1024)'],
                'q_id'       => ['int'],
-               'user_id'    => ['int'], // TODO: use foreign keys?
+               'user_id'    => ['int'],
                'vote'       => ['int'],
                'created'    => ['datetime'],
                'accepted'   => ['bool'],

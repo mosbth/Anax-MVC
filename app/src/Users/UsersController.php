@@ -214,7 +214,7 @@ class UsersController implements \Anax\DI\IInjectionAware
             ]);
         }
 
-        $this->theme->setTitle("Alla byggare");
+        $this->theme->setTitle("Byggare");
         $this->views->add('users/list-all', [
             'users' => $all,
             'title' => "Alla byggare",

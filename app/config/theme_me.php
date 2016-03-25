@@ -69,7 +69,6 @@ return [
 
         // Favicon
         'favicon' => 'favicon.ico',
-        // TODO: Fix a ico-file for stackhouse
 
         // Path to modernizr or null to disable
         'modernizr' => 'js/modernizr.js',

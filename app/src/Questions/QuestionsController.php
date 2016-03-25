@@ -52,7 +52,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
     {
         $this->views->add('default/page', [
             'title'     => 'Senaste frågorna',
-            'content'     => 'Här hittad du de senast ställda frågorna',
+            'content'     => 'Här hittar du de senast ställda frågorna',
         ]);
         $all = $this->questions->findRecent($count);
         foreach ($all as $question) {
@@ -285,7 +285,13 @@ class QuestionsController implements \Anax\DI\IInjectionAware
                 'user'  => $user->getProperties(),
             ]);
             // Display link or comment form for commenting the answer
-            $this->showFormCommentOrAnswer('comment_answer_' . $answer->id, 'comment', $answer->id, 'Kommentera svaret', 'a');
+            $this->showFormCommentOrAnswer(
+                'comment_answer_' . $answer->id,
+                'comment',
+                $answer->id,
+                'Kommentera svaret',
+                'a'
+            );
 
             // Get all comments to answer
             $allComments = $this->comments->query()

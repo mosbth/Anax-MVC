@@ -20,6 +20,8 @@ class AnswersController implements \Anax\DI\IInjectionAware
     {
         $this->answers = new \Anax\Answers\CAnswers();
         $this->answers->setDI($this->di);
+        $this->users = new \Anax\Users\User();
+        $this->users->setDI($this->di);
     }
 
     /**
@@ -124,8 +126,7 @@ class AnswersController implements \Anax\DI\IInjectionAware
         $now = time();
         $this->answers->save([
             'content'   => $form->Value('content'),
-            // TODO: Fix real user
-            'user_id'   => 3,
+            'user_id'   => $this->users->loggedInUser()->id,
             'q_id'      => $form->Value('question_id'),
             'vote'      => 0,
             'created'   => $now,

@@ -33,9 +33,9 @@ return [
 
         // This is a menu item
         'users' => [
-            'text'  =>'Användare',
+            'text'  =>'Byggare',
             'url'   => $this->di->get('url')->create('users/list'),
-            'title' => 'Användare',
+            'title' => 'Byggare',
         ],
 
         // This is a menu item
