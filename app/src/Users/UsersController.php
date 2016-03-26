@@ -140,8 +140,8 @@ class UsersController implements \Anax\DI\IInjectionAware
 
         // If user is logged in and profile is logged in users show additional links.
         if ($this->users->loggedIn()) {
-            $loggedInUser = $this->loggedInUser();
-            if ($loggedInUser['id'] == $user->id) {
+            $loggedInUser = $this->users->loggedInUser();
+            if ($loggedInUser->id == $user->id) {
                 $this->views->add('default/page', [
                     'content' => "Hej {$user->name}. Vad vill du göra? ",
                     'links' => [
@@ -168,21 +168,6 @@ class UsersController implements \Anax\DI\IInjectionAware
     }
 
     /**
-     * Get user with acronym.
-     *
-     * @return array $user
-     */
-    // TODO: Replace with User::loggedInUser()
-    private function loggedInUser()
-    {
-        $userAcronym = $this->session->get('user');
-        $user = $this->users->query()
-        ->where('acronym =' . "'$userAcronym'")
-        ->execute()[0]->getProperties();
-        return $user;
-    }
-
-    /**
      * List all users.
      *
      * @return void
@@ -198,12 +183,13 @@ class UsersController implements \Anax\DI\IInjectionAware
 
         // Display logged in user.
         if ($this->users->loggedIn()) {
-            $user = $this->loggedInUser();
+            $user = $this->users->loggedInUser();
             // Show users gravatar in big size somewhere here.
             $this->dispatcher->forward([
                 'controller' => 'users',
                 'action'     => 'profile',
-                'params'    => [$user['acronym'] ],
+                'params'    => [$user->acronym ],
+                // 'params'    => [$user['acronym'] ],
             ]);
         } else {
             // Dispatch to login Form
@@ -301,14 +287,18 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function addAction($acronym = null)
     {
-        $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddUserForm();
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        $this->di->theme->setTitle("Add user");
-        $this->di->views->add('default/page', [
-            'title' => "Add user",
-            'content' => $form->getHTML()
-        ]);
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            $form = $this->createAddUserForm();
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            $this->di->theme->setTitle("Add user");
+            $this->di->views->add('default/page', [
+                'title' => "Add user",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
+        }
     }
     private function createAddUserForm()
     {
@@ -334,10 +324,10 @@ class UsersController implements \Anax\DI\IInjectionAware
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitAddUser'],
             ],
-            'submit-fail' => [
-                'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFailAddUser'],
-            ],
+            // 'submit-fail' => [
+            //     'type'      => 'submit',
+            //     'callback'  => [$this, 'callbackSubmitFailAddUser'],
+            // ],
         ]);
     }
     /**
@@ -712,7 +702,6 @@ class UsersController implements \Anax\DI\IInjectionAware
             ->where("acronym = '$userName'")
             ->execute();
         if (sizeof($user)==1) {
-            // TODO: login of added users dont work.
             // Set user in session if successful authentication
             if (md5($password)==$user[0]->password) {
                 $this->session->set('user', $userName);

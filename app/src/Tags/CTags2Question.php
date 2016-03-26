@@ -45,26 +45,26 @@ class CTags2Question extends \Anax\MVC\CDatabaseModel
         $this->db->execute([6, 5, ]);
         $this->db->execute([8, 6, ]);
     }
-    public function findQuestionIds($tag = '')
-    {
-        // TODO: dont work. qo query in controller instead.
-        $this->db->select()
-             ->from($this->getSource())
-             ->where("tag_id = ?");
-
-        $this->db->execute([$tag]);
-        return $this->db->fetchInto($this);
-    }
-    public function findTagIds($qid = '')
-    {
-        // TODO: dont work. qo query in controller instead.
-        $this->db->select()
-             ->from($this->getSource())
-             ->where("question_id = ?");
-
-        $this->db->execute([$qid]);
-        return $this->db->fetchInto($this);
-    }
+    // public function findQuestionIds($tag = '')
+    // {
+    //     // TODO: dont work. qo query in controller instead.
+    //     $this->db->select()
+    //          ->from($this->getSource())
+    //          ->where("tag_id = ?");
+    //
+    //     $this->db->execute([$tag]);
+    //     return $this->db->fetchInto($this);
+    // }
+    // public function findTagIds($qid = '')
+    // {
+    //     // TODO: dont work. qo query in controller instead.
+    //     $this->db->select()
+    //          ->from($this->getSource())
+    //          ->where("question_id = ?");
+    //
+    //     $this->db->execute([$qid]);
+    //     return $this->db->fetchInto($this);
+    // }
 
     /**
      * Find and return most popular tags.

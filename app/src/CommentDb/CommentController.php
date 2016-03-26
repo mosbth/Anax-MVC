@@ -74,16 +74,18 @@ class CommentController implements \Anax\DI\IInjectionAware
      */
     public function addAction($id, $q_or_a)
     {
-        // TODO: Need to sweep session? How?
-        // Set saveInSession = false instead.
-        $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddCommentForm($id, $q_or_a);
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        // $this->di->theme->setTitle("Kommentera");
-        $this->di->views->add('default/page', [
-            'title' => "Kommentera",
-            'content' => $form->getHTML()
-        ]);
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            $form = $this->createAddCommentForm($id, $q_or_a);
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            // $this->di->theme->setTitle("Kommentera");
+            $this->di->views->add('default/page', [
+                'title' => "Kommentera",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
+        }
     }
     private function createAddCommentForm($id, $q_or_a)
     {
@@ -106,10 +108,10 @@ class CommentController implements \Anax\DI\IInjectionAware
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitAddComment'],
             ],
-            'submit-fail' => [
-                'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFailAddComment'],
-            ],
+            // 'submit-fail' => [
+            //     'type'      => 'submit',
+            //     'callback'  => [$this, 'callbackSubmitFailAddComment'],
+            // ],
         ]);
     }
     /**
@@ -176,14 +178,14 @@ class CommentController implements \Anax\DI\IInjectionAware
      *
      * @return void
      */
-    public function deleteAction()
-    {
-        $id = $this->request->getGet('id');
-        if (!isset($id)) {
-            die("Missing id");
-        }
-
-        $res = $this->comments->delete($id);
-        $this->redirectTo($_SERVER['HTTP_REFERER']);
-    }
+//     public function deleteAction()
+//     {
+//         $id = $this->request->getGet('id');
+//         if (!isset($id)) {
+//             die("Missing id");
+//         }
+//
+//         $res = $this->comments->delete($id);
+//         $this->redirectTo($_SERVER['HTTP_REFERER']);
+//     }
 }

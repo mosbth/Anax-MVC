@@ -277,7 +277,10 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $this->views->add('questions/answersheading', [
             'title' => sizeof($allAnswers) . " svar",
         ]);
+        // echo __FILE__ . " : " . __LINE__ . "<br>";dump($allAnswers);
+        // FIXME: user_id empty for answer. Check setting of user_id in saving answer.
         foreach ($allAnswers as $answer) {
+            // echo __FILE__ . " : " . __LINE__ . "<br>";dump($answer->user_id);
             $user = $this->users->find($answer->user_id);
             // Add view to display all answer.
             $this->views->add('questions/answer', [
@@ -311,77 +314,16 @@ class QuestionsController implements \Anax\DI\IInjectionAware
             ]);
         }
 
-        // Add view with question form field to ask question if user is logged in
-        // and no other forms are displayed.
-        // TODO: change this to link and to this dispatcher "questions/ask"?
-        if ($this->users->loggedIn() && !$this->session->get('ShowFormCorA')) {
-            $this->dispatcher->forward([
-                'controller' => 'questions',
-                'action'     => 'ask',
-            ]);
-        }
+        $this->views->add('default/page', [
+            'content'   => ' ',
+            'links' => [
+                [
+                    'href' => $this->url->create('questions/ask'),
+                    'text' => "Fråga en fråga",
+                ],
+            ],
+        ]);
     }
-
-    /**
-     * List all questions with tag
-     *
-     * @param int $id of tag for questions to display
-     *
-     * @return void
-     */
-     // TODO: kombinera lista frågor på questions/tags/id med questions/user/doe och answers/user/doe
-     // Utgå ifrån /questions/tag/2
-
-     // questions/list
-     // questions/list/tags/tid
-     // questions/list/answers/uid
-     // questions/list/questions/uid
-    // public function tagAction($tagId = '')
-    // {
-    //     // Create view with all questions with tag
-    //     // Do dispatch to TagsController tags/single/3
-    //     // Skip using tag-name. Use tag-id instead
-    //     $this->tags = new \Anax\Tags\CTags();
-    //     $this->tags->setDI($this->di);
-    //     $this->tags2Questions = new \Anax\Tags\CTags2Question();
-    //     $this->tags2Questions->setDI($this->di);
-    //     // Multibyte dont work. Tag from route gets corrupt. remove åäö? Use tag-id instead.
-    //     $tag = $this->tags->find($tagId)->getProperties();
-    //
-    //     $this->theme->setTitle("Kategori {$tag['name']}");
-    //     $this->views->add('default/page', [
-    //         'title' => "Kategori {$tag['name']}",
-    //         'content' => "Frågor under kategori {$tag['name']}",
-    //     ]);
-    //     // $qids = $this->tags2Questions->findQuestionIds($tagId)->question_id;
-    //     $qids = $this->tags2Questions->query()
-    //                 ->where("tag_id = $tagId")
-    //                 ->execute();
-    //     $all = array();
-    //     foreach ($qids as $qid) {
-    //         $question = $this->questions->find($qid->question_id)->getProperties();
-    //         $this->views->add('questions/short', [
-    //             'question' => $question,
-    //             'title' => "Kategori {$tag['name']}",
-    //         ]);
-    //         // Add view with the questions tags
-    //         $this->dispatcher->forward([
-    //             'controller' => 'tags',
-    //             'action'     => 'question',
-    //             'params'    => [$qid->question_id,  ],
-    //         ]);
-    //         // Add view with users card
-    //         $this->dispatcher->forward([
-    //             'controller' => 'users',
-    //             'action'     => 'card',
-    //             'params'    => [
-    //                 $question['user_id'],
-    //             ],
-    //         ]);
-    //
-    //     }
-    // }
-
 
     /**
      * Ask new question
@@ -392,16 +334,21 @@ class QuestionsController implements \Anax\DI\IInjectionAware
      */
     public function askAction()
     {
-        // TODO: Need to sweep session? How?
+        // TODO: check if loggedIn also in comment and answer
         // Set saveInSession = false instead.
-        $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddQuestionForm();
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        $this->di->theme->setTitle("Fråga");
-        $this->di->views->add('default/page', [
-            'title' => "Ställ en fråga",
-            'content' => $form->getHTML()
-        ]);
+
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            $form = $this->createAddQuestionForm();
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            $this->di->theme->setTitle("Fråga");
+            $this->di->views->add('default/page', [
+                'title' => "Ställ en fråga",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
+        }
     }
     private function createAddQuestionForm()
     {
@@ -431,10 +378,10 @@ class QuestionsController implements \Anax\DI\IInjectionAware
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitAddQuestion'],
             ],
-            'submit-fail' => [
-                'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFailAddQuestion'],
-            ],
+            // 'submit-fail' => [
+            //     'type'      => 'submit',
+            //     'callback'  => [$this, 'callbackSubmitFailAddQuestion'],
+            // ],
         ]);
     }
     /**

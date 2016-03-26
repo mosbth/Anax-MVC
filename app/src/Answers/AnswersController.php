@@ -78,16 +78,18 @@ class AnswersController implements \Anax\DI\IInjectionAware
      */
     public function addAction($question_id = null)
     {
-        // TODO: Need to sweep session? How?
-        // Set saveInSession = false instead.
-        $this->di->session(); // Will load the session service which also starts the session
-        $form = $this->createAddCommentForm($question_id);
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        // $this->di->theme->setTitle("Add user");
-        $this->di->views->add('default/page', [
-            'title' => "Svara på fråga $question_id",
-            'content' => $form->getHTML()
-        ]);
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            $form = $this->createAddCommentForm($question_id);
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            // $this->di->theme->setTitle("Add user");
+            $this->di->views->add('default/page', [
+                'title' => "Svara på fråga $question_id",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
+        }
     }
     private function createAddCommentForm($question_id)
     {
@@ -106,11 +108,10 @@ class AnswersController implements \Anax\DI\IInjectionAware
                 'type'      => 'submit',
                 'callback'  => [$this, 'callbackSubmitAddAnswer'],
             ],
-            // TODO: Remove all submit-fail later.
-            'submit-fail' => [
-                'type'      => 'submit',
-                'callback'  => [$this, 'callbackSubmitFailAddComment'],
-            ],
+            // 'submit-fail' => [
+            //     'type'      => 'submit',
+            //     'callback'  => [$this, 'callbackSubmitFailAddComment'],
+            // ],
         ]);
     }
     /**
