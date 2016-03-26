@@ -103,39 +103,4 @@ class CommentsInDb extends \Anax\MVC\CDatabaseModel
             return $numberOfUnits.' '.$text.(($numberOfUnits>1)?' ':'');
         }
     }
-
-    /**
-     * Find and return all comments in complete database.
-     *
-     * @return array with all comments.
-     */
-    public function findAll()
-    {
-        $comments = parent::findAll();
-
-        foreach ($comments as $id => $comment) {
-            $comment->since_time = self::humanTiming($comment->created);
-            $comment->gravatar = \Anax\Users\User::getGravatar($comment->mail);
-        }
-        // echo __FILE__ . " : " . __LINE__ . "<br>";dump($comments);
-        return $comments;
-    }
-
-    /**
-     * Find and return all comments within the page comment flow.
-     *
-     * @return array with all comments.
-     */
-    public function findFlow($flow = null)
-    {
-        $comments = $this->query()
-        ->where('flow = ' . "'$flow'")
-        ->execute();
-        // Add human timing and gravatars to each comment post.
-        foreach ($comments as $id => $comment) {
-            $comment->since_time = self::humanTiming($comment->created);
-            $comment->gravatar = \Anax\Users\User::getGravatar($comment->mail);
-        }
-        return $comments;
-    }
 }

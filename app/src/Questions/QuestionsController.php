@@ -332,9 +332,6 @@ class QuestionsController implements \Anax\DI\IInjectionAware
      */
     public function askAction()
     {
-        // TODO: check if loggedIn also in comment and answer
-        // Set saveInSession = false instead.
-
         if ($this->users->loggedIn()) {
             $this->di->session(); // Will load the session service which also starts the session
             $form = $this->createAddQuestionForm();

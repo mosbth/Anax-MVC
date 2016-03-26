@@ -691,8 +691,8 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function callbackSubmitLogin($form)
     {
-        $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
-        $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
+        // $form->AddOutput("<p>DoSubmit(): Form was submitted.<p>");
+        // $form->AddOutput("<p>Do stuff (save to database) and return true (success) or false (failed processing)</p>");
         // Authenticate user.
         // Check if user exists
         // Check if password matches hash

@@ -35,39 +35,6 @@ class AnswersController implements \Anax\DI\IInjectionAware
         $this->answers->init();
         // $this->redirectTo('answers/');
     }
-    /**
-     * List all answers.
-     *
-     * @return void
-     */
-    public function listAction($question_id = null)
-    {
-        // $question_id = 2;
-        if ($question_id) {
-            // echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";var_dump('not null');
-            // make a query instead.
-            // $all = $this->answers->find($question_id);
-            // $query = "q_id IS $question_id";
-            $all = $this->answers->query()
-                ->where("q_id = $question_id")
-                ->execute();
-        } else {
-            // echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";var_dump('Is null');
-            $all = $this->answers->findAll();
-            // returns array
-        }
-        // echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";var_dump($question_id);
-        // echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";var_dump($all[0]->content);
-        // echo "<br>" . __FILE__ . " : " . __LINE__ . "<br>";var_dump(sizeof($all));
-        $nrOfAnswers = sizeof($all);
-        foreach ($all as $answer) {
-            $this->views->add('answers/single', [
-                'answer' => $answer,
-            ]);
-            // Add dispatcher or view for user card.
-            // add dispatcher for comments listing all comments to answer.
-        }
-    }
 
     /**
      * Add new question

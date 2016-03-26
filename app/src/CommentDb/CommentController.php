@@ -32,37 +32,6 @@ class CommentController implements \Anax\DI\IInjectionAware
         $this->comments->init();
         // $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
-    /**
-     * List all comments for all flows.
-     *
-     * @return void
-     */
-    public function listAction()
-    {
-        $all = $this->comments->findAll();
-        $flow = $this->request->getRoute();
-        $link = $this->url->create('comment/add/' . $flow);
-        $this->theme->setTitle("List all users");
-        $this->views->add('comment/commentsdb', [
-            'comments' => $all,
-            'comment_link' => $link,
-        ]);
-    }
-    /**
-     * View all comments in page flow.
-     *
-     * @return void
-     */
-    public function viewAction()
-    {
-        $flow = $this->request->getRoute();
-        $all = $this->comments->findFlow($flow);
-        $link = $this->url->create('comment/add/' . $flow);
-        $this->views->add('comment/commentsdb', [
-            'comments' => $all,
-            'comment_link' => $link,
-        ]);
-    }
 
     /**
      * Add new comment.
