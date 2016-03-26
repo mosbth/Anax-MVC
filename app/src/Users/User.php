@@ -51,9 +51,9 @@ class User extends \Anax\MVC\CDatabaseModel
         ]);
 
         $this->db->execute([
-            'doe',
-            'doe@dbwebb.se',
-            'John/Jane Doe',
+            'bob',
+            'bob@dbwebb.se',
+            'Byggare Bob',
             0,
             md5('doe'),
             $now,
