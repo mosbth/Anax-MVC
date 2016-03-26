@@ -100,7 +100,8 @@ class QuestionsController implements \Anax\DI\IInjectionAware
                     ->where('id = ' . "'$answer->q_id'")
                     ->execute()[0]->getProperties();
                 }
-                // TODO: Filtrera bort kopior på samma fråga
+                // Remove duplicate questions. E.g. same user answered multiple times on same question.
+                $questions = array_unique($questions, SORT_REGULAR);
                 $title = "Frågor svarade av {$user->name}";
                 $content = "Frågor besvarade av {$user->name}";
                 break;
@@ -277,10 +278,7 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $this->views->add('questions/answersheading', [
             'title' => sizeof($allAnswers) . " svar",
         ]);
-        // echo __FILE__ . " : " . __LINE__ . "<br>";dump($allAnswers);
-        // FIXME: user_id empty for answer. Check setting of user_id in saving answer.
         foreach ($allAnswers as $answer) {
-            // echo __FILE__ . " : " . __LINE__ . "<br>";dump($answer->user_id);
             $user = $this->users->find($answer->user_id);
             // Add view to display all answer.
             $this->views->add('questions/answer', [
