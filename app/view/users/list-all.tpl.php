@@ -6,9 +6,8 @@
 <div class="users-profile-card">
     <a href='<?=$this->url->create('users/profile/'.$properties['acronym'])?>'>
         <img src="<?=$properties['gravatar']?>" alt="gravatar" />
+        <?=$user->name?>
     </a>
-    <?=$user->name?>
-
 </div>
 
 <?php endforeach; ?>
