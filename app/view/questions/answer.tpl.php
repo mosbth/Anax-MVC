@@ -1,4 +1,7 @@
 <div class="answer">
+    <?php if ($answer['accepted']) :?>
+        <img src='<?=$this->url->asset("img/chk-mark-home-64px.png")?>' alt="Bra" />
+    <?php endif;?>
     <?=$this->textFilter->doFilter($answer['content'], 'shortcode, markdown')?>
     <div class="user-card-answer">
         <p>

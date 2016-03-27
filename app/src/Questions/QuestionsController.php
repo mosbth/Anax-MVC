@@ -164,9 +164,23 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         }
     }
 
+    public function acceptAnswer($answer, $question)
+    {
+        if ($this->users->loggedIn() &&
+            ($this->users->loggedInUser()->id == $question->user_id) &&
+            !$answer->accepted &&
+            !$question->accepted_answer) {
+            $acceptUrl['href'] = $this->url->create('answers/accept/' . $answer->id);
+            $acceptUrl['text'] = '| Acceptera svar';
+            $this->views->add('default/link', [
+                'link' => $acceptUrl,
+            ]);
+        }
+    }
+
     /**
      * Route to enable showing of comment or answer form
-     * This is used in singleAction()
+     * This is used when displaying single question
      *
      * @param int $form answer, comment_question, comment_answer
      *
@@ -248,10 +262,10 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         ]);
 
         // Add view to comment question, form visible when logged in and clicking link.
-        $this->showFormCommentOrAnswer('comment_question', 'comment', $question->id, 'Kommentera frågan', 'q');
+        $this->showFormCommentOrAnswer('comment_question', 'comment', $question->id, 'Kommentera ', 'q');
 
         // Add view to answer question, form visible when logged in and clicking link.
-        $this->showFormCommentOrAnswer('answer', 'answers', $question->id, 'Besvara frågan');
+        $this->showFormCommentOrAnswer('answer', 'answers', $question->id, '| Besvara ');
 
         // Add view with Comments to question
         $allComments = $this->comments->query()
@@ -290,9 +304,10 @@ class QuestionsController implements \Anax\DI\IInjectionAware
                 'comment_answer_' . $answer->id,
                 'comment',
                 $answer->id,
-                'Kommentera svaret',
+                'Kommentera ',
                 'a'
             );
+            $this->acceptAnswer($answer, $question);
 
             // Get all comments to answer
             $allComments = $this->comments->query()

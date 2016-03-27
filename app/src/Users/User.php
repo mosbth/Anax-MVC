@@ -128,8 +128,6 @@ class User extends \Anax\MVC\CDatabaseModel
         $user = $this->query()
         ->where('acronym =' . "'$userAcronym'")
         ->execute()[0];
-        // ->execute()[0]->getProperties();
-        // FIXME:
         return $user;
     }
 }

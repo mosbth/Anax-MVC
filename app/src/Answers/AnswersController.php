@@ -22,6 +22,8 @@ class AnswersController implements \Anax\DI\IInjectionAware
         $this->answers->setDI($this->di);
         $this->users = new \Anax\Users\User();
         $this->users->setDI($this->di);
+        $this->questions = new \Anax\Questions\CQuestions();
+        $this->questions->setDI($this->di);
     }
 
     /**
@@ -37,9 +39,36 @@ class AnswersController implements \Anax\DI\IInjectionAware
     }
 
     /**
+     * Accept answer to question
+     *
+     * @param integer $id to answer.
+     *
+     * @return void
+     */
+    public function acceptAction($id)
+    {
+        $answer = $this->answers->find($id);
+        $user = $this->users->loggedInUser();
+        $question = $this->questions->find($answer->q_id);
+        if ($user->id == $question->user_id &&
+            !$question->accepted_answer) {
+            // Update answer entry in db.
+            $this->answers->update([
+                'id'        => $answer->id,
+                'accepted'  => true,
+            ]);
+            $this->questions->update([
+                'id'        => $question->id,
+                'accepted_answer'  => true,
+            ]);
+        }
+        $this->redirectTo($_SERVER['HTTP_REFERER']);
+    }
+
+    /**
      * Add new question
      *
-     * @param string $route to page for comment flow.
+     * @param integer $question_id for question being answered.
      *
      * @return void
      */

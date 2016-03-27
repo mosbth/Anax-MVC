@@ -26,6 +26,7 @@ class CQuestions extends \Anax\MVC\CDatabaseModel
                'content'    => ['varchar(1024)'],
                'user_id'    => ['int'],
                'vote'       => ['int'],
+               'accepted_answer' => ['bool', 'DEFAULT', '0'],
                'created'    => ['datetime'],
             ]
         )->execute();
