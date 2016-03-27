@@ -18,6 +18,7 @@
         "mos/ctextfilter": "dev-master",
         "mos/cform": "2.*@dev",
         "mos/cdatabase": "dev-master",
+		"geshi/geshi" : "dev-master",
         "phpmvc/comment": "dev-master",
 		"fnlive/calendar":  "dev-master",
 		"fnlive/contactform":  "dev-master"

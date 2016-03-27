@@ -348,6 +348,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         }
         // Save user data to database
         $now = gmdate('Y-m-d H:i:s');
+        unset($this->users->session);
         $this->users->save([
             'acronym' => $form->Value('acronym'),
             'email' => $form->Value('email'),
