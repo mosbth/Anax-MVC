@@ -1,3 +1,3 @@
-<img class='sitelogo' src='<?=$this->url->asset("img/anax.png")?>' alt='Anax Logo'/>
-<span class='sitetitle'><?=isset($siteTitle) ? $siteTitle : "Anax PHP framework"?></span>
-<span class='siteslogan'><?=isset($siteTagline) ? $siteTagline : "Reusable modules for web development"?></span>
+<img class='sitelogo' src='<?=$this->url->asset("img/roed_stuga_100.png")?>' alt='Gamla Hus logo'/>
+<span class='sitetitle'><?=isset($siteTitle) ? $siteTitle : "phpmvc LESS work"?></span>
+<span class='siteslogan'><?=isset($siteTagline) ? $siteTagline : "Getting LESS to work with grids"?></span>

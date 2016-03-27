@@ -1,0 +1,90 @@
+/** --------------------------------------------------------------
+ * Figure
+ */
+figure {
+    margin: 0;
+    margin-bottom: 22px;
+}
+
+figure img {
+    max-width: 100%;
+    display: block;
+}
+  
+figure figcaption {
+    font-style: italic;
+    padding-top: 1em;
+}
+
+figure figcaption p {
+    margin-bottom: 0;
+}
+
+
+
+/** --------------------------------------------------------------
+ * New style to manage sizes
+ */
+figure.figure {
+  display: table;
+  padding: 0;
+}
+
+figure.figure a { }
+  
+figure.figure img { }
+  
+/* Chrome shinks images in td */
+figure.figure td img {
+    max-width: none;
+}
+
+figure.figure figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    padding: 0;
+}
+
+
+
+/** --------------------------------------------------------------
+ * Position figure on the article
+ */
+figure.left {
+    float: left;
+    margin-right: 1em;
+    font-size: 0.875em;
+}
+
+figure.right {
+    float: right;
+    margin-left: 1em;
+    font-size: 0.875em;
+}
+
+figure.center {
+    clear: both;
+}
+
+figure.center img {
+    margin: 0 auto;
+}
+  
+figure.center figcaption {
+    text-align: center;
+}
+
+
+
+/** --------------------------------------------------------------
+ * Figure with style
+ */
+figure.border {
+    border: 10px solid #000;
+}
+
+figure.rounded img {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}

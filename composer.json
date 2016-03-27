@@ -1,5 +1,5 @@
 {
-    "name": "anax/mvc",    
+    "name": "anax/mvc",
     "type": "library",
     "description": "Webtemplate to create websites",
     "keywords": ["boilerplate", "framework", "mvc", "micro", "education"],
@@ -16,7 +16,12 @@
     "require": {
         "php": ">=5.4",
         "mos/ctextfilter": "dev-master",
-        "mos/cform": "2.x-dev"
+        "mos/cform": "2.*@dev",
+        "mos/cdatabase": "dev-master",
+		"geshi/geshi" : "dev-master",
+        "phpmvc/comment": "dev-master",
+		"fnlive/calendar":  "dev-master",
+		"fnlive/contactform":  "dev-master"
     },
     "autoload": {
         "psr-4": { "Anax\\": "src/" }
