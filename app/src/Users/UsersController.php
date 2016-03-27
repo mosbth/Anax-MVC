@@ -401,22 +401,28 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function updateAction($id = null)
     {
-        $this->di->session(); // Will load the session service which also starts the session
-        // Check if valid entry exists.
-        $all = $this->users->query()
-            ->where("id = '$id'")
-            ->execute();
-        if (count($all)!=1) {
-            die("User with id $id not found.");
+        if ($this->users->loggedIn()) {
+            $this->di->session(); // Will load the session service which also starts the session
+            // Check if valid entry exists.
+            $all = $this->users->query()
+                ->where("id = '$id'")
+                ->execute();
+            if (count($all)!=1) {
+                die("User with id $id not found.");
+            }
+            $user = $this->users->find($id);
+            unset($user->session);
+            unset($user->gravatar);
+            $form = $this->createUpdateUserForm($user);
+            $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
+            $this->di->theme->setTitle("Updatera profil");
+            $this->di->views->add('default/page', [
+                'title' => "Updatera profil",
+                'content' => $form->getHTML()
+            ]);
+        } else {
+            $this->redirectTo($this->url->create('users/login'));
         }
-        $user = $this->users->find($id);
-        $form = $this->createUpdateUserForm($user);
-        $form->check([$this, 'callbackSuccess'], [$this, 'callbackFail']);
-        $this->di->theme->setTitle("Updatera profil");
-        $this->di->views->add('default/page', [
-            'title' => "Updatera profil",
-            'content' => $form->getHTML()
-        ]);
     }
     private function createUpdateUserForm($user = null)
     {

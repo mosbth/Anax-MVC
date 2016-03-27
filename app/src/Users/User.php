@@ -55,7 +55,7 @@ class User extends \Anax\MVC\CDatabaseModel
             'bob@dbwebb.se',
             'Byggare Bob',
             0,
-            md5('doe'),
+            md5('bob'),
             $now,
             $now
         ]);
