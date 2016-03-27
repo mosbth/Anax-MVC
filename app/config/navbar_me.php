@@ -45,16 +45,19 @@ return [
             'title' => 'Fråga en fråga',
         ],
         'loginout' => [
-            // 'text'  => $this->di->get('users')->loggedIn() ? 'true text' : 'false text',
             'text'  => 'Login',
             'url'   => $this->di->get('url')->create('users/login'),
             'title' => 'Logga in eller ut',
         ],
         'about' => [
-            // 'text'  => $this->di->get('users')->loggedIn() ? 'true text' : 'false text',
             'text'  => 'Om oss',
             'url'   => $this->di->get('url')->create('about'),
             'title' => 'Om oss',
+        ],
+        'redovisning' => [
+            'text'  => 'Redovisning',
+            'url'   => $this->di->get('url')->create('redovisning'),
+            'title' => 'Redovisning',
         ],
 
 
