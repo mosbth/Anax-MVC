@@ -110,7 +110,7 @@ class User extends \Anax\MVC\CDatabaseModel
 
     public function loggedIn()
     {
-        if (null!==$this->session->get('user')) {
+        if (null!==$this->session->get('user_logged_in')) {
             // echo "You are logged in, {$this->session->get('user')}";
             return true;
         }
@@ -124,7 +124,7 @@ class User extends \Anax\MVC\CDatabaseModel
      */
     public function loggedInUser()
     {
-        $userAcronym = $this->session->get('user');
+        $userAcronym = $this->session->get('user_logged_in');
         $user = $this->query()
         ->where('acronym =' . "'$userAcronym'")
         ->execute()[0];

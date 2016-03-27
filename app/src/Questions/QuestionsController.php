@@ -237,7 +237,6 @@ class QuestionsController implements \Anax\DI\IInjectionAware
         $question = $this->questions->query()
         ->where('id = ' . "'$id'")
         ->execute()[0];
-        $question->content = $this->textFilter->doFilter($question->content, 'shortcode, markdown');
 
         // Add view with the question.
         $this->theme->setTitle("$question->headline");

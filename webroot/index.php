@@ -6,6 +6,10 @@
 
 require __DIR__.'/config_with_app.php';
 
+// Add alias to root home-page.
+$app->router->add('home', function () use ($app) {
+    $app->redirectTo('');
+});
 // Home page listing recent questions, most popular tags, most active users.
 $app->router->add('', function () use ($app) {
     $app->theme->setTitle("Hem");

@@ -645,7 +645,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function logoutAction()
     {
-        $this->session->set('user', null);
+        $this->session->set('user_logged_in', null);
         $this->redirectTo($_SERVER['HTTP_REFERER']);
     }
     /**
@@ -710,7 +710,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         if (sizeof($user)==1) {
             // Set user in session if successful authentication
             if (md5($password)==$user[0]->password) {
-                $this->session->set('user', $userName);
+                $this->session->set('user_logged_in', $userName);
             }
         }
 
