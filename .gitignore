@@ -22,3 +22,5 @@ vendor
 # Test
 coverage
 
+# JetBrains PhpStorm generated folder
+.idea
