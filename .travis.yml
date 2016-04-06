@@ -30,8 +30,8 @@ before_script:
     - wget https://scrutinizer-ci.com/ocular.phar
 
     # Composer
-    composer validate
-    composer update
+    - composer validate
+    - composer update
 
 
 script: 
