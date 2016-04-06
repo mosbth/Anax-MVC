@@ -53,6 +53,11 @@ History
 
 ###History for Anax-MVC
 
+v2.0.5* (2016-04-06)
+
+* Enhance CResponse::redirect() to use framework urls, fix #22.
+
+
 v2.0.5 (2016-01-15)
 
 * Codestyle using phpcs.

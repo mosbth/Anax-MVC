@@ -19,7 +19,12 @@ class CDIFactoryDefault extends CDI
 
         require ANAX_APP_PATH . 'config/error_reporting.php';
 
-        $this->setShared('response', '\Anax\Response\CResponseBasic');
+        $this->set('response', function () {
+            $response = new \Anax\Response\CResponseBasic();
+            $response->setDI($this);
+            return $response;
+        });
+
         $this->setShared('validate', '\Anax\Validate\CValidate');
         $this->setShared('flash', '\Anax\Flash\CFlashBasic');
         

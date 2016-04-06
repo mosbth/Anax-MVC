@@ -8,6 +8,7 @@ namespace Anax\Response;
  */
 class CResponseBasic
 {
+    use \Anax\DI\TInjectionAware;
 
 
     /**
@@ -96,7 +97,7 @@ class CResponseBasic
     public function redirect($url)
     {
         $this->checkIfHeadersAlreadySent();
-
+        $url = $this->di->get("url")->create($url);
         header('Location: ' . $url);
         exit();
     }
