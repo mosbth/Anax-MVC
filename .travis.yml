@@ -29,9 +29,17 @@ before_script:
     #- php composer.phar install --no-interaction
     - wget https://scrutinizer-ci.com/ocular.phar
 
+    # Composer
+    composer validate
+    composer update
 
 
 script: 
+    - php --version
+    - phpcs --version
+    - composer --version
+    - phpunit --version
+
     - mkdir -p build/logs
     - phpunit --bootstrap test/config.php --coverage-clover build/logs/clover.xml test
     - make test
