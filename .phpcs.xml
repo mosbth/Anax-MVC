@@ -29,6 +29,8 @@
 
         <!-- Below may be removed for a rougher check -->
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace" />
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
     </rule>
     
 </ruleset>

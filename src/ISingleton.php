@@ -10,5 +10,5 @@ interface ISingleton
     /**
      * Return or create an instance of the class.
      */
-    public function instance();
+    public static function instance();
 }

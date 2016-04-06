@@ -15,7 +15,7 @@ class CAnaxSingleton extends CAnax implements \Anax\ISingleton
      * Construct.
      *
      */
-    protected function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
