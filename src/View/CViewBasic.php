@@ -42,11 +42,11 @@ class CViewBasic implements \Anax\DI\IInjectionAware
     }
 
 
-
     /**
      * Render the view.
      *
      * @return void
+     * @throws \Exception
      */
     public function render()
     {

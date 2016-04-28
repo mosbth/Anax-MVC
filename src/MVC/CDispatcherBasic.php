@@ -66,7 +66,7 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
     /**
      * Check if a controller exists with this name.
      *
-     * @return void
+     * @return bool
      */
     public function isValidController()
     {
@@ -125,11 +125,11 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
     }
 
 
-
     /**
      * Inspect if callable and throw exception if parts is not callable.
      *
-     * @return void.
+     * @return void
+     * @throws \Exception
      */
     public function isCallableOrException()
     {

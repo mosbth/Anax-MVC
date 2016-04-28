@@ -16,13 +16,13 @@ trait TConfigure
     private $config = [];  // Store all config as an array
 
 
-
     /**
      * Read configuration from file or array'.
      *
      * @param array/string $what is an array with key/value config options or a file
      *      to be included which returns such an array.
      * @return $this for chaining.
+     * @throws Exception
      */
     public function configure($what)
     {

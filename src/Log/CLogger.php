@@ -42,7 +42,6 @@ class CLogger
     private $context = 'development'; // production, development or debug
 
 
-
     /**
      * Init the logger depending on its context production, development or debug.
      *
