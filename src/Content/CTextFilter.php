@@ -158,19 +158,19 @@ class CTextFilter
                 switch ($matches[1]) {
 
                     case 'FIGURE':
-                        return CTextFilter::ShortCodeFigure($matches[2]);
+                        return CTextFilter::shortCodeFigure($matches[2]);
                         break;
 
                     case 'BASEURL':
-                        return CTextFilter::ShortCodeBaseurl();
+                        return CTextFilter::shortCodeBaseurl();
                         break;
 
                     case 'RELURL':
-                        return CTextFilter::ShortCodeRelurl();
+                        return CTextFilter::shortCodeRelurl();
                         break;
 
                     case 'ASSET':
-                        return CTextFilter::ShortCodeAsset();
+                        return CTextFilter::shortCodeAsset();
                         break;
 
                     default:
@@ -234,7 +234,7 @@ class CTextFilter
                     'href' => null,
                     'nolink' => false,
                 ],
-                CTextFilter::ShortCodeInit($options)
+                CTextFilter::shortCodeInit($options)
             ),
             EXTR_SKIP
         );
