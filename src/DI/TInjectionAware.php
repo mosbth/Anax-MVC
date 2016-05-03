@@ -17,7 +17,7 @@ trait TInjectionAware
     /**
      * Set the service container to use
      *
-     * @param class $di a service container
+     * @param object $di a service container
      *
      * @return $this
      */

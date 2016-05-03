@@ -19,7 +19,7 @@ class CFlashBasic
    /**
      * Set a message.
      *
-     * @param string a message.
+     * @param string $message a message.
      *
      * @return void
      */
@@ -33,7 +33,7 @@ class CFlashBasic
    /**
      * Get the message.
      *
-     * @return void
+     * @return string
      *
      */
     public function getMessage()

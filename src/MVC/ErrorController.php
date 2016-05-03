@@ -12,15 +12,15 @@ class ErrorController
     use \Anax\DI\TInjectionAware;
 
 
-
     /**
-      * Display a page for a HTTP status code.
-      *
-      * @param string code    status code to set the http header.
-      * @param string message an optional message to display together with the error code.
-      *
-      * @return void
-      */
+     * Display a page for a HTTP status code.
+     *
+     * @param string $code status code to set the http header.
+     * @param string $message an optional message to display together with the error code.
+     *
+     * @return void
+     * @throws \Anax\Exception\NotFoundException
+     */
     public function statusCodeAction($code = null, $message = null)
     {
         $codes = [

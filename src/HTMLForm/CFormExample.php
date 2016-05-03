@@ -8,7 +8,7 @@ namespace Anax\HTMLForm;
  */
 class CFormExample extends \Mos\HTMLForm\CForm
 {
-    use \Anax\DI\TInjectionaware,
+    use \Anax\DI\TInjectionAware,
         \Anax\MVC\TRedirectHelpers;
 
 

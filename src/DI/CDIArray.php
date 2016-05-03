@@ -30,7 +30,8 @@ class CDIArray extends CDI implements \ArrayAccess
     /**
      * Construct.
      *
-     * @param array $options to configure options.
+     * @param mixed $offset
+     * @param mixed $value
      */
     public function offsetSet($offset, $value)
     {
@@ -42,11 +43,11 @@ class CDIArray extends CDI implements \ArrayAccess
     }
 
 
-
     /**
      * Construct.
      *
-     * @param array $options to configure options.
+     * @param array $offset to configure options.
+     * @return bool
      */
     public function offsetExists($offset)
     {
@@ -58,7 +59,7 @@ class CDIArray extends CDI implements \ArrayAccess
     /**
      * Construct.
      *
-     * @param array $options to configure options.
+     * @param array $offset to configure options.
      */
     public function offsetUnset($offset)
     {
@@ -66,11 +67,11 @@ class CDIArray extends CDI implements \ArrayAccess
     }
 
 
-
     /**
      * Construct.
      *
-     * @param array $options to configure options.
+     * @param array $offset to configure options.
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {

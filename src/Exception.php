@@ -13,7 +13,7 @@ class Exception extends \Exception
      *
      * @param string $message the Exception message to throw.
      * @param int $code the Exception code.
-     * @param Exception previous the previous exception used for the exception chaining.
+     * @param \Exception $previous the previous exception used for the exception chaining.
      */
     public function __construct($message = "", $code = 0, $previous = null)
     {

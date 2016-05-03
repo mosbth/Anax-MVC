@@ -19,7 +19,7 @@ trait TInjectable
     /**
      * Set the service container to use
      *
-     * @param class $di a service container
+     * @param object $di a service container
      *
      * @return $this
      */
@@ -29,14 +29,14 @@ trait TInjectable
     }
 
 
-
     /**
      * Magic method to get and create services.
      * When created it is also stored as a parameter of this object.
      *
      * @param string $service name of class property not existing.
-     *
-     * @return class as the service requested.
+     * 
+     * @return object as the service requested.
+     * @throws \Exception
      */
     public function __get($service)
     {
@@ -65,15 +65,15 @@ trait TInjectable
     }
 
 
-
-   /**
+    /**
      * Magic method to get and create services as a method call.
      * When created it is also stored as a parameter of this object.
      *
-     * @param string $service   name of class property not existing.
+     * @param string $service name of class property not existing.
      * @param array  $arguments Additional arguments to sen to the method (NOT IMPLEMENTED).
      *
-     * @return class as the service requested.
+     * @return object as the service requested.
+     * @throws \Exception
      */
     public function __call($service, $arguments = [])
     {

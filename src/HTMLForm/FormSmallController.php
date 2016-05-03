@@ -8,7 +8,7 @@ namespace Anax\HTMLForm;
  */
 class FormSmallController
 {
-    use \Anax\DI\TInjectionaware;
+    use \Anax\DI\TInjectionAware;
 
 
 

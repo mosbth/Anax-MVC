@@ -209,13 +209,13 @@ class CUrl
     }
 
 
-
     /**
      * Set the type of urls to be generated, URL_CLEAN, URL_APPEND.
      *
      * @param string $type what type of urls to create.
      *
      * @return $this
+     * @throws \Exception
      */
     public function setUrlType($type)
     {

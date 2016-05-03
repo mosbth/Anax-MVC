@@ -19,12 +19,12 @@ class CValidate
     /**
      * Check if a value matches rules or throw exception.
      *
-     * @param mixed   $value  to check
-     * @param string  $rules  to apply when checking value
+     * @param mixed   $value to check
+     * @param string  $rules to apply when checking value
      * @param boolean $throws set to true to throw exception when check fails
      *
-     * @return boolean true or false
-     * @throws Exception when check fails
+     * @return bool true or false
+     * @throws \Exception
      */
     public function check($value, $rules, $throws = false)
     {

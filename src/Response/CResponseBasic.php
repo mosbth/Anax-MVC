@@ -49,11 +49,11 @@ class CResponseBasic
     }
 
 
-
     /**
      * Send headers.
      *
-     * @return $this
+     * @return $this|void
+     * @throws \Exception
      */
     public function sendHeaders()
     {

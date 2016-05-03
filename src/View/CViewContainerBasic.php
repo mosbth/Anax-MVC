@@ -110,13 +110,13 @@ class CViewContainerBasic implements \Anax\DI\IInjectionAware
     }
 
 
-
     /**
      * Set base path where  to find views.
      *
      * @param string $path where all views reside
      *
      * @return $this
+     * @throws \Exception
      */
     public function setBasePath($path)
     {
