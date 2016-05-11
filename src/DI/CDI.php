@@ -222,7 +222,7 @@ class CDI implements IDI
             $this->active[$service] = new $sol();
 
         } else {
-            throw new Exception("CDI could not load service '$service'. It is unknown how to load it.");
+            throw new \Exception("CDI could not load service '$service'. It is unknown how to load it.");
         }
 
         $this->$service = $this->active[$service];

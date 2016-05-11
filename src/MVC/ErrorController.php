@@ -30,7 +30,7 @@ class ErrorController
         ];
 
         // Key being integer also (unintentionally) prevents this action from direct url usage
-        if (!$code || !in_array($code, $codes)) {
+        if (!empty($code) || !in_array($code, $codes)) {
             throw new \Anax\Exception\NotFoundException("Not a valid HTTP status code.");
         }
 

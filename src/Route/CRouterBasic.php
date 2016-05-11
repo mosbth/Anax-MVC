@@ -129,23 +129,47 @@ class CRouterBasic implements \Anax\DI\IInjectionAware
 
             // Default handling route as :controller/:action/:params using the dispatcher
             $dispatcher = $this->di->dispatcher;
-            $dispatcher->setControllerName(isset($parts[0]) ? $parts[0] : 'index');
+
+            $dispatcher->setControllerName();
+
+            // Checks if the first part is a valid controller.
+            if (isset($parts[0])) {
+                $dispatcher->setControllerName($parts[0]);
+
+                // If not valid then ignore the first param and sets the default.
+                if ($dispatcher->isValidController()) {
+                    array_shift($parts);
+                } else {
+                    $dispatcher->setControllerName();
+                }
+            }
 
             if ($dispatcher->isValidController()) {
 
-                $dispatcher->setActionName(isset($parts[1]) ? $parts[1] : 'index');
+                // Checks if a action is set. If not then will use index action.
+                $dispatcher->setActionName();
 
-                $params = [];
-                if (isset($parts[2])) {
-                    $params = $parts;
-                    array_shift($params);
-                    array_shift($params);
+                if (isset($parts[0])) {
+                    $dispatcher->setActionName($parts[0]);
+
+                    if ($dispatcher->isCallable()) {
+                        array_shift($parts);
+                    } else {
+                        $dispatcher->setActionName();
+                    }
                 }
-                $dispatcher->setParams($params);
 
                 if ($dispatcher->isCallable()) {
-                    return $dispatcher->dispatch();
+
+                    $parts = !empty($parts) ? $parts : [];
+                    $dispatcher->setParams($parts);
+
+                    // Checks if the are correct number of params that the action accepts
+                    if ($dispatcher->isParamsValid()) {
+                        return $dispatcher->dispatch();
+                    }
                 }
+
             }
 
             // Use the "catch-all" route
