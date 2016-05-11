@@ -234,8 +234,10 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
     public function isParamsValid()
     {
         $reflection = new \ReflectionMethod($this->controller, $this->action);
+        $numberOfParams = count($this->params);
 
-        if (count($this->params) === $reflection->getNumberOfParameters()) {
+        if ($numberOfParams >= $reflection->getNumberOfRequiredParameters()
+            && $numberOfParams <= $reflection->getNumberOfParameters()) {
             return true;
         }
 
