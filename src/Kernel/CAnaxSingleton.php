@@ -10,10 +10,10 @@ class CAnaxSingleton extends CAnax implements \Anax\ISingleton
     use \Anax\TSingleton;
 
 
-
     /**
      * Construct.
      *
+     * @param array $di
      */
     public function __construct($di)
     {
