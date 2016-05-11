@@ -226,4 +226,22 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
         $this->isCallableOrException();
         return $this->dispatch();
     }
+
+
+    /**
+     * Checks if the number of parameters given are valid.
+     * Make sure you have set and validated the controller and action before executing this function.
+     *
+     * @return bool if valid.
+     */
+    public function isParamsValid()
+    {
+        $reflection = new \ReflectionMethod($this->controller, $this->action);
+
+        if (count($this->params) === $reflection->getNumberOfParameters()) {
+            return true;
+        }
+
+        return false;
+    }
 }
