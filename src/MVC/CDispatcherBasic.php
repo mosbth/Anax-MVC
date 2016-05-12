@@ -110,8 +110,6 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
      */
     public function isCallable()
     {
-        $handler = [$this->controller, $this->action];
-
         if (!method_exists($this->controller, $this->action)) {
             return false;
         }
@@ -139,7 +137,6 @@ class CDispatcherBasic implements \Anax\DI\IInjectionAware
         $isCallable = null;
 
         if ($validController) {
-            $handler = [$this->controller, $this->action];
             $isMethod   = method_exists($this->controller, $this->action);
             $isCallable = $this->isCallable();
         }
