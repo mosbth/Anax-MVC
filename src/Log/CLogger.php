@@ -72,7 +72,7 @@ class CLogger
                 break;
             
             default:
-                throw new Exception('Unknown context.');
+                throw new \Exception('Unknown context.');
                 break;
         }
 
