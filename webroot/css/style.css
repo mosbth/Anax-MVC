@@ -16,11 +16,11 @@ h1 {
 
 
 /**
- * Layout of the main page elements 
+ * Layout of the main page elements
  */
 #wrapper {
   margin: 0 auto;
-  width: 980px; 
+  max-width: 980px;
   padding: 10px;
 }
 
@@ -76,8 +76,9 @@ h1 {
  */
 .article1 {
   width: 700px;
-  border-right: 1px solid #ccc;
+  /*border-right: 1px solid #ccc;*/
   padding-right: 1em;
+  /*background-color: #fff;*/
 }
 
 .article1 h1,
@@ -87,11 +88,12 @@ h1 {
 
 .byline {
   margin-top: 44px;
-  border-top: 1px dashed #ccc;
+  /*border-top: 1px dashed #ccc;*/
   padding-top: 22px;
   color: #666;
 }
 
 .byline p {
   margin-top: 0;
+  padding: 1em;
 }
